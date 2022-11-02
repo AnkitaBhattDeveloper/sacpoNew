@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/more_black_overlay">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/more_black_overlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ScrollView
+                    android:gravity="center"
+                    android:id="@+id/iv_imdgContainer"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/btnContainer">
+                    <HorizontalScrollView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_getImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY" />
+                    </HorizontalScrollView>
+                </ScrollView>
+
+
+                <LinearLayout
+
+                    android:id="@+id/btnContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_dismiss"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DISMISS" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/container_m_dashboard">
+<!--    tools:context=".xCubeMentor.attendance.MAttCalendarDA"-->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/bigDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="HEADING"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"
+                    />
+
+                
+
+                <LinearLayout
+                    android:background="@color/background_grey"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/lblInputAttendance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/SmallDp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/BigTextSize"
+                        android:background="@color/greyish"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:text=""
+                        android:layout_marginBottom="20dp"
+                        />
+                    <LinearLayout
+                        android:id="@+id/attendanceContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnAttendance"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:background="@drawable/themed_button_action_g"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnLeaves"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/themed_button_action_r"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/TTContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/ttCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginRight="@dimen/SmallerDp"
+                    android:paddingTop="@dimen/SmallerDp"
+                    android:paddingBottom="@dimen/SmallerDp"
+                    android:paddingLeft="@dimen/bigDp"
+                    android:paddingRight="@dimen/bigDp"
+                    android:text="\?"
+                    android:background="@drawable/tool_tip_button"
+                    android:textAllCaps="true"
+                    android:clickable="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+            </LinearLayout>
+                <LinearLayout
+                    android:background="@color/background_grey"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/calenderContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/lblAttendance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/SmallDp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/BigTextSize"
+                        android:background="@color/greyish"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:text=""
+                    />
+
+
+                    <za.co.sacpo.grant.xCubeLib.component.CalendarView
+                        xmlns:calendarNS="http://schemas.android.com/apk/res/za.co.sacpo.grant"
+                        android:id="@+id/inputCurrentMonth"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:background="@color/background_grey"
+                        calendarNS:dateFormat="MMMM yyyy"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

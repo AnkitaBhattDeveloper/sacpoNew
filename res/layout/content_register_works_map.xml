@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/bigDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+               <LinearLayout
+                   android:id="@+id/mapContainer"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="300dp">
+
+                   <TextView
+                       android:id="@+id/lblWorkStation"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"
+                       android:layout_marginBottom="@dimen/SmallerDp"
+                       android:layout_marginLeft="@dimen/SmallerDp"
+                       android:text="WorkStation"
+                       android:textAllCaps="true"
+                       android:textColor="@color/textColor"
+                       android:textSize="@dimen/SmallerTextSize" />
+
+                   <fragment
+                       android:layout_marginTop="@dimen/large"
+                       xmlns:android="http://schemas.android.com/apk/res/android"
+                       xmlns:tools="http://schemas.android.com/tools"
+                       android:id="@+id/map"
+                       android:name="com.google.android.gms.maps.SupportMapFragment"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       tools:context=".grant.xCubeMentor.workstations.RegisterWSMapsA" />
+
+               </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/WorksLocationContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/lblworksLoc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text="Works Location"
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutworksLoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/inputworksLoc"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:maxLines="1"
+                            tools:ignore="MissingPrefix"
+                            app:errorTextAppearance="@style/errorText"
+                             />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/WorksLocCodeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblWorksLocCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text="WorkStation Code"
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutWorksLocCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                     <EditText
+                            android:id="@+id/inputWorksLocCode"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="date"
+                            android:maxLines="1"
+                            tools:ignore="MissingPrefix"
+                            app:errorTextAppearance="@style/errorText"
+                         />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordContainer"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/addHoliDaysContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btnsubmit"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text="Save"
+                            android:textColor="@color/ButtonTxtwhite"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

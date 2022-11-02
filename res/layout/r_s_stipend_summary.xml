@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/Rv_Dash_stat_atten"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fffbfb">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/tRow"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_width="@dimen/stat_width_details"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton_details_stipend"
+                android:layout_gravity="left"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_launcher_detail_button"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="@dimen/stat_width"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txtMonth"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jan"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorGrey"/>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="@dimen/stat_width_year"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txtYear"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2018"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorGrey"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="@dimen/stat_width"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txtAmount"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorGrey"/>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="@dimen/stat_width"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txtMentorApproved"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorGrey"/>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="@dimen/stat_width"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txtAdminApproved"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorGrey"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+   
+
+    <View
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e4e4e4"/>
+
+
+
+
+
+
+
+</LinearLayout>

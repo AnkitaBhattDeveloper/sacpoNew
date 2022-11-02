@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+<!--
+<ImageView
+android:id="@+id/imageView"
+android:layout_width="150dp"
+android:layout_height="150dp" />
+-->
+
+<!--
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:paddingBottom="10dp"
+        android:text="Spiderman"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:textSize="35dp"
+        android:textStyle="bold" />-->
+
+<!--<TextView
+android:id="@+id/textViewTeam"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_below="@+id/textViewName"
+android:layout_toEndOf="@+id/imageView"
+android:layout_toRightOf="@+id/imageView"
+android:paddingTop="10dp"
+android:text="Spiderman"
+android:textAlignment="center" android:gravity="center_horizontal"
+android:textSize="25dp"
+android:textStyle="bold" />
+
+<Button
+android:id="@+id/buttonDelete"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignBottom="@+id/imageView"
+android:layout_toEndOf="@+id/imageView"
+android:layout_toRightOf="@+id/imageView"
+android:background="#FF0000"
+android:text="Delete" />-->
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="false"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_topics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textviewTopics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELOOOOOOOOOOOOOOOO"
+                android:textAllCaps="true"
+                android:fontFamily="serif"
+                android:padding="@dimen/margin_10"
+                android:textAlignment="textStart"
+                android:gravity="start"
+                android:textSize="16dip"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    </RelativeLayout>

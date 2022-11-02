@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.attendance.EditAttCalenderA"
+    tools:showIn="@layout/a_edit_att_calender">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:padding="@dimen/padding_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding_ten"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/activity_heading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallDp"
+                                android:text="HEADING"
+                                android:textAlignment="center" android:gravity="center_horizontal"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/BigTextSize"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                                android:layout_marginRight="@dimen/ExtraGiantDp"
+                                android:background="@drawable/heading" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:padding="@dimen/padding_ten"
+                                android:id="@+id/lbl_attendace"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Attendance"
+                                android:textSize="@dimen/customTextSize"
+                                android:textColor="@color/textColorInfoHead"
+                                android:gravity="center"
+                                android:textStyle="bold"/>
+
+
+                            <RadioGroup
+                                android:id="@+id/rg_Att"
+                                android:padding="@dimen/padding_ten"
+                                android:layout_marginTop="@dimen/margin_15"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rb_present"
+                                    android:layout_marginRight="@dimen/margin_10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="1"
+                                    android:text="Present"
+                                    android:textSize="@dimen/NormalTextSize"/>
+
+
+                                <RadioButton
+                                    android:id="@+id/rb_absent"
+                                    android:layout_marginLeft="@dimen/margin_10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Absent"
+                                    android:tag="2"
+                                    android:textSize="@dimen/NormalTextSize"/>
+
+                            </RadioGroup>
+
+
+                            <LinearLayout
+                                android:id="@+id/ll_dateContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/padding_ten"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_marginRight="@dimen/margin_5"
+                                        android:padding="@dimen/padding_5"
+                                        android:textSize="@dimen/NormalTextSize"
+                                        android:text="Login Time"
+                                        android:textColor="@color/textColorInfoHead"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+
+                                    <EditText
+                                        android:id="@+id/et_loginTime"
+                                        android:layout_marginLeft="@dimen/margin_20"
+                                        android:padding="@dimen/padding_ten"
+                                        android:layout_width="120dp"
+                                        android:focusable="false"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/rect_box"/>
+
+
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="@dimen/margin_15"
+                                    android:layout_width="match_parent"
+                                    android:orientation="horizontal"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:padding="@dimen/padding_5"
+                                        android:textSize="@dimen/NormalTextSize"
+                                        android:text="Logout Time"
+                                        android:textColor="@color/textColorInfoHead"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+
+                                    <EditText
+                                        android:id="@+id/et_logoutTime"
+                                        android:focusable="false"
+                                        android:layout_marginLeft="@dimen/margin_15"
+                                        android:padding="@dimen/padding_ten"
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/rect_box"/>
+
+
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btnEditAttendace"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/margin_20"
+                                android:background="@drawable/themed_button_action_g"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text="SAVE"
+                                android:visibility="visible"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+
+
+                            <Button
+                                android:id="@+id/btnEditAttendace2"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="gone"
+                                android:layout_marginTop="@dimen/margin_20"
+                                android:background="@drawable/themed_button_action_g"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text="SAVE"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

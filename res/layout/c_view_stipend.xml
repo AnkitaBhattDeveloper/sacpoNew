@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttDate"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="Student Id"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                />
+                <TextView
+                  android:id="@+id/txAttDate"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text="Student Id"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttDay"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="Day"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+                <TextView
+                  android:id="@+id/txStuStipend"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text=""
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttInTime"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="In Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                />
+                <TextView
+                  android:id="@+id/txInTime"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text="IN Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttOutTime"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="In Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                />
+                <TextView
+                  android:id="@+id/txOutTime"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text="Out Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttTotalTime"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="In Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                />
+                <TextView
+                  android:id="@+id/txAttTotalTime"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text="Out Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+              <TextView
+                  android:id="@+id/lblAttStatus"
+                  android:layout_weight=".7"
+                  android:layout_margin="@dimen/small"
+                  android:text="In Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                />
+                <TextView
+                  android:id="@+id/txAttStatus"
+                  android:layout_weight=".3"
+                  android:layout_margin="@dimen/small"
+                  android:text="Out Time"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                 />
+
+           </LinearLayout>
+
+        </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

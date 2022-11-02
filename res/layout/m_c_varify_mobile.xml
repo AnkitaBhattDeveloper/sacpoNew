@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/m_c_varify_mobile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="HEADING"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"
+                    />
+
+
+
+    <!--            <ImageView
+                    android:id="@+id/headLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:adjustViewBounds="false"
+                    android:elevation="0dp"
+                    app:srcCompat="@drawable/p_logo" />-->
+<include layout="@layout/logo_impl"/>
+                <LinearLayout
+                    android:id="@+id/mobileNumberContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputMobileNumber"
+                            style="@style/editText"
+                            android:maxLength="12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="number"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/otpContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblOTP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutOTP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputOTP"
+                            style="@style/editText"
+                            android:maxLength="4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="number"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordContainer"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/loginContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSend"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="335dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mStudentAttendance_Row"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp">
+
+
+
+    <TextView
+        android:id="@+id/lbl_Learner"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+
+    <TextView
+        android:id="@+id/lbl_mLoginTime"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lbl_mLogoutTime"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+
+    <TextView
+        android:id="@+id/lbl_mSpendTime"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lbl_mStudentAttendanceStatus"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lbl_mMentorAttendanceStatus"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="textStart" />
+
+    <TextView
+        android:id="@+id/lbl_mLeadEmpAdminAttendanceStatus"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lbl_mCordDifference"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLAction"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:orientation="horizontal"
+        android:textAlignment="center" android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lbl_mAction"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnActionPaid_Unpaid"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLAction2"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:orientation="horizontal"
+        android:textAlignment="center" android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/lbl_mAction2"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/btnActionAdd_Remark"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLAction3"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:orientation="horizontal"
+        android:textAlignment="center" android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/lbl_mAction3"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/btnActionApproval"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</TableRow>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.forms.SUploadFormA"
+    tools:showIn="@layout/a_upload_form">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/bigDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="HEADING"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"
+                    />
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordContainer"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/fab_margin_20"
+                        android:id="@+id/loginContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+
+                        <Button
+                            android:id="@+id/btnChoose"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txtFilePath"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text=""
+                            android:padding="@dimen/ExtraSmallDp"
+                            android:textSize="@dimen/BigTextSize"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btnUpload"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/themed_button"
+                        android:minHeight="@dimen/btnHeight"
+                        android:minWidth="180dp"
+                        android:text=""
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

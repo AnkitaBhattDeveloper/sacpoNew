@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mform_Row"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/lblFormName"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text="@string/l_form_fname_130_101"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/lblFormId"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/lblFormLearner"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text="@string/l_form_flearner_130_103"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/lblFormHostEmp"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:padding="@dimen/SmallerDp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:layout_margin="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/l_form_fhost_130_104" />
+    <TextView
+        android:id="@+id/lblFormLeadEmp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text="@string/l_form_flead_130_105"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart" />
+    <TextView
+        android:id="@+id/lblFormCompletion"
+        android:layout_width="100dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:padding="@dimen/SmallerDp"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/l_form_fcompletion_130_106" />
+    <LinearLayout
+        android:id="@+id/linearAction"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+
+        >
+        <TextView
+            android:id="@+id/lblAction"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+        <Button
+            android:id="@+id/btnDownlode"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearAction2"
+        >
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/lblAction2"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+        <Button
+            android:id="@+id/btnUploadSignedForm"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearAction3"
+        >
+        <TextView
+            android:id="@+id/lblAction3"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+        <Button
+            android:id="@+id/btnDownloadSignedForm"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</TableRow>

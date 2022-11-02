@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:visibility="visible"
+    android:id="@+id/BtnContainer_Submit"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    android:orientation="horizontal"
+    android:textAlignment="center" android:gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Button
+        android:layout_marginBottom="45dp"
+        android:id="@+id/BtnSubmit_att"
+        android:layout_alignParentBottom="true"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/themed_small_button"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:minWidth="110dp"
+        android:text="SUBMIT"
+        android:textColor="@color/row_button_color"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

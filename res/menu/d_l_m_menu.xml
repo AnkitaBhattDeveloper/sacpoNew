@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@mipmap/dashboard"
+            android:title="DASHBOARD"
+            android:visible="true" />
+        <item
+            android:id="@+id/nav_workX"
+            android:icon="@mipmap/bank"
+            android:title="REGISTER WORKSTATION LOCATION"
+            android:visible="false" />
+
+        <item
+            android:id="@+id/nav_feedbackReports"
+            android:icon="@mipmap/ic_launcher_feedbackreport"
+            android:title="LEARNER PROGRESS REPORTS"
+            android:visible="false" />
+
+
+        <item
+            android:id="@+id/nav_Ass_work"
+            android:icon="@mipmap/ic_launcher_timeline"
+            android:title="ASSIGN WORKSTATION"
+            android:visible="false" />
+
+        <item
+            android:id="@+id/nav_workingWeek"
+            android:icon="@mipmap/ic_working_week"
+            android:title="SET WORKING WEEK"
+            android:visible="false" />
+
+        <item
+            android:id="@+id/nav_GrantDetails"
+            android:icon="@mipmap/ic_launcher_feedbackreport"
+            android:title="GEANT DETAILS"
+            android:visible="false" />
+
+        <!--<item
+            android:id="@+id/nav_AddBlog"
+            android:icon="@mipmap/grant"
+            android:title="ADD BLOG"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_Blog"
+            android:icon="@mipmap/message"
+            android:title="BLOG"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_viewPostBlog"
+            android:icon="@mipmap/grant"
+            android:title="VIEW POSTED BLOG"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_surveyList"
+            android:icon="@mipmap/leave"
+            android:title="SURVEY"
+            android:visible="true" />
+
+
+        <item
+            android:id="@+id/nav_ansSurvey"
+            android:icon="@mipmap/attendace"
+            android:title="ANSWERED SURVEY"
+            android:visible="true" />-->
+
+        <item
+            android:id="@+id/nav_claim_approval"
+            android:icon="@mipmap/un_claim"
+            android:title="CLAIM APPROVAL"
+            android:visible="false" />
+
+    </group>
+
+    <item android:title="COMMUNICATION">
+        <menu>
+            <!-- <item
+                 android:id="@+id/nav_notifications"
+                 android:icon="@mipmap/notification"
+                 android:title="ALERTS" />-->
+
+            <item
+                android:id="@+id/nav_view_queries"
+                android:icon="@mipmap/ic_launcher_viewqueries"
+                android:title="INCOMING MESSAGES"
+                android:visible="true" />
+            <item
+                android:id="@+id/nav_post_query"
+                android:icon="@mipmap/ic_launcher_postqueries"
+                android:title="CONTACT SUPPORT"
+                android:visible="true" />
+
+
+            <!-- <item
+                 android:id="@+id/nav_messages"
+                 android:icon="@mipmap/message"
+                 android:title="CHAT ROOM" />-->
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@mipmap/logout"
+        android:title="LOGOUT" />
+</menu>

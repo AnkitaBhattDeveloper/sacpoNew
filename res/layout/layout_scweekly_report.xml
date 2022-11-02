@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tRowFeedback"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/lblSTitle"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/lblMonth"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/lblYear"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:background="@drawable/backcell"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/lblSDepartment5"
+        android:layout_width="140dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:background="@drawable/backcell"
+        android:maxLines="1"
+        android:gravity="center"
+        android:textAlignment="center"
+        />
+    <LinearLayout
+        android:id="@+id/linearEdit"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/backcell"
+        >
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/lblActionEdit"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text=""/>
+        <Button
+            android:id="@+id/btnActionEdit"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linearRemove"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/backcell"
+        >
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/lblActionRemove"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text=""/>
+        <Button
+            android:id="@+id/btnActionRemove"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linearDetails"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/backcell"
+        >
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/lblActionDetails"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text=""/>
+        <Button
+            android:id="@+id/btnActionDetails"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</TableRow>

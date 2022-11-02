@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:visible="true"
+            android:id="@+id/nav_dashboard"
+            android:icon="@mipmap/dashboard"
+            android:title="DASHBOARD" />
+
+        <item
+            android:id="@+id/nav_stipends"
+            android:icon="@mipmap/attendace"
+            android:title="STIPEND CLAIMS" />
+  <!--      <item
+            android:id="@+id/nav_attendance"
+            android:icon="@mipmap/attendace"
+            android:title="ATTENDANCE" />
+        <item
+            android:id="@+id/nav_leave"
+            android:icon="@mipmap/leave"
+            android:title="LEAVE" />-->
+
+
+        <!--TODO::NEXT PHASE<item
+            android:id="@+id/nav_grants"
+            android:icon="@mipmap/grant"
+            android:title="GRANTS" />-->
+
+  <!--      <item
+            android:id="@+id/nav_stipend"
+            android:icon="@mipmap/ic_launcher_stipend_icon"
+            android:title="STIPEND " />
+        <item
+            android:visible="false"
+            android:id="@+id/nav_forms"
+            android:icon="@mipmap/forms"
+            android:title="FORMS" />
+
+        <item
+            android:visible="false"
+            android:id="@+id/nav_stipends"
+            android:icon="@mipmap/ic_launcher_stipend_icon"
+            android:title="STIPENDS" />-->
+
+       <!-- <item
+            android:visible="false"
+            android:id="@+id/nav_smFeedback"
+            android:icon="@mipmap/ic_launcher_feedbackreport"
+            android:title="LEARNER WEEKLY REPORTS" />-->
+    </group>
+
+    <item android:title="COMMUNICATION">
+        <menu>
+            <!--  <item
+                  android:id="@+id/nav_notifications"
+                  android:icon="@mipmap/notification"
+                  android:title="ALERTS" />-->
+            <item
+                android:visible="true"
+                android:id="@+id/nav_view_queries"
+                android:icon="@mipmap/ic_launcher_viewqueries"
+                android:title="INCOMING MESSAGES" />
+            <item
+                android:visible="true"
+                android:id="@+id/nav_post_query"
+                android:icon="@mipmap/ic_launcher_postqueries"
+                android:title="CONTACT SUPPORT" />
+
+            <!--      <item
+                      android:id="@+id/nav_messages"
+                      android:icon="@mipmap/message"
+                      android:title="CHAT ROOMS" />-->
+        </menu>
+    </item>
+    <item
+        android:visible="true"
+        android:id="@+id/nav_logout"
+        android:icon="@mipmap/logout"
+        android:title="LOGOUT" />
+</menu>

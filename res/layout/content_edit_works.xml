@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeMentor.workX.MEditWorkXA"
+    tools:showIn="@layout/a_m_edit_workx">
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="HEADING"
+            android:padding="@dimen/ExtraSmallDp"
+            android:textSize="@dimen/BigTextSize"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_marginLeft="@dimen/ExtraGiantDp"
+            android:layout_marginRight="@dimen/ExtraGiantDp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/heading"
+            />
+
+        <TextView
+            android:id="@+id/lblEdWSName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="@dimen/SmallerDp"
+            android:layout_marginLeft="@dimen/SmallerDp"
+            android:layout_marginTop="@dimen/large"
+            android:text="Works Station"
+            android:textAllCaps="true"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/SmallerTextSize" />
+        <LinearLayout
+            android:id="@+id/googleMapContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headLogo"
+            android:layout_marginBottom="@dimen/ExtrabiggestDp"
+            android:layout_marginTop="@dimen/GiantDp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lblWorkStation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text="Works Station"
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:orientation="vertical">
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/WorkSNameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headLogo"
+            android:layout_marginBottom="@dimen/ExtrabiggestDp"
+            android:layout_marginTop="@dimen/GiantDp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lblWorkSName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutWSName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/inputWSName"
+                    style="@style/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+       <LinearLayout
+            android:id="@+id/WorkSCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headLogo"
+            android:layout_marginBottom="@dimen/ExtrabiggestDp"
+            android:layout_marginTop="@dimen/GiantDp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblWorkSCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutWorkSCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/inputWorksCode"
+                    style="@style/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="date"
+                    android:maxLines="1"
+                    app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+       <LinearLayout
+            android:id="@+id/WorksEditWxLat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headLogo"
+            android:layout_marginBottom="@dimen/ExtrabiggestDp"
+            android:layout_marginTop="@dimen/GiantDp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblEditWxLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutEditWxLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/inputEditWxLat"
+                    style="@style/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="date"
+                    android:maxLines="1"
+                    app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/EditWxLongContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headLogo"
+            android:layout_marginBottom="@dimen/ExtrabiggestDp"
+            android:layout_marginTop="@dimen/GiantDp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblEditWxLong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutEditWxLong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/inputEditWxLong"
+                    style="@style/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="date"
+                    android:maxLines="1"
+                    app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordContainer"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/editWorksCodeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/bigDp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnsubmit"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/middleDp"
+                    android:background="@drawable/themed_button"
+                    android:minHeight="@dimen/btnHeight"
+                    android:minWidth="@dimen/btnWidth"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

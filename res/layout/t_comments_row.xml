@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_box"
+    android:padding="10dp"
+    android:layout_margin="@dimen/margin_5">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/SmallerDp"
+        android:layout_marginTop="@dimen/SmallerDp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+
+
+                <LinearLayout
+                    android:padding="@dimen/padding_ten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/get_user_name_c"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/padding_ten"
+                        android:paddingRight="@dimen/padding_ten"
+                        android:paddingTop="@dimen/padding_ten"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:text="Peter Smith"
+                        android:textColor="@color/txt_small_heading" />
+
+                    <TextView
+                        android:id="@+id/lblDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="@dimen/ExtraSmallerDp"
+                        android:textAllCaps="true"
+                        android:paddingLeft="@dimen/padding_ten"
+                        android:paddingRight="@dimen/padding_ten"
+                        android:text="24th Aug 2018 2:33:33 AM" />
+
+
+
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/body_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_ten"
+                    android:layout_marginLeft="@dimen/margin_ten"
+                    android:layout_marginRight="@dimen/margin_ten"
+                    android:background="@drawable/corner_background"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:id="@+id/lblRef"
+                        android:padding="@dimen/SmallDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:gravity="left"
+                        android:maxLines="8"
+                        android:text="@string/random" />
+
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/margin_ten"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginLeft="@dimen/margin_ten"
+                android:layout_marginRight="@dimen/margin_ten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#e2eaeaea">
+
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/send_image01"
+                    android:padding="@dimen/margin_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

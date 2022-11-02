@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:visible="true"
+            android:id="@+id/nav_dashboard"
+            android:icon="@mipmap/dashboard"
+            android:title="DASHBOARD" />
+
+        <item
+            android:visible="true"
+            android:id="@+id/nav_payrollSchedule"
+            android:icon="@mipmap/stipend"
+            android:title="PAYROLL SCHEDULE" />
+
+        <item
+            android:id="@+id/nav_surveyList"
+            android:icon="@mipmap/leave"
+            android:title="SURVEY"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_ans_survey"
+            android:icon="@mipmap/attendace"
+            android:title="ANSWERED SURVEY"
+            android:visible="true" />
+
+
+        <item
+            android:id="@+id/nav_AddBlog"
+            android:icon="@mipmap/grant"
+            android:title="ADD BLOG"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_viewPostBlog"
+            android:icon="@mipmap/grant"
+            android:title="VIEW POSTED BLOG"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/nav_Blog"
+            android:icon="@mipmap/message"
+            android:title="BLOG"
+            android:visible="true" />
+    </group>
+
+    <item android:title="COMMUNICATION">
+        <menu>
+
+            <item
+                android:visible="true"
+                android:id="@+id/nav_view_queries"
+                android:icon="@mipmap/ic_launcher_viewqueries"
+                android:title="INCOMING MESSAGES" />
+            <item
+                android:visible="true"
+                android:id="@+id/nav_post_query"
+                android:icon="@mipmap/ic_launcher_postqueries"
+                android:title="CONTACT SUPPORT" />
+
+        </menu>
+    </item>
+    <item
+        android:visible="true"
+        android:id="@+id/nav_logout"
+        android:icon="@mipmap/logout"
+        android:title="LOGOUT" />
+</menu>

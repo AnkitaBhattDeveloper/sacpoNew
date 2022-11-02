@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/c_m_training_plan"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/a_m_training_plan"
+    tools:context=".grant.xCubeMentor.training.MTrainingPlanA">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:text=""
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:background="@drawable/heading" />
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/bigDp"
+                    android:id="@+id/body_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/bigDp"
+                            android:layout_marginTop="@dimen/bigDp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnAddTraining"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/themed_button"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text=""
+                                android:visibility="gone"
+                                android:layout_margin="@dimen/margin_5"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/btnTrainingList"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/themed_button"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text=""
+                                android:layout_margin="@dimen/margin_5"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/ExtraSmallerDp"
+                        android:background="@color/background_info_head"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/small"
+                        android:textColor="@color/txt_small_value"
+                        android:gravity="center">
+                        <TextView
+                            android:textStyle="bold"
+                            android:id="@+id/txtStudent_Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:text=""
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/bigDp"
+                    android:layout_marginTop="@dimen/bigDp"
+                    android:orientation="vertical"
+                    tools:ignore="WebViewLayout">
+
+                    <WebView
+                        android:id="@+id/wv_information"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/ExtraSmallerDp"
+                        android:background="@color/back_small_value"
+                        android:padding="@dimen/small"
+                        android:textColor="@color/txt_small_value"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/spinnerContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+                <Spinner
+                    android:id="@+id/Spiner_training_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/spinner_bg"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/addwXContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:layout_marginTop="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btnSave"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

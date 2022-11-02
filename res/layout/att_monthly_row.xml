@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tRowA"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp">
+
+    <!--android:layout_width="100dp"-->
+    <TextView
+        android:id="@+id/lblMonth"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblYear"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblAttendanceDays"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblAnnualLeave"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblSickLeave"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblOtherPaidLeave"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+    <TextView
+        android:id="@+id/lblUnpaidLeave"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+    <TextView
+        android:id="@+id/lblSupervisorApproval"
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:textAlignment="center"
+        android:gravity="center_horizontal"  />
+
+
+    <LinearLayout
+        android:id="@+id/linearLAction"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:orientation="horizontal"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/lblActionSC"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnActionSC"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLActionD"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:orientation="horizontal"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/lblActionD"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnActionD"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</TableRow>

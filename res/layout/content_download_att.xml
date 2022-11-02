@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.attendance.DownloadAttA"
+    tools:showIn="@layout/a_download_att">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/activity_heading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallDp"
+                                android:text="HEADING"
+                                android:textAlignment="center" android:gravity="center_horizontal"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/BigTextSize"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                                android:layout_marginRight="@dimen/ExtraGiantDp"
+                                android:background="@drawable/heading" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/padding_ten">
+
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/imageview"
+                                android:layout_width="wrap_content"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content"/>
+
+
+                            <Button
+                                android:id="@+id/btnDownloadImg"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_20"
+                                android:background="@drawable/themed_button"
+                                android:drawableRight="@drawable/ic_camera_icon_white"
+                                android:drawablePadding="15dp"
+                                android:minHeight="@dimen/btnHeight"
+                                android:padding="@dimen/padding_ten"
+                                android:text="Download Image"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+
+                            <Button
+                                android:id="@+id/btnDownloadPdf"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_20"
+                                android:layout_marginBottom="@dimen/margin_10"
+                                android:background="@drawable/themed_button"
+                                android:drawableRight="@drawable/ic_icon_pdf_white"
+                                android:drawablePadding="15dp"
+                                android:minHeight="@dimen/btnHeight"
+                                android:padding="@dimen/padding_ten"
+                                android:text="Download PDF"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/ll_tv_info"
+                                android:layout_marginTop="30dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:background="#A3F3F1F1"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/padding_ten">
+
+                                <TextView
+
+                                    android:id="@+id/tv_downloadImg_info"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/random2"
+                                    android:textStyle="normal"
+                                    android:lineSpacingExtra="6dp"
+                                    android:padding="@dimen/padding_5"
+                                    android:textSize="@dimen/AverageTextSize"
+                                    android:textColor="@color/textColor"/>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

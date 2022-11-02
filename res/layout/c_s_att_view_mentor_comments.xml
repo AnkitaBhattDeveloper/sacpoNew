@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_marginTop="@dimen/large"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/biggestDp"
+        android:layout_marginTop="@dimen/biggestDp"
+        android:visibility="gone" />
+    <LinearLayout
+        android:layout_marginBottom="@dimen/footer_MarginBottom"
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/large"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="HEADING"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/heading"
+                        />
+
+
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/head_container"
+                        android:weightSum="1"
+                        android:background="@color/colorPrimaryLight"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <TextView
+                            android:id="@+id/txtCommentDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:text=""
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/BigTextSize" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/body_container"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/detail_container"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lblComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/txtComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:textColor="@color/txt_small_value"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@color/colorPrimaryLight"
+                        android:id="@+id/footer_container"
+                        android:weightSum="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

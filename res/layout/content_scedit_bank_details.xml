@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/footer50_MarginBottom"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.claims.SImpactStudiesA"
+    tools:showIn="@layout/a_scedit_bank_details">
+
+    <RelativeLayout
+        android:background="@drawable/myaccount_border"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp"
+
+                android:padding="@dimen/SmallerDp">
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/progress_bar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="HEADING"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/heading"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/lbl_g_c"
+                            android:textSize="@dimen/NormalTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:padding="@dimen/padding_5"
+                            android:text="Graduation Completed"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="@dimen/padding_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:padding="@dimen/padding_5"
+                            android:id="@+id/rg_optn"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            
+
+                            <RadioButton
+                                android:id="@+id/rb_option_gc_1"
+                                android:scaleX="@dimen/rb_scale"
+                                android:tag="1"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_optn1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <RadioButton
+                                android:id="@+id/rb_option_gc_2"
+                                android:scaleX="@dimen/rb_scale"
+                                android:tag="2"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_optn2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <RadioButton
+                                android:id="@+id/rb_option_gc_3"
+                                android:scaleX="@dimen/rb_scale"
+                                android:tag="3"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_optn3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <RadioButton
+                                android:id="@+id/rb_option_gc_4"
+                                android:scaleX="@dimen/rb_scale"
+                                android:scaleY="@dimen/rb_scale"
+                                android:tag="4"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_optn4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/lbl_e_status"
+                            android:textSize="@dimen/NormalTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:padding="@dimen/padding_5"
+                            android:text=""/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="@dimen/padding_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:padding="@dimen/padding_5"
+                            android:id="@+id/rg_e_optn"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <RadioButton
+                                android:id="@+id/rb_option_es_1"
+                                android:scaleX="@dimen/rb_scale"
+                                android:tag="1"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_es_optn1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <RadioButton
+                                android:id="@+id/rb_option_es_2"
+                                android:scaleX="@dimen/rb_scale"
+                                android:tag="2"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_es_optn2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <RadioButton
+                                android:id="@+id/rb_option_es_3"
+                                android:scaleX="@dimen/rb_scale"
+                                android:scaleY="@dimen/rb_scale"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:tag="3"
+                                android:text="@string/rb_233_es_optn3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <RadioButton
+                                android:id="@+id/rb_option_es_4"
+                                android:scaleX="@dimen/rb_scale"
+                                android:scaleY="@dimen/rb_scale"
+                                android:tag="4"
+                                android:textSize="@dimen/rb_text_size_small"
+                                android:text="@string/rb_233_es_optn4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </RadioGroup>
+                        
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/employedBlock"
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+
+                        android:padding="@dimen/margin_10"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lbl_is_fos"
+                                android:textSize="@dimen/NormalTextSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:padding="@dimen/padding_5"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:padding="@dimen/padding_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <RadioGroup
+                                android:padding="@dimen/padding_5"
+                                android:id="@+id/rg_f_optn"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <RadioButton
+                                    android:id="@+id/rb_option_fs_1"
+                                    android:scaleX="@dimen/rb_scale"
+                                    android:scaleY="@dimen/rb_scale"
+                                    android:textSize="@dimen/rb_text_size_small"
+                                    android:text="@string/rb_233_fs_optn1"
+                                    android:tag="YES"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <RadioButton
+                                    android:id="@+id/rb_option_fs_2"
+                                    android:scaleX="@dimen/rb_scale"
+                                    android:tag="NO"
+                                    android:scaleY="@dimen/rb_scale"
+                                    android:textSize="@dimen/rb_text_size_small"
+                                    android:text="@string/rb_233_fs_optn2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+
+
+                            </RadioGroup>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+
+                        android:padding="@dimen/margin_10"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lbl_fos"
+                                android:textSize="@dimen/NormalTextSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:padding="@dimen/padding_5"
+                                android:text=""/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:padding="@dimen/padding_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.appcompat.widget.AppCompatSpinner
+                                android:id="@+id/spinner_fos_name"
+                                android:background="@drawable/spinner_bg"
+                                android:spinnerMode="dropdown"
+                                android:textColor="@color/textColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </androidx.appcompat.widget.AppCompatSpinner>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+
+                        android:padding="@dimen/margin_10"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lbl_start"
+                                android:textSize="@dimen/NormalTextSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:padding="@dimen/padding_5"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:padding="@dimen/padding_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <DatePicker
+                                android:id="@+id/inputStartDate"
+                                android:datePickerMode="spinner"
+                                android:minDate=""
+                                android:calendarViewShown="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/endDateBlock"
+                        android:padding="@dimen/margin_10"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lbl_end"
+                                android:textSize="@dimen/NormalTextSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:padding="@dimen/padding_5"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:padding="@dimen/padding_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <DatePicker
+                                android:id="@+id/inputEndDate"
+                                android:datePickerMode="spinner"
+                                android:minDate=""
+                                android:calendarViewShown="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/lbl_salary"
+                            android:textSize="@dimen/NormalTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:padding="@dimen/padding_5"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:padding="@dimen/padding_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:inputType="number"
+                            android:id="@+id/et_salary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_5"
+                            android:background="@drawable/rect_blue_box"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                    <LinearLayout
+
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/lbl_position"
+                            android:textSize="@dimen/NormalTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:padding="@dimen/padding_5"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:padding="@dimen/padding_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+
+                            android:id="@+id/et_position"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_5"
+                            android:background="@drawable/rect_blue_box"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+
+                    android:padding="@dimen/margin_10"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <LinearLayout
+                        android:padding="@dimen/padding_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                       <Button
+                           android:id="@+id/btn_save"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:backgroundTint="@color/link"
+                           android:textColor="@android:color/white"
+                           />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

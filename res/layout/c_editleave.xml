@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_editleave"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.leaves.SEditLeaveA"
+    tools:showIn="@layout/a_edit_leave">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/SmallerDp" >
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:text="HEADING"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/heading"
+                        />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/informationContainer"
+                        android:layout_width="match_parent"
+                        android:background="@color/background_grey"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/iNoActiveGrant"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textAlignment="textStart"
+                            android:gravity="start"
+                            android:includeFontPadding="true"
+                            android:justificationMode="inter_word"
+                            android:lineSpacingExtra="12sp"
+                            android:padding="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:background="@color/info_back"
+                            android:textColor="@color/info_front"
+                            android:textSize="@dimen/NormalTextSize"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                        android:layout_marginTop="@dimen/GiantDp"
+                        android:orientation="vertical"
+                        android:id="@+id/form_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_margin="@dimen/SmallerDp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <Spinner
+                                android:id="@+id/inputSpinnerLeaveType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:background="@drawable/spinner_bg"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/row_button_color"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_margin="@dimen/SmallerDp"
+                            android:id="@+id/dateContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblStartDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+                            <DatePicker
+                                android:id="@+id/inputStartDate"
+                                android:datePickerMode="spinner"
+                                android:minDate=""
+                                android:calendarViewShown="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </DatePicker>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_margin="@dimen/SmallerDp"
+                            android:id="@+id/enddateContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblEndDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+                            <DatePicker
+                                android:id="@+id/inputEndDate"
+                                android:datePickerMode="spinner"
+                                android:minDate=""
+                                android:calendarViewShown="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </DatePicker>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_margin="@dimen/SmallerDp"
+                            android:id="@+id/totalDaysContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblTotalDays"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:text=""
+                                android:layout_gravity="left"
+                                android:gravity="left"
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:id="@+id/inputLayoutLeaveDays"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <EditText
+                                    style="@style/editText"
+                                    android:id="@+id/inputLeaveInDays"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:inputType="number"
+                                    android:enabled="false"
+                                    android:focusable="false"
+                                    android:clickable="false"
+                                    android:maxLength="2"
+                                    app:errorTextAppearance="@style/errorText"
+                                    tools:ignore="MissingPrefix"
+                                    android:hint=""/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/LeaveContainer"
+                            android:layout_margin="@dimen/SmallerDp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true">
+
+                            <TextView
+                                android:id="@+id/lblLeaveReasons"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutLeaveReasons"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <EditText
+                                    style="@style/editText"
+                                    android:id="@+id/inputLeaveReasons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/edit_text_height_120"
+                                    android:maxLines="5"
+                                    android:layout_gravity="left"
+                                    android:gravity="top"
+                                    app:errorTextAppearance="@style/errorText"
+                                    tools:ignore="MissingPrefix"
+                                    android:hint=""/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/buttonContainer"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginTop="@dimen/SmallerDp"
+                                android:gravity="center_horizontal">
+
+                                <Button
+                                    android:id="@+id/btn_submitLeave"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    android:background="@drawable/themed_button"
+                                    android:textColor="@color/white"
+                                    android:minWidth="150dip"
+                                    android:minHeight="44dip" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

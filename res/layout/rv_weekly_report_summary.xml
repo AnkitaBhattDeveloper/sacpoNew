@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RV_DASH"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#fffbfb"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/Rv_Dash_stat_WeeklyReports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="@dimen/stat_width_details"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left">
+
+                <ImageButton
+                    android:id="@+id/imageButton_ReportsR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@mipmap/ic_launcher_detail_button"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/stat_width_month_weeklyRepo"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtMonthR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Jan"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="@dimen/stat_width_year"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtYearR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="2018"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/stat_width"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txtCountR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="12"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="#e4e4e4" />
+
+
+</LinearLayout>

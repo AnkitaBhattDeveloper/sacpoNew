@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include
+        layout="@layout/c_bank_details"
+        android:id="@+id/include" />
+    <include layout="@layout/footer_layout"/>
+
+<!--
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        app:itemIconTint="@color/drawer_item"
+        app:itemTextColor="@color/drawer_item"
+        app:itemBackground="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/header_dashboard"
+        app:menu="@menu/d_l_menu" />-->
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

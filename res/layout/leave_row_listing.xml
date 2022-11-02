@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:weightSum="1"
+                style="@style/editText"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:layout_weight=".5"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Leave Date"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+                <TextView
+                    android:id="@+id/lblLeaveDate"
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="@dimen/Margin_small"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Leave Type"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+                <TextView
+                    android:id="@+id/lblLeavetype"
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="@dimen/Margin_small"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Leave Reasons"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+                <TextView
+                    android:id="@+id/lblLeaveReasons"
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

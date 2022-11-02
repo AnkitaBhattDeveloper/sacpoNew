@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_box">
+
+                <ImageView
+                    android:id="@+id/iv_userimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:padding="5dp"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_userimg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_5">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Upcoming Mobiles Phones"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/VerySmallerTextSize"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_5"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="11:14am"
+                        android:textSize="@dimen/VerySmallerTextSize"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_head"
+                    android:layout_toRightOf="@+id/iv_userimg"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding_5"
+                    android:text="12-April-2019"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/VerySmallerTextSize"
+                    android:textStyle="normal" />
+
+
+                <View
+                    android:id="@+id/view_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txt_date"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:background="@color/LIST_DULL_BACK" />
+
+
+                <TextView
+                    android:id="@+id/txt_getComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_02"
+                    android:layout_gravity="center"
+                    android:gravity="start"
+                    android:padding="@dimen/padding_ten"
+                    android:text="@string/random2"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_getComment"
+                    android:background="@color/LIST_DULL_END"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_5">
+
+                    <ImageView
+                        android:id="@+id/iv_getUserImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:padding="@dimen/padding_5"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/use_r_img" />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/view_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/ll_img"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:background="@color/white" />
+
+
+                <Button
+                    android:id="@+id/btn_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_03"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:backgroundTint="@color/txt_color"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_5"
+                    android:text="Report"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/NormalTextSize"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_03"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_toLeftOf="@+id/btn_report"
+                    android:backgroundTint="@color/txt_color"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_5"
+                    android:text="Reply"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/NormalTextSize"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_reply_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_reply"
+                    android:layout_margin="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@drawable/rect_box"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/iv_userImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:background="@mipmap/ic_launcher"
+                        android:padding="@dimen/padding_5" />
+
+
+                    <TextView
+                        android:id="@+id/tv_userName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_userImg"
+                        android:layout_alignBottom="@+id/iv_userImg"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:layout_toRightOf="@+id/iv_userImg"
+                        android:padding="@dimen/padding_5"
+                        android:text="ROBERT J MOLLY"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_commnt_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_userImg"
+                        android:padding="@dimen/padding_5"
+                        android:text="@string/random2" />
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_commnt_body"
+                        android:layout_alignParentRight="true"
+                        android:padding="@dimen/padding_ten"
+                        android:text="12-Apr-2019"
+                        android:textColor="@color/link"
+                        android:textSize="@dimen/very_small_text"
+                        android:textStyle="normal" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

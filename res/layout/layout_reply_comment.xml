@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_reply_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:visibility="visible">
+
+
+                    <ImageView
+                        android:id="@+id/iv_userImg"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:adjustViewBounds="true"
+                        android:padding="5dp"
+                        android:layout_marginTop="@dimen/padding_ten"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_cmnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:layout_marginBottom="2dp"
+                        android:layout_toRightOf="@+id/iv_userImg"
+                        android:background="@drawable/corner_background"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:id="@+id/tv_userName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingTop="@dimen/padding_5"
+                            android:paddingLeft="@dimen/padding_5"
+                            android:paddingRight="@dimen/padding_5"
+                            android:text="Molley June"
+                            android:textAllCaps="false"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_get_imgPost"
+                            android:layout_width="240dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/blo"
+                            android:visibility="gone" />
+                        <TextView
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:id="@+id/tv_commnt_body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_userImg"
+                            android:paddingLeft="@dimen/padding_5"
+                            android:paddingRight="@dimen/padding_5"
+                            android:text=" samsung mob"
+                            />
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/ll_cmnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/ll_cmnt"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_reply"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/padding_5">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="."
+                                android:textColor="@color/greyed_out"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_rply02"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Reply"
+                                android:textColor="@color/greyed_out"
+                                android:textSize="@dimen/SmallTextSize"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_report"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/padding_5">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="."
+                                android:textColor="@color/greyed_out"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Report"
+                                android:textColor="@color/greyed_out"
+                                android:textSize="@dimen/SmallTextSize"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/padding_5">
+
+                            <TextView
+                                android:id="@+id/txt_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Apr 25,2019 04:52pm"
+                                android:textColor="@color/greyed_out"
+                                android:textSize="@dimen/VerySmallerTextSize" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

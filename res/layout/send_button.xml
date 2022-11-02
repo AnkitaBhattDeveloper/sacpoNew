@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:visibility="visible"
+    android:id="@+id/btn_send_message"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="@dimen/margin_10">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rr_footer_postComment"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/footer_MarginBottom"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/rr_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:visibility="visible">
+
+            <View
+                android:id="@+id/view_post"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BADADFDF" />
+
+
+
+            <LinearLayout
+                android:layout_below="@+id/view_post"
+                android:layout_marginTop="@dimen/margin_2"
+                android:layout_marginBottom="@dimen/margin_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/attachment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/ic_attach_file_24"
+                    android:visibility="visible"
+                    android:layout_marginLeft="@dimen/margin_10" />
+                <EditText
+                    android:id="@+id/editTextMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="@dimen/padding_8"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_round"
+                    android:hint="Text Message..."
+                    android:inputType="textPersonName"
+                    android:maxWidth="70dp"
+                    android:maxLength="250"
+                    android:padding="12dp"
+                    android:textSize="14sp" />
+
+                    <ImageButton
+                        android:id="@+id/buttonSend"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="#FFFFFF"
+                        android:padding="@dimen/padding_5"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_send_msg_24dp"
+                        />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

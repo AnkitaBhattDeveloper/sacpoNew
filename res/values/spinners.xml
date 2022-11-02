@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="city">
+        <item>SELECT CITY</item>
+        <item>Aliwal North</item>
+    </string-array>
+    <string-array name="city_id">
+        <item>0</item>
+        <item>1212</item>
+    </string-array>
+    <string-array name="ofo">
+        <item>SELECT OCCUPATIONS</item>
+        <item>Secretary (General)</item>
+        <item>Management Accountant</item>
+
+    </string-array>
+    <string-array name="ofo_id">
+        <item>0</item>
+        <item>800</item>
+        <item>358</item>
+    </string-array>
+    <string-array name="emp">
+        <item>SELECT EMPLOYER</item>
+        <item>Online University Management System</item>
+        <item>Autotroniz</item>
+    </string-array>
+    <string-array name="emp_id">
+        <item>0</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="leave_type">
+        <item>SICK LEAVE</item>
+        <item>CAUSAL LEAVE</item>
+    </string-array>
+    <string-array name="user_type_id">
+        <item>2</item>
+    </string-array>
+
+    <string-array name="i_type">
+        <item>UNIVERSITY</item>
+        <item>COLLEGE</item>
+        <item>SETA</item>
+        <item>HIGH SCHOOL</item>
+        <item>OTHER</item>
+    </string-array>
+    <string-array name="i_type_id">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="skill">
+        <item>Select Proficiency Level</item>
+        <item>Basic </item>
+        <item>Intermediate </item>
+        <item>Advance</item>
+    </string-array>
+    <string-array name="skill_id">
+        <item>0</item>
+        <item>1 </item>
+        <item>2 </item>
+        <item>3</item>
+    </string-array>
+    <string-array name="job_type">
+        <item>Graduate Placement</item>
+        <item>Work Integrated Learning Placement</item>
+    </string-array>
+    <string-array name="job_type_id">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="exp_type">
+        <item>---Select Type---</item>
+        <item>Experience</item>
+        <item>No Experience</item>
+    </string-array>
+    <string-array name="exp_type_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="nationality">
+        <item>Congolese</item>
+        <item>Indian</item>
+        <item>Motswara</item>
+        <item>Nigerian</item>
+        <item>Others</item>
+        <item>South African</item>
+        <item>Zimbabwean</item>
+    </string-array>
+    <string-array name="race">
+        <item>----SELECT RACE---</item>
+        <item>Indian</item>
+        <item>African</item>
+        <item>White</item>
+        <item>Coloured</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="univer_type">
+        <item>--Select University/College--</item>
+        <item>UNIVERSITY</item>
+        <item>COLLEGE</item>
+    </string-array>
+    <string-array name="univer_type_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+    <string-array name="institu">
+        <item>--Select University/College--</item>
+        <item>UNIVERSITY</item>
+        <item>COLLEGE</item>
+    </string-array>
+    <string-array name="insti_type_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+
+
+    <string-array name="disability_type">
+        <item>None</item>
+        <item>Hearing Impaired</item>
+        <item>Sight Impaired</item>
+        <item>Hearing and Sight Impaired</item>
+        <item>Mobility Impaired</item>
+        <item>other</item>
+    </string-array>
+
+    <string-array name="permit_type">
+        <item>Study</item>
+        <item>Work</item>
+        <item>Permanent Residency</item>
+        <item>Temporary Residency</item>
+        <item>Refugee</item>
+    </string-array>
+    <string-array name="month_type">
+    <item>January</item>
+    <item>February</item>
+    <item>March</item>
+    <item>April</item>
+    <item>May</item>
+    <item>June</item>
+    <item>July</item>
+    <item>August</item>
+    <item>September</item>
+    <item>October</item>
+    <item>November</item>
+    <item>December</item>
+    </string-array>
+    <string-array name="month_id">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+
+    <string-array name="title">
+        <item>----SELECT TITLE---</item>
+        <item>Mr.</item>
+        <item>Mrs. </item>
+        <item>Miss. </item>
+        <item>Prof.</item>
+        <item>Dr.</item>
+    </string-array>
+    <string-array name="qualCategoryType">
+        <item>----SELECT QUALIFICATION CATEGORY TYPE---</item>
+        <item>P1</item>
+        <item>P2</item>
+        <item>P1 &amp; P2</item>
+        <item>INTERNSHIP</item>
+        <item>ARTICLES</item>
+        <item>BTECH</item>
+        <item>INSERVICE</item>
+        <item>LEARNERSHIP</item>
+        <item>MTECH</item>
+        <item>WIL</item>
+        <item>EXPERIENTIAL TRAINING</item>
+        <item>WORK EXPERIENCE</item>
+        <item>TECNICIAN-IN-TRAINING</item>
+        <item>CANDIDATE TECHNOLOGIST</item>
+        <item>CANDIDATE ENGINEER</item>
+        <item>OTHER</item>
+    </string-array>
+    <string-array name="qualCategoryType_id">
+    <item>-1</item>
+    <item>1</item>
+    <item>2</item>
+    <item>6</item>
+    <item>4</item>
+    <item>7</item>
+    <item>3</item>
+    <item>5</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    </string-array>
+
+
+
+</resources>

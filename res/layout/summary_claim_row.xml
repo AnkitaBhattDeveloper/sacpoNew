@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fm_summary_claim_Row"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp">
+
+    <!--android:layout_width="100dp"-->
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblLearnerName"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:layout_margin="1dp"
+           android:background="@drawable/backcell"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblLearnerId"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblRegistration_No"
+           android:layout_width="190dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblClaimAmount"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblClaimDate"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblBankName"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblBranchCode"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblAccount_No"
+           android:layout_width="160dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblAccountHolderName"
+           android:layout_width="180dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblSupervisor_claim_approval"
+           android:layout_width="210dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+  <TextView
+           android:visibility="visible"
+           android:id="@+id/lblSalaryManagerStatus"
+           android:layout_width="180dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+    <TextView
+           android:visibility="visible"
+           android:id="@+id/lblGrantManagerStatus"
+           android:layout_width="180dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+       <TextView
+           android:visibility="visible"
+           android:id="@+id/lblGrantAdminStatus"
+           android:layout_width="180dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/backcell"
+           android:layout_margin="1dp"
+           android:ellipsize="end"
+           android:maxLines="1"
+           android:minHeight="@dimen/btnHeightSmall"
+           android:padding="@dimen/SmallerDp"
+           android:text=""
+           android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:id="@+id/linearLAction"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:orientation="horizontal"
+        android:textAlignment="center" android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblAction"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnAction"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="115dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/linearLAction2"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:orientation="horizontal"
+        android:textAlignment="center" >
+
+        <TextView
+            android:id="@+id/lblAction2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnAction2"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="115dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/linearLAction3"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:orientation="horizontal"
+        android:textAlignment="center" >
+
+        <TextView
+            android:id="@+id/lblAction3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/SmallerDp"
+            android:text=""
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnAction3"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="115dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</TableRow>

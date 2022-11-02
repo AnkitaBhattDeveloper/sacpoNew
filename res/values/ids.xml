@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="msg_title" type="id"></item>
+    <item name="msg_body" type="id"></item>
+    <item name="msg_from" type="id"></item>
+    <item name="msg_date" type="id"></item>
+    <item name="inputSpinnerastudentList" type="id"></item>
+    <item name="inputSpinnerStatus" type="id"></item>
+    <item name="btn_Resign" type="id"></item>
+</resources>

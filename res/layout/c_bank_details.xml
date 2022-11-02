@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.bank.SBankDA"
+    tools:showIn="@layout/a_bank_details">
+
+         <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:visibility="gone" />
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" android:gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="HEADING"
+                android:padding="@dimen/ExtraSmallDp"
+                android:textSize="@dimen/BigTextSize"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                android:layout_marginRight="@dimen/ExtraGiantDp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/heading"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginBottom="@dimen/large"
+                android:layout_marginLeft="@dimen/large"
+                android:layout_marginRight="@dimen/large"
+                android:layout_marginTop="@dimen/large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/body_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:id="@+id/detail_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/lblBankDetails"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/back_small_heading"
+                                    android:padding="@dimen/padding_ten"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/txt_small_heading"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/lblInitialName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.5"
+                                        android:textStyle="bold"
+                                        android:text="" />
+
+                                    <TextView
+                                        android:id="@+id/txtInitialName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_weight="0.5"
+                                        android:text=""
+                                        android:textAlignment="textEnd" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/lblSurname"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.5"
+                                        android:textStyle="bold"
+                                        android:text="" />
+
+                                    <TextView
+                                        android:id="@+id/txtSurname"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_weight="0.5"
+                                        android:text=""
+                                        android:textAlignment="textEnd" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/lblAccountNumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.5"
+                                        android:textStyle="bold"
+                                        android:text="" />
+
+                                    <TextView
+                                        android:id="@+id/txtAccNumb"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_weight="0.5"
+                                        android:text=""
+                                        android:textAlignment="textEnd" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="2">
+
+
+                                    <LinearLayout
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/lblBankName"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:textStyle="bold"
+                                            android:text="Bank Name" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/txtBankName"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical|end"
+                                            android:text=""
+                                            android:textAlignment="textEnd" />
+                                    </LinearLayout>
+
+
+
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/lblAccountType"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.5"
+                                        android:textStyle="bold"
+                                        android:text="" />
+
+                                    <TextView
+                                        android:id="@+id/txtAccountType"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_weight="0.5"
+                                        android:text=""
+                                        android:textAlignment="textEnd" />
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/ExtraSmallerDp"
+                                    android:background="@color/back_small_value"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small"
+                                    android:textColor="@color/txt_small_value"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:id="@+id/lblBranchCode"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.5"
+                                        android:textStyle="bold"
+                                        android:text="" />
+
+                                    <TextView
+                                        android:id="@+id/txtBranchCode"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical|end"
+                                        android:layout_weight="0.5"
+                                        android:text=""
+                                        android:textAlignment="textEnd" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@color/colorPrimaryLight"
+                            android:id="@+id/footer_container"
+                            android:weightSum="1"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/editBankDetailsContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/bigDp"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/btnEditBankDetails"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/middleDp"
+                                    android:layout_marginLeft="@dimen/middleDp"
+                                    android:background="@drawable/themed_button_action_g"
+                                    android:minHeight="@dimen/btnHeight"
+                                    android:minWidth="@dimen/btnWidth"
+                                    android:text=""
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+</RelativeLayout>
+

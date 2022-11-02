@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_sign_in"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.attendance.SignInA"
+    tools:showIn="@layout/a_sign_in">
+
+    <ScrollView
+        android:id="@+id/scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/internet_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="@dimen/tenDp"
+                    android:background="@drawable/transparent_frame"
+                    android:layout_marginBottom="@dimen/tenDp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_internet_info_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:gravity="center"
+                        android:padding="@dimen/tenDp"
+                        android:keepScreenOn="true"
+                        android:text="Oh no!"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/BigestTextSize"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/text_internet_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:gravity="center"
+                        android:padding="@dimen/tenDp"
+                        android:keepScreenOn="true"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/NormalTextSize"
+                        android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/btnTryAgain"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="#303EC8"
+                        android:text="TRY AGAIN"
+                        android:padding="@dimen/tenDp"
+                        android:textSize="@dimen/SmallTextSize"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/tenDp"
+                        android:layout_marginBottom="@dimen/tenDp"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="HEADING"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/tenDp"
+                    android:layout_marginBottom="@dimen/tenDp">
+                    <Button
+                        android:layout_weight="1"
+                        android:id="@+id/request_location_updates_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/request_location_updates"/>
+
+                    <Button
+                        android:id="@+id/remove_location_updates_button"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remove_location_updates"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/informationContainer"
+                    android:layout_width="match_parent"
+                    android:background="@color/background_grey"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/iNoActiveGrant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:textAlignment="textStart"
+                        android:gravity="start"
+                        android:includeFontPadding="true"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:background="@color/info_back"
+                        android:textColor="@color/info_front"
+                        android:textSize="@dimen/NormalTextSize"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/iPunchOutContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/biggestDp"
+                        android:layout_marginBottom="@dimen/biggestDp"
+                        android:gravity="center_horizontal">
+                        <TextView
+                        android:id="@+id/iPunchOutPre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:textAlignment="textStart"
+                        android:gravity="start"
+                        android:includeFontPadding="true"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/SmallerDp"
+                        android:text="iPunchOutPre"
+                        android:textAllCaps="false"
+                        android:background="@color/info_back"
+                        android:textColor="@color/info_front"
+                        android:textSize="@dimen/NormalTextSize" />
+                        <LinearLayout
+                            android:padding="@dimen/SmallerDp"
+                            android:background="@color/info_back"
+                            android:textSize="@dimen/NormalTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:textAllCaps="true"
+                                android:textColor="@color/info_front"
+                                android:textStyle="bold"
+                                android:id="@+id/lblPunchOutDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/small"
+                                android:text="lblPunchOutDate" />
+                            <TextView
+                                android:textColor="@color/info_front"
+                                android:id="@+id/txtPunchOutDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="txtPunchOutDate" />
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/iPunchOutPost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textAlignment="textStart"
+                            android:gravity="start"
+                            android:includeFontPadding="true"
+                            android:justificationMode="inter_word"
+                            android:lineSpacingExtra="12sp"
+                            android:padding="@dimen/SmallerDp"
+                            android:text="iPunchOutPost"
+                            android:textAllCaps="false"
+                            android:background="@color/info_back"
+                            android:textColor="@color/info_front"
+                            android:textSize="@dimen/NormalTextSize" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/biggestDp"
+                        android:layout_marginBottom="@dimen/biggestDp"
+                        android:gravity="center_horizontal">
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/gps_error_po"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/ExtraSmallerDp"
+                            android:paddingRight="@dimen/ExtraSmallerDp"
+                            android:paddingTop="@dimen/middleDp"
+                            android:paddingBottom="@dimen/middleDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/red_link"
+                            android:textSize="@dimen/BigTextSize"  />
+                        <Button
+                            android:id="@+id/btnPunchOut"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:layout_marginLeft="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/iPunchInContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/biggestDp"
+                        android:textColor="@color/info_front"
+                        android:background="@color/info_back"
+                        android:gravity="center_horizontal">
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/ExtraSmallDp"
+                            android:layout_marginBottom="@dimen/ExtraSmallDp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/lblDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallerDp"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textAllCaps="true"
+                                android:textColor="@color/info_front"
+                                android:textSize="@dimen/NormalTextSize"  />
+                            <TextView
+                                android:id="@+id/iDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallerDp"
+                                android:text=""
+                                android:textAllCaps="false"
+                                android:textColor="@color/info_front"
+                                android:textSize="@dimen/NormalTextSize"  />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/ExtraSmallDp"
+                            android:layout_marginBottom="@dimen/ExtraSmallDp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/lblTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallerDp"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textAllCaps="true"
+                                android:textColor="@color/info_front"
+                                android:textSize="@dimen/NormalTextSize"  />
+                            <TextView
+                                android:id="@+id/iTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallerDp"
+                                android:text=""
+                                android:textAllCaps="false"
+                                android:textColor="@color/info_front"
+                                android:textSize="@dimen/NormalTextSize"  />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/ExtraSmallDp"
+                            android:layout_marginBottom="@dimen/ExtraSmallDp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/lblDistanceFrmWorkstation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ExtraSmallerDp"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/info_front"
+                                    android:textSize="@dimen/NormalTextSize"  />
+                                <TextView
+                                    android:id="@+id/iDistanceFrmWorkstation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ExtraSmallerDp"
+                                    android:text=""
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/info_front"
+                                    android:textSize="@dimen/NormalTextSize"  />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/ExtraSmallDp"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/lblWorkstation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ExtraSmallerDp"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/info_front"
+                                    android:textSize="@dimen/NormalTextSize"  />
+                                <TextView
+                                    android:id="@+id/iWorkstation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ExtraSmallerDp"
+                                    android:text=""
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/info_front"
+                                    android:textSize="@dimen/NormalTextSize"  />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/loginContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/gps_error_pi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/ExtraSmallerDp"
+                            android:paddingRight="@dimen/ExtraSmallerDp"
+                            android:paddingTop="@dimen/middleDp"
+                            android:paddingBottom="@dimen/middleDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/red_link"
+                            android:textSize="@dimen/BigTextSize"  />
+
+                        <Button
+                            android:id="@+id/btnPunchIn"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:layout_marginLeft="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:visibility="gone"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/iPunchInDoneContainer"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/iPunchInDone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:textAlignment="textStart"
+                        android:gravity="start"
+                        android:includeFontPadding="true"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:background="@color/info_back"
+                        android:textColor="@color/info_front"
+                        android:textSize="@dimen/NormalTextSize"  />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/lblGpsCordinate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ExtraSmallerDp"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textColor="@color/info_front"
+                    android:textSize="@dimen/NormalTextSize"  />
+                <TextView
+                    android:id="@+id/iLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ExtraSmallerDp"
+                    android:text=""
+                    android:textAllCaps="false"
+                    android:textColor="@color/info_front"
+                    android:textSize="@dimen/NormalTextSize"  />
+                <TextView
+                    android:id="@+id/iLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ExtraSmallerDp"
+                    android:text=""
+                    android:textAllCaps="false"
+                    android:textColor="@color/info_front"
+                    android:textSize="@dimen/NormalTextSize"  />
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    android:name="za.co.sacpo.grant.fragments.FMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    tools:context=".grant.xCubeStudent.attendance.SignInA" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

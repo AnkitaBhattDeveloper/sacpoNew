@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_margin="@dimen/small"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="@dimen/small"
+            android:weightSum="1"
+            android:padding="@dimen/small"
+            style="@style/editText"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/lblLeavetype"
+                android:layout_weight=".7"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text="Leave Type"
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+            <TextView
+                android:id="@+id/txLeaveType"
+                android:layout_weight=".3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/small"
+            style="@style/editText"
+            android:weightSum="1"
+            android:padding="@dimen/small"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/lblLeaveDate"
+                android:layout_weight=".7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text="Date"
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+            <TextView
+                android:id="@+id/txDate"
+                android:layout_weight=".3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/small"
+            android:weightSum="1"
+            style="@style/editText"
+            android:padding="@dimen/small"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/lblLeaveReasons"
+                android:layout_weight=".7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text="Reasons"
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+
+            <TextView
+                android:id="@+id/txLeaveReasons"
+                android:layout_weight=".3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:layout_marginLeft="@dimen/SmallerDp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/SmallerTextSize" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

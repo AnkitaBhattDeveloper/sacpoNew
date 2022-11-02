@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_StudentAttendance"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.stipends.SDownBankingA"
+    tools:showIn="@layout/c_supervisor_student">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:layout_marginTop="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text=""
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"
+                    />
+                <TextView
+                    android:id="@+id/txtSupervisorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/small"
+                    android:layout_margin="@dimen/ExtraSmallerDp"
+                    android:background="@color/back_small_heading"
+                    android:textColor="@color/txt_small_heading"
+                    android:textStyle="bold"
+                    android:textAllCaps="true" />
+
+                <LinearLayout
+                    android:background="@color/background_grey"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/StudentAttendanceContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/lblStudentAttendance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/SmallDp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/BigTextSize"
+                        android:background="@color/greyish"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:text=""
+                        />
+                    <ProgressBar
+                        android:id="@+id/progress_bar_r"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/biggestDp"
+                        android:layout_marginTop="@dimen/biggestDp"
+                        android:visibility="gone" />
+                    <LinearLayout
+                        android:id="@+id/content_container_r"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/progress_bar_r"
+                        android:orientation="vertical">
+                        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/attendanceTable"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:stretchColumns="*">
+
+                            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/StudentAttendanceTableScroll"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/rVLearnerList"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:isScrollContainer="true"
+                                    android:scrollY="@dimen/SmallerDp"
+                                    android:scrollbars="horizontal"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    tools:context=".XCubeGrantAdmin.student.GASupervisorStudent"
+                                    tools:listitem="@layout/ga_super_student" />
+                            </HorizontalScrollView>
+                        </TableLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

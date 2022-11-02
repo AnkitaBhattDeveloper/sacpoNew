@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_app_updated"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.AppUpdatedA"
+    tools:showIn="@layout/a_app_updated">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/bigDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <!--<ImageView
+                    android:id="@+id/headLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:adjustViewBounds="false"
+                    android:elevation="0dp"
+                    app:srcCompat="@drawable/p_logo" />-->
+<include layout="@layout/logo_impl"/>
+                <LinearLayout
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginTop="@dimen/SmallerDp"
+                    android:orientation="vertical"
+                    android:id="@+id/informationContainer"
+                    android:layout_width="match_parent"
+                    android:background="@color/background_grey"
+                    android:layout_height="match_parent">
+                    <WebView
+                        android:id="@+id/wv_information"
+                        android:textSize="@dimen/VerySmallerTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/ExtraSmallerDp"
+                        android:background="@color/back_small_value"
+                        android:padding="@dimen/small"
+                        android:textColor="@color/txt_small_value"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/GiantDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/loginContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/GiantDp"
+                        android:layout_marginTop="@dimen/GiantDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/iUpdateMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textAlignment="textStart"
+                            android:gravity="start"
+                            android:includeFontPadding="true"
+                            android:justificationMode="inter_word"
+                            android:lineSpacingExtra="12sp"
+                            android:padding="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:background="@color/info_back"
+                            android:textColor="@color/info_front"
+                            android:textSize="@dimen/NormalTextSize" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/loginContainer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/GiantDp"
+                        android:layout_marginTop="@dimen/GiantDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btnGooglePlay"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:padding="5dp"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/bigDp"
+                        android:layout_marginTop="@dimen/ExtraSmallerDp"
+                        android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/v_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textAlignment="textEnd"
+                            android:gravity="end"
+                            android:includeFontPadding="true"
+                            android:justificationMode="inter_word"
+                            android:lineSpacingExtra="12sp"
+                            android:padding="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:textColor="@color/info"
+                            android:textSize="@dimen/small" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_marginTop="@dimen/large"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/large"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="@dimen/small"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:weightSum="1"
+                    android:layout_margin="@dimen/small"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStipendDate"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/txStipendDate"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="@dimen/small"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStipendDay"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txStipendDay"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+               </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="@dimen/small"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStipendYEar"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/txStipendYear"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="@dimen/small"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStipend_month"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/txStipendMonth"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="@dimen/small"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblStipend"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Total Stipend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/txStipend"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="@dimen/small"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lblAttStatus"
+                        android:layout_weight=".7"
+                        android:layout_margin="@dimen/small"
+                        android:text="Status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/txAttStatus"
+                        android:layout_weight=".3"
+                        android:layout_margin="@dimen/small"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

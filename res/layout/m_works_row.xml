@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Mentor_work_Row"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/lblwEmployerName"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/lblwWorkstationName"
+        android:layout_width="140dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:gravity="start" />
+
+    <TextView
+        android:id="@+id/lblwStudent"
+        android:layout_width="200dp"
+
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center" android:gravity="center_horizontal"
+         />
+        <TextView
+            android:id="@+id/lblwLatitude"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/SmallerDp"
+            android:textAlignment="textStart"
+            android:gravity="start"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:layout_margin="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+
+    <TextView
+        android:id="@+id/lblwLongitude"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="1dp"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:gravity="start" />
+
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="1dp"
+                android:textAlignment="center" android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:id="@+id/linearLAction"
+            >
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/lblAction"
+                android:layout_width="100dp"
+                android:textAlignment="center" android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:padding="@dimen/SmallerDp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+            <Button
+                android:id="@+id/btnActionEdit"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight=".2"
+                android:background="@drawable/themed_small_button"
+                android:minHeight="@dimen/btnHeightSmall"
+                android:minWidth="105dp"
+                android:text=""
+                android:textColor="@color/row_button_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="1dp"
+        android:textAlignment="center" android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearLAction2"
+        >
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/lblAction2"
+            android:layout_width="120dp"
+            android:textAlignment="center" android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:padding="@dimen/SmallerDp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+        <Button
+            android:id="@+id/btnActionRemove"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight=".2"
+            android:background="@drawable/themed_small_button"
+            android:minHeight="@dimen/btnHeightSmall"
+            android:minWidth="105dp"
+            android:text=""
+            android:textColor="@color/row_button_color"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    </TableRow>

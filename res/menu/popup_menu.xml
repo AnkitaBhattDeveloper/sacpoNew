@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/one"
+        android:visible="false"
+        android:title="DOWNLOAD UNSIGNED CLAIM FORM"/>
+
+    <item
+        android:visible="true"
+        android:id="@+id/two"
+        android:title="UPLOAD SIGNED FORM"/>
+
+    <item
+        android:visible="false"
+        android:id="@+id/three"
+        android:title="DOWNLOAD SIGNED FORM "/>
+</menu>

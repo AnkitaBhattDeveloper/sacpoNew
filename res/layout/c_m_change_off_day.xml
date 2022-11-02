@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/c_edit_profile"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="@dimen/footer_MarginBottom"
+android:background="@color/background_grey"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:showIn="@layout/c_m_change_off_day">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/SmallerDp"
+        android:background="@drawable/myaccount_border"
+        android:padding="@dimen/SmallerDp">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+          <TextView
+                android:id="@+id/activity_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" android:gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="HEADING"
+                android:padding="@dimen/ExtraSmallDp"
+                android:textSize="@dimen/BigTextSize"
+                android:textStyle="bold"
+                 />
+            <TextView
+                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                android:layout_marginRight="@dimen/ExtraGiantDp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/heading"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/MonDayContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:checked="false"
+                    android:id="@+id/checkboxMon"
+                    android:layout_weight=".9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblMon"
+                    android:layout_weight=".1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Monday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/TuesContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxTues"
+                    android:layout_weight=".9"
+                    android:checked="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblTues"
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Sunday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/WednesContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxWed"
+                    android:checked="false"
+                    android:layout_weight=".9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblWednes"
+
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Wednesday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ThusContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxThues"
+                    android:checked="false"
+                    android:layout_weight=".9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblThus"
+
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Thursday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/FriContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxFriday"
+                    android:checked="false"
+                    android:layout_weight=".9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblFriday"
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Friday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/SatContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxSatur"
+                    android:layout_weight=".9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblSatur"
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Saturday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/SunDayContainer"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headLogo"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkboxSun"
+                    android:layout_weight=".9"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/lblSun"
+                    android:layout_weight=".1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/SmallerDp"
+                    android:layout_marginLeft="@dimen/SmallerDp"
+                    android:text="Sunday"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_thirty"
+                android:id="@+id/buttonContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/loginContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/bigDp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="337dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/middleDp"
+                        android:background="@drawable/themed_button"
+                        android:minHeight="@dimen/btnHeight"
+                        android:minWidth="@dimen/btnWidth"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
+</RelativeLayout>

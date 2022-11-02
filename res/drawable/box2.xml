@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shape_rect_for_recruitment">
+
+    <stroke
+        android:width="2dp"
+        android:color="#d8ece7e7"/>
+
+    <padding
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="2dp"
+        android:top="5dp" />
+    <corners
+        android:radius="1dp"/>
+    <solid android:color="#d9f5f5f5"/>
+</shape>

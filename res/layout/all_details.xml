@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Grant Details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/SmallerDp"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:background="@drawable/backgroundemplyer"
+                android:padding="@dimen/padding_5"
+                android:elevation="@dimen/margin_20"
+                android:id="@+id/LL_GD"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:background="@color/background_grey"
+                    android:padding="@dimen/padding_small">
+
+                    <TextView
+                        android:id="@+id/h_GrantDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/SmallTextSize"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/ExtraMidSmallestDp"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblLeadEmpName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:textAlignment="textStart"/>
+
+                    <TextView
+                        android:id="@+id/txtLeadEmpName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblSetaName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:textAlignment="textStart"/>
+
+                    <TextView
+                        android:id="@+id/txtSetaName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:textAlignment="textStart"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblGrantName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtGrantName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textAlignment="textStart"
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/small"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblGrantNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize" />
+
+                    <TextView
+                        android:id="@+id/txtGrantNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Learner Details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/SmallerDp"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:background="@drawable/backgroundemplyer"
+                android:padding="@dimen/padding_5"
+                android:elevation="@dimen/margin_20"
+                android:id="@+id/LL_LD"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:background="@color/background_grey"
+                    android:padding="@dimen/padding_small">
+
+                    <TextView
+                        android:id="@+id/h_LDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/SmallTextSize"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/ExtraMidSmallestDp"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblLearnerName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtLearnerName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblLearnerEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtLearnerEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblLearnerTele"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtLearnerTele"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/small"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblLearnerId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtLearnerId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--Total Leave Taken -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/SmallerDp"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:background="@drawable/backgroundemplyer"
+                android:padding="@dimen/padding_5"
+                android:elevation="@dimen/margin_20"
+                android:id="@+id/LL_LT"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:background="@color/background_grey"
+                    android:padding="@dimen/padding_small">
+
+                    <TextView
+                        android:id="@+id/h_totalLeaves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/SmallTextSize"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/ExtraMidSmallestDp"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblTotalALeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtTotalALeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_10"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblTotalSickLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtTotalSickLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_10"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblTotalPaidLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtTotalPaidLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_10"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:layout_marginBottom="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lblTotalUnPaidLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="2"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtTotalUnPaidLeave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--GrantAdmin Details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/SmallerDp"
+                android:layout_marginBottom="@dimen/SmallerDp"
+                android:layout_marginRight="@dimen/margin_5"
+                android:background="@drawable/backgroundemplyer"
+                android:padding="@dimen/padding_5"
+                android:elevation="@dimen/margin_20"
+                android:id="@+id/LL_GAD"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:background="@color/background_grey"
+                    android:padding="@dimen/padding_small">
+
+                    <TextView
+                        android:id="@+id/h_GADetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/SmallTextSize"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/ExtraMidSmallestDp"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/lblGrantAdminName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtGrantAdminName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/lblGrantEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtGrantEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/lblGranATele"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:id="@+id/txtGrantATele"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/info_front" />
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/small"
+                    android:padding="@dimen/small"
+                    android:textColor="@color/txt_small_value"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:textAlignment="textStart"
+                        android:layout_weight="0.5"
+                        android:text=""
+                        android:textSize="@dimen/SmallTextSize"
+                        android:layout_marginLeft="@dimen/margin_5"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>

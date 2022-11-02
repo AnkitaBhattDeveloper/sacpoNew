@@ -1,0 +1,187 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="margin_one">1dp</dimen>
+    <dimen name="padding_ten">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="font_twenty">20sp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="navigation_drawer_width">300dp</dimen>
+    <dimen name="detail_backdrop_height">250dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+
+    <dimen name="very_small_text">11sp</dimen>
+    <dimen name="paddingTop_fragmenthead">50dp</dimen>
+    <dimen name="fragment_height">35dp</dimen>
+
+
+    <dimen name="footer_MarginBottom">35dp</dimen>
+    <dimen name="footer55_MarginBottom">55dp</dimen>
+    <dimen name="footer50_MarginBottom">50dp</dimen>
+    <dimen name="footer45_MarginBottom">45dp</dimen>
+    <dimen name="ArcMenu_MarginBottom">25dp</dimen>
+    <dimen name="ArcMenuCHat_MarginBottom">40dp</dimen>
+
+
+    <dimen name="ExtraSmallestDp">2dp</dimen>
+    <dimen name="ExtraMidSmallestDp">3dp</dimen>
+    <dimen name="ExtraSmallerDp">4dp</dimen>
+    <dimen name="ExtraSmallDp">6dp</dimen>
+    <dimen name="SmallestDp">8dp</dimen>
+    <dimen name="SmallerDp">10dp</dimen>
+    <dimen name="SmallDp">12dp</dimen>
+    <dimen name="middleDp">14dp</dimen>
+
+    <dimen name="bigDp">16dp</dimen>
+
+
+    <dimen name="biggerDp">18dp</dimen>
+    <dimen name="biggestDp">20dp</dimen>
+    <dimen name="ExtrabigDp">22dp</dimen>
+    <dimen name="ExtrabiggerDp">24dp</dimen>
+    <dimen name="ExtrabiggestDp">26dp</dimen>
+
+    <dimen name="GiantDp">30dp</dimen>
+    <dimen name="ExtraGiantDp">50dp</dimen>
+    <dimen name="btnWidth">155dip</dimen>
+    <dimen name="btnHeight">44dip</dimen>
+    <dimen name="btnHeight_ED">36dp</dimen>
+    <dimen name="tenDp">10dp</dimen>
+
+
+    <dimen name="btnWidthSmall">110dip</dimen>
+    <dimen name="btnHeightSmall">28dip</dimen>
+    <dimen name="btnWidthSmaller">80dip</dimen>
+    <dimen name="btnHeightSmaller">26dip</dimen>
+
+    <dimen name="btnWidthNewSmall">50dip</dimen>
+    <dimen name="btnHeightNewSmall">25dip</dimen>
+    <dimen name="tiniestTextSize">5sp</dimen>
+    <dimen name="tiniestTextSize4">4sp</dimen>
+    <dimen name="VerySmallerTextSize">11sp</dimen>
+    <dimen name="tinyTextSize">10sp</dimen>
+    <dimen name="SmallerTextSize">13sp</dimen>
+    <dimen name="SmallTextSize">12sp</dimen>
+    <dimen name="AverageTextSize">14sp</dimen>
+    <dimen name="NormalTextSize">15sp</dimen>
+    <dimen name="customTextSize">16sp</dimen>
+    <dimen name="BigTextSize">18sp</dimen>
+    <dimen name="BigestTextSize">25sp</dimen>
+
+    <dimen name="padding_min">10dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="Margin_small">5dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">205dp</dimen>
+
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="normal">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_margin_20">20dp</dimen>
+    <dimen name="fab_margin_4">4dp</dimen>
+    <dimen name="fab_margin_60">50dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="smallsp">8sp</dimen>
+    <dimen name="medium">10dp</dimen>
+    <dimen name="bigBtnText">18sp</dimen>
+    <dimen name="large">16dp</dimen>
+    <dimen name="profile_text">14dp</dimen>
+    <dimen name="elarge">20dp</dimen>
+    <dimen name="slarge">14dp</dimen>
+    <dimen name="text_normal_margin">8dp</dimen>
+    <dimen name="text_normal_margin_no_left">2dp</dimen>
+    <dimen name="text_large_margin">16dp</dimen>
+
+    <dimen name="fab_margin">6dp</dimen>
+    <dimen name="splash_fullscreen_content_textsize">24sp</dimen>
+    <dimen name="splash_fullscreen_content_layout_marginBottom">200dp</dimen>
+    <dimen name="splash_fullscreen_content_layout_Imageview_layout_marginTop">50dp</dimen>
+    <dimen name="splash_fullscreen_content_layout_textviewLoading_layout_marginBottom">10dp</dimen>
+    <dimen name="splash_fullscreen_content_controls_layout_marginBottom">80dp</dimen>
+    <dimen name="activity_support_Imageview_width_height">20dp</dimen>
+    <dimen name="activity_support_Linearlayout_layout_marginTop">70dp</dimen>
+    <dimen name="activity_support_progressbar_layout_marginBottom">8dp</dimen>
+    <dimen name="activity_support_Button_layout_marginTop">8dp</dimen>
+
+    <dimen name="Toolbar_imageview_weight_height">20dp</dimen>
+    <dimen name="ll_paddingTop">35dp</dimen>
+    <dimen name="FloatingActionButton_width_height">45dp</dimen>
+
+    <dimen name="editleave_layout_margintop">10dp</dimen>
+    <dimen name="linear_layout_margin_143_top">20dp</dimen>
+
+    <dimen name="margin_ten">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="font_seventeen">16sp</dimen>
+    <dimen name="margin_eighty">80dp</dimen>
+    <dimen name="margin_six">6dp</dimen>
+    <dimen name="margin_thirty">30dp</dimen>
+    <dimen name="font_eleven">11sp</dimen>
+    <dimen name="recyclerview_min_padding">11dp</dimen>
+
+    <dimen name="margin_eight">8dp</dimen>
+    <dimen name="edit_text_size">14sp</dimen>
+    <dimen name="font_sm_small">10sp</dimen>
+    <dimen name="margin_146_101">24dp</dimen>
+    <dimen name="margin_146_102">20dp</dimen>
+    <dimen name="margin_146_103">12sp</dimen>
+    <dimen name="margin_146_104">12sp</dimen>
+
+
+    <dimen name="margin_twenty">20dp</dimen>
+
+    <dimen name="stat_width_month_weeklyRepo">200dp</dimen>
+    <dimen name="stat_width_month_weeklyRepolayout">170dp</dimen>
+
+    <dimen name="stat_width">120dp</dimen>
+    <dimen name="stat_width_110">110dp</dimen>
+    <dimen name="stat_width_120">120dp</dimen>
+    <dimen name="stat_width_year">100dp</dimen>
+    <dimen name="stat_width_details">60dp</dimen>
+    <dimen name="stat_width_month">90dp</dimen>
+    <dimen name="stat_long">220dp</dimen>
+    <dimen name="stat_l_days">80dp</dimen>
+    <dimen name="design_navigation_padding_top_default" tools:override="true">5dp</dimen>
+    <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
+    <dimen name="design_navigation_padding_bottom" tools:override="true">5dp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">20dp</dimen>
+    <dimen name="design_navigation_icon_padding" tools:override="true">12dp</dimen>
+
+    <dimen name="edit_text_height_120">120dp</dimen>
+    <dimen name="twentyFive">25dp</dimen>
+
+
+    <dimen name="feed_item_border_width">1dp</dimen>
+    <dimen name="feed_item_corner_radius">3dp</dimen>
+
+    <dimen name="iv_sendimg_width">130dp</dimen>
+
+    <dimen name="reply_layout_pad">2dp</dimen>
+    <dimen name="rb_text_size_small">9sp</dimen>
+    <dimen name="rb_scale">1</dimen>
+
+    <dimen name="blogpost_et_height">180dp</dimen>
+    <dimen name="upoadImage_height_width">300dp</dimen>
+
+    <dimen name="text_size_sub_info">9sp</dimen>
+    <dimen name="topic_icon_size">36dip</dimen>
+    <dimen name="padding_rb_Survey">3dp</dimen>
+    <dimen name="webview_txt_size">13sp</dimen>
+    <dimen name="webview_heading_size">12sp</dimen>
+
+    <dimen name="doc_box_padding">10dp</dimen>
+    <dimen name="logo_width">80dp</dimen>
+    <dimen name="logo_height">80dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+
+
+</resources>

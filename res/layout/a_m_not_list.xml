@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+tools:context=".XCubeGrantAdmin.claim.GAClaimDetails">
+
+    <include layout="@layout/c_note_list" />
+
+<include  layout="@layout/footer_layout"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

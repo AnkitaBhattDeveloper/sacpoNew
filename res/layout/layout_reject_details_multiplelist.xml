@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/margin_10"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/rejectDetailslayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:background="@drawable/rect_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/lbllearnerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_heading"
+            android:padding="@dimen/small"
+            android:textAllCaps="true"
+            android:textColor="@color/txt_small_heading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtlearnerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_value"
+            android:padding="@dimen/small"
+            android:textColor="@color/txt_small_value" />
+
+        <TextView
+            android:id="@+id/lblContactNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_heading"
+            android:padding="@dimen/small"
+            android:textAllCaps="true"
+            android:textColor="@color/txt_small_heading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtContactNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_value"
+            android:padding="@dimen/small"
+            android:textColor="@color/txt_small_value" />
+
+        <TextView
+            android:id="@+id/lblEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_heading"
+            android:padding="@dimen/small"
+            android:textAllCaps="true"
+            android:textColor="@color/txt_small_heading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_value"
+            android:padding="@dimen/small"
+            android:textColor="@color/txt_small_value" />
+
+        <TextView
+            android:id="@+id/lblRejectReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_heading"
+            android:padding="@dimen/small"
+            android:textAllCaps="true"
+            android:textColor="@color/txt_small_heading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtRejectReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/ExtraSmallerDp"
+            android:background="@color/back_small_value"
+            android:padding="@dimen/small"
+            android:textColor="@color/txt_small_value" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

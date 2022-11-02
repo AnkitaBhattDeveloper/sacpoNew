@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_m_addHolidays"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:layout_marginTop="@dimen/SmallerDp"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeMentor.workX.MAddWorksA"
+    tools:showIn="@layout/c_m_add_workx">
+    <ScrollView
+        android:id="@+id/scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/SmallerDp">
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/progress_bar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="HEADING"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/heading"
+                        />
+                    <LinearLayout
+                        android:id="@+id/AddDeptNameContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                        android:layout_marginTop="@dimen/GiantDp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblAddDeptName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutAddDeptName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputAddDeptName"
+                                style="@style/editText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:maxLines="1"
+                                android:inputType="text"
+                                app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/lblWorkstationAddress"
+                            android:layout_marginTop="@dimen/margin_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text="WorkStation address"
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/act_physical_address"
+                                style="@style/searchBar"
+                                android:padding="@dimen/padding_ten"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Address,City or Zipcode"
+                                android:maxLines="1"
+                                android:drawableLeft="@drawable/places_ic_search"
+                                android:drawableTint="@color/colorGrey"
+                                android:drawablePadding="@dimen/padding_5"
+                                android:inputType="text"
+                                android:imeOptions="actionSearch"
+                                app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+
+                        </RelativeLayout>
+
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mapContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:orientation="vertical">
+                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/map"
+                            android:name="za.co.sacpo.grant.fragments.FMap"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            tools:context=".grant.xCubeMentor.workX.MAddWorksA" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:id="@+id/buttonContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/passwordContainer"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/addBtnContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/bigDp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/btnDeptAdd"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/middleDp"
+                                android:background="@drawable/themed_button"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text=""
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

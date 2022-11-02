@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_approve_leave"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeMentor.attendance.MAttApprovalA"
+    tools:showIn="@layout/m_content_attendance_approval">
+
+    <ScrollView
+
+        android:id="@+id/scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/margin_10"
+
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="HEADING"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/heading"
+                    />
+
+                <ImageView
+
+                    android:id="@+id/headLogo"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:adjustViewBounds="false"
+                    android:elevation="0dp"
+                    app:srcCompat="@drawable/p_logo" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/lbl_AttType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+
+                    <Spinner
+                        android:id="@+id/inputSpinnerAttType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginRight="@dimen/SmallerDp"
+                        android:layout_weight="1"
+                        android:background="@drawable/spinner_bg"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+
+
+                    android:id="@+id/MAddAttRemarkContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:id="@+id/lblMAddAttRemark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/inputLayoutMMAddAttRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/inputMAddAttRemark"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:maxLines="3"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/margin_thirty"
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordContainer"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/SubmitContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btnSubmit"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@color/ButtonTxtwhite"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/body_container"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/detail_container"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:id="@+id/lblLoginData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:textAllCaps="true"/>
+
+                            <LinearLayout
+                                android:weightSum="1"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:textColor="@color/txt_small_value"
+                                android:background="@color/back_small_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/lblLoginDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+                                <TextView
+                                    android:id="@+id/txtLoginDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:weightSum="1"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:textColor="@color/txt_small_value"
+                                android:background="@color/back_small_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/lblLoginTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+                                <TextView
+                                    android:id="@+id/txtLoginTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/lblLogoutData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:textAllCaps="true"/>
+
+                            <LinearLayout
+                                android:weightSum="1"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:textColor="@color/txt_small_value"
+                                android:background="@color/back_small_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/lblLogoutDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+                                <TextView
+                                    android:id="@+id/txtLogoutDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:weightSum="1"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:textColor="@color/txt_small_value"
+                                android:background="@color/back_small_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/lblLogoutTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+                                <TextView
+                                    android:id="@+id/txtLogoutTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.5"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

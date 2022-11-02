@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.attendance.SAttDA"
+    tools:showIn="@layout/container_c_attendance">
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/SmallerDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/SmallerDp">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/progress_bar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text=""
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/heading"
+                        />
+                    <LinearLayout
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginTop="@dimen/SmallerDp"
+                        android:orientation="vertical"
+                        android:id="@+id/informationContainer"
+                        android:layout_width="match_parent"
+                        android:background="@color/background_grey"
+                        android:layout_height="match_parent">
+                        <WebView
+                            android:id="@+id/wv_information"
+                            android:textSize="@dimen/VerySmallerTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_value"
+                            android:padding="@dimen/small"
+                            android:textColor="@color/txt_small_value"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="visible"
+                        android:id="@+id/signInContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginTop="@dimen/SmallerDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSignIn"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/SmallestDp"
+                            android:layout_weight="1"
+                            android:background="@drawable/themed_button_action_g"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="@dimen/SmallestDp" />
+
+                        <Button
+                            android:id="@+id/btnSignOut"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallestDp"
+                            android:layout_weight="1"
+                            android:background="@drawable/themed_button_action_r"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/SmallestDp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@color/background_grey"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/attendanceContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ProgressBar
+                            android:id="@+id/progress_bar_r"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/biggestDp"
+                            android:layout_marginTop="@dimen/biggestDp"
+                            android:visibility="gone" />
+                        <LinearLayout
+                            android:id="@+id/content_container_r"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TableLayout
+                                android:id="@+id/attendanceTable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:stretchColumns="*">
+
+                                <HorizontalScrollView
+                                    android:id="@+id/attendanceTableScroll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/rVAttendance"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="fill_parent"
+                                        android:isScrollContainer="true"
+                                        android:scrollY="@dimen/SmallerDp"
+                                        android:scrollbars="horizontal"
+                                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                        tools:context=".grant.xCubeStudent.attendance.SCurrentAttDA"
+                                        tools:listitem="@layout/current_att_row" />
+                                </HorizontalScrollView>
+                            </TableLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+</ScrollView>

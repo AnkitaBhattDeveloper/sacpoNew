@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeMentor.workX.MAssignWorkstationA"
+    tools:showIn="@layout/container_assign_workstation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:padding="@dimen/padding_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/SmallerDp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding_ten"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/activity_heading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/ExtraSmallDp"
+                                android:text="HEADING"
+                                android:textAlignment="center" android:gravity="center_horizontal"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/BigTextSize"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                                android:layout_marginRight="@dimen/ExtraGiantDp"
+                                android:background="@drawable/heading" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/attendanceTable"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:stretchColumns="*">
+
+                                <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:id="@+id/attendanceTableScroll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                        xmlns:tools="http://schemas.android.com/tools"
+                                        android:id="@+id/rVAssignWorkstation"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="fill_parent"
+                                        android:isScrollContainer="true"
+                                        android:scrollY="@dimen/SmallerDp"
+                                        android:scrollbars="vertical"
+                                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                        tools:context=".grant.xCubeMentor.workX.MAssignWorkstationA"
+                                        tools:listitem="@layout/layout_assign_work" />
+
+
+                                </HorizontalScrollView>
+                            </TableLayout>
+
+
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

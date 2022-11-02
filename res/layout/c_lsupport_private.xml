@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.ContactSupportPublicA"
+    tools:showIn="@layout/a_contact_support_private">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/bigDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/bigDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/headLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:adjustViewBounds="false"
+                    android:elevation="0dp"
+                    app:srcCompat="@drawable/p_logo" />
+                <LinearLayout
+                    android:id="@+id/NameContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/headLogo"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputName"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/emailContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/NameContainer"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputEmail"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/mobileContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/emailContainer"
+                    android:layout_marginBottom="@dimen/ExtrabiggestDp"
+                    android:layout_marginTop="@dimen/GiantDp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginLeft="@dimen/small"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputMobile"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/subjectContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/mobileContainer"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/labelSubjectContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/lblSubject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text="Name"
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <TextView
+                            android:id="@+id/ttSubject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginRight="@dimen/SmallerDp"
+                            android:text=" ? "
+                            android:background="@drawable/tt_background"
+                            android:textAllCaps="true"
+                            android:clickable="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                    </RelativeLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutSubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputSubject"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="text"
+                            android:maxLines="1"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/messageContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/subjectContainer"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLayoutMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/inputMessage"
+                            style="@style/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lines="5"
+                            android:hint=""
+                            android:inputType="textMultiLine"
+                            app:errorTextAppearance="@style/errorText"
+tools:ignore="MissingPrefix"
+                            tools:scrollbars="vertical" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ActionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/bigDp"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/passwordContainer"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSendMessage"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/middleDp"
+                        android:background="@drawable/themed_button"
+                        android:minHeight="@dimen/btnHeight"
+                        android:minWidth="@dimen/btnWidth"
+                        android:text=""
+                        android:textColor="@color/ButtonTxtwhite"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnLogin"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/themed_button_normal"
+                        android:minHeight="@dimen/btnHeight"
+                        android:minWidth="@dimen/btnWidth"
+                        android:text=""
+                        android:textColor="@color/ButtonTxtwhite"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

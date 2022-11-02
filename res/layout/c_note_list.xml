@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_login"
+    android:layout_marginBottom="@dimen/footer45_MarginBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeMentor.notes.MNoteList"
+    tools:showIn="@layout/a_m_not_list">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/SmallerDp"
+        android:background="@drawable/myaccount_border"
+        android:padding="@dimen/SmallerDp">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/biggestDp"
+            android:layout_marginTop="@dimen/biggestDp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/ExtraSmallDp"
+                android:text=""
+                android:textAlignment="center" android:gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/BigTextSize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ExtraGiantDp"
+                android:layout_marginRight="@dimen/ExtraGiantDp"
+                android:background="@drawable/heading" />
+            <LinearLayout
+                android:layout_marginTop="@dimen/bigDp"
+                android:layout_marginBottom="@dimen/bigDp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnAddNote"
+                style="?android:textAppearanceSmall"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight=".2"
+                android:background="@drawable/themed_small_button"
+                android:minHeight="@dimen/btnHeightSmall"
+                android:minWidth="@dimen/btnWidthSmall"
+                android:text=""
+                android:textColor="@color/row_button_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/WorkstationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblNote_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@color/greyish"
+                    android:padding="@dimen/SmallDp"
+                    android:text=""
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold" />
+
+
+                <ScrollView
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar_r"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/biggestDp"
+                                android:layout_marginTop="@dimen/biggestDp"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:id="@+id/content_container_r"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/progress_bar_r"
+                                android:orientation="vertical">
+
+
+                                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/rVNoteList"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:isScrollContainer="true"
+                                    android:scrollY="@dimen/SmallerDp"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    tools:context=".grant.xCubeMentor.notes.MNoteList" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

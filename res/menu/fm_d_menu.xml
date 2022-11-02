@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:visible="true"
+            android:id="@+id/nav_dashboard"
+            android:icon="@mipmap/dashboard"
+            android:title="DASHBOARD" />
+
+
+        <item
+            android:visible="true"
+            android:id="@+id/nav_approveClaim"
+            android:icon="@mipmap/ic_launcher_feedbackreport"
+            android:title="PROCESSED STIPEND CLAIM" />
+    </group>
+
+    <item android:title="COMMUNICATION">
+        <menu>
+            <!--  <item
+                  android:id="@+id/nav_notifications"
+                  android:icon="@mipmap/notification"
+                  android:title="ALERTS" />-->
+            <item
+                android:visible="true"
+                android:id="@+id/nav_view_queries"
+                android:icon="@mipmap/ic_launcher_viewqueries"
+                android:title="INCOMING MESSAGES" />
+            <item
+                android:visible="true"
+                android:id="@+id/nav_post_query"
+                android:icon="@mipmap/ic_launcher_postqueries"
+                android:title="CONTACT SUPPORT" />
+
+            <!--      <item
+                      android:id="@+id/nav_messages"
+                      android:icon="@mipmap/message"
+                      android:title="CHAT ROOMS" />-->
+        </menu>
+    </item>
+    <item
+        android:visible="true"
+        android:id="@+id/nav_logout"
+        android:icon="@mipmap/logout"
+        android:title="LOGOUT" />
+</menu>

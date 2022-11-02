@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GM_payrollclaimHistory"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp">
+
+
+    <TextView
+        android:id="@+id/lblMonth"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lblYear"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/lblStipendClaim"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:background="@drawable/backcell"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minHeight="@dimen/btnHeightSmall"
+        android:padding="@dimen/SmallerDp"
+        android:textAlignment="center" android:gravity="center_horizontal" />
+
+
+
+
+
+
+
+</TableRow>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_height">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/txMentorApprovedBy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fee_box_rect"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/margin_six"
+            android:text="0"
+            android:textColor="@color/Color_maroon"
+            android:textSize="@dimen/font_eleven"/>
+
+
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/txVerified"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fee_box_rect"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/margin_eight"
+            android:text="--"
+            android:textColor="@color/Color_maroon"
+            android:textSize="@dimen/font_eleven"/>
+
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/txMenDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fee_box_rect"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/margin_eight"
+            android:text="0"
+            android:textColor="@color/Color_maroon"
+            android:textSize="@dimen/font_eleven"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

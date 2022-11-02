@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_approve_leave"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".grant.xCubeStudent.stipends.SDownBankingA"
+    tools:showIn="@layout/content_change_menter">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/biggestDp"
+                android:layout_marginTop="@dimen/biggestDp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ExtraSmallDp"
+                    android:text="HEADING"
+                    android:textAlignment="center" android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/BigTextSize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ExtraGiantDp"
+                    android:layout_marginRight="@dimen/ExtraGiantDp"
+                    android:background="@drawable/heading" />
+
+                <LinearLayout
+                    android:id="@+id/body_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/lblEmployer_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtEmployer_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_value"
+
+                            android:padding="@dimen/small"
+                            android:textColor="@color/txt_small_value" />
+
+                        <TextView
+                            android:id="@+id/lblSupervisor_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtSupervisor_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_value"
+                            android:padding="@dimen/small"
+                            android:textColor="@color/txt_small_value" />
+
+                        <TextView
+                            android:id="@+id/lblLernerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtLearnerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_value"
+                            android:padding="@dimen/small"
+                            android:textColor="@color/txt_small_value" />
+
+                        <TextView
+                            android:id="@+id/lblEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_value"
+                            android:padding="@dimen/small"
+                            android:textColor="@color/txt_small_value" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Spinner
+
+                    android:id="@+id/Spiner_mentor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/spinner_bg"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/lblSlectMenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/SmallerDp"
+                        android:layout_marginLeft="@dimen/SmallerDp"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/SmallerTextSize" />
+
+                    <Spinner
+                        android:id="@+id/inputSpinneraMenterList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/spinner_bg"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passwordContainer"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/SubmitContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/bigDp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSubmit"
+                            style="?android:textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/middleDp"
+                            android:background="@drawable/themed_button"
+                            android:minHeight="@dimen/btnHeight"
+                            android:minWidth="@dimen/btnWidth"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

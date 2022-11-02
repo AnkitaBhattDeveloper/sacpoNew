@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_ten">
+
+
+        <TextView
+            android:id="@+id/tv_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:background="@color/feed_bg"
+            android:padding="@dimen/padding_ten"
+            android:text="Report Comment"
+            android:textAllCaps="true"
+            android:textSize="@dimen/normal"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_reportComment"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/tv_head"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:background="@drawable/rect_box"
+            android:gravity="start"
+            android:hint=""
+            android:maxLines="7"
+            android:padding="@dimen/padding_5"
+            android:textAlignment="textStart" />
+
+        <Button
+            android:id="@+id/btn_postreport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_reportComment"
+            android:layout_alignTop="@+id/btn_cncl"
+            android:layout_toLeftOf="@+id/btn_cncl"
+            android:backgroundTint="@color/TextColorOLUMSDark"
+            android:text="Report"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_cncl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_reportComment"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:backgroundTint="@color/TextColorOLUMSDark"
+            android:text="Cancel"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

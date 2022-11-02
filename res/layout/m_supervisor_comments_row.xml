@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/supervisor_row"
+    android:layout_marginTop="@dimen/large">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:background="@color/background_s_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/SmallerDp"
+        android:layout_marginLeft="@dimen/SmallestDp"
+        android:layout_marginRight="@dimen/SmallestDp"
+        android:elevation="5dp"
+        android:layout_marginTop="@dimen/SmallerDp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/head_container"
+                android:weightSum="1"
+                android:background="@color/colorPrimaryLight"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/BigTextSize" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/body_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_5"
+                android:orientation="vertical"
+                android:padding="@dimen/SmallDp">
+
+
+
+                <TextView
+                    android:id="@+id/txtFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:text="" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:padding="@dimen/padding_ten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnEdit"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btnHeight_ED"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@drawable/themed_button"
+                    android:minHeight="@dimen/btnHeight"
+                    android:padding="@dimen/margin_5"
+                    android:text="EDIT"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:padding="@dimen/margin_5"
+                    android:id="@+id/btnDelete"
+                    android:layout_toLeftOf="@+id/btnEdit"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btnHeight_ED"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@drawable/themed_button"
+                    android:minHeight="@dimen/btnHeight"
+                    android:text="REMOVE"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

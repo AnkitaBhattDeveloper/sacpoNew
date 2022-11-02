@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".grant.fragments.PaymentFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/step_layout"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/paddingTop_fragmenthead">
+
+        <TextView
+            android:id="@+id/tv_P_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:paddingBottom="@dimen/margin_ten"
+            android:text="@string/l_126_123_fragment_payment"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_seventeen"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="@dimen/margin_eighty"
+            android:layout_height="@dimen/margin_six"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_one"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_thirty"
+            android:background="@color/button_selectorcolor" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/ExtraSmallerDp"
+                android:layout_marginRight="@dimen/ExtraSmallerDp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TableLayout
+                    android:id="@+id/table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*"
+                    android:textColor="@android:color/black">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_P_lbl_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text="@string/l_126_124_fragment_payment"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/font_eleven" />
+
+                        <TextView
+                            android:id="@+id/tv_P_lbl_title2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text="@string/l_126_125_fragment_payment"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tv_P_lbl_title3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text="@string/l_126_126_fragment_payment"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txProcessedBy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text="0"
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/txPaymentDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text=""
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven" />
+
+                        <TextView
+                            android:id="@+id/txAmountPAid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text="--"
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtname1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text=""
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven" />
+
+                        <TextView
+                            android:id="@+id/verifieddate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text=""
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/dateAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text=""
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/text_no1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_six"
+                            android:text="0"
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven" />
+
+                        <TextView
+                            android:id="@+id/text_no2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text=""
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/text_no3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fee_box_rect"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_eight"
+                            android:text="0"
+                            android:textColor="@color/Color_maroon"
+                            android:textSize="@dimen/font_eleven">
+
+                        </TextView>
+
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
