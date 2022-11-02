@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="za.co.sacpo">
+    package="za.co.sacpo.grant">
     <!-- <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" /> -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature
@@ -36,34 +36,34 @@
 
 
 
-        <activity android:name=".grant.xCubeStudent.upload.SUploadDocumentA" />
+        <activity android:name=".xCubeStudent.upload.SUploadDocumentA" />
         <activity
-            android:name=".grant.xCubeMentor.training.MAddTrainingPlanA"
+            android:name=".xCubeMentor.training.MAddTrainingPlanA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.training.MEditTrainingPlanA"
+            android:name=".xCubeMentor.training.MEditTrainingPlanA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.training.MExistingTrainingPlanA"
+            android:name=".xCubeMentor.training.MExistingTrainingPlanA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.upload.MUploadClaimFormA"
+            android:name=".xCubeMentor.upload.MUploadClaimFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.training.MTrainingPlanA"
+            android:name=".xCubeMentor.training.MTrainingPlanA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.upload.MDocumentCenterA"
+            android:name=".xCubeMentor.upload.MDocumentCenterA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -73,7 +73,7 @@
             android:required="false" />
 
         <activity
-            android:name=".grant.SplashA"
+            android:name=".SplashA"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar">
@@ -84,820 +84,820 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".grant.xCubeStudent.SVideoA"
+            android:name=".xCubeStudent.SVideoA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.MVideoA"
+            android:name=".xCubeMentor.MVideoA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.LoginA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.AppUpdatedA"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.ForgotPassA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.ContactSupportPublicA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.leaves.MLeaveApproval"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.SDashboardDA"
+            android:name=".LoginA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.grant.SGrantDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".grant.xCubeStudent.SDashboardDA"
+            android:name=".AppUpdatedA"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.details.SSupervisorDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".grant.xCubeStudent.SDashboardDA"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.details.SLEADetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".grant.xCubeStudent.SDashboardDA"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.details.SWorkstationDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".grant.xCubeStudent.SDashboardDA"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.grant.MGrantDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".grant.xCubeStudent.SDashboardDA"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.SChangePasswordA"
+            android:name=".ForgotPassA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.SEditProfileA"
+            android:name=".ContactSupportPublicA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.queries.MContactSupportPrivateA"
+            android:name=".xCubeMentor.leaves.MLeaveApproval"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.SDashboardDA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.grant.SGrantDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".xCubeStudent.SDashboardDA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.details.SSupervisorDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".xCubeStudent.SDashboardDA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.details.SLEADetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".xCubeStudent.SDashboardDA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.details.SWorkstationDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".xCubeStudent.SDashboardDA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.grant.MGrantDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".xCubeStudent.SDashboardDA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.SChangePasswordA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.SEditProfileA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.queries.MContactSupportPrivateA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" /> <!-- <activity android:name=".xCubeStudent.mobile.UpdateProfilePicA" /> -->
         <activity
-            android:name=".grant.xCubeMentor.queries.MIncomingQueriesA"
+            android:name=".xCubeMentor.queries.MIncomingQueriesA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.queries.MOutgoingQueriesA"
+            android:name=".xCubeMentor.queries.MOutgoingQueriesA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.queries.MQueriesCommentsA"
+            android:name=".xCubeMentor.queries.MQueriesCommentsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.queries.MQueriesDetailsA"
+            android:name=".xCubeMentor.queries.MQueriesDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SOutgoingQueriesA"
+            android:name=".xCubeStudent.queries.SOutgoingQueriesA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SQueriesDetailsA"
+            android:name=".xCubeStudent.queries.SQueriesDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SIncomingQueriesA"
+            android:name=".xCubeStudent.queries.SIncomingQueriesA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SQueriesCommentsA"
+            android:name=".xCubeStudent.queries.SQueriesCommentsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.alerts.SAlertsGroupA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.announcement.MAnnouncement"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.alerts.MAlertsGroupA"
+            android:name=".xCubeStudent.alerts.SAlertsGroupA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.alerts.MAlertsA"
+            android:name=".xCubeMentor.announcement.MAnnouncement"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.alerts.MAlertsGroupA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.alerts.MAlertDetailsA"
+            android:name=".xCubeMentor.alerts.MAlertsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.queries.MQueriesGroupA"
+            android:name=".xCubeMentor.alerts.MAlertDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.alerts.SAlertsA"
+            android:name=".xCubeMentor.queries.MQueriesGroupA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.alerts.SAlertsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.alerts.SAlertDetailsA"
+            android:name=".xCubeStudent.alerts.SAlertDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.announcement.MAnnouncementDetailsA"
+            android:name=".xCubeMentor.announcement.MAnnouncementDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SignInA"
+            android:name=".xCubeStudent.attendance.SignInA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SignInAA"
+            android:name=".xCubeStudent.attendance.SignInAA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SignOutAA"
+            android:name=".xCubeStudent.attendance.SignOutAA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.attendance.MAttMonthlyA"
+            android:name=".xCubeMentor.attendance.MAttMonthlyA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SignOutA"
+            android:name=".xCubeStudent.attendance.SignOutA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SMonthlyAttDA"
+            android:name=".xCubeStudent.attendance.SMonthlyAttDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SAttDA"
+            android:name=".xCubeStudent.attendance.SAttDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SCurrentAttDA"
+            android:name=".xCubeStudent.attendance.SCurrentAttDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.upload.DocumentCenterListA"
+            android:name=".xCubeStudent.upload.DocumentCenterListA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.bank.SEditBankDetailA"
+            android:name=".xCubeStudent.bank.SEditBankDetailA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SLeavesDA"
+            android:name=".xCubeStudent.leaves.SLeavesDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SAddLeavesA"
+            android:name=".xCubeStudent.leaves.SAddLeavesA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SEditLeaveA"
+            android:name=".xCubeStudent.leaves.SEditLeaveA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SPendingReportsDA"
+            android:name=".xCubeStudent.claims.SPendingReportsDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SPastClaimDA"
+            android:name=".xCubeStudent.claims.SPastClaimDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SStipendDetailsA"
+            android:name=".xCubeStudent.claims.SStipendDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SDownCFormA"
+            android:name=".xCubeStudent.claims.SDownCFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SDownUnSignCFormA"
+            android:name=".xCubeStudent.claims.SDownUnSignCFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SUpCFormA"
+            android:name=".xCubeStudent.claims.SUpCFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SSubmitClaim"
+            android:name=".xCubeStudent.claims.SSubmitClaim"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.forms.SFormsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.forms.SDownloadFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.forms.SDownloadUnSignFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.forms.SUploadFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.forms.SDownloadLeadEmployerSignedFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.grant.SGrantsDA"
+            android:name=".xCubeStudent.forms.SFormsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.grant.SResignationA"
+            android:name=".xCubeStudent.forms.SDownloadFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.stipends.SStipendsDA"
+            android:name=".xCubeStudent.forms.SDownloadUnSignFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.stipends.SStipendDetailsA"
+            android:name=".xCubeStudent.forms.SUploadFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.claims.MStipendDetailsA"
+            android:name=".xCubeStudent.forms.SDownloadLeadEmployerSignedFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SContactSupportPrivateA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.messages.MChatHeadsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.messages.MChatListA"
+            android:name=".xCubeStudent.grant.SGrantsDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.messages.MChatA"
+            android:name=".xCubeStudent.grant.SResignationA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.messages.SChatHeadsA"
+            android:name=".xCubeStudent.stipends.SStipendsDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.messages.SChatA"
+            android:name=".xCubeStudent.stipends.SStipendDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.SUploadPicA"
+            android:name=".xCubeMentor.claims.MStipendDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.student.StudentsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.student.StudentA"
+            android:name=".xCubeStudent.queries.SContactSupportPrivateA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.forms.MDownloadSignedFormA"
+            android:name=".xCubeMentor.messages.MChatHeadsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.forms.MDownloadUnSignedFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.forms.MUploadSignedFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.attendance.MAttSummaryA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MDownloadClaimFormA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MPastClaimA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.leaves.MSLeaveListA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.leaves.MSLeaveDetailListA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.workX.MWorkXsDA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.workX.MRemoveWorkXA"
+            android:name=".xCubeMentor.messages.MChatListA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MAssignedSA"
+            android:name=".xCubeMentor.messages.MChatA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MEditWorkXA"
+            android:name=".xCubeStudent.messages.SChatHeadsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MChangeSWorkXA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".grant.xCubeStudent.attendance.SAttDetailsA" />
-        <activity
-            android:name=".grant.xCubeStudent.bank.SBankDA"
+            android:name=".xCubeStudent.messages.SChatA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.forms.DownloadMentorSignedFormA"
+            android:name=".xCubeStudent.SUploadPicA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.attendance.MAttApprovalA"
+            android:name=".xCubeMentor.student.StudentsA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.student.StudentA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.forms.MDownloadSignedFormA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.forms.MDownloadUnSignedFormA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.forms.MUploadSignedFormA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.attendance.MAttSummaryA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MDownloadClaimFormA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MPastClaimA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.leaves.MSLeaveListA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.leaves.MSLeaveDetailListA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MWorkXsDA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MRemoveWorkXA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MAssignedSA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MEditWorkXA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MChangeSWorkXA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".xCubeStudent.attendance.SAttDetailsA" />
+        <activity
+            android:name=".xCubeStudent.bank.SBankDA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.forms.DownloadMentorSignedFormA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.attendance.MAttApprovalA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" /> <!-- android:theme="@style/AppTheme.NoActionBar" -->
         <activity
-            android:name=".grant.xCubeMentor.MEditProfileA"
+            android:name=".xCubeMentor.MEditProfileA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.attendance.MAttDetailsA"
+            android:name=".xCubeMentor.attendance.MAttDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SLMotivationA"
+            android:name=".xCubeStudent.leaves.SLMotivationA"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SLConfirmationA"
+            android:name=".xCubeStudent.leaves.SLConfirmationA"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.leaves.SLRemoveA"
+            android:name=".xCubeStudent.leaves.SLRemoveA"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MNonAssignSA"
+            android:name=".xCubeMentor.workX.MNonAssignSA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.claims.MApproveClaimFormA"
+            android:name=".xCubeMentor.claims.MApproveClaimFormA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.claims.MApproveA"
+            android:name=".xCubeMentor.claims.MApproveA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.forms.MFormsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.MDashboardDA"
+            android:name=".xCubeMentor.forms.MFormsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.feedback.MStudentFeedback"
+            android:name=".xCubeMentor.MDashboardDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.feedback.MStudentReports"
+            android:name=".xCubeMentor.feedback.MStudentFeedback"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.feedback.MStudentReports"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.feedback.MFeedbackA"
+            android:name=".xCubeMentor.feedback.MFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MAddWorksA"
+            android:name=".xCubeMentor.workX.MAddWorksA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.MUploadPicA"
+            android:name=".xCubeMentor.MUploadPicA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".grant.xCubeMentor.MUpdateMobile"
+            android:name=".xCubeMentor.MUpdateMobile"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".grant.xCubeMentor.claims.MStipendClaimDetailsA"
+            android:name=".xCubeMentor.claims.MStipendClaimDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.feedback.MStudentReportsDetailsA"
+            android:name=".xCubeMentor.feedback.MStudentReportsDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.MChangePassword"
+            android:name=".xCubeMentor.MChangePassword"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.student.MChangeOffDay"
+            android:name=".xCubeMentor.student.MChangeOffDay"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SClaimDetailsA"
+            android:name=".xCubeStudent.claims.SClaimDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".grant.xCubeMentor.time_sheet.TimeSheetA"
+            android:name=".xCubeMentor.time_sheet.TimeSheetA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".grant.xCubeMentor.time_sheet.MTimeSheetUploade"
+            android:name=".xCubeMentor.time_sheet.MTimeSheetUploade"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.time_sheet.MTimeSheetDownload"
+            android:name=".xCubeMentor.time_sheet.MTimeSheetDownload"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.Fullscreen"
+            android:name=".xCubeStudent.queries.Fullscreen"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.notes.MNoteList"
+            android:name=".xCubeMentor.notes.MNoteList"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.notes.MAddNote"
+            android:name=".xCubeMentor.notes.MAddNote"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SFeedbackDA"
+            android:name=".xCubeStudent.feedback.SFeedbackDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SAddFeedbackA"
+            android:name=".xCubeStudent.feedback.SAddFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SLearnerReportsList"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.feedback.SReportDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.leaves.SLSupervisorCommentsA"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.announcment.SAnnouncement"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.announcment.SAnnouncementDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.messages.SChatListDA"
+            android:name=".xCubeStudent.feedback.SLearnerReportsList"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SEditFeedbackA"
+            android:name=".xCubeStudent.feedback.SReportDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SRemoveFeedbackA"
+            android:name=".xCubeStudent.leaves.SLSupervisorCommentsA"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.announcment.SAnnouncement"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.feedback.SAddMoreExperience"
+            android:name=".xCubeStudent.announcment.SAnnouncementDetailsA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.notes.MEditNotelistA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.notes.MDeleteNoteA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.feedback.MEditFeedbackA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.feedback.MDeleteFeedbackA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.SOutOfRangeA"
+            android:name=".xCubeStudent.messages.SChatListDA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.attendance.MCurrentAttA"
+            android:name=".xCubeStudent.feedback.SEditFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.queries.SQueriesGroupA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.SAttPostCommentA"
+            android:name=".xCubeStudent.feedback.SRemoveFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SAttVCommentA"
+            android:name=".xCubeStudent.feedback.SAddMoreExperience"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.attendance.SAttVMCommentA"
+            android:name=".xCubeMentor.notes.MEditNotelistA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.claims.MClaimAttApproveA"
+            android:name=".xCubeMentor.notes.MDeleteNoteA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SImpactStudiesA"
+            android:name=".xCubeMentor.feedback.MEditFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SConfirmBankDetailsA"
+            android:name=".xCubeMentor.feedback.MDeleteFeedbackA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.claims.SCMonthlyFeedbackA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.claims.SCWeeklyReport"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.claims.SAttSummaryList"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MWeeklyReport"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MMonthlyFeedbackA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MLearnerGrantDetailsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MPendingClaimsA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MLearnerClaimList"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MClaimAttList"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MLearnerAbsentList"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.claims.MLearnerLeaveListA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.EditAttendanceA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.EditAttCalenderA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.UploadAttendanceA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.attendance.DownloadAttA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeStudent.upload.UploadCv"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".grant.xCubeMentor.workX.MAssignWorkstationA"
+            android:name=".xCubeStudent.attendance.SOutOfRangeA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.bank.ProofOfBankingA"
+            android:name=".xCubeMentor.attendance.MCurrentAttA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeMentor.workX.MRegisterWorkstationA"
+            android:name=".xCubeStudent.queries.SQueriesGroupA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.SAttPostCommentA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".grant.xCubeStudent.upload.DownloadCenterA"
+            android:name=".xCubeStudent.attendance.SAttVCommentA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.SAttVMCommentA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MClaimAttApproveA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.claims.SImpactStudiesA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.claims.SConfirmBankDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.claims.SCMonthlyFeedbackA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.claims.SCWeeklyReport"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.claims.SAttSummaryList"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MWeeklyReport"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MMonthlyFeedbackA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MLearnerGrantDetailsA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MPendingClaimsA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MLearnerClaimList"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MClaimAttList"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MLearnerAbsentList"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.claims.MLearnerLeaveListA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.EditAttendanceA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.EditAttCalenderA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.UploadAttendanceA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.attendance.DownloadAttA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.upload.UploadCv"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MAssignWorkstationA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.bank.ProofOfBankingA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeMentor.workX.MRegisterWorkstationA"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".xCubeStudent.upload.DownloadCenterA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" /> <!-- <meta-data -->
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="@string/google_maps_key" /> -->
         <service
-            android:name=".grant.xCubeLib.component.LocationUpdatesService"
+            android:name=".xCubeLib.component.LocationUpdatesService"
             android:enabled="true" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -906,12 +906,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <service android:name=".grant.xCubeLib.services.OlumsFirebaseMessagingService">
+        <service android:name=".xCubeLib.services.OlumsFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".grant.xCubeLib.services.OlumsInstanceIdService">
+        <service android:name=".xCubeLib.services.OlumsInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
