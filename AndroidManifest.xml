@@ -76,10 +76,10 @@
             android:name=".SplashA"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@android:style/Theme.Light.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -906,12 +906,18 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <service android:name=".xCubeLib.services.OlumsFirebaseMessagingService">
+        <service
+            android:name=".xCubeLib.services.OlumsFirebaseMessagingService"
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".xCubeLib.services.OlumsInstanceIdService">
+        <service
+            android:name=".xCubeLib.services.OlumsInstanceIdService"
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
