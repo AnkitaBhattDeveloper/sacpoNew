@@ -1,9 +1,9 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/sacpocolorPrimary</item>
+        <item name="colorPrimaryDark">@color/sacpocolorPrimaryDark</item>
+        <item name="colorAccent">@color/sacpocolorAccent</item>
         <item name="listPreferredItemHeightSmall">40dp</item>
     </style>
 
@@ -66,6 +66,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="listPreferredItemHeightSmall">40dp</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme_2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sacpocolorPrimary</item>
+        <item name="colorPrimaryDark">@color/sacpocolorPrimaryDark</item>
+        <item name="colorAccent">@color/sacpocolorAccent</item>
         <item name="listPreferredItemHeightSmall">40dp</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

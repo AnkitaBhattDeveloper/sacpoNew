@@ -85,7 +85,7 @@ public abstract class BaseDrawerA extends BaseAPCPrivate
         if(!thumb.equals("")) {
             Picasso.get().load(thumb).resize(130,130).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE).placeholder(R.mipmap.user).error(R.mipmap.user).transform(new CropCircleTransformation()).into(ImgView);
         }else{
-            ImgView.setImageResource(R.drawable.app_logo_1);
+            ImgView.setImageResource(R.drawable.app_logo_2);
         }
 
         LinearLayout LLHeadTop = (LinearLayout) v.findViewById(R.id.headerTop);

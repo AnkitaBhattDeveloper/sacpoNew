@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#1565C0</color>
+    <color name="sacpocolorPrimary">#9AFCB900</color>
+    <color name="sacpocolorPrimaryDark">#fcb900</color>
+    <color name="sacpocolorAccent">#9FFCB900</color>
+    <color name="colorAccent">#F3286EA7</color>
     <color name="colorPrimaryDark">#0D47A1</color>
+
     <color name="colorPrimaryLighter">#1976D2</color>
     <color name="textColor">#0D47A1</color>
     <color name="process_1_color">#c6e0b4</color>
@@ -27,7 +33,7 @@
     <color name="row_one_o_one">#f1f1f1</color>
     <color name="row_chat_new">#ffffff</color>
     <color name="row_group">#dedede</color>
-    <color name="colorAccent">#F3286EA7</color>
+
     <color name="colorSecondary">#1976D2</color>
     <color name="colorPrimaryLight">#e4e7ec</color>
     <color name="back_small_heading">#efefef</color>

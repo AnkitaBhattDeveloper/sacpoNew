@@ -103,7 +103,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
         boolean isConnected = isNetworkConnected(this.getApplicationContext());
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
-            setAppTheme();
+           // setAppTheme();
             validateLogin(baseApcContext, activityIn);
             setLayoutXml();
             setAppLogo();

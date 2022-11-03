@@ -603,7 +603,7 @@
     <string name="error_A101_126">Error! This password is too short.</string>
     <string name="error_A101_127">Error! This password is too short.</string>
     <string name="error_A101_128">Error! This password is too short.</string>
-    <string name="i_A101_login">Please note that Access to the SETA PORTAL APP is restricted to SETA GRANT Recipients, Approved Supervisors and Administrators USERS ONLY.</string>
+    <string name="i_A101_login">Please note that Access to the SACPO Grant Portal APP is restricted to SACPO GRANT Recipients, Approved Supervisors and Administrators USERS ONLY.</string>
 
     <string name="l_A102_email">Email</string>
     <string name="b_A102_reset_password">Reset Password</string>

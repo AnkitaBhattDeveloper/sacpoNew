@@ -9,7 +9,8 @@ public class URLHelper {
       // public static final String DOMAIN_BASE_URL = "http://demo.setaportal.co.za/api";
       //  public static final String DOMAIN_URL = "http://demo.setaportal.co.za";
 
-      public static final int PORTAL_ID = 1;
+     // public static final int PORTAL_ID = 1;
+      public static final int PORTAL_ID = 2;
       /*for GRANT*/
       public static final String DOMAIN_BASE_URL = "http://grant.setaportal.co.za";
       public static final String DOMAIN_URL = "http://grant.setaportal.co.za";
@@ -308,14 +309,12 @@ public class URLHelper {
       public static final String M_DOWNLOAD_SIGNED_FORM = "/mentor/type/downloadSignClaimByMentor";
       public static final String STUDENT_STIPEND_LISTING = "/user/type/studentStipendList";
       public static final String S_CLAIM_DETAILS = "/user/type/claimDetailsStudent"; //student claim details
-
       public static final String M_STUDENT_LEAVES = "/mentor/type/studentsLeaveList";
       public static final String M_ASSIGN_WORKSSTATION = "/mentor/type/LinkedStudentList";
       public static final String STUDENT_OFF_DETAILS = "/user/type/studentOffDays";
       public static final String M_CLAIM_DETAILS = "/mentor/type/claimDetailsMentor";
       public static final String MSTUDENT_FEEDBACK = "/mentor/type/feedbackListForMentor";
       public static final String S_SUPERVISOR_COMMENTS = "/user/type/commentReports";
-
       public static final String S_OUT_OF_RANGE = "/user/type/OutOfRange";
       public static final String MENTOR_APPROVE_CLAIM = "/mentor/type/approveClaimByMentor";
       public static final String VIEW_STIPEND_DETAILS = "/user/type/viewStipendDetails";//STUDENT-STIPEND_DETAILS(CLAIM)
