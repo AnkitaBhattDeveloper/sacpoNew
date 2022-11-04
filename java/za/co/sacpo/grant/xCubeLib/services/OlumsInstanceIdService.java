@@ -39,7 +39,7 @@ public class OlumsInstanceIdService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String s) {
         super.onNewToken(s);
-        Log.d("NEW_TOKEN",s);
+        //Log.d("NEW_TOKEN",s);
     }
     private void sendTheRegisteredTokenToWebServer(final String token){
         queue = Volley.newRequestQueue(getApplicationContext());

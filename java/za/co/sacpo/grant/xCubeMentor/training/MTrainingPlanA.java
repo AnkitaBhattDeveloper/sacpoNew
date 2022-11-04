@@ -509,7 +509,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
 
                         @Override
                         public void onResponse(NetworkResponse response) {
-                            Log.d("ressssssoo",new String(response.data));
+                            //Log.d("ressssssoo",new String(response.data));
                             printLogs(LogTag,"uploadPDF","URL : "+UPLOAD_DOCUMENTS_BY_LEARNER);
                            // rQueue.getCache().clear();
 

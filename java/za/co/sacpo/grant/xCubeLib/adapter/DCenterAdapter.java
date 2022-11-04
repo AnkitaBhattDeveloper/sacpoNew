@@ -10,6 +10,7 @@ import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
         import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
         import android.view.View;
@@ -41,12 +42,57 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
-    //Todo: Table Width Problem
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public DCenterAdapter(List<DCenterObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
         this.activityInCall = activityInCall;
-
     }
 
     public String getLabelFromDb(String inputLabel,int resId){
@@ -71,7 +117,6 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
 
     @Override
     public AttHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.d_center_row, parent, false);
         return new AttHolder(itemView);
     }
@@ -82,12 +127,11 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lblAction1.setTextColor(res.getColor(R.color.white));
             holder.lblAction1.setVisibility(View.VISIBLE);
             holder.btnAction1.setVisibility(View.GONE);
             holder.lblAction1.setTypeface(holder.lblAction1.getTypeface(), Typeface.BOLD);
-
             holder.lblAction2.setTextColor(res.getColor(R.color.white));
             holder.lblAction2.setVisibility(View.VISIBLE);
             holder.btnAction2.setVisibility(View.GONE);
@@ -133,6 +177,9 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
                 holder.lblAction1.setVisibility(View.GONE);
                 holder.btnAction1.setVisibility(View.VISIBLE);
                 holder.btnAction1.setText(aObjList.get(holder.getAdapterPosition()).aPrevious5);
+                holder.btnAction1.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction1.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
 
             } else {
                 holder.lblAction1.setVisibility(View.VISIBLE);
@@ -144,16 +191,25 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
                 holder.lblAction2.setVisibility(View.GONE);
                 holder.btnAction2.setVisibility(View.VISIBLE);
                 holder.btnAction2.setText("UPLOAD");
+                holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
             } else {
                 holder.lblAction2.setVisibility(View.GONE);
                 holder.btnAction2.setText("REUPLOAD");
                 holder.btnAction2.setVisibility(View.VISIBLE);
+                holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
             }
             int aDownloadStatus = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).aIsDownload9);
             if (aDownloadStatus == 1) {
                 holder.lblAction3.setVisibility(View.GONE);
                 holder.btnAction3.setVisibility(View.VISIBLE);
                 holder.btnAction3.setText("DOWNLOAD");
+                holder.btnAction3.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
 
             } else {
                 holder.lblAction3.setVisibility(View.VISIBLE);

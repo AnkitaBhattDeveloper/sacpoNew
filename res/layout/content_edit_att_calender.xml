@@ -70,7 +70,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/ExtraGiantDp"
                                 android:layout_marginRight="@dimen/ExtraGiantDp"
-                                android:background="@drawable/heading" />
+                                android:background="@drawable/heading_1" />
 
 
                         </LinearLayout>
@@ -199,7 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/margin_20"
-                                android:background="@drawable/themed_button_action_g"
+                                android:background="@drawable/themed_button_action_1"
                                 android:minHeight="@dimen/btnHeight"
                                 android:minWidth="@dimen/btnWidth"
                                 android:text="SAVE"
@@ -216,7 +216,7 @@
                                 android:layout_gravity="center"
                                 android:visibility="gone"
                                 android:layout_marginTop="@dimen/margin_20"
-                                android:background="@drawable/themed_button_action_g"
+                                android:background="@drawable/themed_button_action_1"
                                 android:minHeight="@dimen/btnHeight"
                                 android:minWidth="@dimen/btnWidth"
                                 android:text="SAVE"

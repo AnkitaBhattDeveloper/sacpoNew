@@ -297,7 +297,7 @@ public class LoginA extends BaseFormAPCPublic {
             try {
                 jsonObject = new JSONObject(String.valueOf(response));
                 String Status = jsonObject.getString(KEY_STATUS);
-                Log.d("TAG","response is:"+Status);
+                //Log.d("TAG","response is:"+Status);
                 if (Status.equals("1")) {
                     JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
                     final int user_id = Integer.parseInt(dataM.getString("u_id"));
@@ -373,7 +373,7 @@ public class LoginA extends BaseFormAPCPublic {
         try {
             jsonBody.put(URLHelper.TOKEN_TO_SERVER_KEY, tokenId);
             jsonBody.put("id", Integer.toString(userId));
-            Log.d("TOKEN","TOKEN_TO_SERVER"+tokenId+userId);
+            //Log.d("TOKEN","TOKEN_TO_SERVER"+tokenId+userId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -385,7 +385,7 @@ public class LoginA extends BaseFormAPCPublic {
                 jsonObject = new JSONObject(String.valueOf(response));
                 String Status;
                 Status = jsonObject.getString(KEY_STATUS);
-                Log.d("TAG","KEYSTATUS"+KEY_STATUS);
+                //Log.d("TAG","KEYSTATUS"+KEY_STATUS);
                 if (Status.equals("1")) {
                     userSessionObj = new OlumsUserSession(baseApcContext);
                     userSessionObj.setToken(tokenId);

@@ -2,6 +2,7 @@ package za.co.sacpo.grant.xCubeStudent.leaves;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,7 +47,7 @@ public class SLConfirmationA extends BaseAPCPrivate {
     private String KEY_LEAVE_REASONS="leave_reason";
     SLConfirmationA thisClass;
     public LinearLayout LLFormContainer,LLInformationContainer;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public Button btn_back, btn_submitLeave;
     private TextView lblView;
 
@@ -146,6 +147,7 @@ public class SLConfirmationA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         LLFormContainer = (LinearLayout) findViewById(R.id.form_container);
         LLInformationContainer = (LinearLayout) findViewById(R.id.informationContainer);
@@ -171,20 +173,26 @@ public class SLConfirmationA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_S114",R.string.h_S114);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("msg_S114_1",R.string.msg_S114_1);
+        lbl_text_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lbl_text_1.setText(Label);
         String Label1 = getLabelFromDb("msg_S114_2",R.string.msg_S114_2_1);
         String Label2 = getLabelFromDb("msg_S114_2",R.string.msg_S114_2_2);
         String finallbl = Label1+" "+mentor_name+" " +Label2;
+        lbl_text_2.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lbl_text_2.setText(finallbl);
         String sdate=  stringFromDateForCL(dateFromStringForCL(start_date));
         String edate=  stringFromDateForCL(dateFromStringForCL(end_date));
         Label = selected_leave_type_val+" : "+no_of_days+" Days, "+sdate+" to "+edate;
+        lbl_text_3.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lbl_text_3.setText(Label);
         Label = getLabelFromDb("msg_S114_4",R.string.msg_S114_3);
+        lbl_text_4.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lbl_text_4.setText(Label);
         Label = getLabelFromDb("msg_S114_5",R.string.msg_S114_4);
+        lbl_text_5.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lbl_text_5.setText(Label);
 
         Label = getLabelFromDb("b_apply_leave",R.string.b_apply_leave);
@@ -192,7 +200,11 @@ public class SLConfirmationA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("b_back",R.string.b_back);
         btn_back.setText(Label);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btn_submitLeave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_back.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
 
     }
     @Override

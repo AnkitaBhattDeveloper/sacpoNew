@@ -3,7 +3,6 @@ package za.co.sacpo.grant.xCubeLib.dialogs;
 import android.content.Context;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 
 import za.co.sacpo.grant.ContactSupportPublicA;
 import za.co.sacpo.grant.xCubeMentor.MChangePassword;
@@ -38,9 +37,7 @@ import za.co.sacpo.grant.xCubeStudent.SEditProfileA;
 import za.co.sacpo.grant.xCubeStudent.attendance.EditAttCalenderA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SAttPostCommentA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SignInA;
-import za.co.sacpo.grant.xCubeStudent.attendance.SignInAA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SignOutA;
-import za.co.sacpo.grant.xCubeStudent.attendance.SignOutAA;
 import za.co.sacpo.grant.xCubeStudent.attendance.UploadAttendanceA;
 import za.co.sacpo.grant.xCubeStudent.bank.ProofOfBankingA;
 import za.co.sacpo.grant.xCubeStudent.bank.SEditBankDetailA;
@@ -67,7 +64,7 @@ public class ErrorDialog {
     public static androidx.appcompat.app.AlertDialog ErrorDialog;
     private static final String TAG = ErrorDialog.class.getSimpleName();
     public static void printLogs(String funcs,String msg){
-        Log.i("OSG-"+TAG+"__"+funcs,msg);
+        //Log.i("OSG-"+TAG+"__"+funcs,msg);
     }
     public static void removeErrorDialog() {
         if ((ErrorDialog != null) && (ErrorDialog.isShowing())) {
@@ -434,7 +431,7 @@ public class ErrorDialog {
         ErrorDialog = localBuilder.create();
         ErrorDialog.show();
     }
-    public static void showSuccessDialogSignOutAA(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SignOutAA activityToRedirect) {
+    public static void showSuccessDialogSignOutAA(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SignOutA activityToRedirect) {
         isErrorDialogShowing = true;
         printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
         androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
@@ -475,7 +472,7 @@ public class ErrorDialog {
         ErrorDialog = localBuilder.create();
         ErrorDialog.show();
     }
-    public static void showSuccessDialogSignInAA(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SignInAA activityToRedirect) {
+    public static void showSuccessDialogSignInAA(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SignInA activityToRedirect) {
         isErrorDialogShowing = true;
         printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
         androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);

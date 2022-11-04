@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -43,7 +45,7 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
     // private String no_of_days="";
     public EditText inputLeaveReasons;
     public DatePicker inputStartDate,inputEndDate;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutLeaveReasons;
     public Button btnSubmitLv,btn_view_Leave;
     public TextInputLayout inputLayoutLeaveDays;
@@ -143,6 +145,7 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         btn_view_Leave = findViewById(R.id.btn_view_Leave);
         inputStartDate = (DatePicker) findViewById(R.id.inputStartDate);
@@ -162,28 +165,48 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_S113_start_date",R.string.l_S113_start_date);
         lblView = (TextView)findViewById(R.id.lblStartDate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
         Label = getLabelFromDb("l_S113_end_date",R.string.l_S113_end_date);
         lblView = (TextView)findViewById(R.id.lblEndDate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
         Label = getLabelFromDb("b_S113_view_Leave",R.string.b_S113_view_Leave);
         btn_view_Leave.setText(Label);
         Label = getLabelFromDb("l_S113_total_days",R.string.l_S113_total_days);
         lblView = (TextView)findViewById(R.id.lblTotalDays);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S113_leave_reasons",R.string.l_S113_leave_reasons);
         lblView = (TextView)findViewById(R.id.lblLeaveReasons);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
         Label = getLabelFromDb("h_S113",R.string.h_S113);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
         Label = getLabelFromDb("b_apply_leave",R.string.b_apply_leave);
         btnSubmitLv.setText(Label);
         Label = getLabelFromDb("i_no_active_grant",R.string.i_no_active_grant);
         lblView = (TextView)findViewById(R.id.iNoActiveGrant);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
         lblView.setText(Label);
-    }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_view_Leave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");

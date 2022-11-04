@@ -106,7 +106,7 @@ public class MAttSummaryListAdapter extends RecyclerView.Adapter<MAttSummaryList
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.next();
 

@@ -155,7 +155,7 @@ public class LocationUpdatesService extends Service {
     @SuppressWarnings("deprecation")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "Service started");
+        //Log.i(TAG, "Service started");
         boolean startedFromNotification = intent.getBooleanExtra(EXTRA_STARTED_FROM_NOTIFICATION,
                 false);
 
@@ -183,7 +183,7 @@ public class LocationUpdatesService extends Service {
         // Called when a client (MainActivity in case of this sample) comes to the foreground
         // and binds with this service. The service should cease to be a foreground service
         // when that happens.
-        Log.i(TAG, "in onBind()");
+        //Log.i(TAG, "in onBind()");
         stopForeground(true);
         mChangingConfiguration = false;
 
@@ -197,7 +197,7 @@ public class LocationUpdatesService extends Service {
         // Called when a client (MainActivity in case of this sample) returns to the foreground
         // and binds once again with this service. The service should cease to be a foreground
         // service when that happens.
-        Log.i(TAG, "in onRebind()");
+        //Log.i(TAG, "in onRebind()");
         stopForeground(true);
         mChangingConfiguration = false;
 
@@ -208,13 +208,13 @@ public class LocationUpdatesService extends Service {
     @SuppressWarnings("deprecation")
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.i(TAG, "Last client unbound from service");
+        //Log.i(TAG, "Last client unbound from service");
 
         // Called when the last client (MainActivity in case of this sample) unbinds from this
         // service. If this method is called due to a configuration change in MainActivity, we
         // do nothing. Otherwise, we make this service a foreground service.
         if (!mChangingConfiguration && Utils.requestingLocationUpdates(this)) {
-            Log.d(TAG, "Starting foreground service");
+            //Log.d(TAG, "Starting foreground service");
             /*
             // TODO(developer). If targeting O, use the following code.
             if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
@@ -245,7 +245,7 @@ public class LocationUpdatesService extends Service {
      * {@link SecurityException}.
      */
     public void requestLocationUpdates() {
-        Log.i(TAG, "Requesting location updates");
+        //Log.i(TAG, "Requesting location updates");
         Utils.setRequestingLocationUpdates(this, true);
         startService(new Intent(getApplicationContext(), LocationUpdatesService.class));
         try {
@@ -253,7 +253,7 @@ public class LocationUpdatesService extends Service {
                     mLocationCallback, Looper.myLooper());
         } catch (SecurityException unlikely) {
             Utils.setRequestingLocationUpdates(this, false);
-            Log.d(TAG, "Lost location permission. Could not request updates. " + unlikely);
+            //Log.d(TAG, "Lost location permission. Could not request updates. " + unlikely);
         }
     }
 
@@ -262,14 +262,14 @@ public class LocationUpdatesService extends Service {
      * {@link SecurityException}.
      */
     public void removeLocationUpdates() {
-        Log.i(TAG, "Removing location updates");
+        //Log.i(TAG, "Removing location updates");
         try {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
             Utils.setRequestingLocationUpdates(this, false);
             stopSelf();
         } catch (SecurityException unlikely) {
             Utils.setRequestingLocationUpdates(this, true);
-            Log.d(TAG, "Lost location permission. Could not remove updates. " + unlikely);
+            //Log.d(TAG, "Lost location permission. Could not remove updates. " + unlikely);
         }
     }
 
@@ -332,12 +332,12 @@ public class LocationUpdatesService extends Service {
                         }
                     });
         } catch (SecurityException unlikely) {
-            Log.d(TAG, "Lost location permission." + unlikely);
+            //Log.d(TAG, "Lost location permission." + unlikely);
         }
     }
 
     private void onNewLocation(Location location) {
-        Log.d(TAG, "New location: " + location);
+        //Log.d(TAG, "New location: " + location);
 
         mLocation = location;
 
@@ -407,9 +407,9 @@ public class LocationUpdatesService extends Service {
 
     private void SavetoServer(){
         Toast.makeText(this, "Save to server", Toast.LENGTH_SHORT).show();
-        Log.d("resMM", "Send to server");
-        Log.d("resML", String.valueOf(latitude));
-        Log.d("resMLL", String.valueOf(longitude));
+        //Log.d("resMM", "Send to server");
+        //Log.d("resML", String.valueOf(latitude));
+        //Log.d("resMLL", String.valueOf(longitude));
 
         Map<String , String> driverMap = new HashMap<>();
 

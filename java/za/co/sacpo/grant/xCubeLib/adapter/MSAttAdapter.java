@@ -93,7 +93,7 @@ public class MSAttAdapter extends RecyclerView.Adapter<MSAttAdapter.ViewHolder> 
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lbl_month.setTextColor(res.getColor(R.color.white));
             holder.lbl_month.setTypeface(holder.lbl_month.getTypeface(), Typeface.BOLD);
 

@@ -59,7 +59,7 @@ public class StudentData extends AsyncTask<Void, Void, Boolean> {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject jsonObject= new JSONObject(String.valueOf(response));
-                    Log.i("doInBackground","RESPONSE "+response);
+                    //Log.i("doInBackground","RESPONSE "+response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
                         JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);

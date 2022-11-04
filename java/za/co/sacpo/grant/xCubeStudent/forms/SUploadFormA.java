@@ -281,7 +281,7 @@ public class SUploadFormA extends BaseFormAPCPrivate {
                     cursor = this.getContentResolver().query(filePath, null, null, null, null);
                     if (cursor != null && cursor.moveToFirst()) {
                         displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                        Log.d("nameeeee>>>>  ", displayName);
+                        //Log.d("nameeeee>>>>  ", displayName);
                         txtFilePath.setText(displayName);
                     }
                 } finally {
@@ -289,7 +289,7 @@ public class SUploadFormA extends BaseFormAPCPrivate {
                 }
             } else if (uriString.startsWith("file://")) {
                 displayName = myFile.getName();
-                Log.d("nameeeee>>>>  ", displayName);
+                //Log.d("nameeeee>>>>  ", displayName);
                 txtFilePath.setText(displayName);
             }
         }

@@ -266,12 +266,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".xCubeStudent.attendance.SignInAA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".xCubeStudent.attendance.SignOutAA"
+            android:name=".xCubeStudent.attendance.SignOutA"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -280,10 +275,6 @@
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".xCubeStudent.attendance.SignOutA"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".xCubeStudent.attendance.SMonthlyAttDA"
             android:label="@string/title_activity_dashboard"

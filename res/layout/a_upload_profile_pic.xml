@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".grant.xCubeStudent.SUploadPicA">
+    tools:context=".xCubeStudent.SUploadPicA">
     <include
         android:id="@+id/include"
         layout="@layout/c_uploadprofilepic" />

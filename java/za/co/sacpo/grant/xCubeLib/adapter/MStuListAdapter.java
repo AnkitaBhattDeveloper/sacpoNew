@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,7 +97,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
         Drawable BColorD;
         BColor = res.getColor(R.color.red_link_back_even);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.separator1.setText("#");
             holder.separator2.setText("#");
@@ -681,7 +680,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     inputUri.putString("student_id", user_id);
                     inputUri.putString("student_name", aObjList.get(position).lname4);
                     inputUri.putString("generator", "M401");
-                    Log.i("student"+user_id,aObjList.get(position).lname4);
+                    //Log.i("student"+user_id,aObjList.get(position).lname4);
                     Context context = view.getContext();
                     Intent intent = new Intent(context, MAnnouncement.class);
                     intent.putExtras(inputUri);

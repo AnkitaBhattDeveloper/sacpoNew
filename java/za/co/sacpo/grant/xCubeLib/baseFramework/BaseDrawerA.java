@@ -36,7 +36,6 @@ public abstract class BaseDrawerA extends BaseAPCPrivate
         String uType = userSessionObj.getUserTypeName();
         String uMobile = userSessionObj.getUserMobile();
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -46,19 +45,22 @@ public abstract class BaseDrawerA extends BaseAPCPrivate
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(getResources().getColorStateList(getTextcolorResourceId("drawer_item_textColor")));
+        navigationView.setItemIconTintList(getResources().getColorStateList(getTextcolorResourceId("drawer_item_textColor")));
         navigationView.setNavigationItemSelectedListener(this);
 
         View v = navigationView.getHeaderView(0);
         TextView txtUsername = (TextView) v.findViewById(R.id.layout_user_name);
+        txtUsername.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtUsername.setText(fname + " " + sname+" ("+uType+")");
 
         TextView txtEmail = (TextView) v.findViewById(R.id.layout_email);
+        txtEmail.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtEmail.setText(email);
 
         TextView txtCell = (TextView) v.findViewById(R.id.layout_cell);
+        txtCell.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtCell.setText(uMobile);
         if(userType.equals("2")) {
             studentSessionObj = new OlumsStudentSession(baseApcContext);

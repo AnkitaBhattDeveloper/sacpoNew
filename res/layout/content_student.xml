@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ExtraGiantDp"
                         android:layout_marginRight="@dimen/ExtraGiantDp"
-                        android:background="@drawable/heading" />
+                        android:background="@drawable/heading_1" />
 
                     <LinearLayout
                         android:id="@+id/head_container"
@@ -393,7 +393,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:background="@drawable/themed_small_button"
+                                    android:background="@drawable/themed_small_button_1"
                                     android:minHeight="@dimen/btnHeightSmaller"
                                     android:minWidth="@dimen/btnWidthSmaller"
                                     android:text=""
@@ -410,7 +410,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:background="@drawable/themed_small_button"
+                                    android:background="@drawable/themed_small_button_1"
                                     android:minHeight="@dimen/btnHeightSmaller"
                                     android:minWidth="@dimen/btnWidthSmaller"
                                     android:text=""
@@ -427,7 +427,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:background="@drawable/themed_small_button"
+                                    android:background="@drawable/themed_small_button_1"
                                     android:minHeight="@dimen/btnHeightSmaller"
                                     android:minWidth="@dimen/btnWidthSmaller"
                                     android:text=""

@@ -79,7 +79,7 @@ public class ETrainingPlanAdapter  extends RecyclerView.Adapter<ETrainingPlanAda
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
         if (holder.getAdapterPosition() == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.lblAction1.setVisibility(View.VISIBLE);
             holder.lblAction1.setTextColor(res.getColor(R.color.white));

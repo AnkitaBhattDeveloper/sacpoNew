@@ -85,7 +85,7 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
         int BColorRedLink;
         BColorRed = res.getColor(R.color.red_link);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.TxtReportTitle.setTextColor(res.getColor(R.color.white));
             holder.TxtReportTitle.setTypeface(holder.TxtReportTitle.getTypeface(), Typeface.BOLD);

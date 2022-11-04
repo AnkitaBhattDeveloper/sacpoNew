@@ -57,12 +57,13 @@
                         android:textSize="@dimen/BigTextSize"
                         android:textStyle="bold"
                         />
-                    <TextView
+                    <View
+                        android:id="@+id/heading"
                         android:layout_marginLeft="@dimen/ExtraGiantDp"
                         android:layout_marginRight="@dimen/ExtraGiantDp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/heading"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
                         />
                     <LinearLayout
                         android:layout_marginBottom="@dimen/SmallerDp"

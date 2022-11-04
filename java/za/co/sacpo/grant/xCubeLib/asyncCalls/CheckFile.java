@@ -38,7 +38,7 @@ public class CheckFile extends AsyncTask<Void, Void, Boolean> {
     public void printLogsAsync(String funcs,String msg){
         String tag = this.getClass().getSimpleName();
         if(isLive==false) {
-            Log.i("OSG-"+tag+"__"+funcs,msg);
+            //Log.i("OSG-"+tag+"__"+funcs,msg);
         }
     }
     @Override

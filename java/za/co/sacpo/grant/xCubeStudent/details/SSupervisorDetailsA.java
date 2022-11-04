@@ -41,7 +41,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SSupervisorDetailsA extends BaseAPCPrivate {
     private String ActivityId="S190";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView;
     TextView txtMentorName,txtPosition,txtDepartment,txtMentor_cellNo,txtMentorEmail,txtMentorOfficeNo,txtHostName,txtHostSDLNo,lblDepartment,lblPosition,lblMentor_cellNo,lblMentorEmail,lblMentorOfficeNo,lblHostName,lblHostSDLNo;
@@ -130,6 +130,7 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         txtMentorName=findViewById(R.id.txtMentorName);
         txtPosition=findViewById(R.id.txtPosition);
@@ -179,6 +180,19 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
         mMentorEmailButton.setText(Label);
         Label = getLabelFromDb("mMentorOfficeCall_b_S190",R.string.mMentorOfficeCall_b_S190);
         mMentorOfficeCallButton.setText(Label);
+
+        txtMentorName.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mMentorOfficeCallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mMentorOfficeCallButton.setTextColor(getResources().getColor(R.color.white));
+            mMentorCallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mMentorCallButton.setTextColor(getResources().getColor(R.color.white));
+            mMentorEmailButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mMentorEmailButton.setTextColor(getResources().getColor(R.color.white));
+
+
+        }
 
     }
     @Override

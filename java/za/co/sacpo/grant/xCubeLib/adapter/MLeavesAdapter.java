@@ -85,7 +85,7 @@ public class MLeavesAdapter extends RecyclerView.Adapter<MLeavesAdapter.LeavesHo
         int BColor;
         int BColorRed = res.getColor(R.color.red_link);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             Labels = this.getLabelFromDb("l_M409_txt_month", R.string.l_M409_txt_month);
             holder.tvMonth3.setText(Labels);

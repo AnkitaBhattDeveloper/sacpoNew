@@ -67,7 +67,7 @@
                             android:layout_marginRight="@dimen/ExtraGiantDp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/heading"
+                            android:background="@drawable/heading_1"
                             />
 
 
@@ -338,7 +338,7 @@
                                     style="?android:textAppearanceSmall"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:background="@drawable/themed_button_action_g"
+                                    android:background="@drawable/themed_button_action_1"
                                     android:minHeight="@dimen/btnHeight"
                                     android:minWidth="@dimen/btnWidth"
                                     android:text="Browse bank Document"

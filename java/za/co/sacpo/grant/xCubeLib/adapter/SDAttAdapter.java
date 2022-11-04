@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.dataObj.SDAttObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
@@ -38,6 +39,52 @@ public class SDAttAdapter extends RecyclerView.Adapter<SDAttAdapter.Holder> {
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
 
     public SDAttAdapter(List<SDAttObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
@@ -86,7 +133,8 @@ public class SDAttAdapter extends RecyclerView.Adapter<SDAttAdapter.Holder> {
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+           // BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.txtSickLeave.setTextColor(res.getColor(R.color.white));
             holder.txtAnnualLeave.setTextColor(res.getColor(R.color.white));
@@ -140,7 +188,7 @@ public class SDAttAdapter extends RecyclerView.Adapter<SDAttAdapter.Holder> {
             holder.txtUnpaidLeave.setBackgroundColor(BColor);
 
             if(aObjList.get(holder.getAdapterPosition()).aSupervisorStatus10.equalsIgnoreCase("PENDING")){
-                Log.i("SDAttAdapter", "PENDING" + aObjList.get(holder.getAdapterPosition()).aSupervisorStatus10);
+                //Log.i("SDAttAdapter", "PENDING" + aObjList.get(holder.getAdapterPosition()).aSupervisorStatus10);
                 holder.txtSA.setBackgroundColor(BRColor);
                 holder.txtSA.setTextColor(res.getColor(R.color.white));
             }

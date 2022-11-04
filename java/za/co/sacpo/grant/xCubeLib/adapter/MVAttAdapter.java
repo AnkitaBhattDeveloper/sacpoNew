@@ -112,7 +112,7 @@ public class MVAttAdapter extends RecyclerView.Adapter<MVAttAdapter.ViewHolder> 
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             Labels = this.getLabelFromDb("l_195_approve", R.string.l_195_approvee);
             holder.lblAction_Approve.setText(Labels);

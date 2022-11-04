@@ -74,7 +74,7 @@ public class MSAttDayAdapter extends RecyclerView.Adapter<MSAttDayAdapter.Studen
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lbl_Learner.setTextColor(res.getColor(R.color.white));
             holder.lbl_Learner.setTypeface(holder.lbl_Learner.getTypeface(), Typeface.BOLD);
 

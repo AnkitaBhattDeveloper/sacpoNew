@@ -55,7 +55,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 public class UploadCv extends BaseAPCPrivate {
 
     private String ActivityId = "245";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextView lblView;
     private String extension;
     String filename;
@@ -126,7 +126,7 @@ public class UploadCv extends BaseAPCPrivate {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject jsonObject= new JSONObject(String.valueOf(response));
-                    Log.i("fetchStudetails","RESPONSE "+response);
+                    //Log.i("fetchStudetails","RESPONSE "+response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
                         JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
@@ -188,6 +188,7 @@ public class UploadCv extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         txtFilePath = findViewById(R.id.txtFilePath);
         btnUpload =findViewById(R.id.btnUpload);
         btnChoose = findViewById(R.id.btnChoose);
@@ -223,6 +224,7 @@ public class UploadCv extends BaseAPCPrivate {
 
         String Label = getLabelFromDb("h_245", R.string.h_245);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
          Label = getLabelFromDb("b_133_s_uploade_form",R.string.b_133_s_uploade);
@@ -235,6 +237,14 @@ public class UploadCv extends BaseAPCPrivate {
 
         Label = getLabelFromDb("lbl_M345_nofileChosen",R.string.lbl_M345_nofileChosen);
         txtFilePath.setText(Label+" (PDF ONLY)");
+        txtFilePath.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnUpload.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnChoose.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
     }
 
     private void initBackBtn() {
@@ -350,7 +360,7 @@ public class UploadCv extends BaseAPCPrivate {
                             cursor = this.getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
                                 displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                Log.d("nameeeee>>>>  ", displayName);
+                                //Log.d("nameeeee>>>>  ", displayName);
                                 txtFilePath.setText(displayName);
                             }
                         } finally {
@@ -358,7 +368,7 @@ public class UploadCv extends BaseAPCPrivate {
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName = myFile.getName();
-                        Log.d("nameeeee>>>>  ", displayName);
+                        //Log.d("nameeeee>>>>  ", displayName);
                         txtFilePath.setText(displayName);
                     }
                 } else {

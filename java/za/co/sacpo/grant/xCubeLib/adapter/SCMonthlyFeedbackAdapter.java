@@ -76,7 +76,7 @@ public class SCMonthlyFeedbackAdapter extends RecyclerView.Adapter<SCMonthlyFeed
         Resources res = holder.itemView.getContext().getResources();
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
-        BColor = res.getColor(R.color.row_head);
+        BColor = res.getColor(R.color.row_head_1);
         holder.txt_question.setTextColor(res.getColor(R.color.black_three));
         holder.txt_question.setTypeface(holder.txt_question.getTypeface(), Typeface.BOLD);
 

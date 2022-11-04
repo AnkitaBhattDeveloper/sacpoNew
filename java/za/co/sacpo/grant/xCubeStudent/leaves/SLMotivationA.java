@@ -3,6 +3,8 @@ package za.co.sacpo.grant.xCubeStudent.leaves;
 import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -19,17 +21,10 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class SLMotivationA extends BaseAPCPrivate {
 
     private String ActivityId="S116";
-    //TODO :: Map Correction
-
-    public View mProgressView, mContentView;
-
+    public View mProgressView, mContentView,heading;
     private TextView lblView;
-
     TextView txtDay,txtLeave_reason,txtLeave_Status,txtAddLeaveDate,txtLeave_student_status,txtApprovalStatus;
-
-  //  private GoogleMap googleMap;
     String motivation,generator,dated;
-
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId){
         baseApcContext = cnt;CAId=cTAId;
         activityIn = ain;
@@ -71,7 +66,7 @@ public class SLMotivationA extends BaseAPCPrivate {
         Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
         printLogs(LogTag,"verifyVersion","isUpdate "+isUpdate);
         printLogs(LogTag,"verifyVersion","isUpdate "+ utilSessionObj.getIsUpdateRequired());
-        if(isUpdate==true){
+        if(isUpdate){
             Intent intent = new Intent(SLMotivationA.this,AppUpdatedA.class);
             startActivity(intent);
             finish();
@@ -79,11 +74,10 @@ public class SLMotivationA extends BaseAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
-        if(isConnected ==true) {
+        if(isConnected) {
             setLayoutXml();
-
             callFooter(baseApcContext,activityIn,ActivityId);
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -117,12 +111,9 @@ public class SLMotivationA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
-
-        txtDay=(TextView) findViewById(R.id.txtDay);
+        heading = findViewById(R.id.heading);
         txtLeave_reason=(TextView) findViewById(R.id.txtLeave_reason);
         txtAddLeaveDate=(TextView) findViewById(R.id.txtAddLeaveDate);
-        txtApprovalStatus=(TextView) findViewById(R.id.txtApprovalStatus);
-        txtLeave_student_status=(TextView) findViewById(R.id.txtLeave_student_status);
     }
     @Override
     protected void initializeInputs(){
@@ -137,7 +128,16 @@ public class SLMotivationA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_S116",R.string.h_S116);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+       txtLeave_reason.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        txtAddLeaveDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
 
     }
     @Override

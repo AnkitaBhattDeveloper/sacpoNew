@@ -82,11 +82,11 @@ public class SplashA extends Activity {
     }
     public void getAllStaticLabels(){
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.LABELS_URL;
-        Log.i("getAllStaticLabels","FINAL_URL "+FINAL_URL);
+        //Log.i("getAllStaticLabels","FINAL_URL "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, response -> {
             try {
                 JSONObject jsonObject= new JSONObject(String.valueOf(response));
-                Log.i("getAllStaticLabels","RESPONSE "+response);
+                //Log.i("getAllStaticLabels","RESPONSE "+response);
                 String Status = jsonObject.getString(KEY_STATUS);
                 if(Status.equals("1")){
                     staticLabelsAdapter slAd = new staticLabelsAdapter(getApplicationContext());
@@ -139,13 +139,13 @@ public class SplashA extends Activity {
     }
     public void getMasterArray(){
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.GET_MASTER_ARRAY_URL;
-        Log.i("getMasterArray"," : "+FINAL_URL);
+        //Log.i("getMasterArray"," : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, response -> {
             try {
                 JSONObject outputJson= new JSONObject(String.valueOf(response));
-                Log.i("getAllStaticLabels","RESPONSE "+response);
+                //Log.i("getAllStaticLabels","RESPONSE "+response);
                 String Status = outputJson.getString(KEY_STATUS);
-                Log.i("getMasterArray","response "+response);
+                //Log.i("getMasterArray","response "+response);
                 if(Status.equals("1")){
                     masterArrayAdapter cAd = new masterArrayAdapter(getApplicationContext());
                     cAd.truncate();
@@ -198,13 +198,13 @@ public class SplashA extends Activity {
     }
     public void getHelpArray(){
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.GET_HELP_ARRAY_URL;
-        Log.i("getHelpArray"," : "+FINAL_URL);
+        //Log.i("getHelpArray"," : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, response -> {
             try {
                 JSONObject outputJson= new JSONObject(String.valueOf(response));
-                Log.i("getAllStaticLabels","RESPONSE "+response);
+                //Log.i("getAllStaticLabels","RESPONSE "+response);
                 String Status = outputJson.getString(KEY_STATUS);
-                Log.i("getHelpArray","response "+response);
+              //  Log.i("getHelpArray","response "+response);
                 if(Status.equals("1")){
                     helpArrayAdapter cAd = new helpArrayAdapter(getApplicationContext());
                     cAd.truncate();

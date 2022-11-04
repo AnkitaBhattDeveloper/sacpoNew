@@ -78,7 +78,7 @@ public class SCWeeklyReportAdapter extends RecyclerView.Adapter<SCWeeklyReportAd
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
   
             holder.lblMonth.setTypeface(holder.lblMonth.getTypeface(), Typeface.BOLD);
             holder.lblMonth.setTextColor(res.getColor(R.color.white));

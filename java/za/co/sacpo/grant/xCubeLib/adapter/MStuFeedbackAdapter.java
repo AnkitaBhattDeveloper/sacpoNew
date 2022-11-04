@@ -81,7 +81,7 @@ public class MStuFeedbackAdapter extends RecyclerView.Adapter<MStuFeedbackAdapte
         int BColorRedLink;
         BColor = res.getColor(R.color.red_link_back_even);
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.TxtLearnerName.setTextColor(res.getColor(R.color.white));
             holder.TxtLearnerName.setTypeface(holder.TxtLearnerName.getTypeface(), Typeface.BOLD);

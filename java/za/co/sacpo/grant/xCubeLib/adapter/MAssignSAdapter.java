@@ -71,7 +71,7 @@ public class MAssignSAdapter extends RecyclerView.Adapter<MAssignSAdapter.WorkXH
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblwxAssignStuName.setTextColor(res.getColor(R.color.white));
             holder.lblwxAssignStuName.setTypeface(holder.lblwxAssignStuName.getTypeface(), Typeface.BOLD);
 

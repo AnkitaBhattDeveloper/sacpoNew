@@ -83,7 +83,7 @@ public class SClaimAdapter extends RecyclerView.Adapter<SClaimAdapter.ClaimHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblClaimDate.setTextColor(res.getColor(R.color.white));
             holder.lblClaimDate.setTypeface(holder.lblClaimDate.getTypeface(), Typeface.BOLD);
 

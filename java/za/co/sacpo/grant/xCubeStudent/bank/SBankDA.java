@@ -2,6 +2,7 @@ package za.co.sacpo.grant.xCubeStudent.bank;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -41,7 +42,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SBankDA extends BaseFormAPCPrivate {
     private String ActivityId="S121";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView lblView, lblBankDetails, lblBankName, txtBankName, lblSurname, txtSurname, lblAccountType, txtAccountType,
             lblAccountNumber, txtAccNumb, lblBranchCode, txtBranchCode,lblInitialName,txtInitialName;
     Button mEditBankDetailsButton;
@@ -143,6 +144,7 @@ public class SBankDA extends BaseFormAPCPrivate {
         txtBranchCode = (TextView) findViewById(R.id.txtBranchCode);
         lblInitialName = (TextView) findViewById(R.id.lblInitialName);
         txtInitialName = (TextView) findViewById(R.id.txtInitialName);
+        heading = findViewById(R.id.heading);
         printLogs(LogTag,"initializeViews","exit");
     }
     @Override
@@ -184,6 +186,12 @@ public class SBankDA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("h_S121",R.string.h_S121);
         lblView = (TextView)findViewById(R.id.activity_heading);
         lblView.setText(Label);
+
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mEditBankDetailsButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
     }
     @Override
     protected void initializeInputs(){
@@ -235,20 +243,12 @@ public class SBankDA extends BaseFormAPCPrivate {
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
-
-
                         Account_type = dataM.getString("b_d_a_type");
                         Account_typeInt = Integer.parseInt(Account_type);
-
                         BranchCode = dataM.getString("b_d_u_branch_id");
                         BranchCodeInt = Integer.parseInt(BranchCode);
-
-
-
                         bank_id = dataM.getString("id");
                          bank_idInt = Integer.parseInt(bank_id);
-
-
                         if (dataM.length() > 0) {
                             txtBankName.setText(dataM.getString("bank_name"));
                             txtInitialName.setText(dataM.getString("initial_name"));

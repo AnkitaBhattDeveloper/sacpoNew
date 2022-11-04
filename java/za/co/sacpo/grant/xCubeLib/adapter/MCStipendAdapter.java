@@ -74,7 +74,7 @@ public class MCStipendAdapter extends RecyclerView.Adapter<MCStipendAdapter.Clai
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
 
             Labels = this.getLabelFromDb("l_190_s_lblAction", R.string.l_190_s_lblAction);

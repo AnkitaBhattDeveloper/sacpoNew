@@ -43,7 +43,7 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
     public void printLogsAsync(String funcs,String msg){
         String tag = this.getClass().getSimpleName();
         if(isLive==false) {
-            Log.i("OSG-"+tag+"__"+funcs,msg);
+            //Log.i("OSG-"+tag+"__"+funcs,msg);
         }
     }
     @Override
@@ -54,7 +54,7 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
         String userSessionType = userSessionObj.getUserType();
         String UPDATES_URL_FINAL = URLHelper.DOMAIN_BASE_URL+URLHelper.UPDATE_URL+"?type="+userSessionType+"&version_id="+versionV;
         printLogsAsync("doInBackground","URL "+UPDATES_URL_FINAL);
-        Log.d("doInBackground","URL "+UPDATES_URL_FINAL);
+        //Log.d("doInBackground","URL "+UPDATES_URL_FINAL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(UPDATES_URL_FINAL,null,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

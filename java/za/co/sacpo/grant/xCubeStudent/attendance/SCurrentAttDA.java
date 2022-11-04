@@ -3,6 +3,7 @@ package za.co.sacpo.grant.xCubeStudent.attendance;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -45,7 +46,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SCurrentAttDA extends BaseAPCPrivate {
     private final String ActivityId="S104";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView , heading;
     public TextView lblView,activity_heading;
     public WebView wv_information;
     public Bundle activeUri;
@@ -135,6 +136,7 @@ public class SCurrentAttDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSignOut = findViewById(R.id.btnSignOut);
         activity_heading = findViewById(R.id.activity_heading);
@@ -166,7 +168,15 @@ public class SCurrentAttDA extends BaseAPCPrivate {
         btnSignOut.setText(Label);
         Label = getLabelFromDb("info_S104_page",R.string.info_S104_page);
         wv_information.loadData(Label, "text/html", "UTF-8");
-    }
+
+        activity_heading.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSignIn.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnSignOut.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
@@ -178,7 +188,7 @@ public class SCurrentAttDA extends BaseAPCPrivate {
 
         btnSignIn.setOnClickListener(view -> {
             inBundle = new Bundle();
-            Intent intent = new Intent(SCurrentAttDA.this, SignInAA.class);
+            Intent intent = new Intent(SCurrentAttDA.this, SignInA.class);
             inBundle.putString("generator", ActivityId);
             intent.putExtras(inBundle);
             startActivity(intent);
@@ -186,7 +196,7 @@ public class SCurrentAttDA extends BaseAPCPrivate {
         });
         btnSignOut.setOnClickListener(view -> {
             inBundle = new Bundle();
-            Intent intent = new Intent(SCurrentAttDA.this, SignOutAA.class);
+            Intent intent = new Intent(SCurrentAttDA.this, SignOutA.class);
             inBundle.putString("generator", ActivityId);
             intent.putExtras(inBundle);
             startActivity(intent);

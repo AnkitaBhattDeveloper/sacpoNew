@@ -76,7 +76,7 @@ import android.util.Log;
         }
         public Cursor getAllByType(String TABLE_NAME,String COLUMN_NAME,int Type) {
             SQLiteDatabase db = this.getWritableDatabase();
-            Log.i("DBH","select * from "+TABLE_NAME+" where "+COLUMN_NAME+"="+Type);
+            //Log.i("DBH","select * from "+TABLE_NAME+" where "+COLUMN_NAME+"="+Type);
             Cursor res = db.rawQuery("select * from "+TABLE_NAME+" where "+COLUMN_NAME+"="+Type,null);
             //db.close();
             return res;

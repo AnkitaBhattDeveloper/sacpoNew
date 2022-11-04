@@ -71,7 +71,7 @@ public class MWorkXStuListAdapter extends RecyclerView.Adapter<MWorkXStuListAdap
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblwLearnerName.setTextColor(res.getColor(R.color.white));
             holder.lblwLearnerName.setTypeface(holder.lblwLearnerName.getTypeface(), Typeface.BOLD);
 

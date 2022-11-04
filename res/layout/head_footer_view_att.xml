@@ -17,7 +17,7 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/themed_small_button"
+        android:background="@drawable/themed_small_button_1"
         android:minHeight="@dimen/btnHeightSmall"
         android:minWidth="110dp"
         android:text="SUBMIT"

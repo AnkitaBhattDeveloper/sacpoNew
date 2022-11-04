@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -53,7 +55,7 @@ import za.co.sacpo.grant.xCubeStudent.leaves.SLeavesDA;
 
 public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCallback{
     private String ActivityId="S189";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private GoogleMap googleMap;
     private TextView lblView;
     Double loginLat,loginLong,logoutLat,logoutLong,workLat,workLong;
@@ -107,7 +109,7 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
         Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
         printLogs(LogTag,"verifyVersion","isUpdate "+isUpdate);
         printLogs(LogTag,"verifyVersion","isUpdate "+ utilSessionObj.getIsUpdateRequired());
-        if(isUpdate==true){
+        if(isUpdate){
             Intent intent = new Intent(SWorkstationDetailsA.this,AppUpdatedA.class);
             startActivity(intent);
             finish();
@@ -120,7 +122,6 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
         if(isConnected) {
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             printLogs(LogTag,"bootStrapInit","initConnected");
             initializeViews();
@@ -153,6 +154,7 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         lbladdress =findViewById(R.id.lbladdress);
         txtWorkStation =findViewById(R.id.txtWorkStation);
 
@@ -191,7 +193,13 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
     protected void initializeLabels(){
         String Label = getLabelFromDb("h_S189H",R.string.h_S189H);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+        txtWorkStation.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
         printLogs(LogTag,"initializeLabels","init");
 
     }

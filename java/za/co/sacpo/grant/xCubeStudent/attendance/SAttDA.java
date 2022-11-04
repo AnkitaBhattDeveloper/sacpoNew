@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +45,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class SAttDA extends BaseAPCPrivate {
     private String ActivityId="S111";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView;
     public LinearLayout LLinformationContainer,LLAttendanceContainer;
 
@@ -151,6 +153,7 @@ public class SAttDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         LLinformationContainer = findViewById(R.id.informationContainer);
         LLAttendanceContainer = findViewById(R.id.attendanceContainer);
 
@@ -169,10 +172,16 @@ public class SAttDA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label =  getLabelFromDb("h_S111",R.string.h_S111);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_S111_no_active_grant",R.string.l_S111_no_active_grant);
         lblView = (TextView)findViewById(R.id.iNoActiveGrant);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
     @Override
     protected void initializeInputs(){

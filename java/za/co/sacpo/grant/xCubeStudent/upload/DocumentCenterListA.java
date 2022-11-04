@@ -45,7 +45,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class DocumentCenterListA extends BaseAPCPrivate {
     private String ActivityId="S193";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView,activity_heading;
     public Bundle activeUri;
     public String generator;
@@ -133,6 +133,7 @@ public class DocumentCenterListA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         activity_heading = findViewById(R.id.activity_heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = findViewById(R.id.rVAttendance);
@@ -146,6 +147,11 @@ public class DocumentCenterListA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_S193",R.string.h_S193);
         activity_heading.setText(Label);
+        activity_heading.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
     @Override
     protected void initializeInputs(){

@@ -203,8 +203,7 @@ public abstract class BaseAPC extends AppCompatActivity {
         Field resourceField = null;
         int resourceId=0;
         try {
-            //  resourceField = R.string.class.getDeclaredField("login_title_"+URLHelper.UNIVERSITY_ID);
-            resourceField = R.drawable.class.getDeclaredField(name+"_"+URLHelper.PORTAL_ID);
+               resourceField = R.drawable.class.getDeclaredField(name+"_"+URLHelper.PORTAL_ID);
             //Here we are getting the String id in R file...But you can change to R.drawable or any other resource you want...
             resourceId = resourceField.getInt(resourceField);
             //Here you can use it as usual
@@ -235,7 +234,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     }
     public void printLogs(String tag,String funcs,String msg){
         if(isLive==false) {
-            Log.i("OSG-"+tag+"__"+funcs,msg);
+            //Log.i("OSG-"+tag+"__"+funcs,msg);
             LogString = LogString+"TAG - "+tag+"<br/> FUNCTION - "+funcs+"<br/> DATA - "+msg+"<br/><br/><br/><br/>";
             //Toast.makeText(baseApcContext, "", Toast.LENGTH_SHORT).show();
         }

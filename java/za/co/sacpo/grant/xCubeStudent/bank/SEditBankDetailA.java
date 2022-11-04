@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -59,7 +61,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
     private String KEY_BRANCH_CODE = "branch_code";
     private String KEY_ACC_TYPE = "universal_accountType";
     public String generator;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView lblView;
     private EditText et_account_number, et_initial_name, et_surname;
     private Spinner spinner_bank_name, spinner_branch_code, spinner_account_type;
@@ -165,6 +167,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading =  findViewById(R.id.heading);
         spinner_bank_name = (Spinner) findViewById(R.id.spinner_bank_name);
         spinner_branch_code = (Spinner) findViewById(R.id.spinner_branch_code);
         spinner_account_type = (Spinner) findViewById(R.id.spinner_account_type);
@@ -172,6 +175,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         et_initial_name = (EditText) findViewById(R.id.et_initial_name);
         et_surname = (EditText) findViewById(R.id.et_surname);
         mSaveButton = (Button) findViewById(R.id.btnSave);
+
     }
 
     @Override
@@ -204,10 +208,17 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("h_S122",R.string.h_S122);
         lblView = (TextView)findViewById(R.id.activity_heading);
         lblView.setText(Label);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
         Label = getLabelFromDb("l_S122_save",R.string.l_S122_save);
         lblView = (Button) findViewById(R.id.btnSave);
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mSaveButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

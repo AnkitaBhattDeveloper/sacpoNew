@@ -2,6 +2,7 @@ package za.co.sacpo.grant.xCubeStudent.leaves;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SLeavesDA extends BaseAPCPrivate {
     private String ActivityId="S115";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     public LinearLayout LLinformationContainer,LLLeavesContainer,LLAddLeavesContainer;
     public Button mAddLeaveButton;
@@ -77,30 +78,9 @@ public class SLeavesDA extends BaseAPCPrivate {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(),this,this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag,"onCreate","init");
-
         Bundle activeInputUri = getIntent().getExtras();
-      //  grant_id = activeInputUri.getString("date_input");
         leave_type_id = activeInputUri.getString("leave_type_id");
         leave_id = activeInputUri.getString("leave_id");
-
-
-        /*  Intent inputIntent = getIntent();
-        Bundle activeInputUri = getIntent().getExtras();
-        year_input=null;
-        dateInput
-
-        month_input=null;
-        if (inputIntent.hasExtra("date_input")) {
-            date_input = activeInputUri.getString("date_input");
-            year_input=date_input.substring(0,4);
-            month_input=date_input.substring(4,6);
-            printLogs(LogTag,"onCreate","Date Input "+date_input+"--"+year_input+"--"+month_input);
-        }
-        if (inputIntent.hasExtra("generator")) {
-            generator = activeInputUri.getString("generator");
-            printLogs(LogTag,"onCreate","GENERATOR ID "+generator);
-        }
-        printLogs(LogTag,"onCreate","Inputs "+date_input+"--"+year_input+"--"+month_input);*/
         bootStrapInit();
     }
     @Override
@@ -111,7 +91,6 @@ public class SLeavesDA extends BaseAPCPrivate {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             fetchVersionData();
             verifyVersion();
@@ -175,6 +154,7 @@ public class SLeavesDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         mDateInputButton = (Button) findViewById(R.id.btnFilterData);
         spinnerMonth = (Spinner) findViewById(R.id.inputSpinnerMonth);
         spinnerYear = (Spinner) findViewById(R.id.inputSpinnerYear);
@@ -198,235 +178,25 @@ public class SLeavesDA extends BaseAPCPrivate {
     @Override
     protected void initializeLabels(){
         printLogs(LogTag,"initializeLabels","init");
-/*        String Label = getLabelFromDb("b_S115_add_leave",R.string.b_S115_add_leave);
-        mAddLeaveButton.setText(Label);
-
-        Label = getLabelFromDb("b_S115_filter",R.string.b_S115_filter);
-        mDateInputButton.setText(Label);*/
 
         String Label = getLabelFromDb("h_S115",R.string.h_S115);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-/*
-        Label = getLabelFromDb("i_no_active_grant",R.string.i_no_active_grant);
-        lblView = (TextView)findViewById(R.id.iNoActiveGrant);
-        lblView.setText(Label);*/
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
-      /*  String currentYear="";
-        SimpleDateFormat df_year= new SimpleDateFormat("yyyy");
-        Calendar cY = Calendar.getInstance();
-        currentYear=df_year.format(cY.getTime());
 
-        String currentMonth="";
-        SimpleDateFormat df_month= new SimpleDateFormat("MM");
-        Calendar cM = Calendar.getInstance();
-        currentMonth=df_month.format(cM.getTime());
-        if(year_input==null) {
-            selectedYear = Integer.parseInt(currentYear);
-        }
-        else {
-            selectedYear=Integer.parseInt(year_input);
-        }
-        if(month_input==null) {
-            selectedMonth = Integer.parseInt(currentMonth);
-        }
-        else{
-            selectedMonth=Integer.parseInt(month_input);
-        }
-
-        studentSessionObj = new OlumsStudentSession(baseApcContext);
-        Boolean isGrantActive= studentSessionObj.getIsActiveGrant();
-
-
-        if(isGrantActive) {
-            printLogs(LogTag,"isGrantActive","if Condition");
-            String spinnerOptionYear= getLabelFromDb("l_S115_spinner_option_year",R.string.l_S115_spinner_option_year);
-            String spinnerOptionMonth= getLabelFromDb("l_S115_spinner_option_month",R.string.l_S115_spinner_option_month);
-
-            grantSessionObj = new OlumsGrantSession(baseApcContext);
-            String grantId = grantSessionObj.getGrantId();
-            int grantIdInt = 0;
-            if(!TextUtils.isEmpty(grantId)) {
-                grantIdInt =Integer.parseInt(grantId);
-            }
-            if (grantIdInt > 0) {
-                printLogs(LogTag,"initializeInputs","GRANT "+grantIdInt);
-                String StartDate = grantSessionObj.getGrantSDate();
-                String EndDate = grantSessionObj.getGrantEDate();
-                String grantName = grantSessionObj.getGrantName();
-
-                LLAddLeavesContainer.setVisibility(View.VISIBLE);
-                LLinformationContainer.setVisibility(View.GONE);
-                LLLeavesContainer.setVisibility(View.VISIBLE);
-
-                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                Calendar beginCalendarY = Calendar.getInstance();
-                Calendar finishCalendarY = Calendar.getInstance();
-                Calendar beginCalendarM = Calendar.getInstance();
-                Calendar finishCalendarM = Calendar.getInstance();
-                try {
-                    beginCalendarY.setTime(formatter.parse(StartDate));
-                    finishCalendarY.setTime(formatter.parse(EndDate));
-                    beginCalendarM.setTime(formatter.parse(StartDate));
-                    finishCalendarM.setTime(formatter.parse(EndDate));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                int total_years = 1;
-                if (isGrantActive) {
-                    DateFormat Yformatter = new SimpleDateFormat("yyyy");
-
-                    ArrayList<SpinnerSet> YearsData = new ArrayList<SpinnerSet>();
-                    while (beginCalendarY.before(finishCalendarY) || beginCalendarY.equals(finishCalendarY)) {
-                        SpinnerSet SpinSet = new SpinnerSet();
-                        int YearInt = Integer.parseInt(Yformatter.format(beginCalendarY.getTime()).toUpperCase());
-                        SpinSet.setId(YearInt);
-                        SpinSet.setName(Yformatter.format(beginCalendarY.getTime()).toUpperCase());
-                        YearsData.add(SpinSet);
-                        beginCalendarY.add(Calendar.YEAR, 1);
-                    }
-
-                    int totalYearsInData = YearsData.size();
-                    total_years = totalYearsInData + 1;
-                    yearsSet = new SpinnerSet[total_years];
-                    yearsSet[0] = new SpinnerSet();
-                    yearsSet[0].setId(0);
-
-                    yearsSet[0].setName(spinnerOptionYear);
-                    for (int i = 0; i < totalYearsInData; i++) {
-                        int nextI = i + 1;
-                        yearsSet[nextI] = new SpinnerSet();
-                        yearsSet[nextI].setId(YearsData.get(i).getId());
-                        yearsSet[nextI].setName(YearsData.get(i).getName());
-                    }
-                } else {
-
-                    yearsSet = new SpinnerSet[total_years];
-                    yearsSet[0] = new SpinnerSet();
-                    yearsSet[0].setId(0);
-                    yearsSet[0].setName(spinnerOptionYear);
-                }
-
-                adapterS = new SpinnerSetAdapter(SLeavesDA.this, android.R.layout.simple_spinner_item, yearsSet);
-                int spinnerYPos=1;
-                for(int instY=0;instY < total_years;instY++){
-                    int YId = yearsSet[instY].getId();
-                    printLogs(LogTag,"initializeInputs","YId"+YId);
-                    if(YId==selectedYear){
-                        spinnerYPos = adapterS.getPosition(yearsSet[instY]);
-                        printLogs(LogTag,"initializeInputs","spinnerYPos"+spinnerYPos);
-                    }
-                }
-                printLogs(LogTag,"initializeInputs","spinnerYPos"+spinnerYPos);
-                spinnerYear.setAdapter(adapterS);
-                spinnerYear.setSelection(spinnerYPos);
-
-                int total_months = 1;
-                if (isGrantActive) {
-                    DateFormat Mformatter = new SimpleDateFormat("MM");
-                    DateFormat MformatterName = new SimpleDateFormat("MMMM");
-
-                    ArrayList<SpinnerSet> MonthsData = new ArrayList<SpinnerSet>();
-                    while (beginCalendarM.before(finishCalendarM) || beginCalendarM.equals(finishCalendarM)) {
-                        SpinnerSet SpinSet = new SpinnerSet();
-                        int MonthInt = Integer.parseInt(Mformatter.format(beginCalendarM.getTime()).toUpperCase());
-                        SpinSet.setId(MonthInt);
-                        SpinSet.setName(MformatterName.format(beginCalendarM.getTime()).toUpperCase());
-                        MonthsData.add(SpinSet);
-                        beginCalendarM.add(Calendar.MONTH, 1);
-                    }
-                    int totalMonthInData = MonthsData.size();
-                    total_months = totalMonthInData + 1;
-                    monthsSet = new SpinnerSet[total_months];
-                    monthsSet[0] = new SpinnerSet();
-                    monthsSet[0].setId(0);
-                    monthsSet[0].setName(spinnerOptionMonth);
-                    for (int i = 0; i < totalMonthInData; i++) {
-                        int nextI = i + 1;
-                        monthsSet[nextI] = new SpinnerSet();
-                        monthsSet[nextI].setId(MonthsData.get(i).getId());
-                        monthsSet[nextI].setName(MonthsData.get(i).getName());
-                    }
-                } else {
-
-                    monthsSet = new SpinnerSet[total_months];
-                    monthsSet[0] = new SpinnerSet();
-                    monthsSet[0].setId(0);
-                    monthsSet[0].setName(spinnerOptionMonth);
-                }
-                adapterM = new SpinnerSetAdapter(SLeavesDA.this, android.R.layout.simple_spinner_item, monthsSet);
-                int spinnerMPos=1;
-                for(int instM=0;instM < total_months;instM++){
-                    int MId = monthsSet[instM].getId();
-                    printLogs(LogTag,"initializeInputs","MId"+MId);
-                    if(MId==selectedMonth){
-                        spinnerMPos = adapterM.getPosition(monthsSet[instM]);
-                        printLogs(LogTag,"initializeInputs","spinnerMPos"+spinnerMPos);
-                    }
-                }
-                printLogs(LogTag,"initializeInputs","spinnerMPos"+spinnerMPos);
-                spinnerMonth.setAdapter(adapterM);
-                spinnerMonth.setSelection(spinnerMPos);
-            }
-            else{
-                printLogs(LogTag,"initializeInputs","NO GRANT");
-                LLAddLeavesContainer.setVisibility(View.GONE);
-                LLLeavesContainer.setVisibility(View.GONE);
-                LLinformationContainer.setVisibility(View.VISIBLE);
-            }
-        }
-        else{
-            printLogs(LogTag,"initializeInputs","NO GRANT");
-            LLAddLeavesContainer.setVisibility(View.GONE);
-            LLLeavesContainer.setVisibility(View.GONE);
-            LLinformationContainer.setVisibility(View.VISIBLE);
-        }*/
     }
 
     @Override
     protected void initializeListeners() {
         printLogs(LogTag,"initializeListeners","init");
-      /*  mDateInputButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validateInput();
-            }
-        });
-        mAddLeaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SLeavesDA.this,SAddLeavesA.class);
-                activeUri = new Bundle();
-                activeUri.putString("generator",ActivityId);
-                intent.putExtras(activeUri);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,int position, long id) {
-                int item =position;
-                selectedYear= yearsSet[item].getId();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {  }
-        });
-        spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,int position, long id) {
-                int item =position;
-                selectedMonth = monthsSet[item].getId();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {  }
-        });*/
-
 
     }
     public void callDataApi(){
@@ -532,27 +302,7 @@ public class SLeavesDA extends BaseAPCPrivate {
     }
     public void validateInput(){
         printLogs(LogTag,"validateInput","init");
-      /*  String ErrorTitle ="";
-        String ErrorMessage ="";
-        Boolean isError =true;
-        if(isSpinnerValid(selectedMonth)){
-            if(isSpinnerValid(selectedYear)){
-                isError=false;
-            }
-        }
-        if(isError){
-            ErrorTitle ="Error :"+ActivityId+"-103";
-            ErrorMessage =getLabelFromDb("error_S115_105",R.string.error_S115_105);
-            spinnerError(ErrorTitle,ErrorMessage);
-        }
-        else{
-            showProgress(true,mContentRView,mProgressRView);
-            rDataObjList.clear();
-            callHeaderBuilder();
-            SLeavesAdapter adapter = new SLeavesAdapter(rDataObjList,baseApcContext,activityIn);
-            adapter.notifyDataSetChanged();
-            fetchData(selectedYear,selectedMonth);
-        }*/
+
     }
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");

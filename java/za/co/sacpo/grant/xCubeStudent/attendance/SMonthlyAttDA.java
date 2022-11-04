@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +49,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SMonthlyAttDA extends BaseAPCPrivate {
     private String ActivityId="S109";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView;
     public LinearLayout LLinformationContainer,LLFilterContainer,LLAttendanceContainer;
     public Bundle activeUri;
@@ -144,6 +146,7 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         LLinformationContainer = findViewById(R.id.informationContainer);
         LLFilterContainer = findViewById(R.id.filterContainer);
         LLAttendanceContainer = findViewById(R.id.attendanceContainer);
@@ -172,6 +175,7 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
 
         String Label = getLabelFromDb("h_S109",R.string.h_S109);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_S109_no_active_grant",R.string.l_S109_no_active_grant);
         lblView = (TextView)findViewById(R.id.iNoActiveGrant);
@@ -179,17 +183,18 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("info_S109_page",R.string.info_S109_page);
         wv_information.loadData(Label, "text/html", "UTF-8");
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         LLAttendanceContainer.setVisibility(View.GONE);
         printLogs(LogTag,"initializeInputs","init");
-
-
         studentSessionObj = new OlumsStudentSession(baseApcContext);
-        Boolean isGrantActive= studentSessionObj.getIsActiveGrant();
-        //isGrantActive= false;
-
+        boolean isGrantActive= studentSessionObj.getIsActiveGrant();
         if(isGrantActive) {
             printLogs(LogTag,"isGrantActive","if_Condition"+isGrantActive);
             grantSessionObj = new OlumsGrantSession(baseApcContext);

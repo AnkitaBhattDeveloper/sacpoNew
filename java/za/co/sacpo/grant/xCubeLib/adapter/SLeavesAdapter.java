@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,53 @@ public class SLeavesAdapter extends RecyclerView.Adapter<SLeavesAdapter.LeavesHo
     protected DbHelper dbSetaObj;
     String Labels;
     SLeavesDA baseActivity;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public SLeavesAdapter(List<SLeavesObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall, SLeavesDA baseActivity) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
@@ -83,7 +131,7 @@ public class SLeavesAdapter extends RecyclerView.Adapter<SLeavesAdapter.LeavesHo
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.lblMotivation.setTextColor(res.getColor(R.color.white));
             holder.lblMotivation.setVisibility(View.VISIBLE);
@@ -211,6 +259,20 @@ public class SLeavesAdapter extends RecyclerView.Adapter<SLeavesAdapter.LeavesHo
         holder.linearLRemove.setBackgroundColor(BColor);
         Labels =this.getLabelFromDb("l_S115_SLeave_Btn_details",R.string.l_S115_SLeave_Btn_details);
         holder.btnMotivation.setText(Labels);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.btnMotivation.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnMotivation.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnSComments.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnSComments.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnUploads.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnUploads.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnEdit.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnRemove.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnRemove.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
+        }
+
         holder.btnSComments.setText(Labels);
         Labels =this.getLabelFromDb("l_S115_SLeave_Btn_edit",R.string.l_S115_SLeave_Btn_edit);
         holder.btnEdit.setText(Labels);

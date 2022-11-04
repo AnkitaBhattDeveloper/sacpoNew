@@ -1,29 +1,21 @@
 package za.co.sacpo.grant.xCubeStudent.attendance;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -32,16 +24,36 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -52,34 +64,33 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
-
-
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.fragments.FMap;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.LocationUpdatesService;
-import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
-import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
-import za.co.sacpo.grant.xCubeLib.dialogs.GpsDialog;
+import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
-
-public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private String ActivityId = "S107";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView tvII, lblView, txtiPunchOut, txtPunchOutDate, txtiPunchInDone, iDate, iTime, iDistanceFrmWorkstation, iWorkstation, lblGpsCordinate, iLat, iLong, gps_error_po, gps_error_pi;
     private GoogleMap googleMap;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -99,31 +110,30 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
     private boolean network_enabled;
     private SignInA thisClass;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-    private MyReceiver myReceiver;
+    //private SignInA.MyReceiver myReceiver;
     SupportMapFragment mapFragment ;
     private boolean mBound = false;
     private LocationUpdatesService mService = null;
     private Button mRequestLocationUpdatesButton;
     private Button mRemoveLocationUpdatesButton;
+    private GoogleApiClient mGoogleApiClient;
+    private static final int REQUEST_LOCATION = 1;
+    double latitude, longitude;
+    Location mLastLocation;
+    private LocationRequest mLocationRequest;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    Geocoder geocoder;
+    List<Address> addresses;
+    boolean GpsStatus ;
+    TextView text_internet_info_head;
 
-    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            LocationUpdatesService.LocalBinder binder = (LocationUpdatesService.LocalBinder) service;
-            mService = binder.getService();
-            mBound = true;
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-            mBound = false;
-        }
-    };
 
-    public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
+
+    @Override
+    protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
         baseApcContext = cnt;
-        CAId = cTAId;
+        CAId = cAId;
         activityIn = ain;
         LogTag = lt;
         thisClass = this;
@@ -133,17 +143,20 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Bundle outBundle = getIntent().getExtras();
-        generator = outBundle.getString("generator");
+        //generator = outBundle.getString("generator");
         network_enabled = false;
         gps_enabled = false;
-        myReceiver = new MyReceiver();
+       // myReceiver = new SignInA.MyReceiver();
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
         printLogs(LogTag, "onCreate", "init");
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+       ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
+
+          mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         bootStrapInit();
     }
-
     @Override
     protected void bootStrapInit() {
         boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
@@ -167,49 +180,34 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                 syncToken(baseApcContext, activityIn);
             }
             callDataApi();
-            initializeInputs();
-            fetchData();
+            CheckGpsStatus();
+          //  initializeInputs();
+            //fetchData();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
     }
-
-    public void initializeMap() {
-        printLogs(LogTag,"initializeMap","init");
-        if (googleMap == null) {
-            mapFragment = (FMap) getSupportFragmentManager().findFragmentById(R.id.map);
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-
-                public void onMapReady(GoogleMap googleMapI)
-                {
-                    googleMap = googleMapI;
-                    googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                    googleMap.getUiSettings().setZoomControlsEnabled(true);
-
-                    final ScrollView mScrollView = findViewById(R.id.scroll_layout); //parent scrollview in xml, give your scrollview id value
-                    ((FMap) getSupportFragmentManager().findFragmentById(R.id.map)).setListener(new FMap.OnTouchListener() {
-                        @Override
-                        public void onTouch() {
-                            mScrollView.requestDisallowInterceptTouchEvent(true);
-                        }
-                    });
-                }
-            });
+    public void CheckGpsStatus(){
+        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        assert locationManager != null;
+        GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if(GpsStatus) {
+            setButtonsState(true);
+        } else {
+            setButtonsState(false);
         }
-        MapsInitializer.initialize(getApplicationContext());
     }
-
     @Override
     protected void setLayoutXml() {
         printLogs(LogTag, "setLayoutXml", "a_sign_in");
         setContentView(R.layout.a_sign_in);
     }
-
     @Override
     protected void initializeViews() {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
+        text_internet_info_head = findViewById(R.id.text_internet_info_head);
         gps_error_po = findViewById(R.id.gps_error_po);
         gps_error_pi = findViewById(R.id.gps_error_pi);
 
@@ -236,53 +234,9 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
         LLII.setVisibility(View.GONE);
         tvII = (TextView) findViewById(R.id.text_internet_info);
         btnTryAgain = findViewById(R.id.btnTryAgain);
-
+        mRequestLocationUpdatesButton = (Button) findViewById(R.id.request_location_updates_button);
+        mRemoveLocationUpdatesButton = (Button) findViewById(R.id.remove_location_updates_button);
         printLogs(LogTag, "initializeViews", "exit");
-    }
-
-    @Override
-    protected void initializeLabels() {
-        printLogs(LogTag, "initializeLabels", "init");
-        String Label = getLabelFromDb("i_S107_sign_out_pre", R.string.i_S107_sign_out_pre);
-        lblView = (TextView) findViewById(R.id.iPunchOutPre);
-        lblView.setText(Label);
-        Label = getLabelFromDb("i_S107_sign_out_post", R.string.i_S107_sign_out_post);
-        lblView = (TextView) findViewById(R.id.iPunchOutPost);
-        lblView.setText(Label);
-        Label = getLabelFromDb("lbl_S107_sign_out_date", R.string.lbl_S107_sign_out_date);
-        lblView = (TextView) findViewById(R.id.lblPunchOutDate);
-        lblView.setText(Label);
-        Label = getLabelFromDb("lbl_S107_gps_coordinate", R.string.lbl_S107_gps_coordinate);
-        lblGpsCordinate.setText(Label);
-
-        Label = getLabelFromDb("b_S107_sign_in", R.string.b_S107_sign_in);
-        btnPunchIn.setText(Label);
-        Label = getLabelFromDb("error_gps", R.string.error_gps);
-        gps_error_pi.setText(Label);
-        gps_error_po.setText(Label);
-        Label = getLabelFromDb("h_S107", R.string.h_S107);
-        lblView = (TextView) findViewById(R.id.activity_heading);
-        lblView.setText(Label);
-        Label = getLabelFromDb("b_S107_sign_out", R.string.b_S107_sign_out);
-        btnPunchOut.setText(Label);
-        Label = getLabelFromDb("i_no_active_grant", R.string.i_no_active_grant);
-        lblView = (TextView) findViewById(R.id.iNoActiveGrant);
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("l_S107_distance_from_workstation", R.string.l_S107_distance_from_workstation);
-        lblView = (TextView) findViewById(R.id.lblDistanceFrmWorkstation);
-        lblView.setText(Label);
-        Label = getLabelFromDb("l_S107_workstation", R.string.l_S107_workstation);
-        lblView = (TextView) findViewById(R.id.lblWorkstation);
-        lblView.setText(Label);
-        Label = getLabelFromDb("l_103_date", R.string.l_103_date);
-        lblView = (TextView) findViewById(R.id.lblDate);
-        lblView.setText(Label);
-        Label = getLabelFromDb("l_103_time", R.string.l_103_time);
-        lblView = (TextView) findViewById(R.id.lblTime);
-        lblView.setText(Label);
-        tvII.setText(getApplicationContext().getString(R.string.error_enable_location));
-
     }
 
     @Override
@@ -314,8 +268,72 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                 startActivity(getIntent());
             }
         });
-    }
 
+
+        mRequestLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                printLogs(LogTag, "mRequestLocationUpdatesButton", "init "+checkPermissions());
+               // turnGPSOn();
+                enableLoc();
+              //  setButtonsState(true);
+            }
+        });
+    }
+    private void enableLoc() {
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(SignInA.this)
+                    .addApi(LocationServices.API)
+                    .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                        @Override
+                        public void onConnected(Bundle bundle) {
+
+                        }
+
+                        @Override
+                        public void onConnectionSuspended(int i) {
+                            mGoogleApiClient.connect();
+                        }
+                    })
+                    .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(ConnectionResult connectionResult) {
+
+                            //Log.d("Location error","Location error " + connectionResult.getErrorCode());
+                        }
+                    }).build();
+            mGoogleApiClient.connect();
+        }
+
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(30 * 1000);
+        locationRequest.setFastestInterval(5 * 1000);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        builder.setAlwaysShow(true);
+
+        PendingResult<LocationSettingsResult> result =
+                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(@NonNull LocationSettingsResult result) {
+                final Status status = result.getStatus();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        try {
+                            // Show the dialog by calling startResolutionForResult(),
+                            // and check the result in onActivityResult().
+                            status.startResolutionForResult(SignInA.this, REQUEST_LOCATION);
+                        } catch (IntentSender.SendIntentException e) {
+                            // Ignore the error.
+                        }
+                        break;
+                }
+            }
+        });
+    }
 
     @Override
     protected void initializeInputs() {
@@ -334,54 +352,153 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
             if (grantIdInt > 0) {
                 LLinformationContainer.setVisibility(View.GONE);
                 initializeMap();
-                if (Utils.requestingLocationUpdates(this)) {
-                    if (!checkPermissions()) {
-                        requestPermissions();
-                    }/*else {
-                       mService.requestLocationUpdates();
-                    }*/
-                }
                 fetchData();
-
+                checkPermissions();
             } else {
                 LLinformationContainer.setVisibility(View.VISIBLE);
             }
         }
-
     }
+    public void initializeMap() {
+        printLogs(LogTag,"initializeMap","init");
+        if (googleMap == null) {
+            mapFragment = (FMap) getSupportFragmentManager().findFragmentById(R.id.map);
+            if (mapFragment != null) {
+                mapFragment.getMapAsync(new OnMapReadyCallback() {
+                    @Override
 
-    @Override
-    protected void internetChangeBroadCast() {
-        printLogs(LogTag, "internetChangeBroadCast", "init");
-        registerBroadcastIC();
-    }
+                    public void onMapReady(GoogleMap googleMapI)
+                    {
+                        googleMap = googleMapI;
+                        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
-    @Override
-    protected void fetchVersionData() {
-        printLogs(LogTag, "fetchVersionData", "exitConnected");
-        syncUpdates(baseApcContext, activityIn);
-    }
-
-    @Override
-    protected void verifyVersion() {
-        printLogs(LogTag, "verifyVersion", "init");
-        utilSessionObj = new OlumsUtilitySession(baseApcContext);
-        Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
-        printLogs(LogTag, "verifyVersion", "isUpdate " + isUpdate);
-        printLogs(LogTag, "verifyVersion", "isUpdate " + utilSessionObj.getIsUpdateRequired());
-        if (isUpdate) {
-            Intent intent = new Intent(SignInA.this, AppUpdatedA.class);
-            startActivity(intent);
-            finish();
+                        final ScrollView mScrollView = findViewById(R.id.scroll_layout); //parent scrollview in xml, give your scrollview id value
+                        ((FMap) getSupportFragmentManager().findFragmentById(R.id.map)).setListener(new FMap.OnTouchListener() {
+                            @Override
+                            public void onTouch() {
+                                mScrollView.requestDisallowInterceptTouchEvent(true);
+                            }
+                        });
+                    }
+                });
+            }
         }
+        MapsInitializer.initialize(getApplicationContext());
+    }
+    private boolean checkPermissions() {
+        gps_enabled = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        LocationManager lm = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        printLogs(LogTag,"checkPermissions","gps_enabled"+gps_enabled);
+        if(gps_enabled ==false || network_enabled ==false) {
+            LLII.setVisibility(View.VISIBLE);
+        }
+        else {
+            LLII.setVisibility(View.GONE);
+        }
+        return gps_enabled;
+
+    }
+    @Override
+    protected void initializeLabels() {
+        printLogs(LogTag, "initializeLabels", "init");
+        String Label = getLabelFromDb("i_S107_sign_out_pre", R.string.i_S107_sign_out_pre);
+        lblView = (TextView) findViewById(R.id.iPunchOutPre);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("i_S107_sign_out_post", R.string.i_S107_sign_out_post);
+        lblView = (TextView) findViewById(R.id.iPunchOutPost);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("lbl_S107_sign_out_date", R.string.lbl_S107_sign_out_date);
+        lblView = (TextView) findViewById(R.id.lblPunchOutDate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("lbl_S107_gps_coordinate", R.string.lbl_S107_gps_coordinate);
+        lblGpsCordinate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblGpsCordinate.setText(Label);
+
+        Label = getLabelFromDb("b_S107_sign_in", R.string.b_S107_sign_in);
+        btnPunchIn.setText(Label);
+
+        Label = getLabelFromDb("error_gps", R.string.error_gps);
+        gps_error_pi.setText(Label);
+        gps_error_po.setText(Label);
+
+        Label = getLabelFromDb("h_S107", R.string.h_S107);
+        lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("b_S107_sign_out", R.string.b_S107_sign_out);
+        btnPunchOut.setText(Label);
+
+        Label = getLabelFromDb("i_no_active_grant", R.string.i_no_active_grant);
+        lblView = (TextView) findViewById(R.id.iNoActiveGrant);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("l_S107_distance_from_workstation", R.string.l_S107_distance_from_workstation);
+        lblView = (TextView) findViewById(R.id.lblDistanceFrmWorkstation);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("l_S107_workstation", R.string.l_S107_workstation);
+        lblView = (TextView) findViewById(R.id.lblWorkstation);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("l_103_date", R.string.l_103_date);
+        lblView = (TextView) findViewById(R.id.lblDate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("l_103_time", R.string.l_103_time);
+        lblView = (TextView) findViewById(R.id.lblTime);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        tvII.setText(getApplicationContext().getString(R.string.error_enable_location));
+
+
+
+        text_internet_info_head.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        tvII.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        txtPunchOutDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iTime.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iDistanceFrmWorkstation.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iWorkstation.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iLat.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        iLong.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        txtiPunchInDone.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnTryAgain.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnPunchOut.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnPunchIn.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+          //  txtiPunchInDone.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+           // txtiPunchInDone.setTextColor(R.);
+         }
+
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if (s.equals(Utils.KEY_REQUESTING_LOCATION_UPDATES)) {
-            setButtonsState(sharedPreferences.getBoolean(Utils.KEY_REQUESTING_LOCATION_UPDATES,
-                    false));
-        }
+
+    private void initBackBtn() {
+        printLogs(LogTag, "initBackBtn", "init");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void callDataApi() {
@@ -395,29 +512,22 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
             syncAlerts(baseApcContext, activityIn, ActivityId);
         }
     }
-
-    private void initBackBtn() {
-        printLogs(LogTag, "initBackBtn", "init");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
     private void fetchData() {
         final String currentLatS = String.valueOf(currentLat);
         final String currentLongS = String.valueOf(currentLong);
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_S_107;
-        FINAL_URL = FINAL_URL + "/token/" + token + "/lat/" + currentLatS + "/long/" + currentLongS;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_S_107+ "?token=" + token ;
         printLogs(LogTag, "fetchData", "URL : " + FINAL_URL);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, FINAL_URL, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(String response) {
-                JSONObject outputJson = null;
-                printLogs(LogTag, "fetchData", "RESPONSE : " + response);
+            public void onResponse(JSONObject response) {
                 try {
-                    outputJson = new JSONObject(response);
-                    String Status = outputJson.getString(KEY_STATUS);
+                    JSONObject jsonObject= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchData", "response : " + response);
+                    String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
-                        JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
+                        JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
                         String punchInShow = dataM.getString("punch_in_status");
                         String current_time = dataM.getString("current_time");
                         String current_date = dataM.getString("current_date");
@@ -430,12 +540,10 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
 
                         if (!wLat.isEmpty()) {
                             if (!wLon.isEmpty()) {
-                                if (wLat != null) {
                                     if (!wLat.equals("null")) {
-                                        if (wLon != null) {
                                             if (!wLon.equals("null")) {
-                                                Double workLat = Double.parseDouble(wLat);
-                                                Double workLong = Double.parseDouble(wLon);
+                                                double workLat = Double.parseDouble(wLat);
+                                                double workLong = Double.parseDouble(wLon);
                                                 LatLng point = new LatLng(workLat, workLong);
                                                 CircleOptions circleOptions = new CircleOptions()
                                                         .center(point)
@@ -449,9 +557,8 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loginLatLong, 15f));
                                                 googleMap.getMaxZoomLevel();
                                             }
-                                        }
                                     }
-                                }
+
                             }
                         }
                         txtPunchOutDate.setText(date_pending);
@@ -464,12 +571,10 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                             //getLocation();
                             enablePunchInActions(currentLatS, currentLongS, currentLat, currentLong);
                         } else if (punchInShow.equals("2")) {
-                            disableActions();
+                            disableActions(currentLatS, currentLongS, currentLat, currentLong);
                         } else {
                             enablePunchOutActions(currentLatS, currentLongS, currentLat, currentLong);
                         }
-
-
                     } else {
                         //showProgress(false,mContentView,mProgressView);
                         printLogs(LogTag, "fetchData", "error_try_again : DATA_ERROR");
@@ -500,16 +605,112 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                         ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
                     }
                 }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "*/*");
+                return params;
+            }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(SignInA.this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
-    public void validateForm() {
+    private void enablePunchInActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
+        if ((currentLat != null) && (currentLong != null)) {
+           createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), 5));
+
+
+        }
+        LLiPunchInContainer.setVisibility(View.VISIBLE);
+        LLiPunchOutContainer.setVisibility(View.GONE);
+        LLiPunchInDoneContainer.setVisibility(View.GONE);
+       // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
+        printLogs(LogTag, "enablePunchInActions", "init");
+        showProgress(false, mContentView, mProgressView);
+
+    }
+    protected Marker createMarker(double latitude, double longitude, String title, String snippet, float iconResID) {
+        printLogs(LogTag, "createMarker", "INIT" + latitude + "---" + longitude);
+        int height = 100;
+        int width = 100;
+        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.location_marker);
+        return googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(latitude, longitude))
+                .title(title)
+                .snippet(snippet)
+                .icon(BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(bitmapdraw.getBitmap(), width, height, false))));
+
+    }
+
+     private void enablePunchOutActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
+        LLiPunchInContainer.setVisibility(View.GONE);
+        LLiPunchInDoneContainer.setVisibility(View.GONE);
+        LLiPunchOutContainer.setVisibility(View.VISIBLE);
+       // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
+        printLogs(LogTag, "enablePunchOutActions", "init");
+        showProgress(false, mContentView, mProgressView);
+    }
+    private void disableActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
+        if ((currentLat != null) && (currentLong != null)) {
+            createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), 5));
+        }
+        printLogs(LogTag, "disableActions", "init");
+        LLiPunchInContainer.setVisibility(View.GONE);
+        LLiPunchInDoneContainer.setVisibility(View.VISIBLE);
+        String Label = getLabelFromDb("i_S107_already_signin", R.string.i_S107_already_signin);
+        txtiPunchInDone.setText(Label);
+        btnPunchIn.setVisibility(View.GONE);
+        LLiPunchOutContainer.setVisibility(View.GONE);
+        showProgress(false, mContentView, mProgressView);
+    }
+    private void setButtonsState(boolean requestingLocationUpdates) {
+        if (requestingLocationUpdates) {
+            btnPunchIn.setVisibility(View.VISIBLE);
+            mRequestLocationUpdatesButton.setVisibility(View.GONE);
+            mRemoveLocationUpdatesButton.setVisibility(View.GONE);
+        } else {
+            mRequestLocationUpdatesButton.setVisibility(View.VISIBLE);
+            mRemoveLocationUpdatesButton.setVisibility(View.GONE);
+            btnPunchIn.setVisibility(View.GONE);
+        }
+    }
+    @Override
+    protected void verifyVersion() {
+        printLogs(LogTag, "verifyVersion", "init");
+        utilSessionObj = new OlumsUtilitySession(baseApcContext);
+        Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
+        printLogs(LogTag, "verifyVersion", "isUpdate " + isUpdate);
+        printLogs(LogTag, "verifyVersion", "isUpdate " + utilSessionObj.getIsUpdateRequired());
+        if (isUpdate) {
+            Intent intent = new Intent(SignInA.this, AppUpdatedA.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    protected void fetchVersionData() {
+        printLogs(LogTag, "fetchVersionData", "exitConnected");
+        syncUpdates(baseApcContext, activityIn);
+    }
+
+    @Override
+    protected void internetChangeBroadCast() {
+        printLogs(LogTag, "internetChangeBroadCast", "init");
+        registerBroadcastIC();
+    }
+
+
+
+    @Override
+    protected void validateForm() {
         printLogs(LogTag, "validateForm", "init");
         boolean cancel = false;
         if (!isValidate(currentLat, currentLong)) {
@@ -523,34 +724,56 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
         }
         printLogs(LogTag, "validateForm", "exit");
     }
-
-    public void FormSubmit() {
+    public boolean isValidate(double lat, double lng) {
+        printLogs(LogTag, "isValidate", "DATA : " + lat + " -- " + lng);
+        if (lat < -90 || lat > 90) {
+            String sTitle = "Error :" + ActivityId + "-106";
+            String sMessage = getLabelFromDb("error_location", R.string.error_location);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (lng < -180 || lng > 180) {
+            String sTitle = "Error :" + ActivityId + "-106";
+            String sMessage = getLabelFromDb("error_location", R.string.error_location);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }
+        return true;
+    }
+    @Override
+    protected void FormSubmit() {
         final String dataLat = Double.toString(currentLat);
         final String dataLong = Double.toString(currentLong);
         String token = userSessionObj.getToken();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_S_107_SAVE;
-        FINAL_URL = FINAL_URL + "/token/" + token;
+
+        JSONObject object = new JSONObject();
+        try {
+            object.put(KEY_LAT,dataLat);
+            object.put(KEY_LONG,dataLong);
+            object.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, FINAL_URL, new Response.Listener<String>() {
+        printLogs(LogTag, "FormSubmit", "object : " + object);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FINAL_URL, object, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(String response) {
-                JSONObject outputJson = null;
-                printLogs(LogTag, "FormSubmit", "RESPONSE : " + response);
+            public void onResponse(JSONObject response) {
                 try {
-                    outputJson = new JSONObject(response);
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "FormSubmit", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
-
                         /// Show go back data
-                        disableActions();
-
+                        //disableActions();
                         showProgress(false, mContentView, mProgressView);
                         String sTitle = getLabelFromDb("m_S107_title", R.string.m_S107_title);
                         String sMessage = getLabelFromDb("m_S107_message", R.string.m_S107_message);
                         String sButtonLabelClose = "Close";
-                        ErrorDialog.showSuccessDialogSignInA(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
-
-
+                        ErrorDialog.showSuccessDialogSignInAA(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
                     } else {
                         showProgress(false, mContentView, mProgressView);
                         String sTitle = "Error :" + ActivityId + "-107";
@@ -577,59 +800,131 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
                         ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
                     }
                 }) {
-            @Override
-            protected Map<String, String> getParams() {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(KEY_LAT, dataLat);
-                params.put(KEY_LONG, dataLong);
+                params.put("Accept", "*/*");
                 return params;
             }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(SignInA.this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
-
-    protected Marker createMarker(double latitude, double longitude, String title, String snippet, float iconResID) {
-        printLogs(LogTag, "createMarker", "INIT" + latitude + "---" + longitude);
-        int height = 100;
-        int width = 100;
-        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.location_marker);
-        return googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(latitude, longitude))
-                .title(title)
-                .snippet(snippet)
-                .icon(BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(bitmapdraw.getBitmap(), width, height, false))));
+    public void customRedirector(){
+        Intent intent = new Intent(SignInA.this, SDashboardDA.class);
+        Bundle activeUri = new Bundle();
+        activeUri.putString("generator","S107");
+        intent.putExtras(activeUri);
+        startActivity(intent);
+        finish();
     }
-
-    public boolean isValidLatLng(double lat, double lng) {
-        printLogs(LogTag, "isValidLatLng", "DATA : " + lat + " -- " + lng);
-        if (lat < -90 || lat > 90) {
-            return false;
-        } else return !(lng < -180) && !(lng > 180);
-    }
-
-    public boolean isValidate(double lat, double lng) {
-        printLogs(LogTag, "isValidate", "DATA : " + lat + " -- " + lng);
-        if (lat < -90 || lat > 90) {
-            String sTitle = "Error :" + ActivityId + "-106";
-            String sMessage = getLabelFromDb("error_location", R.string.error_location);
-            String sButtonLabelClose = "Close";
-            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-            return false;
-        } else if (lng < -180 || lng > 180) {
-            String sTitle = "Error :" + ActivityId + "-106";
-            String sMessage = getLabelFromDb("error_location", R.string.error_location);
-            String sButtonLabelClose = "Close";
-            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-            return false;
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkLocationPermission();
         }
-        return true;
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(100000); // Update location every second
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this::onLocationChanged);
+        }
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        if (mLastLocation != null) {
+            geocoder = new Geocoder(this, Locale.getDefault());
+            latitude = mLastLocation.getLatitude();
+            currentLat = mLastLocation.getLatitude();
+            longitude = mLastLocation.getLongitude();
+            currentLong = mLastLocation.getLongitude();
+          //  submituserlatlong(latitude,longitude);
+            iLat.setText("LAT :: " + latitude);
+            iLong.setText("LONG :: " + longitude);
+            if(currentLat !=null && currentLong != null){
+                initializeInputs();
+            }else{
+                Toast.makeText(thisClass, "Something Went Wrong !!", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
+            //   enablePunchInActions("latitude", "longitude", latitude, longitude);
+           // createMarker(latitude, longitude, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
+
+            printLogs(LogTag, "onConnected", "=======================================" );
+            printLogs(LogTag, "onConnected", "latitude : " + latitude);
+            printLogs(LogTag, "onConnected", "longitude : " + longitude);
+            try {
+                addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+             /*   String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+                String knownName = addresses.get(0).getFeatureName();*/
+              //  tv_address.setText("Address : "+address);
+                //Log.i("mLastLocation", address);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Log.d("locationlat",""+latitude+","+longitude);
+        }else{
+            AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(SignInA.this);
+            alertDialog2.setTitle("GPS Disabled");
+          //  alertDialog2.setIcon(R.drawable.ic_baseline_location_off_24);
+            alertDialog2.setPositiveButton("Enable",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        }
+                    });
+            alertDialog2.setNegativeButton("Refresh",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            inBundle = new Bundle();
+                            Intent intent = new Intent(SignInA.this, SignInA.class);
+                            inBundle.putString("generator", "S104");
+                            intent.putExtras(inBundle);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            alertDialog2.setCancelable(false);
+            alertDialog2.show();
+        }
+    }
+    public void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+        }
+    }
+    @Override
+    public void onConnectionSuspended(int i) {
+
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         printLogs(LogTag, "onOptionsItemSelected", "init");
@@ -643,409 +938,52 @@ public class SignInA extends BaseFormAPCPrivate implements SharedPreferences.OnS
         }
         return true;
     }
-
-    private void enablePunchInActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
-        if ((currentLat instanceof Double) && (currentLong instanceof Double)) {
-            createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
-        }
-        LLiPunchInContainer.setVisibility(View.VISIBLE);
-        LLiPunchOutContainer.setVisibility(View.GONE);
-        LLiPunchInDoneContainer.setVisibility(View.GONE);
-        checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
-        printLogs(LogTag, "enablePunchInActions", "init");
-        showProgress(false, mContentView, mProgressView);
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mGoogleApiClient.connect();
+        registerBroadcastIC();
     }
-
-    private void enablePunchOutActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
-        LLiPunchInContainer.setVisibility(View.GONE);
-        LLiPunchInDoneContainer.setVisibility(View.GONE);
-        LLiPunchOutContainer.setVisibility(View.VISIBLE);
-        checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
-        printLogs(LogTag, "enablePunchOutActions", "init");
-        showProgress(false, mContentView, mProgressView);
-    }
-
-    private void checkAllActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
-        printLogs(LogTag, "checkAllActions", "currentLatS--" + currentLatS);
-        printLogs(LogTag, "checkAllActions", "currentLongS--" + currentLongS);
-        iLat.setText("LAT :: " + currentLatS);
-        iLong.setText("LONG :: " + currentLongS);
-        Boolean isGpsOn = true;
-        if (currentLatS.isEmpty()) {
-            isGpsOn = false;
-        } else {
-            if (currentLatS == "null") {
-                isGpsOn = false;
-            } else {
-                if (currentLongS.isEmpty()) {
-                    isGpsOn = false;
-                } else {
-                    if (currentLongS == "null") {
-                        isGpsOn = false;
-                    } else {
-                        if (!isValidLatLng(currentLat, currentLong)) {
-                            isGpsOn = false;
-                        }
-                    }
-                }
-            }
-        }
-        if (isGpsOn == true) {
-            btnPunchIn.setVisibility(View.VISIBLE);
-            btnPunchOut.setVisibility(View.VISIBLE);
-            gps_error_po.setVisibility(View.GONE);
-            gps_error_pi.setVisibility(View.GONE);
-        } else {
-            btnPunchIn.setVisibility(View.GONE);
-            btnPunchOut.setVisibility(View.GONE);
-            gps_error_po.setVisibility(View.VISIBLE);
-            gps_error_pi.setVisibility(View.VISIBLE);
-        }
-        /// enable LOCATION
-    }
-
-    private void disableActions() {
-        printLogs(LogTag, "disableActions", "init");
-        LLiPunchInContainer.setVisibility(View.GONE);
-        LLiPunchInDoneContainer.setVisibility(View.VISIBLE);
-        String Label = getLabelFromDb("i_S107_already_signin", R.string.i_S107_already_signin);
-        txtiPunchInDone.setText(Label);
-        btnPunchIn.setVisibility(View.GONE);
-        LLiPunchOutContainer.setVisibility(View.GONE);
-        showProgress(false, mContentView, mProgressView);
-    }
-
-    private void checkLocationEnabled() {
-        printLogs(LogTag, "checkLocationEnabled", "init");
-        LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch (Exception ex) {
-        }
-
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch (Exception ex) {
-        }
-        if (!gps_enabled || !network_enabled) {
-            String sTitle = getString(R.string.dialog_no_gps);
-            String sMessage = getString(R.string.dialog_no_gps_message);
-            String sButtonLabelGps = getString(R.string.dialog_enable_gps);
-            GpsDialog.showGpsDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelGps);
-        } else {
-            printLogs(LogTag, "checkLocationEnabled", "gps_enabled" + gps_enabled);
-            printLogs(LogTag, "checkLocationEnabled", "network_enabled" + network_enabled);
-            registerBroadcastIC();
-            removeGpsDialog();
-        }
-    }
-
-    private void removeGpsDialog() {
-        printLogs(LogTag, "removeGpsDialog", "init");
-        if (gps_enabled && network_enabled) {
-            printLogs(LogTag, "removeGpsDialog", "REMOVE");
-            GpsDialog.removeGpsDialog();
-        //    getLocation();
-            initializeMap();
-        }
-    }
-
 
     @Override
     protected void onPause() {
         super.onPause();
+
+        mGoogleApiClient.disconnect();
         unregisterBroadcastIC();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver);
+
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver,
-                new IntentFilter(LocationUpdatesService.ACTION_BROADCAST));
-        registerBroadcastIC();
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mBound) {
-            // Unbind from the service. This signals to the service that this activity is no longer
-            // in the foreground, and the service can respond by promoting itself to a foreground
-            // service.
-            unbindService(mServiceConnection);
-            mBound = false;
-        }
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .unregisterOnSharedPreferenceChangeListener(this);
-        unregisterBroadcastIC();
-    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
         registerBroadcastIC();
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .registerOnSharedPreferenceChangeListener(this);
-
-        mRequestLocationUpdatesButton = (Button) findViewById(R.id.request_location_updates_button);
-        mRemoveLocationUpdatesButton = (Button) findViewById(R.id.remove_location_updates_button);
-
-        mRequestLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checkPermissions()) {
-                    requestPermissions();
-                } else {
-                    mService.requestLocationUpdates();
-                }
-            }
-        });
-
-        mRemoveLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mService.removeLocationUpdates();
-            }
-        });
-
-        // Restore the state of the buttons when the activity (re)launches.
-        setButtonsState(Utils.requestingLocationUpdates(this));
-
-        // Bind to the service. If the service is in foreground mode, this signals to the service
-        // that since this activity is in the foreground, the service can exit foreground mode.
-        bindService(new Intent(this, LocationUpdatesService.class), mServiceConnection,
-                Context.BIND_AUTO_CREATE);
+        mGoogleApiClient.connect();
     }
+
     @Override
     public void onDestroy() {
+        mGoogleApiClient.disconnect();
+        unregisterBroadcastIC();
         super.onDestroy();
-        unregisterBroadcastIC();
-        if (mBound) {
-            // Unbind from the service. This signals to the service that this activity is no longer
-            // in the foreground, and the service can respond by promoting itself to a foreground
-            // service.
-            unbindService(mServiceConnection);
-            mBound = false;
-        }
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .unregisterOnSharedPreferenceChangeListener(this);
-        unregisterBroadcastIC();
     }
 
-
-    private boolean checkPermissions() {
-        /*String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-        printLogs(LogTag, "checkPermissions", "provider_GPS----" + provider);
-        if (!provider.contains("gps")) {
-            printLogs(LogTag, "checkPermissions", "provider.contains_GPS----" + provider.contains("gps"));
-            final Intent poke = new Intent();
-            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
-            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-            poke.setData(Uri.parse("3"));
-            sendBroadcast(poke);
-            LLII.setVisibility(View.VISIBLE);
-        } else {
-            printLogs(LogTag, "checkPermissions", "provider.contains_GPS----" + provider.contains("gps"));
-            LLII.setVisibility(View.GONE);
-            permissionLocation = true;
-         //   getLocation();
-            if (permissionLocation == true){
-                //  getLocation();
-                mService.requestLocationUpdates();
-            }
-        }
-        return true;*/
-
-        gps_enabled = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
-        LocationManager lm = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch(Exception ex) {}
-
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
-
-        printLogs(LogTag,"checkPermissions","gps_enabled"+gps_enabled);
-        if(gps_enabled ==false || network_enabled ==false) {
-            LLII.setVisibility(View.VISIBLE);
-        }
-        else {
-            LLII.setVisibility(View.GONE);
-        }
-        return gps_enabled;
-
-    }
-
-    private void requestPermissions() {
-        boolean shouldProvideRationale =
-                ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.ACCESS_FINE_LOCATION);
-
-        // Provide an additional rationale to the user. This would happen if the user denied the
-        // request previously, but didn't check the "Don't ask again" checkbox.
-        if (shouldProvideRationale) {
-            printLogs(LogTag, "requestPermissions", "Displaying permission rationale to provide additional context");
-            Snackbar.make(
-                    findViewById(R.id.activity_main),
-                    R.string.permission_rationale,
-                    Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.ok, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // Request permission
-                            ActivityCompat.requestPermissions(SignInA.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                    REQUEST_PERMISSIONS_REQUEST_CODE);
-                        }
-                    })
-                    .show();
-        } else {
-            printLogs(LogTag, "requestPermissions", "Requesting permission");
-            // Request permission. It's possible this can be auto answered if device policy
-            // sets the permission in a given state or the user denied the permission
-            // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(SignInA.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
-    }
-
-    private void getLocation() {
-        permissionLocation = false;
-        printLogs(LogTag, "getLocation", "init");
-        checkLocationPermission();
-
-        printLogs(LogTag, "getLocation", "permissionLocation " + permissionLocation);
-        if (permissionLocation == true) {
-                                if (currentLat != null) {
-                                    if (currentLong != null) {
-
-                                        iLat.setText("LAT :: " + currentLat.toString()); // change for test.
-                                        iLong.setText("LONG :: " + currentLong.toString()); // change for test.
-
-
-                                        printLogs(LogTag, "getLocation", "currentLat--" + currentLat);
-                                        printLogs(LogTag, "getLocation", "currentLong--" + currentLong);
-
-                                        if (isValidLatLng(currentLat, currentLong)) {
-                                            fetchData();
-                                            printLogs(LogTag, "mFusedLocationClient", "showMessage and signout button");
-                                        } else {
-                                            printLogs(LogTag, "mFusedLocationClient", "error_location : LOCATION_ERROR");
-                                            String sTitle = "Error :" + ActivityId + "-104";
-                                            String sMessage = getLabelFromDb("error_location", R.string.error_location);
-                                            String sButtonLabelClose = "Close";
-                                            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-                                        }
-                                    } else {
-                                        printLogs(LogTag, "mFusedLocationClient", "error_location : LOCATION_ERROR");
-                                        String sTitle = "Error :" + ActivityId + "-105";
-                                        String sMessage = getLabelFromDb("error_location", R.string.error_location);
-                                        String sButtonLabelClose = "Close";
-                                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-                                    }
-                                }
-
-
-
-        }
-    }
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        printLogs(LogTag,"onRequestPermissionsResult","init");
-        /*switch (requestCode) {
-            case 1: {
-                printLogs(LogTag,"onRequestPermissionsResult","REQUEST CODE "+requestCode);
-                permissionLocation = grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                return;
-            }
-        }*/
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
-            if (grantResults.length <= 0) {
-                // If user interaction was interrupted, the permission request is cancelled and you
-                // receive empty arrays.
-                printLogs(LogTag,"onRequestPermissionResult","User interaction was cancelled.");
-            } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission was granted.
-                mService.requestLocationUpdates();
-            } else {
-                // Permission denied.
+        if(LocationSettingsStatusCodes.RESOLUTION_REQUIRED == 6){
+
+            if(resultCode == 0){
                 setButtonsState(false);
-                Snackbar.make(
-                        findViewById(R.id.activity_main),
-                        R.string.permission_denied_explanation,
-                        Snackbar.LENGTH_INDEFINITE)
-                        .setAction(R.string.settings, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // Build intent that displays the App settings screen.
-                                Intent intent = new Intent();
-                                intent.setAction(
-                                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                Uri uri = Uri.fromParts("package",
-                                        getApplicationContext().getPackageName(), null);
-                                intent.setData(uri);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .show();
+            }else{
+                setButtonsState(true);
             }
+
+            printLogs(LogTag, "onActivityResult", "requestCode "+requestCode);
+            printLogs(LogTag, "onActivityResult", "requestCode "+resultCode);
+            printLogs(LogTag, "onActivityResult", "requestCode "+data);
         }
-    }
-
-    private void checkLocationPermission(){
-        printLogs(LogTag,"checkLocationPermission","init");
-        if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-                printLogs(LogTag,"checkLocationPermission","PERMISSION ERROR");
-            } else {
-                printLogs(LogTag,"checkLocationPermission","PERMISSION INPUT FINE");
-                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_FINE_LOCATION);
-            }
-        } else {
-            printLogs(LogTag,"checkLocationPermission","PERMISSION INPUT");
-            permissionLocation = true;
-        }
-    }
-
-    private class MyReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Location location = intent.getParcelableExtra(LocationUpdatesService.EXTRA_LOCATION);
-            if (location != null) {
-               // Toast.makeText(SignInA.this, Utils.getLocationText(location),Toast.LENGTH_SHORT).show();
-                //location.getLatitude() + ", " + location.getLongitude()
-                currentLong = location.getLongitude();
-                currentLat = location.getLatitude();
-                getLocation();
-
-                printLogs(LogTag,"MyReceiver","currentLong--"+currentLong+"currentLat--"+currentLat);
-
-            }
-        }
-    }
-
-
-    private void setButtonsState(boolean requestingLocationUpdates) {
-        if (requestingLocationUpdates) {
-            mRequestLocationUpdatesButton.setEnabled(false);
-            mRemoveLocationUpdatesButton.setEnabled(true);
-        } else {
-            mRequestLocationUpdatesButton.setEnabled(true);
-            mRemoveLocationUpdatesButton.setEnabled(false);
-        }
-    }
-
-    public void customRedirector(){
-        Intent intent = new Intent(SignInA.this,SDashboardDA.class);
-        Bundle activeUri = new Bundle();
-        activeUri.putString("generator","S107");
-        intent.putExtras(activeUri);
-        startActivity(intent);
-        finish();
     }
 }

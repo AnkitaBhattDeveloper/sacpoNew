@@ -63,7 +63,7 @@
                             android:layout_marginRight="@dimen/ExtraGiantDp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/heading"
+                            android:background="@drawable/heading_1"
                             />
 
                         <LinearLayout

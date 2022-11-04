@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ import za.co.sacpo.grant.xCubeStudent.messages.SChatA;
 
 public class SGrantDetailsA extends BaseAPCPrivate {
     private String ActivityId="S136";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView;
 
@@ -143,6 +144,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         txtGrantName=(TextView) findViewById(R.id.txtGrantName);
         txtSetaName=(TextView) findViewById(R.id.txtSetaName);
@@ -245,6 +247,19 @@ public class SGrantDetailsA extends BaseAPCPrivate {
          Label = getLabelFromDb("lbl_135_grant_end_date",R.string.lbl_135_grant_end_date);
         lblView = (TextView)findViewById(R.id.lblGEndDate);
         lblView.setText(Label);
+
+        txtGrantName.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mLEAContactButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mLEAContactButton.setTextColor(getResources().getColor(R.color.white));
+            mLEACallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mLEACallButton.setTextColor(getResources().getColor(R.color.white));
+            mLEAEmailButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mLEAEmailButton.setTextColor(getResources().getColor(R.color.white));
+
+        }
+
 
     }
     @Override

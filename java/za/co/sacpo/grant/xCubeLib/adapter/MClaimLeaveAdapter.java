@@ -70,7 +70,7 @@ public class MClaimLeaveAdapter extends RecyclerView.Adapter<MClaimLeaveAdapter.
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
 
             holder.lblDate.setTextColor(res.getColor(R.color.white));

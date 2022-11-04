@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.widget.NestedScrollView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -77,6 +78,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
     private String training_program_url="";
     boolean doubleBackToExitPressedOnce = false;
     private static final int REQUEST_LOCATION = 1;
+    NestedScrollView c_dashboard;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
@@ -164,6 +166,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        c_dashboard = findViewById(R.id.c_dashboard);
         btn_sign_in_out=findViewById(R.id.btn_sign_in_out);
         btn_edit_attendance=findViewById(R.id.btn_edit_attendance);
         c_data_tv_btn_view_reports = findViewById(R.id.c_data_tv_btn_view_reports);
@@ -301,6 +304,59 @@ public class SDashboardDA extends StudentBaseDrawerA {
         Label = getLabelFromDb("l_S103_head_process_7_1", R.string.l_S103_head_process_7_1);
         lbl_head_process_7_1.setText(Label);
 
+
+        i_l_name.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_l_status.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_l_status.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_s_date.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_s_date.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_e_date.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_e_date.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_bank_details.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_bank_details.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        btn_view_bank_details.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_seta_name.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_seta_name.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_managed_by.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_managed_by.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        btn_view_managed_by.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_employer.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_employer.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_supervisor.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        i_supervisor.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        btn_view_supervisor.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_1_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_1_1_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_1_1_2.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_2.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_2_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_3.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_3_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_3_1_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_4.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_4_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_4_1_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        tv_btn_view_workstation.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_5.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_5_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_5_1_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_5_1_2.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        tv_btn_view_reports.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        tv_reports_done.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_6.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_6_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        tv_training_prog.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_7.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lbl_head_process_7_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            btn_view_att.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_leave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_view_docs.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            c_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
+
+        }
 
         printLogs(LogTag, "initializeLabels", "exit");
     }
@@ -533,7 +589,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         }
                         btn_submit_claim.setText(claim_status);
                         if(Integer.parseInt(past_claim_btn)==1){
-                            btn_submit_claim.setBackgroundResource(R.drawable.themed_button_action_g);
+                            btn_submit_claim.setBackgroundResource(R.drawable.themed_button_action_1);
                             is_claim_submitted = 1;
                         }
                         else{

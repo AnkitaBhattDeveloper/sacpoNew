@@ -87,7 +87,7 @@ LinearLayout ll_download_progress;
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblClaimMonth4.setTextColor(res.getColor(R.color.white));
             holder.lblClaimMonth4.setTypeface(holder.lblClaimMonth4.getTypeface(), Typeface.BOLD);
 

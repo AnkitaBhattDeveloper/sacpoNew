@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
@@ -61,7 +62,7 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
     private String ActivityId = "S196";
     public EditText inputTitle ;
     public TextInputLayout inputLayoutTitle ;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public String generator , document_id,document_name , documentType,document_title ;
     public LinearLayout LL_titleContainer ;
     public Button btnBrows , btnSubmit ;
@@ -177,6 +178,7 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         inputTitle =  findViewById(R.id.inputTitle);
         docName =  findViewById(R.id.lblDocName);
@@ -220,10 +222,12 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_S196",R.string.h_S196);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S196_title",R.string.lbl_S196_title);
         lblView = (TextView)findViewById(R.id.lblTitle);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_M345_brows", R.string.b_M345_brows);
@@ -236,11 +240,22 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("lbl_M345_nofileChosen", R.string.lbl_M345_nofileChosen);
         lblView = (TextView) findViewById(R.id.lblFileName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_M345_pdf", R.string.lbl_S196_pdf);
         lblView = (TextView) findViewById(R.id.lblPdf);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        docName.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmit.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnBrows.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
+
     }
 
     public void callDataApi(){
@@ -385,37 +400,6 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void ownFile(Uri fileUri){
-        printLogs(LogTag, "ownFile", "fileUri"+fileUri+"---displayName"+displayName);
-        ParcelFileDescriptor pfd = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            try {
-                pfd = getContentResolver().openFileDescriptor(fileUri, "r", null);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        if(pfd !=null){
-            InputStream istream = new FileInputStream(pfd.getFileDescriptor());
-            File ifs = new File(getApplicationContext().getCacheDir(),displayName);
-            OutputStream ostream = null;
-            try {
-                ostream = new FileOutputStream(ifs);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            if(ostream != null){
-                try {
-                    IOUtils.copyStream(istream,ostream);
-                    final File file = new File(getApplicationContext().getCacheDir(), displayName);
-                    cachedFileUriVal = Uri.fromFile(file);
-                    printLogs(LogTag, "ownFile", "cachedFileUriVal"+cachedFileUriVal+"---displayName"+displayName);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     public byte[] getBytes(InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
@@ -504,7 +488,7 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
                             jsonObject = new JSONObject(String.valueOf(response));
                             String Status = jsonObject.getString(KEY_STATUS);
                             if (Status.equals("1")) {
-                                        Log.d("come::: >>>  ", "yessssss");
+                                        //Log.d("come::: >>>  ", "yessssss");
                                         showProgress(false, mContentView, mProgressView);
                                         String sTitle = getLabelFromDb("m_S196_title", R.string.m_S196_title);
                                         String sMessage = getLabelFromDb("m_S196_message", R.string.m_S196_message);

@@ -83,7 +83,7 @@ public class DownloadCenterAdapter extends RecyclerView.Adapter<DownloadCenterAd
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0) {
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblAction1.setTextColor(res.getColor(R.color.white));
             holder.lblAction1.setVisibility(View.VISIBLE);
             holder.btnAction1.setVisibility(View.GONE);

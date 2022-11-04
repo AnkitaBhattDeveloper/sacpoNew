@@ -73,7 +73,7 @@ public class MLearnerAbsentAdapter extends RecyclerView.Adapter<MLearnerAbsentAd
 
 
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblDate.setTextColor(res.getColor(R.color.white));
             holder.lblDate.setTypeface(holder.lblDate.getTypeface(), Typeface.BOLD);
             holder.lblDay.setTextColor(res.getColor(R.color.white));

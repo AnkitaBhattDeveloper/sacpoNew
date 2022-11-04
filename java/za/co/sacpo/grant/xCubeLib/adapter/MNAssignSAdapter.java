@@ -71,7 +71,7 @@ public class MNAssignSAdapter extends RecyclerView.Adapter<MNAssignSAdapter.Work
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             Labels =this.getLabelFromDb("l_603_MxNonAssignStudent_action",R.string.l_603_MxNonAssignStudent_action);
             holder.lblAction.setText(Labels);

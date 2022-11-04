@@ -69,7 +69,7 @@ public class SAttOutOffRangeAdapter extends RecyclerView.Adapter<SAttOutOffRange
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblLoginDate.setTextColor(res.getColor(R.color.white));
             holder.lblLoginDate.setTypeface(holder.lblLoginDate.getTypeface(), Typeface.BOLD);
 

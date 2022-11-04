@@ -77,7 +77,7 @@ public class MWorkXAdapter extends RecyclerView.Adapter<MWorkXAdapter.WorkXHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblwEmployerName.setTextColor(res.getColor(R.color.white));
             holder.lblwEmployerName.setTypeface(holder.lblwEmployerName.getTypeface(), Typeface.BOLD);
 

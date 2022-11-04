@@ -89,7 +89,7 @@ public class MLeavesListAdapter extends RecyclerView.Adapter<MLeavesListAdapter.
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             Labels=this.getLabelFromDb("t_head_M410_AP",R.string.t_head_M410_AP);
             holder.tvC1R1C1.setText(Labels);

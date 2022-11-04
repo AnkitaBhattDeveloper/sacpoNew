@@ -82,7 +82,7 @@ public class MSSuupervisorAdapter extends RecyclerView.Adapter<MSSuupervisorAdap
         int BColorRedLink;
         BColor = res.getColor(R.color.red_link_back_even);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.TxtLearnerName.setTextColor(res.getColor(R.color.white));
             holder.TxtLearnerName.setTypeface(holder.TxtLearnerName.getTypeface(), Typeface.BOLD);

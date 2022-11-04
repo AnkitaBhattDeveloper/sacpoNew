@@ -78,7 +78,7 @@ public class MFormsAdapter extends RecyclerView.Adapter<MFormsAdapter.FormsHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblFormName.setTextColor(res.getColor(R.color.white));
             holder.lblFormName.setTypeface(holder.lblFormName.getTypeface(), Typeface.BOLD);
 

@@ -2,13 +2,24 @@
 <resources>
 
     <color name="colorPrimary">#1565C0</color>
-    <color name="sacpocolorPrimary">#9AFCB900</color>
-    <color name="sacpocolorPrimaryDark">#fcb900</color>
-    <color name="sacpocolorAccent">#9FFCB900</color>
     <color name="colorAccent">#F3286EA7</color>
     <color name="colorPrimaryDark">#0D47A1</color>
-
     <color name="colorPrimaryLighter">#1976D2</color>
+
+    <color name="sacpocolorPrimary">#B2FCB900</color>
+    <color name="sacpocolorPrimaryDark">#fcb900</color>
+    <color name="sacpocolorAccent">#9FFCB900</color>
+
+    <color name="dashboard_textColor_1">#0D47A1</color>
+    <color name="dashboard_textColor_2">#585C61</color>
+    <color name="drawer_item_textColor_1">#0D47A1</color>
+    <color name="drawer_item_textColor_2">#585C61</color>
+    <color name="list_textColor_1">#0D47A1</color>
+    <color name="list_textColor_2">#ffffff</color>
+    <color name="row_head_1">#1976D2</color>
+    <color name="row_head_2">#fcb900</color>
+
+
     <color name="textColor">#0D47A1</color>
     <color name="process_1_color">#c6e0b4</color>
     <color name="process_1_color_data">#e2efda</color>
@@ -22,7 +33,7 @@
     <color name="divider_horizontal_dark">#727070</color>
     <color name="info_front">#0D47A1</color>
     <color name="info_back">#eaeaea</color>
-    <color name="row_head">#1976D2</color>
+
     <color name="row_link">#0074e7</color>
     <color name="red_link">#f7031b</color>
     <color name="red_link_back_even">#efefef</color>

@@ -88,7 +88,7 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblClaimYear.setTextColor(res.getColor(R.color.white));
             holder.lblClaimYear.setTypeface(holder.lblClaimYear.getTypeface(), Typeface.BOLD);
 

@@ -42,13 +42,12 @@
                 android:gravity="center">
 
                 <ImageView
-
                     android:id="@+id/alertMessageImage"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/chat" />
+                    />
 
                 <FrameLayout
                     android:visibility="gone"
@@ -105,7 +104,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:visibility="visible"
-                    app:srcCompat="@mipmap/ic_launcher_bell" />
+                    />
 
                 <FrameLayout
                     android:visibility="gone"
@@ -274,8 +273,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/ic_launcher_video_footer" />
-
+                    />
             </RelativeLayout>
 
 
@@ -339,7 +337,7 @@
                     android:layout_height="43dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:background="@drawable/circle_blue"
+                    android:background="@drawable/circle_footer_1"
                     android:gravity="center"
                     android:text=""
                     android:textColor="@android:color/white"

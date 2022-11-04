@@ -51,7 +51,7 @@ public class UserData extends AsyncTask<Void, Void, Boolean> {
         String userToken;
         userToken = userSessionObj.getToken();
         String UPDATES_URL_FINAL = URLHelper.DOMAIN_BASE_URL+URLHelper.PROFILE_URL+"?token="+userToken;
-        Log.d("UserData","UPDATES_URL_FINAL "+UPDATES_URL_FINAL);
+        //Log.d("UserData","UPDATES_URL_FINAL "+UPDATES_URL_FINAL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, UPDATES_URL_FINAL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

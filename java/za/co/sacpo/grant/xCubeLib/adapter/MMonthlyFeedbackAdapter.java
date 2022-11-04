@@ -76,7 +76,7 @@ public class MMonthlyFeedbackAdapter extends RecyclerView.Adapter<MMonthlyFeedba
         Resources res = holder.itemView.getContext().getResources();
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
-        BColor = res.getColor(R.color.row_head);
+        BColor = res.getColor(R.color.row_head_1);
 
         //holder.next();
 

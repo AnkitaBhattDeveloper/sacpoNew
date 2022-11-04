@@ -70,7 +70,7 @@ public class MServeyListAdapter extends RecyclerView.Adapter<MServeyListAdapter.
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
             holder.lblPoll_1.setTextColor(res.getColor(R.color.white));
             holder.lblPoll_1.setTypeface(holder.lblPoll_1.getTypeface(), Typeface.BOLD);

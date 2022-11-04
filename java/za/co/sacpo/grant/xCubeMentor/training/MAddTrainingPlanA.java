@@ -486,7 +486,7 @@ public class MAddTrainingPlanA extends BaseFormAPCPrivate {
                             jsonObject = new JSONObject(String.valueOf(response));
                             String Status = jsonObject.getString(KEY_STATUS);
                                     if (Status.equals("1")) {
-                                        Log.d("come::: >>>  ", "yessssss");
+                                        //Log.d("come::: >>>  ", "yessssss");
                                         arraylist = new ArrayList<HashMap<String, String>>();
 
                                         showProgress(false, mContentView, mProgressView);

@@ -122,7 +122,7 @@ public class ProofOfBankingA extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
@@ -232,7 +232,7 @@ public class ProofOfBankingA extends BaseAPCPrivate {
                             cursor = this.getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
                                 displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                Log.d("nameeeee>>>>  ", displayName);
+                                //Log.d("nameeeee>>>>  ", displayName);
 
 
                                 uploadPDF(displayName, uri);
@@ -242,7 +242,7 @@ public class ProofOfBankingA extends BaseAPCPrivate {
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName = myFile.getName();
-                        Log.d("nameeeee>>>>  ", displayName);
+                        //Log.d("nameeeee>>>>  ", displayName);
                     }
                 }
 
@@ -297,7 +297,7 @@ public class ProofOfBankingA extends BaseAPCPrivate {
 
                         @Override
                         public void onResponse(NetworkResponse response) {
-                            Log.d("ressssssoo",new String(response.data));
+                            //Log.d("ressssssoo",new String(response.data));
                             printLogs(LogTag,"uploadPDF","URL : "+FINAL_URL);
                             rQueue.getCache().clear();
 
@@ -308,7 +308,7 @@ public class ProofOfBankingA extends BaseAPCPrivate {
                                 jsonObject.toString().replace("\\\\","");
 
                                 if (jsonObject.getString(KEY_STATUS).equals("1")) {
-                                    Log.d("come::: >>>  ","yessssss");
+                                    //Log.d("come::: >>>  ","yessssss");
                                     arraylist = new ArrayList<HashMap<String, String>>();
 
                                     //JSONArray dataArray = jsonObject.getJSONArray(KEY_DATA);

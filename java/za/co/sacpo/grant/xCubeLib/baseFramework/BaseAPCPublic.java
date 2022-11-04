@@ -16,7 +16,7 @@ public abstract class BaseAPCPublic extends BaseAPC {
     protected OlumsUtilitySession utilSessionObj;
     public void printLogs(String tag,String funcs,String msg){
         if(isLive==false) {
-            Log.i("OSG-" + tag + "__" + funcs, msg);
+            //Log.i("OSG-" + tag + "__" + funcs, msg);
         }
     }
 

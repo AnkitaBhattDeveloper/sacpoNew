@@ -43,7 +43,7 @@ public class GrantData extends AsyncTask<Void, Void, Boolean> {
     public void printLogsAsync(String funcs,String msg){
         String tag = this.getClass().getSimpleName();
         if(isLive==false) {
-            Log.i("OSG-"+tag+"__"+funcs,msg);
+            //Log.i("OSG-"+tag+"__"+funcs,msg);
         }
     }
     @Override
@@ -64,7 +64,7 @@ public class GrantData extends AsyncTask<Void, Void, Boolean> {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject jsonObject= new JSONObject(String.valueOf(response));
-                    Log.i("doInBackground","RESPONSE "+response);
+                    //Log.i("doInBackground","RESPONSE "+response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
                         JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);

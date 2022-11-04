@@ -21,11 +21,11 @@ public class TokenDelete extends AsyncTask<Void, Void, Boolean> {
         try
         {
             FirebaseInstanceId.getInstance().deleteInstanceId();
-            Log.i("OSG-"+TAG,"TOKEN DELETE");
+            //Log.i("OSG-"+TAG,"TOKEN DELETE");
             return true;
         } catch (IOException e)
         {
-            Log.i("OSG-"+TAG,"TOKEN DELETE Error -"+e.getMessage());
+            //Log.i("OSG-"+TAG,"TOKEN DELETE Error -"+e.getMessage());
             e.printStackTrace();
             return false;
         }

@@ -16,10 +16,10 @@ public class GpsDialog {
 
 
     public static void removeGpsDialog() {
-        Log.i("OSG","removeGpsDialog"+" GpsDialog init");
+        //Log.i("OSG","removeGpsDialog"+" GpsDialog init");
         if ((gpsDialog != null) && (gpsDialog.isShowing())) {
             gpsDialog.dismiss();
-            Log.i("OSG","removeGpsDialog"+" GpsDialog REMOVE");
+            //Log.i("OSG","removeGpsDialog"+" GpsDialog REMOVE");
             isGpsDialogShowing = false;
             gpsDialog = null;
         }

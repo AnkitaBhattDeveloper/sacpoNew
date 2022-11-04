@@ -79,7 +79,7 @@ public class MAssignWorkAdapter extends RecyclerView.Adapter<MAssignWorkAdapter.
 
 
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
 
 
             holder.lblLearnerName.setTextColor(res.getColor(R.color.white));

@@ -75,7 +75,7 @@ public class SStipendAdapter extends RecyclerView.Adapter<SStipendAdapter.Stipen
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head);
+            BColor = res.getColor(R.color.row_head_1);
             holder.lblStipendDate.setTextColor(res.getColor(R.color.white));
             holder.lblStipendDate.setTypeface(holder.lblStipendDate.getTypeface(), Typeface.BOLD);
             holder.lblStipendMonth.setTextColor(res.getColor(R.color.white));

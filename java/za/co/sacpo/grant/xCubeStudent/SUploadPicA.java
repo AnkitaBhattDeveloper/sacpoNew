@@ -53,13 +53,11 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class SUploadPicA extends BaseFormAPCPrivate {
     private String ActivityId="S143";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private String KEY_IMAGE = "uploaded_file";
     private String extension;
-/*http://seta.local/api/user/type/uploadImage/token/123ha?uploaded_file=&extension=img*/
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST= 99;
-
     private TextView lblView;
     PermissionsChecker checker;
     String generator;
@@ -145,6 +143,7 @@ public class SUploadPicA extends BaseFormAPCPrivate {
     protected void initializeViews() {
         printLogs(LogTag,"initializeViews","initializeViews-In");
         mContentView = findViewById(R.id.content_container);
+        heading = findViewById(R.id.heading);
         checker = new PermissionsChecker(this);
         mProgressView = findViewById(R.id.progress_bar);
         btnFileUpload = (Button) findViewById(R.id.btnFileUpload);
@@ -158,9 +157,17 @@ public class SUploadPicA extends BaseFormAPCPrivate {
         btnChoose.setText(Label);
         Label = getLabelFromDb("h_S143",R.string.h_S143);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_S143_upload",R.string.l_S143_102_btn);
         btnFileUpload.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnFileUpload.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnChoose.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

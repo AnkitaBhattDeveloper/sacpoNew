@@ -1,6 +1,7 @@
 package za.co.sacpo.grant.xCubeLib.baseFramework;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,7 +80,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         userSessionObj = new OlumsUserSession(baseApcContext);
         utilSessionObj = new OlumsUtilitySession(baseApcContext);
         final int u_id = userSessionObj.getUserId();
-        Boolean session_available;
+        boolean session_available;
         printLogs(LogTag, "validateLogin", "SESSION USER ID : " + u_id);
         if (userSessionObj.getHasSession()) {
             if (u_id > 0) {
@@ -258,6 +259,11 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         ImageView iPoll = findViewById(R.id.alertPollImage);
         ImageView iAttApp = findViewById(R.id.alertAttAppImage);
         ImageView iClaimApp = findViewById(R.id.alertClaimAppImage);
+        ImageView video_cam_image = findViewById(R.id.video_cam_image);
+
+        iMessage.setImageResource(getDrwabaleResourceId("chat"));
+        iNotification.setImageResource(getDrwabaleResourceId("ic_launcher_bell"));
+        video_cam_image.setImageResource(getDrwabaleResourceId("ic_launcher_video_footer"));
 
         cMessage.setText(utilSessionObj.getChatCount());
         cNotification.setText(utilSessionObj.getNotificationCount());
@@ -293,6 +299,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void callFooter(final Context baseApcContext, final AppCompatActivity activityIn, final String ActivityId) {
         userSessionObj = new OlumsUserSession(baseApcContext);
         String userType = userSessionObj.getUserType();
@@ -312,6 +319,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         LinearLayout help_cam_container = (LinearLayout) findViewById(R.id.help_cam_container);
         TextView activity_title = findViewById(R.id.activityIdTitle);
         activity_title.setText("REF " + ActivityId);
+        activity_title.setBackground(getDrawable(getDrwabaleResourceId("circle_footer")));
         activity_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
