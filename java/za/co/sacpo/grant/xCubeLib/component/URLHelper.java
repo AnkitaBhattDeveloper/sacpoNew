@@ -16,6 +16,7 @@ public class URLHelper {
       //Student type API'S
       public static final String LOGIN_URL = "/login_api";
       public static final String TOKEN_UPDATE = "/token-api";
+    public static final String UPDATE_URL = "/api-utils";
       public static final String STUDENT_DATA_URL = "/student-details-api";
       public static final String S_REF_136 = "/student-grant-details-api";
       public static final String LABELS_URL = "/static-labels";
@@ -81,7 +82,7 @@ public class URLHelper {
     public static final String UPLOADFORM_URL = "/upload-claim-form-by-student-api";
     public static final String R_REF_106 = "/change-password-api";
     public static final String R_REF_142_1 = "/send-api";
-
+    public static final String TICKET_DETAILS_URL = "/issue-details-api";
 
     //spinners
     public static final String STU_ISSUE_TITLE_TYPE = "/stu-issue-title-type-api";
@@ -137,7 +138,7 @@ public class URLHelper {
     public static final String M_REMOVE_COMMENT = "/remove-comment-api";
     public static final String ADD_TICKETS_COMMENTS = "/add-tickets-comments";
     public static final String EDIT_WORKSTATION = "/edit-work-station-api";
-
+    public static final String REF_M_199 = "/document-center-m-api";
     public static final String REF_M_411_1 = "/leave-reason-details-api";
     public static final String WORKSTATION_DETAILS = "/work-station-details-api";
     public static final String LERNERS_FORM_LIST = "/learner-form-list-api";
@@ -278,19 +279,17 @@ public class URLHelper {
 
 
 
-    public static final String UPDATE_URL = "/api-utils";
+    public static final String TICKETS_COMMENTS = "/issue-comment-api";
    // public static final String UPDATE_URL = "/utils/type/version";
      // public static final String REF_M_199 = "/mentorone/type/documentCenterM";
-      public static final String REF_M_199 = "/document-center-m-api";
+
     public static final String R_REF_142_2 = "/message/type/sendMessageToGroup";
     //public static final String TICKET_DETAILS_URL = "/user/type/ticketDetails";
-    public static final String TICKET_DETAILS_URL = "/issue-details-api";
-
 
 
       public static final String REF_S_105 = "/user/type/REF_S_193";//for SALARY MANAGER
       public static final String S_REF_223_1 = "/student/type/fosdata";//for SALARY MANAGER
-      public static final String TICKETS_COMMENTS = "/user/type/ticketComments";
+
       public static final String VIEW_LEA_DETAILS = "/student/type/viewManagedBy";
       public static final String S_REF_267 = "/student/type/uploadedMultipleFiles";
       public static final String REF_S_267_1 = "/student/type/removeDocument";

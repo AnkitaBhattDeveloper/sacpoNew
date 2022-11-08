@@ -324,7 +324,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
             @Override
             public void onClick(View v) {
                 //showInfo(v, ActivityId);
-                if (isLive == false) {
+                if (!isLive) {
                     showLogs(v, ActivityId);
                 }
                 else{

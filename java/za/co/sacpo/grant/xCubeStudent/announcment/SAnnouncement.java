@@ -49,7 +49,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SAnnouncement extends BaseAPCPrivate {
     private String ActivityId="181";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private String generator,group_id;
     private RecyclerView recyclerViewQ;
@@ -136,6 +136,7 @@ public class SAnnouncement extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVAnnounce);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -151,7 +152,13 @@ public class SAnnouncement extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_181",R.string.h_181);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

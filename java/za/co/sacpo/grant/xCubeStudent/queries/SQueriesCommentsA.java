@@ -5,11 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,7 +70,7 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
     private String KEY_EXT = "extension";
     private String extension;
     public EditText inputComment;
-    public View mProgressView, mContentView,mProgressRView,mContentRView;
+    public View mProgressView, mContentView,mProgressRView,mContentRView,heading;
     public TextInputLayout inputLayoutComment,inputLayoutPassword;
     public Button btnCommitContainer,btnCommitContainerwithImage;
     public ImageButton btnUploadContainer;
@@ -117,7 +121,6 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             fetchVersionData();
             verifyVersion();
@@ -176,15 +179,14 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
 
         recyclerViewQ = (RecyclerView) findViewById(R.id.rvComments);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rvComments);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+recyclerViewQ.setNestedScrollingEnabled(false);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
         btnCommitContainer = (Button) findViewById(R.id.btnCommitContainer);
         btnCommitContainerwithImage = (Button) findViewById(R.id.btnCommitContainerwithImage);
@@ -201,8 +203,9 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_114_comments",R.string.l_114_comments);
         lblView = (TextView)findViewById(R.id.lblComment);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-       
+
         Label = getLabelFromDb("l_114_btn_comments",R.string.l_114_btn_comments);
         lblView = (TextView)findViewById(R.id.btnCommitContainer);
         lblView.setText(Label);
@@ -215,7 +218,16 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_114",R.string.h_114);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnCommitContainer.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnCommitContainerwithImage.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputComment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
+        }
     }
     @Override
     protected void initializeInputs(){
@@ -362,17 +374,17 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
     private void fetchData(){
         String token = userSessionObj.getToken();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.TICKETS_COMMENTS;
-        FINAL_URL=FINAL_URL+"/token/"+token+"/i_id/"+t_id;
+        FINAL_URL=FINAL_URL+"?token="+token+"&issue_id="+t_id;
         printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,FINAL_URL, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(String response) {
-                JSONObject outputJson = null;
-                printLogs(LogTag,"fetchData","RESPONSE : "+response);
+            public void onResponse(JSONObject response) {
                 try {
-                    outputJson = new JSONObject(response);
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
-                    if(Status.equals("1")){
+                    if (Status.equals("1")) {
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -419,15 +431,20 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
                 ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
 
             }
-        }) {
-
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "*/*");
+                return params;
+            }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(SQueriesCommentsA.this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     private boolean validateComment(EditText inputComment, TextInputLayout inputLayoutComment) {

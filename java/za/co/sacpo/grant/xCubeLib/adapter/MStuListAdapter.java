@@ -53,8 +53,54 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
     protected DbHelper dbSetaObj;
     String Labels;
     private BaseAdapter bAI;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public MStuListAdapter(List<MStuListObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
-        //this.bAI = ((BaseAdapter) baseActivityContext);
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
         this.activityInCall = activityInCall;
@@ -107,6 +153,16 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.separator6.setText("#");
             holder.separator7.setText("#");
             holder.separator8.setText("#");
+
+            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+
 
             Labels=this.getLabelFromDb("t_head_M401_LI",R.string.t_head_M401_LI);
             holder.tvC1R1C1.setText(Labels);
@@ -430,7 +486,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.tvC6R3C2.setTypeface(holder.tvC6R3C2.getTypeface(), Typeface.BOLD);
             holder.tvC7R3C1.setTypeface(holder.tvC7R3C1.getTypeface(), Typeface.BOLD);
             holder.tvC8R3C1.setTypeface(holder.tvC8R3C1.getTypeface(), Typeface.BOLD);
-            BColorD = res.getDrawable(R.drawable.backcell);
+            BColorD = res.getDrawable(R.drawable.backcell_1);
 
 
 
@@ -480,6 +536,17 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.separator6.setText(pos);
             holder.separator7.setText(pos);
             holder.separator8.setText(pos);
+
+            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
+
+
 
             holder.tvC1R3C0.setTextColor(res.getColor(R.color.row_link));
             holder.tvC1R3C0.setPaintFlags(holder.tvC1R3C0.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

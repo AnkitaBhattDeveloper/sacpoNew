@@ -89,7 +89,7 @@
         android:textAlignment="center"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearAction"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
         <TextView
             android:visibility="visible"

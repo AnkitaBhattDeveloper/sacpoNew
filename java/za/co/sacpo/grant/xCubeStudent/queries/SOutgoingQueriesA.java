@@ -43,7 +43,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class SOutgoingQueriesA extends BaseAPCPrivate {
     private String ActivityId="188";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private String generator,group_id;
     private RecyclerView recyclerViewQ;
@@ -131,14 +131,13 @@ public class SOutgoingQueriesA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVT);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVT);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        recyclerViewQ.setNestedScrollingEnabled(false);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
     }
 
@@ -147,7 +146,12 @@ public class SOutgoingQueriesA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_111",R.string.h_111);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
     @Override
     protected void initializeInputs(){

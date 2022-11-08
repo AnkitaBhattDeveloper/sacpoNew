@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content">
                         <EditText
                             android:id="@+id/inputworksLoc"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content">
                      <EditText
                             android:id="@+id/inputWorksLocCode"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""

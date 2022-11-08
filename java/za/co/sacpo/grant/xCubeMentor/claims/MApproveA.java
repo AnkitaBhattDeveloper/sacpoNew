@@ -98,7 +98,7 @@ public class MApproveA extends BaseFormAPCPrivate {
     @Override
     protected void bootStrapInit() {
         printLogs(LogTag,"onCreate","bootStrapInitiiiiiiiiii "+stipend_id);
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if (isConnected == true) {
             syncToken(baseApcContext, activityIn);

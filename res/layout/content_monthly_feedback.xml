@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/footer50_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeStudent.claims.SCMonthlyFeedbackA"
+    tools:context=".xCubeStudent.claims.SCMonthlyFeedbackA"
     tools:showIn="@layout/a_monthly_feedback">
 
     <RelativeLayout
@@ -54,13 +54,14 @@
         android:textSize="@dimen/BigTextSize"
         android:textStyle="bold"
         />
-    <TextView
-        android:layout_marginLeft="@dimen/ExtraGiantDp"
-        android:layout_marginRight="@dimen/ExtraGiantDp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/heading_1"
-        />
+    <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
         <LinearLayout
             android:visibility="visible"
             android:id="@+id/leavesContainer"
@@ -129,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@android:color/white"
-                    android:backgroundTint="@color/link"
                     android:textStyle="normal"/>
             </LinearLayout>
             <LinearLayout
@@ -144,7 +144,6 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@android:color/white"
-                    android:backgroundTint="@color/link"
                     android:textStyle="normal"/>
             </LinearLayout>
 

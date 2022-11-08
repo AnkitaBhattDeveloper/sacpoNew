@@ -55,12 +55,14 @@
                     android:textStyle="bold"
                     />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ExtraGiantDp"
-                    android:layout_marginRight="@dimen/ExtraGiantDp"
-                    android:background="@drawable/heading_1"
+                 <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />roid:background="@drawable/heading_1"
                     />
 
                 <LinearLayout
@@ -90,7 +92,7 @@
                         android:layout_gravity="start"
                         android:layout_weight="1"
                         android:entries="@array/title"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_bg_1"
                         android:spinnerMode="dropdown"
                         android:textAlignment="textStart"
                         android:textColor="@color/textColor"
@@ -118,7 +120,7 @@
 
                         <EditText
                             android:id="@+id/inputSubject"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="TOPIC OF QUERY"
@@ -147,7 +149,7 @@
 
                         <EditText
                             android:id="@+id/inputMessage"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height_120"
                             android:layout_gravity="left"

@@ -45,13 +45,14 @@
         android:textSize="@dimen/BigTextSize"
         android:textStyle="bold"
         />
-    <TextView
-        android:layout_marginLeft="@dimen/ExtraGiantDp"
-        android:layout_marginRight="@dimen/ExtraGiantDp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/heading_1"
-        />
+    <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
     <LinearLayout
         android:id="@+id/latitudeContainer"
         android:layout_width="match_parent"
@@ -80,7 +81,7 @@
          android:layout_height="wrap_content">
       <EditText
           android:id="@+id/inputwAddLatitude"
-          style="@style/editText"
+          style="@style/editText_1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint=""
@@ -120,7 +121,7 @@ tools:ignore="MissingPrefix" />
 
       <EditText
           android:id="@+id/inputwXAddLongitude"
-          style="@style/editText"
+          style="@style/editText_1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint=""
@@ -161,7 +162,7 @@ tools:ignore="MissingPrefix" />
 
       <EditText
           android:id="@+id/inputwXDeptCode"
-          style="@style/editText"
+          style="@style/editText_1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint=""
@@ -202,7 +203,7 @@ tools:ignore="MissingPrefix" />
 
       <EditText
           android:id="@+id/inputwXAddDeptName"
-          style="@style/editText"
+          style="@style/editText_1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint=""

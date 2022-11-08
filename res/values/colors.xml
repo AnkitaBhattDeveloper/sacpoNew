@@ -6,7 +6,7 @@
     <color name="colorPrimaryDark">#0D47A1</color>
     <color name="colorPrimaryLighter">#1976D2</color>
 
-    <color name="sacpocolorPrimary">#B2FCB900</color>
+    <color name="sacpocolorPrimary">#F6CF64</color>
     <color name="sacpocolorPrimaryDark">#fcb900</color>
     <color name="sacpocolorAccent">#9FFCB900</color>
 
@@ -18,6 +18,8 @@
     <color name="list_textColor_2">#ffffff</color>
     <color name="row_head_1">#1976D2</color>
     <color name="row_head_2">#fcb900</color>
+    <color name="spinnertext_1">#00487F</color>
+    <color name="spinnertext_2">#000000</color>
 
 
     <color name="textColor">#0D47A1</color>

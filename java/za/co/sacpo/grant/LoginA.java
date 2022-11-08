@@ -53,6 +53,7 @@ package za.co.sacpo.grant;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -192,10 +193,12 @@ public class LoginA extends BaseFormAPCPublic {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("l_A101_email", R.string.l_A101_email);
         TextView lblView =  findViewById(R.id.lblEmail);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_A101_password", R.string.l_A101_password);
         lblView =  findViewById(R.id.lblPassword);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_A101_login", R.string.b_A101_login);
@@ -203,10 +206,21 @@ public class LoginA extends BaseFormAPCPublic {
 
         Label = getLabelFromDb("i_A101_login", R.string.i_A101_login);
         lblView =  findViewById(R.id.iLogin);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_A101_forgot_password", R.string.b_A101_forgot_password);
         mForgotPassButton.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mLoginButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            mEmailView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            mPasswordView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
+
+        }
+
+
         printLogs(LogTag, "initializeLabels", "exit");
     }
 

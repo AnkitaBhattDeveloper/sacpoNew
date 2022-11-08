@@ -100,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_bg_1"
                         android:spinnerMode="dropdown"
                         android:textAlignment="textStart"
                         android:textColor="@color/textColor"

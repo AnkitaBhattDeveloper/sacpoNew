@@ -42,7 +42,7 @@
         android:textAlignment="center" android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLAction"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
 
         <Button
@@ -84,7 +84,7 @@
         android:textAlignment="center" android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLAction2"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
 
         <Button
@@ -124,7 +124,7 @@
         android:textAlignment="center" android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLAction3"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
 
         <Button

@@ -175,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:background="@drawable/spinner_bg"
+                    android:background="@drawable/spinner_bg_1"
                     android:spinnerMode="dropdown"
                     android:textAlignment="textEnd"
                     android:textColor="@color/textColor"

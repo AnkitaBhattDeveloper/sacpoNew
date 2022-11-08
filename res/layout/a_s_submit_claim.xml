@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".grant.xCubeStudent.claims.SSubmitClaim">
+tools:context=".xCubeStudent.claims.SSubmitClaim">
 
 <include layout="@layout/c_s_submitclaim"
     android:id="@+id/include" />

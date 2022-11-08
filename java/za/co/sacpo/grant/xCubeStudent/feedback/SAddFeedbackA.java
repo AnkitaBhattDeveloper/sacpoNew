@@ -64,7 +64,7 @@ public class SAddFeedbackA extends BaseAPCPrivate {
     private String KEY_EXPERIENC = "experience";
     private String KEY_MONTH_YEAR = "month_year";
 
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutDepartment;
     public TextInputLayout inputLayoutTraining, inputLayoutFeedback, inputLayoutExperience;
     public EditText inputDepartment, inputTraining, inputFeedback, inputExperience;
@@ -113,7 +113,6 @@ public class SAddFeedbackA extends BaseAPCPrivate {
             printLogs(LogTag, "bootStrapInit", "initConnected");
             setLayoutXml();
             callFooter(baseApcContext, activityIn, ActivityId);
-
             initMenusCustom(ActivityId, baseApcContext, activityIn);
             fetchVersionData();
             verifyVersion();
@@ -173,23 +172,18 @@ public class SAddFeedbackA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         SpinnerMonthYear = (Spinner) findViewById(R.id.inputSpinnerMonthYear);
         inputDepartment = (EditText) findViewById(R.id.inputDepartment);
         inputTraining = (EditText) findViewById(R.id.inputTraining);
         inputFeedback = (EditText) findViewById(R.id.inputFeedback);
         inputExperience = (EditText) findViewById(R.id.inputExperience);
-        inputSpinnerLeaveType = (Spinner) findViewById(R.id.inputSpinnerLeaveType);
         inputLayoutDepartment = (TextInputLayout) findViewById(R.id.inputLayoutDepartment);
         inputLayoutTraining = (TextInputLayout) findViewById(R.id.inputLayoutTraining);
         inputLayoutFeedback = (TextInputLayout) findViewById(R.id.inputLayoutFeedback);
         inputLayoutExperience = (TextInputLayout) findViewById(R.id.inputLayoutExperience);
-        LLFormContainer = (LinearLayout) findViewById(R.id.form_container);
-        LLInformationContainer = (LinearLayout) findViewById(R.id.informationContainer);
-        // LLInputContainer = (LinearLayout) findViewById(R.id.inputContainer);
         btnSubmitLv = (Button) findViewById(R.id.btn_submitLeave);
         printLogs(LogTag, "initializeViews", "exit");
-      /*  View rootView = getWindow().getDecorView().getRootView();
-        onAddFirstField(rootView);*/
     }
 
 
@@ -198,32 +192,49 @@ public class SAddFeedbackA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("l_S175_week_ending", R.string.l_S175_week_ending);
         lblView = (TextView) findViewById(R.id.lblWeekEnding);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S175_department", R.string.l_S175_department);
         lblView = (TextView) findViewById(R.id.lblDepartment);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S175_training", R.string.l_S175_training);
         lblView = (TextView) findViewById(R.id.lblTraining);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S175_feedback", R.string.l_S175_feedback);
         lblView = (TextView) findViewById(R.id.lblFeedback);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S175_experence", R.string.l_S175_experence);
         lblView = (TextView) findViewById(R.id.lblExperience);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_S175", R.string.h_S175);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
         Label = getLabelFromDb("b_apply_feedback", R.string.b_apply_feedback);
         btnSubmitLv.setText(Label);
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+           inputDepartment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           inputTraining.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           inputFeedback.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           inputExperience.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            SpinnerMonthYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
+        }
 
     }
 

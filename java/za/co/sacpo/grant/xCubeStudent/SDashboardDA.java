@@ -6,6 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -61,7 +62,7 @@ import za.co.sacpo.grant.xCubeStudent.upload.DocumentCenterListA;
 
 public class SDashboardDA extends StudentBaseDrawerA {
     private final String ActivityId = "S103";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading,heading1;
     public Button btn_submit_claim,btn_reports_due,btn_sign_in_out,btn_edit_attendance,btn_view_att,btn_leave,btn_view_docs,btn_view_bank_details,btn_view_managed_by,btn_view_supervisor;
     private TextView tv_sign_done,i_l_name,lbl_l_status,i_l_status,lbl_s_date,i_s_date,lbl_e_date,i_e_date,lbl_bank_details,i_bank_details,
             lbl_seta_name,i_seta_name,lbl_managed_by,i_managed_by,lbl_employer,i_employer,lbl_supervisor,i_supervisor,
@@ -78,7 +79,11 @@ public class SDashboardDA extends StudentBaseDrawerA {
     private String training_program_url="";
     boolean doubleBackToExitPressedOnce = false;
     private static final int REQUEST_LOCATION = 1;
+    private static final int REQUEST_READ_EXTERNAL_STORAGE = 2;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 3;
     NestedScrollView c_dashboard;
+    String[] permissionsStorage = {Manifest.permission.READ_EXTERNAL_STORAGE};
+    int requestExternalStorage = 1;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
@@ -96,6 +101,12 @@ public class SDashboardDA extends StudentBaseDrawerA {
         printLogs(LogTag, "onCreate", "init");
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, permissionsStorage, requestExternalStorage);
+        }
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
         bootStrapInit();
     }
 
@@ -166,6 +177,8 @@ public class SDashboardDA extends StudentBaseDrawerA {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
+        heading1 = findViewById(R.id.heading1);
         c_dashboard = findViewById(R.id.c_dashboard);
         btn_sign_in_out=findViewById(R.id.btn_sign_in_out);
         btn_edit_attendance=findViewById(R.id.btn_edit_attendance);
@@ -249,7 +262,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
         lbl_l_status.setText(Label);
         Label = getLabelFromDb("l_S103_s_date", R.string.l_S103_s_date);
         lbl_s_date.setText(Label);
-        Label = getLabelFromDb("l_S103_e_date", R.string.l_S103_e_date);
+        Label = getLabelFromDb("lthemed_button_action_S103_e_date", R.string.l_S103_e_date);
         lbl_e_date.setText(Label);
         Label = getLabelFromDb("l_S103_bank_details", R.string.l_S103_bank_details);
         lbl_bank_details.setText(Label);
@@ -351,10 +364,15 @@ public class SDashboardDA extends StudentBaseDrawerA {
         lbl_head_process_7_1.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackgroundColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading1.setBackgroundColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
             btn_view_att.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btn_leave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btn_view_docs.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             c_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
+            btn_view_bank_details.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));
+            btn_view_managed_by.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));
+            btn_view_supervisor.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));
 
         }
 
@@ -589,7 +607,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         }
                         btn_submit_claim.setText(claim_status);
                         if(Integer.parseInt(past_claim_btn)==1){
-                            btn_submit_claim.setBackgroundResource(R.drawable.themed_button_action_1);
+                            btn_submit_claim.setBackgroundResource(getDrwabaleResourceId("themed_button_action"));
                             is_claim_submitted = 1;
                         }
                         else{

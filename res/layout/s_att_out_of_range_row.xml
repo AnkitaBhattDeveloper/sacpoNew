@@ -13,7 +13,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:padding="@dimen/SmallerDp"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
@@ -28,7 +28,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -41,7 +41,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />

@@ -114,7 +114,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="start"
                                         android:layout_marginRight="@dimen/SmallerDp"
-                                        android:background="@drawable/spinner_bg"
+                                        android:background="@drawable/spinner_bg_1"
                                         android:spinnerMode="dropdown"
                                         android:textAlignment="textStart"
                                         android:textColor="@color/textColor"
@@ -132,7 +132,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="end"
 
-                                        android:background="@drawable/spinner_bg"
+                                        android:background="@drawable/spinner_bg_1"
                                         android:spinnerMode="dropdown"
                                         android:textAlignment="textEnd"
                                         android:textColor="@color/textColor"
@@ -265,7 +265,7 @@
 
                                 <EditText
                                     android:id="@+id/inputRemarks"
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint=""

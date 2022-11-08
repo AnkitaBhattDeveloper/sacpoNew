@@ -5,11 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -369,17 +373,17 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
     private void fetchData(){
         String token = userSessionObj.getToken();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.TICKETS_COMMENTS;
-        FINAL_URL=FINAL_URL+"/token/"+token+"/i_id/"+t_id;
+        FINAL_URL=FINAL_URL+"?token="+token+"&issue_id="+t_id;
         printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,FINAL_URL, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(String response) {
-                JSONObject outputJson = null;
-                printLogs(LogTag,"fetchData","RESPONSE : "+response);
+            public void onResponse(JSONObject response) {
                 try {
-                    outputJson = new JSONObject(response);
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
-                    if(Status.equals("1")){
+                    if (Status.equals("1")) {
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -427,14 +431,19 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
 
             }
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "*/*");
+                return params;
+            }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(MQueriesCommentsA.this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     private boolean validateComment(EditText inputComment, TextInputLayout inputLayoutComment) {

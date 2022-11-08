@@ -46,7 +46,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
 
 
     public String ActivityId = "S220";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     String generator,t_id,group_id,month_year,student_id,clamDate,date_input,grant_id,is_upload_attendance,is_claim_submitted,is_report_due;
     private Button btn_continue,btnUploadAtt,btnDownloadAtt;
     private TextView lblView;
@@ -94,7 +94,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
 
@@ -134,6 +134,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         btn_continue = (Button) findViewById(R.id.btn_continue);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVAttendance);
@@ -151,9 +152,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
         lblUPLeave = (TextView) findViewById(R.id.lblUPLeave);
         txtUPLeave = (TextView) findViewById(R.id.txtUPLeave);
         activity_heading = (TextView) findViewById(R.id.activity_heading);
-        View recyclerView = findViewById(R.id.rVAttendance);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
 
     }
@@ -207,11 +206,19 @@ public class SAttSummaryList extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_S220",R.string.h_S220);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_S220_btn_continue",R.string.l_S220_btn_continue);
         lblView = (Button)findViewById(R.id.btn_continue);
+        lblView.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btn_continue.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+        }
 
     }
 

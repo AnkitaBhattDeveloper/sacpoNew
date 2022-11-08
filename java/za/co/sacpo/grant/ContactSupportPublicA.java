@@ -3,6 +3,7 @@ package za.co.sacpo.grant;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
@@ -52,7 +53,7 @@ public class ContactSupportPublicA extends BaseFormAPCPublic {
     private String KEY_USERTYPE = "user_type";
     private String KEY_SUBJECT = "subject";
     public EditText mNameView, mEmailView,mSubjectView,mMessageView;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutEmail,inputLayoutName,inputLayoutSubject,inputLayoutMessage;
     public Button mSendMessageButton;
     private TextView lblView,ttSubjectView, ttMessageView;
@@ -123,6 +124,7 @@ public class ContactSupportPublicA extends BaseFormAPCPublic {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         mEmailView = (EditText) findViewById(R.id.inputEmail);
         mNameView = (EditText) findViewById(R.id.inputName);
         inputSpinnerUserType = (Spinner) findViewById(R.id.inputUsertype);
@@ -143,18 +145,22 @@ public class ContactSupportPublicA extends BaseFormAPCPublic {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_A98_email",R.string.l_A98_email);
         lblView = (TextView)findViewById(R.id.lblEmail);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_A98_name",R.string.l_A98_name);
         lblView = (TextView)findViewById(R.id.lblName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_A98_subject",R.string.l_A98_subject);
         lblView = (TextView)findViewById(R.id.lblSubject);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_A98_message",R.string.l_A98_message);
         lblView = (TextView)findViewById(R.id.lblMessage);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_A98_send_message",R.string.b_A98_send_message);
@@ -163,10 +169,24 @@ public class ContactSupportPublicA extends BaseFormAPCPublic {
 
         Label = getLabelFromDb("h_A98",R.string.h_A98);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         ttSubjectView.setText(Html.fromHtml(getString(R.string.question)));
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mSendMessageButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            mEmailView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            mNameView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            mSubjectView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            mMessageView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnerUserType.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
+        }
+
+
+        }
     @Override
     protected void initializeInputs(){
         Cursor resUTM = dbSetaObj.getAllByType(DbSchema.TABLE_MASTER_ARRAYS,DbSchema.COLUMN_M_A_TYPE,6);

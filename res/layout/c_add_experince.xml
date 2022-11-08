@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content"
                             >
                             <EditText
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:id="@+id/inputExperience1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@ tools:ignore="MissingPrefix"
                             android:layout_height="wrap_content"
                             >
                             <EditText
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:id="@+id/inputExperience2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -170,7 +170,7 @@ tools:ignore="MissingPrefix"
                             android:layout_height="wrap_content"
                             >
                             <EditText
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:id="@+id/inputExperience3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -210,7 +210,7 @@ tools:ignore="MissingPrefix"
                             android:layout_height="wrap_content"
                             >
                             <EditText
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:id="@+id/inputExperience4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -250,7 +250,7 @@ tools:ignore="MissingPrefix"
                             android:layout_height="wrap_content"
                             >
                             <EditText
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:id="@+id/inputExperience5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

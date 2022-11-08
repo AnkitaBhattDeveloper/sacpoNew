@@ -48,16 +48,11 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 /*a_s_feedback*/
 public class SFeedbackDA extends BaseAPCPrivate {
     private String ActivityId = "S120";
-    public View mProgressView, mContentView, mProgressRView, mContentRView;
+    public View mProgressView, mContentView, mProgressRView, mContentRView,heading;
     private TextView lblView;
     Bundle activeUri;
-
     public String date_input, generator;
-
-
-
     public SpinnerSetAdapter adapterS, adapterM;
-
     private RecyclerView recyclerViewQ;
     public SFeedbackObj rDataObj = new SFeedbackObj();
     private List<SFeedbackObj.Item> rDataObjList = null;
@@ -84,21 +79,18 @@ public class SFeedbackDA extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
             setLayoutXml();
             callFooter(baseApcContext, activityIn, ActivityId);
-
             initMenusCustom(ActivityId, baseApcContext, activityIn);
             fetchVersionData();
             verifyVersion();
             internetChangeBroadCast();
-            //initDrawer();
             initBackBtn();
             initializeViews();
-            //showProgress(true, mContentView, mProgressView);
             initializeLabels();
             initializeListeners();
             userToken = userSessionObj.getToken();
@@ -153,15 +145,13 @@ public class SFeedbackDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
 
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVLeaves);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVLeaves);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag, "initializeViews", "exit");
     }
 
@@ -170,8 +160,12 @@ public class SFeedbackDA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("h_S120", R.string.h_S120);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
 
     @Override
@@ -206,9 +200,7 @@ public class SFeedbackDA extends BaseAPCPrivate {
     public void fetchData() {
         showProgress(true, mContentRView, mProgressRView);
         String token = userSessionObj.getToken();
-      //  String grantId = studentSessionObj.getGrantId();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_120_REPORT+ "?token=" + token;
-        //*+ "/grant_id/" + grantId*/
         printLogs(LogTag, "fetchData", "URL : " + FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

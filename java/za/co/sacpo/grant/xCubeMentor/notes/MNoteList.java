@@ -48,7 +48,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 /*a_m_not_list*/
 public class MNoteList extends BaseAPCPrivate {
     private String ActivityId = "222";
-    public View mProgressView, mContentView, mProgressRView, mContentRView;
+    public View mProgressView, mContentView, mProgressRView, mContentRView,heading;
     Bundle activeUri;
 
     private TextView lblView;
@@ -71,32 +71,13 @@ public class MNoteList extends BaseAPCPrivate {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag,"onCreate","init");
-        printLogs(LogTag,"onCreate","init");
-     //   Intent inputIntent = getIntent();
         Bundle activeInputUri = getIntent().getExtras();
-
         user_id = activeInputUri.getString("user_id");
         grant_id = activeInputUri.getString("grant_id");
         generator = activeInputUri.getString("generator");
         student_name = activeInputUri.getString("student_name");
-
         printLogs(LogTag,"onCreate","USER ID "+user_id);
         printLogs(LogTag,"onCreate","GENERATOR ID "+generator);
-
-      /*  Intent inputIntent = getIntent();
-        Bundle activeInputUri = getIntent().getExtras();
-        user_id=null;
-
-        if (inputIntent.hasExtra("user_id")) {
-            user_id = activeInputUri.getString("user_id");
-
-            printLogs(LogTag,"onCreate","USER ID "+user_id);
-        }
-        if (inputIntent.hasExtra("generator")) {
-            generator = activeInputUri.getString("generator");
-            printLogs(LogTag,"onCreate","GENERATOR ID "+generator);
-        }
-*/
 
         bootStrapInit();
 
@@ -104,14 +85,12 @@ public class MNoteList extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
-        if (isConnected == true) {
+        if (isConnected) {
             setLayoutXml();
              callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
-
             registerBroadcastIC();
             fetchVersionData();
             verifyVersion();
@@ -152,7 +131,7 @@ public class MNoteList extends BaseAPCPrivate {
         Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
         printLogs(LogTag,"verifyVersion","isUpdate "+isUpdate);
         printLogs(LogTag,"verifyVersion","isUpdate "+ utilSessionObj.getIsUpdateRequired());
-        if(isUpdate==true){
+        if(isUpdate){
             Intent intent = new Intent(MNoteList.this,AppUpdatedA.class);
             startActivity(intent);
             finish();
@@ -164,6 +143,8 @@ public class MNoteList extends BaseAPCPrivate {
     protected void initializeInputs() {
         lblView = (TextView) findViewById(R.id.lblNote_list);
         lblView.setText(student_name.toUpperCase());
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
     }
 
     @Override
@@ -176,7 +157,15 @@ public class MNoteList extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_222",R.string.h_222);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnAddNote.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+
+        }
+
     }
 
     @Override
@@ -185,16 +174,13 @@ public class MNoteList extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         btnAddNote = findViewById(R.id.btnAddNote);
-
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVNoteList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVNoteList);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
 
     }
 

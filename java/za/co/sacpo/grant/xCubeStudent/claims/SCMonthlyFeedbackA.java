@@ -45,7 +45,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class SCMonthlyFeedbackA extends BaseAPCPrivate {
     private String ActivityId = "S231";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextView activity_heading,lblView;
     private RecyclerView recyclerViewQ;
     private SCMonthlyFeedbackA thisClass;
@@ -89,7 +89,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
@@ -120,6 +120,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_back = (Button) findViewById(R.id.btn_back);
         rDataObjList = rDataObj.getITEMS();
@@ -170,6 +171,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
     protected void initializeLabels() {
         String Label = getLabelFromDb("h_S231",R.string.h_S231);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_S231_btn_next",R.string.l_S231_btn_next);
         lblView = (TextView)findViewById(R.id.btn_next);
@@ -177,6 +179,14 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
         Label = getLabelFromDb("l_S231_btn_back",R.string.l_S231_btn_back);
         lblView = (TextView)findViewById(R.id.btn_back);
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btn_next.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_back.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+        }
+
     }
     @Override
     protected void setLayoutXml() {

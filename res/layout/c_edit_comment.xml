@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:id="@+id/inputDuration"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height_120"

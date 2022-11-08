@@ -253,6 +253,8 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnSubmit.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btnBrows.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputTitle.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
         }
 
 

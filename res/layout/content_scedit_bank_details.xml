@@ -343,7 +343,7 @@
                             android:layout_height="wrap_content">
                             <androidx.appcompat.widget.AppCompatSpinner
                                 android:id="@+id/spinner_fos_name"
-                                android:background="@drawable/spinner_bg"
+                                android:background="@drawable/spinner_bg_1"
                                 android:spinnerMode="dropdown"
                                 android:textColor="@color/textColor"
                                 android:layout_width="match_parent"

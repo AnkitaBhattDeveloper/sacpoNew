@@ -156,8 +156,6 @@ public abstract class BaseAPC extends AppCompatActivity {
           } catch (Exception e) {
               e.printStackTrace();
           }
-
-
       }
   }
     public void setAppLogo(){
@@ -172,6 +170,19 @@ public abstract class BaseAPC extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public int getStyleResourceId(String string){
+            Field resourceField = null;
+            int resourceId = 0;
+            try {
+                resourceField = R.style.class.getDeclaredField(string+"_"+URLHelper.PORTAL_ID);
+                //Here we are getting the String id in R file...But you can change to R.drawable or any other resource you want...
+                resourceId  = resourceField.getInt(resourceField);
+                setTheme(resourceId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resourceId;
     }
     public int getStringResourceId(String string){
         Field resourceField = null;
@@ -224,7 +235,7 @@ public abstract class BaseAPC extends AppCompatActivity {
                 }
             }
             finally {
-                if (res != null && !res.isClosed()) {
+                if (!res.isClosed()) {
                     res.close();
                     dbSetaObj.close();
                 }
@@ -234,7 +245,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     }
     public void printLogs(String tag,String funcs,String msg){
         if(isLive==false) {
-            //Log.i("OSG-"+tag+"__"+funcs,msg);
+            Log.i("OSG-"+tag+"__"+funcs,msg);
             LogString = LogString+"TAG - "+tag+"<br/> FUNCTION - "+funcs+"<br/> DATA - "+msg+"<br/><br/><br/><br/>";
             //Toast.makeText(baseApcContext, "", Toast.LENGTH_SHORT).show();
         }
@@ -521,7 +532,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     }
     protected void setCustomErrorDisabled(TextInputLayout viewL, EditText mEditView) {
         viewL.setErrorEnabled(false);
-        mEditView.setBackgroundResource(R.drawable.input_boder_profile);
+        mEditView.setBackgroundResource(R.drawable.input_boder_profile_1);
     }
     protected void setCustomError(TextInputLayout viewL,String msg,EditText mEditView) {
         mEditView.setError(msg,null);

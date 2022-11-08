@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         >
                         <EditText
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:id="@+id/inputEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -7,12 +7,61 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
 
 public class SpinAdapter extends ArrayAdapter<SpinnerObj> {
 
     private Context context;
     private SpinnerObj[] values;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     public SpinAdapter(Context context, int textViewResourceId, SpinnerObj[] values) {
         super(context, textViewResourceId, values);
         this.context = context;
@@ -30,16 +79,17 @@ public class SpinAdapter extends ArrayAdapter<SpinnerObj> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView label = new TextView(context);
-        label.setTextColor(Color.parseColor("#00487F"));
-        label.setPadding(5,5,5,5);
+       label.setTextColor(context.getResources().getColor(baseAPC.getTextcolorResourceId("spinnertext")));
+        label.setPadding(20,5,5,5);
         label.setText(values[position].getName());
         return label;
     }
     @Override
     public View getDropDownView(int position, View convertView,ViewGroup parent) {
         TextView label = new TextView(context);
-        label.setTextColor(Color.parseColor("#00487F"));
-        label.setPadding(5,5,5,5);
+        label.setTextColor(context.getResources().getColor(baseAPC.getTextcolorResourceId("spinnertext")));
+        // label.setTextColor(Color.parseColor("#00487F"));
+        label.setPadding(15,5,5,5);
         label.setText(values[position].getName());
         return label;
     }

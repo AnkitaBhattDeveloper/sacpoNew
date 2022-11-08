@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
@@ -44,7 +44,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC1R2C2"
@@ -55,7 +55,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC1R2C3"
@@ -66,7 +66,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC1R2C4"
@@ -77,13 +77,13 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
         </LinearLayout>
     </LinearLayout>
     <!-- Process 1 :: Attendance section 2-->
     <LinearLayout
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -96,7 +96,7 @@
             android:id="@+id/tvC2R1C1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/backcell"
+            android:background="@drawable/backcell_1"
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
@@ -122,7 +122,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC2R2C2"
@@ -133,7 +133,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC2R2C3"
@@ -144,7 +144,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
             <TextView
                 android:id="@+id/tvC2R2C4"
@@ -155,7 +155,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:text=""/>
         </LinearLayout>
     </LinearLayout>

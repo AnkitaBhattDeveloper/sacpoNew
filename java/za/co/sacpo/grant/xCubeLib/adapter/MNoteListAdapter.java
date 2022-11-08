@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.MNoteObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
 import za.co.sacpo.grant.xCubeMentor.notes.MDeleteNoteA;
@@ -34,6 +35,53 @@ public class MNoteListAdapter extends RecyclerView.Adapter<MNoteListAdapter.Serv
     MNoteList baseActivity;
     boolean isCATShow = false;
     ArrayList<String> cats = new ArrayList<String>();
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public MNoteListAdapter(List<MNoteObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall,MNoteList baseActivity) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;

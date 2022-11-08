@@ -26,6 +26,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.SNewClaimObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
 
@@ -43,7 +44,55 @@ public class SNewClaimAdapter extends RecyclerView.Adapter<SNewClaimAdapter.Clai
     ProgressDialog mProgressDialog;
     ProgressBar mProgressView;
     TextView tv_progress;
-LinearLayout ll_download_progress;
+    LinearLayout ll_download_progress;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
+
     public SNewClaimAdapter(List<SNewClaimObj.Item> aObjList, Context baseActivityContext, AppCompatActivity activityInCall, LinearLayout ll_download_progress, ProgressBar mProgressView, TextView tv_progress) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
@@ -87,7 +136,7 @@ LinearLayout ll_download_progress;
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lblClaimMonth4.setTextColor(res.getColor(R.color.white));
             holder.lblClaimMonth4.setTypeface(holder.lblClaimMonth4.getTypeface(), Typeface.BOLD);
 
@@ -131,8 +180,6 @@ LinearLayout ll_download_progress;
      
         }
         else{
-
-
             if((holder.getAdapterPosition()%2)==0){
                 BColor=res.getColor(R.color.row_even);
             }
@@ -143,14 +190,7 @@ LinearLayout ll_download_progress;
             holder.linearAction2.setBackgroundColor(BColor);
             holder.linearAction3.setBackgroundColor(BColor);
 
-
-
-
-
         }
-
-
-
 
         holder.lblClaimMonth4.setText(aObjList.get(holder.getAdapterPosition()).claimMonth4);
         holder.lblClaimMonth4.setBackgroundColor(BColor);
@@ -185,6 +225,8 @@ LinearLayout ll_download_progress;
             if(dusStatus==1){
                 holder.lblAction.setVisibility(View.GONE);
                 holder.btnAction.setVisibility(View.VISIBLE);
+                holder.btnAction.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
             }
             else{
                 holder.btnAction.setVisibility(View.GONE);
@@ -193,6 +235,8 @@ LinearLayout ll_download_progress;
             }
             if(uStatus==1){
                 holder.btnAction2.setVisibility(View.VISIBLE);
+                holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 holder.lblAction2.setVisibility(View.GONE);
             }
             else{
@@ -202,6 +246,8 @@ LinearLayout ll_download_progress;
             }
             if(dsStatus==1){
                 holder.btnAction3.setVisibility(View.VISIBLE);
+                holder.btnAction3.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 holder.lblAction3.setVisibility(View.GONE);
             }
             else{
@@ -209,11 +255,6 @@ LinearLayout ll_download_progress;
                 holder.lblAction3.setVisibility(View.VISIBLE);
                 holder.lblAction3.setText("-");
             }
-
-
-            
-            
-            
             int sStatus = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).isPendingSupervisorStatus9);
             if(sStatus!=1){
                 holder.lblSupervisorStatus7.setBackgroundColor(res.getColor(R.color.red_link));

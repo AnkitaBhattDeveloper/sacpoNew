@@ -15,6 +15,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,13 +43,14 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class MDashboardDA extends MentorBaseDrawerA{
     private final String ActivityId="M401";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private RecyclerView recyclerViewQ;
     public MStuListObj rDataObj = new MStuListObj();
     private List<MStuListObj.Item> rDataObjList = null;
     ImageView iv_logo;
     boolean doubleBackToExitPressedOnce = false;
+    RelativeLayout c_m_dashboard;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId){
         baseApcContext = cnt;
@@ -131,6 +133,8 @@ public class MDashboardDA extends MentorBaseDrawerA{
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
+        c_m_dashboard = findViewById(R.id.c_m_dashboard);
         iv_logo = findViewById(R.id.iv_logo);
         iv_logo.setBackground(getDrawable(getDrwabaleResourceId("app_logo")));
         rDataObjList = rDataObj.getITEMS();
@@ -145,7 +149,13 @@ public class MDashboardDA extends MentorBaseDrawerA{
     protected void initializeLabels(){
         String Label = getLabelFromDb("h_M401",R.string.h_M401);
         lblView = findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            c_m_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

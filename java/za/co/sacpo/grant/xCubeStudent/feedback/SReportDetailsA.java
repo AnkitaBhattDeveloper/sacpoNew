@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -42,7 +44,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class SReportDetailsA extends BaseAPCPrivate {
 
     private String ActivityId = "177";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView,tv_AboutLearnerTraining,tv_Experience,tv_Feedback;
 
@@ -163,6 +165,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         txtMonthYear = (TextView) findViewById(R.id.txtMonthYear);
         txtReportTitle = (TextView) findViewById(R.id.txtReportTitle);
         lblSupervisorHeading =findViewById(R.id.lblSupervisorHeading);
@@ -239,7 +242,11 @@ public class SReportDetailsA extends BaseAPCPrivate {
         lblReportWriting.setText(Label);
         Label = getLabelFromDb("l_338_comment", R.string.l_338_comment);
         lblComment.setText(Label);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            activity_heading.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
+        }
 
     }
 

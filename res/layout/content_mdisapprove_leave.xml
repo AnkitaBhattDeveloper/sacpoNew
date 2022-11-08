@@ -51,13 +51,14 @@ tools:showIn="@layout/a_mdisapprove_leave">
                 android:textSize="@dimen/BigTextSize"
                 android:textStyle="bold"
                 />
-            <TextView
-                android:layout_marginLeft="@dimen/ExtraGiantDp"
-                android:layout_marginRight="@dimen/ExtraGiantDp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/heading_1"
-                />
+            <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
 
             <ImageView
                 android:id="@+id/headLogo"
@@ -102,7 +103,7 @@ tools:showIn="@layout/a_mdisapprove_leave">
 
                     <EditText
                         android:id="@+id/inputMDStudentID"
-                        style="@style/editText"
+                        style="@style/editText_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=""
@@ -143,7 +144,7 @@ tools:ignore="MissingPrefix" />
 
                     <EditText
                         android:id="@+id/inputMDateStu"
-                        style="@style/editText"
+                        style="@style/editText_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=""
@@ -183,7 +184,7 @@ tools:ignore="MissingPrefix" />
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/inputMstuReason"
-                        style="@style/editText"
+                        style="@style/editText_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=""

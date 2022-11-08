@@ -60,7 +60,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 public class SPastClaimDA extends BaseAPCPrivate {
 
     public String ActivityId = "S126";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     ProgressBar download_progress_bar;
     public Button btnSubmitClaim;
     private TextView lblView,mIGrantNameText,mIStartDateText,mIEndDateText,mIClaimTTText,tv_progress;
@@ -173,6 +173,7 @@ public class SPastClaimDA extends BaseAPCPrivate {
         download_progress_bar = findViewById(R.id.download_progress_bar);
         tv_progress = findViewById(R.id.tv_progress);
         ll_download_progress = findViewById(R.id.ll_download_progress);
+        heading = findViewById(R.id.heading);
 
         btnSubmitClaim = (Button) findViewById(R.id.btnSubmitClaim);
         mIGrantNameText = (TextView) findViewById(R.id.iGrantName);
@@ -200,7 +201,15 @@ public class SPastClaimDA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_S126",R.string.h_S126);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitClaim.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+        }
+
     }
     @Override
     protected void initializeInputs(){

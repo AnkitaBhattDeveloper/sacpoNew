@@ -165,6 +165,10 @@ public class SChangePasswordA extends BaseFormAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnSubmit.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputOldPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputNewPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputConfirmPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
         }
 
 

@@ -67,7 +67,7 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
     private String KEY_ID="s_w_r_id";
     List<EditText> allLearningExp = new ArrayList<EditText>();
     String date_input,s_w_r_id,report_id,is_upload_attendance,student_id;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutDepartment;
     public TextInputLayout inputLayoutTraining,inputLayoutFeedback,inputLayoutExperience;
     public EditText inputDepartment,inputTraining,inputFeedback,inputExperience;
@@ -115,13 +115,12 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
     }
     @Override
     protected void bootStrapInit(){
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             fetchVersionData();
             verifyVersion();
@@ -177,27 +176,21 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
 
         SpinnerMonthYear = (Spinner) findViewById(R.id.inputSpinnerMonthYear);
-
         inputDepartment = (EditText) findViewById(R.id.inputDepartment);
         inputTraining = (EditText) findViewById(R.id.inputTraining);
         inputFeedback = (EditText) findViewById(R.id.inputFeedback);
         inputExperience = (EditText) findViewById(R.id.inputExperience);
-
-
         inputLayoutDepartment = (TextInputLayout) findViewById(R.id.inputLayoutDepartment);
         inputLayoutTraining = (TextInputLayout) findViewById(R.id.inputLayoutTraining);
         inputLayoutFeedback = (TextInputLayout) findViewById(R.id.inputLayoutFeedback);
         inputLayoutExperience = (TextInputLayout) findViewById(R.id.inputLayoutExperience);
-
-
-
         LLFormContainer = (LinearLayout) findViewById(R.id.form_container);
         et_month_year = (EditText) findViewById(R.id.et_month_year);
         LLInformationContainer = (LinearLayout) findViewById(R.id.informationContainer);
-       // LLInputContainer = (LinearLayout) findViewById(R.id.inputContainer);
         btnSubmitLv = (Button) findViewById(R.id.btn_submitLeave);
         printLogs(LogTag,"initializeViews","exit");
 
@@ -209,37 +202,50 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_184_start_date",R.string.l_184_start_date);
         lblView = (TextView)findViewById(R.id.lblStartDate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_184_department",R.string.l_184_department);
         lblView = (TextView)findViewById(R.id.lblDepartment);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_184_training",R.string.l_184_training);
         lblView = (TextView)findViewById(R.id.lblTraining);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_184_feedback",R.string.l_184_feedback);
         lblView = (TextView)findViewById(R.id.lblFeedback);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_184_experence",R.string.l_184_experence);
         lblView = (TextView)findViewById(R.id.lblExperience);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_184",R.string.h_184);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
         Label = getLabelFromDb("b_edit_apply_feedback",R.string.b_edit_apply_feedback);
         btnSubmitLv.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            et_month_year.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputDepartment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputTraining.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputFeedback.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputExperience.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
 
-    /*    Label = getLabelFromDb("i_no_active_grant",R.string.i_no_active_grant);
-        lblView = (TextView)findViewById(R.id.iNoActiveGrant);
-        lblView.setText(Label);*/
-    }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");

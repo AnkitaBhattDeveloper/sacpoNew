@@ -123,7 +123,7 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
     }
     protected void setCustomErrorDisabled(TextInputLayout viewL, EditText mEditView) {
         viewL.setErrorEnabled(false);
-        mEditView.setBackgroundResource(R.drawable.input_boder_profile);
+        mEditView.setBackgroundResource(R.drawable.input_boder_profile_1);
     }
     protected void setCustomError(TextInputLayout viewL,String msg,EditText mEditView) {
         mEditView.setError(msg,null);

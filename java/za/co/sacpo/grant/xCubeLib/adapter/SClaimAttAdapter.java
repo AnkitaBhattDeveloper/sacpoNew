@@ -31,6 +31,52 @@ public class SClaimAttAdapter extends RecyclerView.Adapter<SClaimAttAdapter.AttH
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     //Todo: Table Width Problem
     public SClaimAttAdapter(List<SClaimAttObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
@@ -73,7 +119,7 @@ public class SClaimAttAdapter extends RecyclerView.Adapter<SClaimAttAdapter.AttH
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lblLoginDate.setTextColor(res.getColor(R.color.white));
             holder.lblLoginDate.setTypeface(holder.lblLoginDate.getTypeface(), Typeface.BOLD);
             holder.lblLoginDate.setBackgroundColor(BColor);

@@ -37,6 +37,52 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
 
     public SFeedbackAdapter(List<SFeedbackObj.Item> aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
@@ -76,7 +122,7 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
         if (holder.getAdapterPosition() == 0) {
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.lblSReportNo.setTypeface(holder.lblSReportNo.getTypeface(), Typeface.BOLD);
             holder.lblSReportNo.setTextColor(res.getColor(R.color.white));
@@ -119,24 +165,16 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
 
 
         } else {
-
             holder.lblActionEdit.setVisibility(View.GONE);
             holder.btnActionEdit.setVisibility(View.VISIBLE);
-
             holder.lblActionRemove.setVisibility(View.GONE);
             holder.btnActionRemove.setVisibility(View.VISIBLE);
-
             holder.lblActionDetails.setVisibility(View.GONE);
             holder.btnActionDetails.setVisibility(View.VISIBLE);
-
             if ((holder.getAdapterPosition() % 2) == 0) {
                 BColor = res.getColor(R.color.row_even);
-
-
             } else {
                 BColor = res.getColor(R.color.row_odd);
-
-
             }
 
             holder.lblSTitle.setTextColor(res.getColor(R.color.row_link));
@@ -152,7 +190,6 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
                 public void onClick(View v) {
 
                     Bundle inputUri = new Bundle();
-
                     String report_id = String.valueOf(holder.hItem.aId2);
                     inputUri.putString("report_id", report_id);
                     inputUri.putString("generator", "174");
@@ -170,7 +207,6 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
                 public void onClick(View v) {
 
                     Bundle inputUri = new Bundle();
-
                     String report_id = String.valueOf(holder.hItem.aId2);
                     inputUri.putString("report_id", report_id);
                     inputUri.putString("generator", "174");
@@ -202,6 +238,8 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
             int edit_button = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).EditBtn9);
             if(edit_button==1) {
                 holder.btnActionEdit.setVisibility(View.VISIBLE);
+                holder.btnActionEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnActionEdit.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                 holder.lblActionEdit.setVisibility(View.GONE);
             }
             else{

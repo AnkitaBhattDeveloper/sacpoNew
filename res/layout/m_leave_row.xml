@@ -97,7 +97,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_margin="1dp"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:orientation="horizontal"
         android:textAlignment="center" android:gravity="center_horizontal">
 

@@ -144,14 +144,6 @@ public class SChatA extends BaseFormAPCPrivate {
     }
 
 
- /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.chat_attachment, menu);
-        return true;
-    }*/
-
     @Override
     protected void bootStrapInit() {
         boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
@@ -160,7 +152,6 @@ public class SChatA extends BaseFormAPCPrivate {
             printLogs(LogTag, "bootStrapInit", "initConnected");
             setLayoutXml();
             callFooter(baseApcContext, activityIn, ActivityId);
-
             initMenusCustom(ActivityId, baseApcContext, activityIn);
             fetchVersionData();
             verifyVersion();
@@ -224,10 +215,8 @@ public class SChatA extends BaseFormAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         editTextMessage = (EditText) findViewById(R.id.editTextMessage);
         mButtonSend = findViewById(R.id.buttonSend);
-        //  scroll_view = (ScrollView) findViewById(R.id.scroll_view);
         btnAttachement= findViewById(R.id.attachment);
         id_Footer = (FrameLayout) findViewById(R.id.id_Footer);
-
         printLogs(LogTag, "initializeViews", "exit");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -235,12 +224,13 @@ public class SChatA extends BaseFormAPCPrivate {
         recyclerView.setLayoutManager(layoutManager);
         messages = new ArrayList<>();
 
-
     }
 
     @Override
     protected void initializeLabels() {
         printLogs(LogTag, "initializeLabels", "init");
+
+
     }
 
     @Override
@@ -320,7 +310,6 @@ public class SChatA extends BaseFormAPCPrivate {
     public void FormSubmit() {
         final String message = editTextMessage.getText().toString().trim();
         if (message.equalsIgnoreCase("")) return;
-
         userSessionObj = new OlumsUserSession(getApplicationContext());
         final int uId = userSessionObj.getUserId();
         final int mfriendId = Integer.parseInt(fId);
@@ -633,6 +622,7 @@ public class SChatA extends BaseFormAPCPrivate {
         byte[] bytetosetimge = byteArrayOutputStream.toByteArray();
         uploaded_file = android.util.Base64.encodeToString(bytetosetimge, Base64.DEFAULT);
         uploaded_file = getStringImage(bitmap);
+        final String type = fIsGroup;
         String token = userSessionObj.getToken();
         final int mfriendId = Integer.parseInt(fId);
         if(extension.equals("")){
@@ -647,8 +637,9 @@ public class SChatA extends BaseFormAPCPrivate {
             jsonObject.put("uploaded_file", uploaded_file);
             jsonObject.put("extension", extension);
             jsonObject.put("fid",mfriendId);
+            jsonObject.put("f_type", type);
             jsonObject.put("msg",msg.getText().toString().trim());
-            jsonObject.put("is_group",fIsGroup);
+            jsonObject.put("f_is_group",fIsGroup);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -664,6 +655,7 @@ public class SChatA extends BaseFormAPCPrivate {
                         outputJson = new JSONObject(String.valueOf(response));
                         String Status = outputJson.getString(KEY_STATUS);
                         if (Status.equals("1")) {
+                            showProgress(false, mContentView, mProgressView);
                             myDialog.dismiss();
                             fetchData();
                         } else {
@@ -714,6 +706,7 @@ public class SChatA extends BaseFormAPCPrivate {
         showProgress(true, mContentView, mProgressView);
         String token = userSessionObj.getToken();
         final int mfriendId = Integer.parseInt(fId);
+        final String type = fIsGroup;
         if(extension.equals("")){
             Toast.makeText(thisClass, "Please Select Again..", Toast.LENGTH_SHORT).show();
         }
@@ -723,12 +716,13 @@ public class SChatA extends BaseFormAPCPrivate {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token", token);
-
+            jsonObject.put("f_type", type);
             jsonObject.put("extension", extension);
             jsonObject.put("fid",mfriendId);
             jsonObject.put("msg",editText.getText().toString().trim());
-            jsonObject.put("is_group",fIsGroup);
+            jsonObject.put("f_is_group",fIsGroup);
             jsonObject.put("uploaded_file", pdf);
+
             printLogs(LogTag, "uploadpdf", "token : " + jsonObject);
             printLogs(LogTag, "uploadpdf", "extension : " + extension);
             printLogs(LogTag, "uploadpdf", "uploaded_file : " + pdf);

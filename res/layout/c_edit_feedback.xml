@@ -8,20 +8,17 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeStudent.feedback.SEditFeedbackA"
+    tools:context=".xCubeStudent.feedback.SEditFeedbackA"
     tools:showIn="@layout/c_edit_feedback">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/SmallerDp"
                 android:background="@drawable/myaccount_border"
                 android:padding="@dimen/SmallerDp" >
@@ -95,9 +92,6 @@
                             android:id="@+id/dateContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/SmallerDp"
                             android:layout_marginTop="@dimen/SmallerDp"
                             android:orientation="vertical">
 
@@ -105,14 +99,12 @@
                                 android:id="@+id/lblStartDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginBottom="@dimen/SmallerDp"
                                 android:layout_marginLeft="@dimen/SmallerDp"
                                 android:text=""
                                 android:textAllCaps="true"
                                 android:textColor="@color/textColor"
-                                android:textSize="@dimen/SmallerTextSize" />
+                                android:textSize="@dimen/SmallerTextSize"
+                                android:layout_marginStart="@dimen/SmallerDp" />
 
 
                             <LinearLayout
@@ -130,20 +122,12 @@
                                     android:layout_gravity="start"
                                     android:layout_marginRight="@dimen/SmallerDp"
                                     android:layout_weight="1"
-                                    android:background="@drawable/spinner_bg"
+                                    android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
                                     android:textColor="@color/textColor"
                                     android:textStyle="bold" />
 
-                                <!-- <EditText
-                                     android:layout_width="match_parent"
-                                     android:layout_height="wrap_content"
-                                     android:id="@+id/et_month_year"
-                                     android:focusable="false"
-                                     android:maxLines="1"
-                                     android:padding="@dimen/padding_ten"
-                                     android:background="@drawable/rect_blue_box"/>-->
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/inputLayoutet_month_year"
@@ -151,7 +135,7 @@
                                     android:layout_height="wrap_content"
                                     >
                                     <EditText
-                                        style="@style/editText"
+                                        style="@style/editText_1"
                                         android:id="@+id/et_month_year"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -159,7 +143,7 @@
                                         android:maxLines="1"
                                         android:focusable="false"
                                         app:errorTextAppearance="@style/errorText"
-tools:ignore="MissingPrefix"
+                                        tools:ignore="MissingPrefix"
                                         android:hint=""/>
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,23 +156,18 @@ tools:ignore="MissingPrefix"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/ExtrabiggestDp"
                             android:layout_marginTop="@dimen/GiantDp">
 
                             <TextView
                                 android:id="@+id/lblDepartment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginBottom="@dimen/SmallerDp"
                                 android:layout_marginLeft="@dimen/SmallerDp"
                                 android:text=""
                                 android:textAllCaps="true"
                                 android:textColor="@color/textColor"
-                                android:textSize="@dimen/SmallerTextSize" />
+                                android:textSize="@dimen/SmallerTextSize"
+                                android:layout_marginStart="@dimen/SmallerDp" />
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/inputLayoutDepartment"
@@ -196,7 +175,7 @@ tools:ignore="MissingPrefix"
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputDepartment"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -212,18 +191,12 @@ tools:ignore="MissingPrefix"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/ExtrabiggestDp"
                             android:layout_marginTop="@dimen/GiantDp">
 
                             <TextView
                                 android:id="@+id/lblExperience"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginBottom="@dimen/SmallerDp"
                                 android:layout_marginLeft="@dimen/SmallerDp"
                                 android:text=""
                                 android:textAllCaps="true"
@@ -236,7 +209,7 @@ tools:ignore="MissingPrefix"
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputExperience"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"
@@ -253,18 +226,12 @@ tools:ignore="MissingPrefix"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/ExtrabiggestDp"
                             android:layout_marginTop="@dimen/GiantDp">
 
                             <TextView
                                 android:id="@+id/lblTraining"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginBottom="@dimen/SmallerDp"
                                 android:layout_marginLeft="@dimen/SmallerDp"
                                 android:text=""
                                 android:textAllCaps="true"
@@ -277,7 +244,7 @@ tools:ignore="MissingPrefix"
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputTraining"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"
@@ -294,18 +261,12 @@ tools:ignore="MissingPrefix"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/ExtrabiggestDp"
                             android:layout_marginTop="@dimen/GiantDp">
 
                             <TextView
                                 android:id="@+id/lblFeedback"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginBottom="@dimen/SmallerDp"
                                 android:layout_marginLeft="@dimen/SmallerDp"
                                 android:text=""
                                 android:textAllCaps="true"
@@ -318,7 +279,7 @@ tools:ignore="MissingPrefix"
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputFeedback"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"
@@ -331,43 +292,11 @@ tools:ignore="MissingPrefix"
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
-                        <!-- <LinearLayout
-                             android:visibility="gone"
-                             android:id="@+id/ExperienceContainer"
-                             android:orientation="vertical"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:layout_alignParentLeft="true"
-                             android:layout_alignParentStart="true"
-                             android:layout_marginBottom="@dimen/ExtrabiggestDp"
-                             android:layout_marginTop="@dimen/GiantDp">
-
-                             <TextView
-                                 android:id="@+id/lblExperience"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:layout_alignParentLeft="true"
-                                 android:layout_alignParentStart="true"
-                                 android:layout_marginBottom="@dimen/SmallerDp"
-                                 android:layout_marginLeft="@dimen/SmallerDp"
-                                 android:text=""
-                                 android:textAllCaps="true"
-                                 android:textColor="@color/textColor"
-                                 android:textSize="@dimen/SmallerTextSize" />
-
-                             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_margin="@dimen/small"
-                                 android:layout_weight="7"
-                                 android:id="@+id/inputContainer"
-                                 android:orientation="vertical" >
-                             </LinearLayout>
-                         </LinearLayout>-->
                         <LinearLayout
                             android:id="@+id/buttonContainer"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/GiantDp"
                             android:layout_height="wrap_content">
                             <LinearLayout
                                 android:orientation="horizontal"
@@ -392,9 +321,6 @@ tools:ignore="MissingPrefix"
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
-
-        </LinearLayout>
-
 
     </ScrollView>
 </RelativeLayout>

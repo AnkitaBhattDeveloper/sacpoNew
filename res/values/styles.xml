@@ -20,11 +20,14 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="editText" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@drawable/input_boder_profile</item>
+    <style name="editText_1" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/input_boder_profile_1</item>
         <item name="android:textColor">@color/colorblack</item>
     </style>
-
+    <style name="editText_2" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/input_boder_profile_2</item>
+        <item name="android:textColor">@color/colorblack</item>
+    </style>
     <style name="searchBar" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/search_bar</item>
         <item name="android:textColor">@color/colorblack</item>

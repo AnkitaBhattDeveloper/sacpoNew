@@ -47,7 +47,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MAnnouncement extends BaseAPCPrivate {
     private String ActivityId="333";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private String generator,student_id,student_name;
     private RecyclerView recyclerViewQ;
@@ -83,7 +83,7 @@ public class MAnnouncement extends BaseAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -144,6 +144,7 @@ public class MAnnouncement extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVAnnounce);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -165,6 +166,13 @@ public class MAnnouncement extends BaseAPCPrivate {
             Label =Label+" \n\n"+student_name;
         }
         lblView.setText(Label);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

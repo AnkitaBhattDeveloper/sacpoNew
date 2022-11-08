@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeStudent.feedback.SAddFeedbackA"
+    tools:context=".xCubeStudent.feedback.SAddFeedbackA"
     tools:showIn="@layout/c_add_feedback">
 
 
@@ -116,7 +116,7 @@
                                     android:layout_gravity="start"
                                     android:layout_marginRight="@dimen/SmallerDp"
                                     android:layout_weight="1"
-                                    android:background="@drawable/spinner_bg"
+                                    android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
                                     android:textColor="@color/textColor"
@@ -151,7 +151,7 @@
                                 android:layout_height="match_parent"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:layout_gravity="top"
                                     android:gravity="top"
                                     android:id="@+id/inputDepartment"
@@ -224,7 +224,7 @@
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputExperience"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"
@@ -260,7 +260,7 @@
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputTraining"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"
@@ -297,7 +297,7 @@
                                 android:layout_height="wrap_content"
                                 >
                                 <EditText
-                                    style="@style/editText"
+                                    style="@style/editText_1"
                                     android:id="@+id/inputFeedback"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/edit_text_height_120"

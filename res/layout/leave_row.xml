@@ -13,7 +13,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:padding="@dimen/SmallerDp"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center"
@@ -29,7 +29,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center"
         android:gravity="center_horizontal"
@@ -43,7 +43,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center"
         android:gravity="center_horizontal"
@@ -58,7 +58,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:text=""/>
     <TextView
@@ -71,7 +71,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:text=""/>
     <TextView
@@ -84,7 +84,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:text=""/>
     <TextView
@@ -97,7 +97,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:text=""/>
     <TextView
@@ -110,7 +110,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:text=""/>
 
@@ -123,7 +123,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLMotivation"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
     >
         <TextView
             android:visibility="gone"
@@ -161,7 +161,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLSComments"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
         <TextView
             android:id="@+id/lblSComments"
@@ -173,7 +173,7 @@
             android:layout_margin="1dp"
             android:minHeight="@dimen/btnHeightSmall"
             android:ellipsize="end"
-            android:background="@drawable/backcell"
+            android:background="@drawable/backcell_1"
             android:maxLines="1"
             android:text=""/>
         <Button
@@ -201,7 +201,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLUploads"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
         <TextView
             android:visibility="gone"
@@ -239,7 +239,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLEdit"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
         <TextView
             android:visibility="gone"
@@ -277,7 +277,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
         android:id="@+id/linearLRemove"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         >
         <TextView
             android:visibility="gone"

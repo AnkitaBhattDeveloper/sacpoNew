@@ -104,7 +104,7 @@
                                     android:layout_height="wrap_content">
                                     <androidx.appcompat.widget.AppCompatSpinner
                                         android:id="@+id/spinner_bank_name"
-                                        android:background="@drawable/spinner_bg"
+                                        android:background="@drawable/spinner_bg_1"
                                         android:spinnerMode="dropdown"
                                         android:textColor="@color/textColor"
                                         android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                                         android:layout_width="match_parent"
                                         android:spinnerMode="dropdown"
                                         android:textColor="@color/textColor"
-                                        android:background="@drawable/spinner_bg"
+                                        android:background="@drawable/spinner_bg_1"
                                         android:layout_height="wrap_content">
 
                                     </androidx.appcompat.widget.AppCompatSpinner>
@@ -303,7 +303,7 @@
                                     android:layout_height="wrap_content">
                                     <androidx.appcompat.widget.AppCompatSpinner
                                         android:id="@+id/spinner_account_type"
-                                        android:background="@drawable/spinner_bg"
+                                        android:background="@drawable/spinner_bg_1"
                                         android:spinnerMode="dropdown"
                                         android:textColor="@color/textColor"
                                         android:layout_width="match_parent"

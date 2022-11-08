@@ -3,6 +3,7 @@ package za.co.sacpo.grant.xCubeStudent.claims;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -44,7 +45,7 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SSubmitClaim extends BaseAPCPrivate {
     private String ActivityId = "S199";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public ImageView imgGraph;
     private String KEY_ID = "stipend_id";
     TextView txtFile;
@@ -137,7 +138,7 @@ public class SSubmitClaim extends BaseAPCPrivate {
         utilSessionObj = new OlumsUtilitySession(baseApcContext);
         Boolean isUpdate = utilSessionObj.getIsUpdateRequired();
 
-        if (isUpdate == true) {
+        if (isUpdate) {
             Intent intent = new Intent(SSubmitClaim.this, AppUpdatedA.class);
             startActivity(intent);
             finish();
@@ -163,6 +164,7 @@ public class SSubmitClaim extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_S199", R.string.h_S199);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
@@ -216,6 +218,14 @@ public class SSubmitClaim extends BaseAPCPrivate {
         lblView = (TextView) findViewById(R.id.lblInitialName);
         lblView.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitClaim.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_back.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+        }
+
+
     }
 
     @Override
@@ -234,6 +244,7 @@ public class SSubmitClaim extends BaseAPCPrivate {
 
             mContentView = findViewById(R.id.content_container);
             mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
             imgGraph = (ImageView) findViewById(R.id.imgGraph);
             lblBankDetails = (TextView) findViewById(R.id.lblBankDetails);
             lblBankName = (TextView) findViewById(R.id.lblBankName);

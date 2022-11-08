@@ -88,7 +88,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     private final String KEY_EXT = "extension";
     private String extension="",extensionOne="";
     public EditText mSubjectView,mMessageView,inputtickettypeSubject;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutSubject,inputLayoutMessage;
     public Button mSendMessageButton;
     private TextView lblView,ttSubjectView,ttMessageView,txtFilePath;
@@ -382,6 +382,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         mSubjectView = findViewById(R.id.inputSubject);
         mMessageView = findViewById(R.id.inputMessage);
         inputSpinnerTitle = findViewById(R.id.inputSpinnerTitle);
@@ -398,11 +399,6 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         inputLayoutSubject = findViewById(R.id.inputLayoutSubject);
         inputLayoutMessage = findViewById(R.id.inputLayoutMessage);
 
-     //   ttSubjectView = (TextView)findViewById(R.id.ttSubject);
-      //  ttSubjectView.setText(Html.fromHtml(getString(R.string.question)));
-
-     //   ttMessageView = (TextView)findViewById(R.id.ttMessage);
-       // ttMessageView.setText(Html.fromHtml(getString(R.string.question)));
         btnSendMessagewithImage = findViewById(R.id.btnSendMessagewithImage);
 
         mSendMessageButton= findViewById(R.id.btnSendMessage);
@@ -419,33 +415,50 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     @Override
     protected void initializeLabels(){
         printLogs(LogTag,"initializeLabels","init");
-         /*Label = getLabelFromDb("l_110_subject",R.string.l_110_subject);
-        lblView = (TextView)findViewById(R.id.lblSubject);
-        lblView.setText(Label);*/
-       /* Label = getLabelFromDb("l_110_message",R.string.l_110_message);
-        lblView = (TextView)findViewById(R.id.lblMessage);
-        lblView.setText(Label);*/
 
         String Label = getLabelFromDb("b_110_send_message",R.string.b_110_send_message);
         mSendMessageButton.setText(Label);
-
-       /* Label = getLabelFromDb("lbl_S105_title", R.string.lbl_S105_title);
-        lblView = (TextView) findViewById(R.id.lblTitle);
-        lblView.setText(Label);*/
 
         Label = getLabelFromDb("b_703_send_message",R.string.b_703_send_message);
         btnSendMessagewithImage.setText(Label);
 
         Label = getLabelFromDb("h_110",R.string.h_110);
         lblView = findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_133_l_choose_file",R.string.b_133_l_choose_file);
         lblView = findViewById(R.id.btnChoose);
         lblView.setText(Label);
 
+        Label = getLabelFromDb("l_110_ticket_type",R.string.l_110_ticket_type);
+        lblView = findViewById(R.id.lblselecttickettype);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("l_110_fileins",R.string.l_110_fileins);
+        lblView = findViewById(R.id.txtfileins);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
          Label = getLabelFromDb("lbl_M345_nofileChosen",R.string.lbl_M345_nofileChosen);
+        txtFilePath.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtFilePath.setText(Label);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mSendMessageButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnSendMessagewithImage.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnChoose.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnersubject.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            mMessageView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
+
+
+        }
+
+
+
     }
     @Override
     protected void initializeInputs(){
@@ -500,20 +513,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
                 validateForm();
             }
         });
-     /*   ttSubjectView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String sToolTip=getLabelFromDb("tt_110_subject",R.string.tt_110_subject);
-                showTooltip(ttSubjectView,sToolTip,4);
-            }
-        });*/
-     /*   ttMessageView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String sToolTip=getLabelFromDb("tt_110_Message",R.string.tt_110_Message);
-                showTooltip(ttMessageView,sToolTip,4);
-            }
-        });*/
+
         uploadImage_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -566,41 +566,6 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
             return false;}
 
         return true;}
-    private void showBottomSheetDialog() {
-        printLogs(LogTag, "bottomSheetDialog", "init");
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.row_bottom_sheet_dialog);
-
-        LinearLayout selectpdf = bottomSheetDialog.findViewById(R.id.selectpdf);
-        LinearLayout selectimage = bottomSheetDialog.findViewById(R.id.selectimage);
-        assert selectimage != null;
-        selectimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageChooser();
-                bottomSheetDialog.cancel();
-            }
-        });
-        assert selectpdf != null;
-        selectpdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // check condition
-                if (ActivityCompat.checkSelfPermission(SContactSupportPrivateA.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(SContactSupportPrivateA.this,
-                            new String[] {Manifest.permission.READ_EXTERNAL_STORAGE },1);
-                    bottomSheetDialog.cancel();
-                }
-                else {
-                    selectPDF();
-                    bottomSheetDialog.cancel();
-                }
-            }
-        });
-        bottomSheetDialog.show();
-        printLogs(LogTag, "bottomSheetDialog", "exit");
-    }
 
     private void getFileChooserIntent() {
         String[] mimeTypes = {"image/*", "application/pdf"};

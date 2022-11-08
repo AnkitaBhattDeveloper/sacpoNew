@@ -96,7 +96,7 @@
                         android:layout_gravity="start"
                         android:layout_marginRight="@dimen/SmallerDp"
                         android:layout_weight="1"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_bg_1"
                         android:spinnerMode="dropdown"
                         android:textAlignment="textStart"
                         android:textColor="@color/textColor"
@@ -133,7 +133,7 @@
 
                         <EditText
                             android:id="@+id/inputMStudentID"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -174,7 +174,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMStuDate"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -213,7 +213,7 @@ tools:ignore="MissingPrefix" />
                         android:layout_height="wrap_content"
                         >
                         <EditText
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:id="@+id/inputLeaveReasons"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -256,7 +256,7 @@ tools:ignore="MissingPrefix"
                         android:layout_height="wrap_content">
                         <EditText
                             android:id="@+id/inputMStuApprove"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""

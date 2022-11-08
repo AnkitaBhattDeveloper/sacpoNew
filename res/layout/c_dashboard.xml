@@ -66,6 +66,7 @@
                                     android:textStyle="bold" />
                             </LinearLayout>
                             <View
+                                android:id="@+id/heading"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="@color/info_front" />
@@ -235,7 +236,7 @@
                                         style="?android:textAppearanceSmall"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="@drawable/theme_view_button_small"
+                                        android:background="@drawable/theme_view_button_small_1"
                                         android:minWidth="@dimen/btnWidthNewSmall"
                                         android:minHeight="@dimen/btnHeightNewSmall"
                                         android:text=""
@@ -339,7 +340,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical|end"
-                                        android:background="@drawable/theme_view_button_small"
+                                        android:background="@drawable/theme_view_button_small_1"
                                         android:minWidth="@dimen/btnWidthNewSmall"
                                         android:minHeight="@dimen/btnHeightNewSmall"
                                         android:text=""
@@ -445,7 +446,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical|end"
-                                        android:background="@drawable/theme_view_button_small"
+                                        android:background="@drawable/theme_view_button_small_1"
                                         android:minHeight="@dimen/btnHeightNewSmall"
                                         android:minWidth="@dimen/btnWidthNewSmall"
                                         android:textColor="@color/colorPrimary"
@@ -491,11 +492,11 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
                         <View
+                            android:id="@+id/heading1"
                             android:layout_marginLeft="@dimen/SmallerDp"
                             android:layout_marginRight="@dimen/SmallerDp"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/info_front" />
+                            android:layout_height="1dp" />
                         <LinearLayout
                             android:id="@+id/c_head_process_1_1"
                             android:layout_width="match_parent"
@@ -695,11 +696,13 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
                         <View
+                            android:id="@+id/heading"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginLeft="@dimen/SmallerDp"
                             android:layout_marginRight="@dimen/SmallerDp"
-                            android:background="@color/divider_horizontal_dark" />
+                            android:background="@color/divider_horizontal_dark"
+                            tools:ignore="DuplicateIds" />
                         <LinearLayout
                             android:id="@+id/c_head_process_2_1"
                             android:layout_width="match_parent"

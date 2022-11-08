@@ -48,7 +48,7 @@ public class MAnnouncementDetailsA extends BaseAPCPrivate {
     /*TODO:THIS ACTIVITY IS PENDING..!!!*/
     private String ActivityId="300";
     public String KEY_ID = "id";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView lblView;
     private TextView lblTitle,lblDate,lblData;
     private LinearLayout lblHeadView,lblBodyView,lblFooterView;
@@ -140,6 +140,7 @@ public class MAnnouncementDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         lblTitle= (TextView) findViewById(R.id.lblTitle);
         lblDate= (TextView) findViewById(R.id.lblDate);
         lblCardView = (CardView) findViewById(R.id.cardView);
@@ -163,7 +164,16 @@ public class MAnnouncementDetailsA extends BaseAPCPrivate {
         String Label = getLabelFromDb("h_334",R.string.h_334);
       //  Label = Label+"/n/n"+student_name;
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            lblTitle.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            lblDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        }
 
     }
     @Override

@@ -88,7 +88,7 @@
 
                         <EditText
                             android:id="@+id/inputFirstName"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -130,7 +130,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputLastName"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -174,7 +174,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMobile"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"

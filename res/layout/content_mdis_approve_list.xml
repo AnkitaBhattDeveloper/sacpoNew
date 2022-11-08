@@ -82,7 +82,7 @@
 
                         <EditText
                             android:id="@+id/inputMStudentID"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -123,7 +123,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMStuDate"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -163,7 +163,7 @@ tools:ignore="MissingPrefix" />
                         android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/inputMStuDisApprove"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Disapprove"

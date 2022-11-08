@@ -13,7 +13,7 @@
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"
         android:padding="@dimen/SmallerDp"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
@@ -28,7 +28,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -49,7 +49,7 @@
                 android:padding="@dimen/SmallerDp"
                 android:text=""
                 android:ellipsize="end"
-                android:background="@drawable/backcell"
+                android:background="@drawable/backcell_1"
                 android:maxLines="1"
                 android:textAlignment="center" android:gravity="center_horizontal"
                 />
@@ -60,7 +60,7 @@
                 android:layout_gravity="start"
                 android:layout_marginRight="@dimen/SmallerDp"
                 android:layout_weight="1"
-                android:background="@drawable/spinner_bg"
+                android:background="@drawable/spinner_bg_1"
                 android:spinnerMode="dropdown"
                 android:textAlignment="textStart"
                 android:textColor="@color/textColor"
@@ -96,7 +96,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -132,7 +132,7 @@
             android:padding="@dimen/SmallerDp"
             android:text=""
             android:ellipsize="end"
-            android:background="@drawable/backcell"
+            android:background="@drawable/backcell_1"
             android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -146,7 +146,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -159,7 +159,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />
@@ -172,7 +172,7 @@
         android:padding="@dimen/SmallerDp"
         android:text=""
         android:ellipsize="end"
-        android:background="@drawable/backcell"
+        android:background="@drawable/backcell_1"
         android:maxLines="1"
         android:textAlignment="center" android:gravity="center_horizontal"
         />

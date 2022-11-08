@@ -84,7 +84,7 @@ public class SEditProfileA extends BaseFormAPCPrivate {
     final ArrayList<ListarClientes> datalist = new ArrayList<>();
     String rb_genderValue,rb_disableValue,spin_race,spin_enroll,spin_title,spin_day,spin_month,spin_year,spin_disability;
     public EditText inputFirstName, inputLastName, inputMobile, inputEmail, inputLearnerNo, inputLearnerId, inputNameOfKin, inputContactOfKin, inputInternUTO, inputInternCategoryQualification, inputTaxRefNo;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutMobile, inputLayoutEmail, inputLayoutLearnerNo, inputLayoutLearnerId, inputLayoutNameOfKin, inputLayoutContactOfKin, inputLayoutInternUTO, inputLayoutInternCategoryQualification, inputLayoutTaxRefNo;
     public Button btnUpdate;
     private Spinner inputSpinnerTitle, inputSpinnerRace, SpinnerDay, SpinnerMonth, SpinnerYear, SpinnerDisabilityType, Spin_EnrollmentYear,spinner_InternCategoryQualification;
@@ -304,6 +304,7 @@ public class SEditProfileA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         btnUpdate = findViewById(R.id.btnUpdate);
 
         RGPhysicalDisAbility = findViewById(R.id.RGPhysicalDisAbility);
@@ -331,71 +332,89 @@ public class SEditProfileA extends BaseFormAPCPrivate {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("l_S105_profile_name", R.string.l_S105_profile_name);
         lblView = (TextView) findViewById(R.id.lblFirstName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_S105_edit_profile_mobile", R.string.i_S105_edit_profile_mobile);
         lblView = (TextView) findViewById(R.id.lblMobile);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_sur_name", R.string.lbl_S105_sur_name);
         lblView = (TextView) findViewById(R.id.lblLastName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_email", R.string.lbl_S105_email);
         lblView = (TextView) findViewById(R.id.lblEmail);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_title", R.string.lbl_S105_title);
         lblView = (TextView) findViewById(R.id.lblTitle);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_learner_no", R.string.lbl_S105_learner_no);
         lblView = (TextView) findViewById(R.id.lblLearnerNo);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_learner_id", R.string.lbl_S105_learner_id);
         lblView = (TextView) findViewById(R.id.lblLearnerId);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_race", R.string.lbl_S105_race);
         lblView = (TextView) findViewById(R.id.lblRace);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_DOB", R.string.lbl_S105_DOB);
         lblView = (TextView) findViewById(R.id.lblDob);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_PhysicalDis", R.string.lbl_S105_PhysicalDis);
         lblView = (TextView) findViewById(R.id.lblPhysicalDis);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_disability_type", R.string.lbl_S105_disability_type);
         lblView = (TextView) findViewById(R.id.lblDisabilityType);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_enrollment_year", R.string.lbl_S105_enrollment_year);
         lblView = (TextView) findViewById(R.id.lblYearOfEnrollment);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_name_of_kin", R.string.lbl_S105_name_of_kin);
         lblView = (TextView) findViewById(R.id.lblNameOfKin);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_contact_of_kin", R.string.lbl_S105_contact_of_kin);
         lblView = (TextView) findViewById(R.id.lblContactOfKin);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_intern_UTO", R.string.lbl_S105_intern_UTO);
         lblView = (TextView) findViewById(R.id.lblInternUTO);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_intern_category_Q", R.string.lbl_S105_intern_category_Q);
         lblView = (TextView) findViewById(R.id.lblInternCategoryQualification);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_Tax_ref_no", R.string.lbl_S105_Tax_ref_no);
         lblView = (TextView) findViewById(R.id.lblTaxRefNo);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_gender", R.string.lbl_S105_gender);
         lblView = (TextView) findViewById(R.id.lblGender);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
@@ -404,7 +423,35 @@ public class SEditProfileA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_505", R.string.h_505);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnUpdate.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputMobile.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputFirstName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLastName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputEmail.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLearnerNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLearnerId.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputNameOfKin.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputContactOfKin.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputInternUTO.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            ll_DisabilityType.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerRace.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            SpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            SpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            SpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            SpinnerDisabilityType.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            Spin_EnrollmentYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            spinner_InternCategoryQualification.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
+
+        }
     }
 
     @Override

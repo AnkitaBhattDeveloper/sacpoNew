@@ -103,7 +103,7 @@
 
                         <EditText
                             android:id="@+id/inputMAtt"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -144,7 +144,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMStuID"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -185,7 +185,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMRemark"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""

@@ -8,6 +8,8 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +40,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class ForgotPassA extends BaseFormAPCPublic {
     private final String ActivityId="A102";
     public EditText mEmailView;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutEmail;
     public Button mForgotPassButton;
 
@@ -103,6 +105,7 @@ public class ForgotPassA extends BaseFormAPCPublic {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.inputLayoutEmail);
         mEmailView = (EditText) findViewById(R.id.inputEmail);
 
@@ -114,19 +117,30 @@ public class ForgotPassA extends BaseFormAPCPublic {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_A102_email",R.string.l_A102_email);
         TextView lblView = (TextView) findViewById(R.id.lblEmail);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("i_A102_forgot_password",R.string.i_A102_forgot_password);
         lblView = (TextView)findViewById(R.id.iForgotPassword);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_A102",R.string.h_A102);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_A102_reset_password",R.string.b_A102_reset_password);
         mForgotPassButton.setText(Label);
-        printLogs(LogTag,"initializeLabels","exit");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mForgotPassButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            mEmailView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+
+            printLogs(LogTag,"initializeLabels","exit");
     }
     @Override
     protected void initializeInputs(){

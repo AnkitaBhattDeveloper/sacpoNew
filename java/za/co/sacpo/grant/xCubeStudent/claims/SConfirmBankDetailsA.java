@@ -46,7 +46,7 @@ import za.co.sacpo.grant.xCubeStudent.bank.SBankDA;
 public class SConfirmBankDetailsA extends BaseAPCPrivate {
 
     private String ActivityId = "S232";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     SConfirmBankDetailsA thisClass;
     private TextView lblView, lblBankDetails, lblBankName, txtBankName, lblSurname, txtSurname,
             lblAccountNumber, txtAccNumb, lblBranchCode, txtBranchCode,lblInitialName,txtInitialName;
@@ -133,6 +133,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         lblBankDetails = (TextView) findViewById(R.id.lblBankDetails);
         lblBankName = (TextView) findViewById(R.id.lblBankName);
@@ -229,6 +230,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_S232", R.string.h_S232);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S232_lblBankName", R.string.lbl_S232_lblBankName);
@@ -259,6 +261,14 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
         Label = getLabelFromDb("lbl_S232_btn_back", R.string.lbl_S232_btn_back);
         lblView = (Button) findViewById(R.id.btn_back);
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmitClaim.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnUpdateBankDetails.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_back.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+        }
 
 
 

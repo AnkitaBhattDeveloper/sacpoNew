@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/c_StudentAttendance"
+    android:id="@+id/c_m_dashboard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@drawable/all_back_1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeMentor.MDashboardDA"
+    tools:context=".xCubeMentor.MDashboardDA"
     tools:showIn="@layout/c_m_list_dashboard">
 
     <ScrollView
@@ -18,13 +18,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/SmallerDp"
                 android:background="@drawable/myaccount_border"
                 android:padding="@dimen/SmallerDp">
@@ -125,9 +122,6 @@
                         />-->
                 </LinearLayout>
             </RelativeLayout>
-
-        </LinearLayout>
-
 
     </ScrollView>
   </RelativeLayout>

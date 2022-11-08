@@ -55,12 +55,14 @@
                         android:textSize="@dimen/BigTextSize"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:id="@+id/heading"
                         android:layout_marginLeft="@dimen/ExtraGiantDp"
                         android:layout_marginRight="@dimen/ExtraGiantDp"
-                        android:background="@drawable/heading_1" />
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
 
 
                     <LinearLayout
@@ -91,7 +93,7 @@
                             android:layout_gravity="start"
                             android:layout_weight="1"
                             android:entries="@array/title"
-                            android:background="@drawable/spinner_bg"
+                            android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
                             android:textColor="@color/textColor"
@@ -129,14 +131,14 @@
                             <EditText
                                 android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                 android:id="@+id/inputFirstName"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint=""
                                 android:inputType="textAutoCorrect"
                                 android:maxLines="1"
                                 app:errorTextAppearance="@style/errorText"
-tools:ignore="MissingPrefix" />
+                                tools:ignore="MissingPrefix" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -167,7 +169,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputLastName"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint=""
@@ -206,7 +208,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputMobile"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -247,7 +249,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputEmail"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -287,7 +289,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputLearnerNo"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -327,7 +329,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputLearnerId"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -369,7 +371,7 @@ tools:ignore="MissingPrefix" />
                             android:layout_gravity="start"
                             android:layout_weight="1"
                             android:entries="@array/race"
-                            android:background="@drawable/spinner_bg"
+                            android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
                             android:textColor="@color/textColor"
@@ -418,7 +420,7 @@ tools:ignore="MissingPrefix" />
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                      android:layout_weight="1"
-                                    android:background="@drawable/spinner_bg"
+                                    android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
                                     android:textColor="@color/textColor"
@@ -440,7 +442,7 @@ tools:ignore="MissingPrefix" />
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
                                     android:entries="@array/month_type"
-                                    android:background="@drawable/spinner_bg"
+                                    android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
                                     android:textColor="@color/textColor"
@@ -460,7 +462,7 @@ tools:ignore="MissingPrefix" />
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
-                                    android:background="@drawable/spinner_bg"
+                                    android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
                                     android:textColor="@color/textColor"
@@ -551,7 +553,7 @@ tools:ignore="MissingPrefix" />
                             android:layout_gravity="start"
                             android:layout_weight="1"
                             android:entries="@array/disability_type"
-                            android:background="@drawable/spinner_bg"
+                            android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
                             android:textColor="@color/textColor"
@@ -588,7 +590,7 @@ tools:ignore="MissingPrefix" />
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:layout_weight="1"
-                            android:background="@drawable/spinner_bg"
+                            android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
                             android:textColor="@color/textColor"
@@ -625,7 +627,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputNameOfKin"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -663,7 +665,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputContactOfKin"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -702,7 +704,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputInternUTO"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -738,7 +740,7 @@ tools:ignore="MissingPrefix" />
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:layout_weight="1"
-                            android:background="@drawable/spinner_bg"
+                            android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
                             android:textColor="@color/textColor"
@@ -750,7 +752,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputInternCategoryQualification"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -788,7 +790,7 @@ tools:ignore="MissingPrefix" />
 
                             <EditText
                                 android:id="@+id/inputTaxRefNo"
-                                style="@style/editText"
+                                style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"

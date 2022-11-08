@@ -79,7 +79,7 @@
 
                         <EditText
                             android:id="@+id/inputName"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -120,7 +120,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputEmail"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -161,7 +161,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMobile"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -222,7 +222,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputSubject"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=""
@@ -263,7 +263,7 @@ tools:ignore="MissingPrefix" />
 
                         <EditText
                             android:id="@+id/inputMessage"
-                            style="@style/editText"
+                            style="@style/editText_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:lines="5"
