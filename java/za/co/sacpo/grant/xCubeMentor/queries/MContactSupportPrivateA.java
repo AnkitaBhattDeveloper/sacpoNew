@@ -80,7 +80,7 @@ public class MContactSupportPrivateA extends BaseFormAPCPrivate {
   //  private String KEY_EXT = "extension";
     private String extension;
     public EditText mSubjectView,mMessageView;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutSubject,inputLayoutMessage;
     public Button mSendMessageButton;
     private TextView lblView,ttSubjectView,ttMessageView;
@@ -185,6 +185,7 @@ public class MContactSupportPrivateA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         mSubjectView = (EditText) findViewById(R.id.inputSubject);
         mMessageView = (EditText) findViewById(R.id.inputMessage);
         inputSpinnersubject = findViewById(R.id.inputSpinnersubject);
@@ -192,11 +193,6 @@ public class MContactSupportPrivateA extends BaseFormAPCPrivate {
         inputLayoutSubject = (TextInputLayout) findViewById(R.id.inputLayoutSubject);
         inputLayoutMessage = (TextInputLayout) findViewById(R.id.inputLayoutMessage);
 
-       // ttSubjectView = (TextView)findViewById(R.id.ttSubject);
-      //  ttSubjectView.setText(Html.fromHtml(getString(R.string.question)));
-
-      //  ttMessageView = (TextView)findViewById(R.id.ttMessage);
-      //  ttMessageView.setText(Html.fromHtml(getString(R.string.question)));
         btnSendMessagewithImage = (Button) findViewById(R.id.btnSendMessagewithImage);
 
         mSendMessageButton= (Button) findViewById(R.id.btnSendMessage);
@@ -213,12 +209,6 @@ public class MContactSupportPrivateA extends BaseFormAPCPrivate {
     @Override
     protected void initializeLabels(){
         printLogs(LogTag,"initializeLabels","init");
-         /*Label = getLabelFromDb("l_322_subject",R.string.l_322_subject);
-        lblView = (TextView)findViewById(R.id.lblSubject);
-        lblView.setText(Label);
-        Label = getLabelFromDb("l_322_message",R.string.l_322_message);
-        lblView = (TextView)findViewById(R.id.lblMessage);
-        lblView.setText(Label);*/
 
         String Label = getLabelFromDb("b_322_send_message",R.string.b_322_send_message);
         mSendMessageButton.setText(Label);
@@ -228,8 +218,20 @@ public class MContactSupportPrivateA extends BaseFormAPCPrivate {
         
         Label = getLabelFromDb("h_322",R.string.h_322);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mSendMessageButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnSendMessagewithImage.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            mSubjectView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            mMessageView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnersubject.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");}

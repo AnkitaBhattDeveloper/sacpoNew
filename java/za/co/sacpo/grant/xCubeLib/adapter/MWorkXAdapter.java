@@ -37,6 +37,52 @@ public class MWorkXAdapter extends RecyclerView.Adapter<MWorkXAdapter.WorkXHolde
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
+BaseAPC baseAPC = new BaseAPC() {
+    @Override
+    protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+    }
+
+    @Override
+    protected void initializeViews() {
+
+    }
+
+    @Override
+    protected void initializeListeners() {
+
+    }
+
+    @Override
+    protected void initializeInputs() {
+
+    }
+
+    @Override
+    protected void initializeLabels() {
+
+    }
+
+    @Override
+    protected void setLayoutXml() {
+
+    }
+
+    @Override
+    protected void verifyVersion() {
+
+    }
+
+    @Override
+    protected void fetchVersionData() {
+
+    }
+
+    @Override
+    protected void internetChangeBroadCast() {
+
+    }
+};
 
     public MWorkXAdapter(List<MWorkXObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
@@ -77,7 +123,7 @@ public class MWorkXAdapter extends RecyclerView.Adapter<MWorkXAdapter.WorkXHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lblwEmployerName.setTextColor(res.getColor(R.color.white));
             holder.lblwEmployerName.setTypeface(holder.lblwEmployerName.getTypeface(), Typeface.BOLD);
 
@@ -116,6 +162,8 @@ public class MWorkXAdapter extends RecyclerView.Adapter<MWorkXAdapter.WorkXHolde
         else{
             holder.lblAction.setVisibility(View.GONE);
             holder.btnActionEdit.setVisibility(View.VISIBLE);
+            holder.btnActionEdit.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnActionEdit.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
             holder.lblAction2.setVisibility(View.GONE);
             holder.btnActionRemove.setVisibility(View.VISIBLE);
             if((holder.getAdapterPosition()%2)==0){

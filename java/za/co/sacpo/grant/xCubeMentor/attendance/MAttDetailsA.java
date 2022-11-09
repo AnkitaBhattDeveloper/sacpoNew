@@ -55,7 +55,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class MAttDetailsA extends BaseAPCPrivate  implements OnMapReadyCallback {
     //TODO :: Map Correction
     private String ActivityId="M112";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView;
     TextView txtDay,txtLoginDate,txtLoginTime,txtLogoutDate,txtLogoutTime,txtLearnerRemark,lblLearnerRemark;
@@ -158,6 +158,7 @@ public class MAttDetailsA extends BaseAPCPrivate  implements OnMapReadyCallback 
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         lblLearnerRemark = findViewById(R.id.lblLearnerRemark);
         txtloginLat=(TextView) findViewById(R.id.txtloginLat);
         txtloginLong=(TextView) findViewById(R.id.txtloginLong);
@@ -256,7 +257,12 @@ public class MAttDetailsA extends BaseAPCPrivate  implements OnMapReadyCallback 
 
         Label = getLabelFromDb("h_S112",R.string.h_S112);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
 
     }
     @Override

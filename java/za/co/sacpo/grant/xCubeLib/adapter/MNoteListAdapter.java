@@ -126,13 +126,18 @@ public class MNoteListAdapter extends RecyclerView.Adapter<MNoteListAdapter.Serv
       //  int BColor;
         holder.txtDescription.setText(aObjList.get(holder.getAdapterPosition()).description3);
         holder.txtAddDate.setText(aObjList.get(holder.getAdapterPosition()).add_date4);
+        holder.txtAddDate.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
         holder.txtnote10.setText(aObjList.get(holder.getAdapterPosition()).note_10);
+        holder.txtnote10.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
 
         Labels =this.getLabelFromDb("l_222_btn_edit",R.string.l_222_btn_edit);
         holder.btnEdit.setText(Labels);
+        holder.btnEdit.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_button_action")));
 
         Labels =this.getLabelFromDb("l_222_btn_delete",R.string.l_222_btn_delete);
         holder.btnDelete.setText(Labels);
+        holder.btnDelete.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_button_action")));
 
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override

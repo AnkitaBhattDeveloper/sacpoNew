@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.component.TimeEditText;
 import za.co.sacpo.grant.xCubeLib.dataObj.MCurrentAttObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
@@ -47,6 +48,53 @@ public class MCurrentAttAdapter extends RecyclerView.Adapter<MCurrentAttAdapter.
     private Map<String, String> attendanceStatus = new HashMap<String, String>();
     private Map<String, String> signINStatus = new HashMap<String, String>();
     private Map<String, String> signOutStatus = new HashMap<String, String>();
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public MCurrentAttAdapter(List<MCurrentAttObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MCurrentAttA baseActivity) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
@@ -153,6 +201,8 @@ public class MCurrentAttAdapter extends RecyclerView.Adapter<MCurrentAttAdapter.
             holder.lblDistanceFrmWorkstation.setTextColor(res.getColor(R.color.white));
             holder.lblLearnerComment.setTextColor(res.getColor(R.color.white));
 
+
+
             holder.lblLoginDate.setText(aObjList.get(holder.getAdapterPosition()).aDate3);
             holder.lblDay.setText(aObjList.get(holder.getAdapterPosition()).aDay4);
             holder.lblEditAttendance.setText(aObjList.get(holder.getAdapterPosition()).aDisCord5);
@@ -185,6 +235,8 @@ public class MCurrentAttAdapter extends RecyclerView.Adapter<MCurrentAttAdapter.
             initializeSpinner(holder.attendanceSpinner);
             holder.attendanceSpinner.setTag("attendance_"+aObjList.get(holder.getAdapterPosition()).aId2);
             holder.attendanceSpinner.setVisibility(View.VISIBLE);
+            holder.attendanceSpinner.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("spinner_bg")));
+
             holder.attendanceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view,int position, long id) {

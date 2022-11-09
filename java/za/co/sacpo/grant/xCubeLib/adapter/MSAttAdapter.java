@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.MSAttObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
 import za.co.sacpo.grant.xCubeMentor.attendance.MAttSummaryA;
@@ -36,6 +37,53 @@ public class MSAttAdapter extends RecyclerView.Adapter<MSAttAdapter.ViewHolder> 
     String Labels;
     String temp;
     MAttSummaryA baseActivity;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
+
     public MSAttAdapter(List<MSAttObj.Item> aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MAttSummaryA baseActivity) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
@@ -93,7 +141,8 @@ public class MSAttAdapter extends RecyclerView.Adapter<MSAttAdapter.ViewHolder> 
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head_1);
+//            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lbl_month.setTextColor(res.getColor(R.color.white));
             holder.lbl_month.setTypeface(holder.lbl_month.getTypeface(), Typeface.BOLD);
 

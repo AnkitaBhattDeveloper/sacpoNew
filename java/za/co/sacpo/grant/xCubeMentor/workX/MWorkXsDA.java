@@ -54,7 +54,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MWorkXsDA extends BaseAPCPrivate {
     private String ActivityId="160";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView,mIWorkstationTTText;
     private RecyclerView recyclerViewQ;
     public MWorkXObj rDataObj = new MWorkXObj();
@@ -81,7 +81,7 @@ public class MWorkXsDA extends BaseAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -144,6 +144,7 @@ public class MWorkXsDA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
 
         mIWorkstationTTText = (TextView) findViewById(R.id.lblWorkstationTT);
         btnAddWorkStation = findViewById(R.id.btnAddWorkStation);
@@ -151,10 +152,7 @@ public class MWorkXsDA extends BaseAPCPrivate {
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVWorkstation);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVWorkstation);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
     }
     @Override
@@ -162,17 +160,22 @@ public class MWorkXsDA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_160_workstation", R.string.l_160_Workstation);
         lblView = (TextView) findViewById(R.id.lblWorkstation);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_160",R.string.h_160);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("btn_160_addwork_station",R.string.btn_160_addwork_station);
         lblView = (Button)findViewById(R.id.btnAddWorkStation);
         lblView.setText(Label);
 
-
-    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnAddWorkStation.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+        }
     @Override
     protected void initializeInputs(){
     }

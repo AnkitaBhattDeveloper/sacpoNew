@@ -43,7 +43,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class MChatListA extends MentorBaseDrawerA{
 
     private String ActivityId="431";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     public TextView chat_count;
     private RecyclerView recyclerViewQ;
@@ -66,7 +66,7 @@ public class MChatListA extends MentorBaseDrawerA{
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -128,17 +128,13 @@ public class MChatListA extends MentorBaseDrawerA{
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVChatss);
-
         chat_count = (TextView) findViewById(R.id.chat_count);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVChatss);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
     }
     @Override
@@ -146,7 +142,13 @@ public class MChatListA extends MentorBaseDrawerA{
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_431",R.string.h_431);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

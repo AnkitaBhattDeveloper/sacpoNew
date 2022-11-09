@@ -163,6 +163,7 @@ public class MNoteList extends BaseAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnAddNote.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            btnAddNote.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
         }
 
@@ -266,7 +267,7 @@ public class MNoteList extends BaseAPCPrivate {
                             String cell_no7 = rec.getString("n_id");
                             String note_from8= rec.getString("note_from");
                             String duration9= rec.getString("n_duration");
-                            String note_10= rec.getString("n_category");
+                            String note_10= rec.getString("n_category_name");
                             String grant_id11= rec.getString("grant_id");
                             String user_id12= rec.getString("n_user_id");
                             rDataObj.addItem(rDataObj.createItem(pos, aId2, description3,add_date4

@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".grant.xCubeMentor.attendance.MCurrentAttA">
+tools:context=".xCubeMentor.attendance.MCurrentAttA">
 <include
     layout="@layout/container_c_m_att_out_of_range"
     android:layout_width="match_parent"

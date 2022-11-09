@@ -47,7 +47,9 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MAttSummaryA extends BaseAPCPrivate {
     private String ActivityId = "M405";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading,heading2,heading3,heading4
+                                ,l_heading1,l_heading2,l_heading3,lt_heading1,lt_heading2,lt_heading3
+                                ,g_heading1,g_heading2,g_heading3;
     public TextView lblView,lblAttendance;
     private int selectedStudent;
     private RecyclerView recyclerViewQ;
@@ -156,19 +158,33 @@ public class MAttSummaryA extends BaseAPCPrivate {
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
 
+        heading     = findViewById(R.id.heading);
+        heading2    = findViewById(R.id.heading2);
+        heading3    = findViewById(R.id.heading3);
+        heading4    = findViewById(R.id.heading4);
+        l_heading1  = findViewById(R.id.l_heading1);
+        l_heading2  = findViewById(R.id.l_heading2);
+        l_heading3  = findViewById(R.id.l_heading3);
+        lt_heading1 = findViewById(R.id.lt_heading1);
+        lt_heading2 = findViewById(R.id.lt_heading2);
+        lt_heading3 = findViewById(R.id.lt_heading3);
+        g_heading1  = findViewById(R.id.g_heading1);
+        g_heading2  = findViewById(R.id.g_heading2);
+        g_heading3  = findViewById(R.id.g_heading3);
+
+
         lblAttendance = (TextView) findViewById(R.id.lblAttendance);
 
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVMAttendance);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVMAttendance);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        recyclerViewQ.setNestedScrollingEnabled(false);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
 
         lblAttendance.setText(m_student_name);
+        lblAttendance.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
     }
     @Override
@@ -176,7 +192,24 @@ public class MAttSummaryA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_149",R.string.h_149);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading4.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+        }
     }
     @Override
     protected void initializeInputs() {
@@ -366,18 +399,22 @@ public class MAttSummaryA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_GrantDetails",R.string.h_GrantDetails);
         lblView = (TextView)findViewById(R.id.h_GrantDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_LDetails",R.string.h_LDetails);
         lblView = (TextView)findViewById(R.id.h_LDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_GADetail",R.string.h_GADetail);
         lblView = (TextView)findViewById(R.id.h_GADetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_TotalLeaves",R.string.h_TotalLeaves);
         lblView = (TextView)findViewById(R.id.h_totalLeaves);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         String token = userSessionObj.getToken();

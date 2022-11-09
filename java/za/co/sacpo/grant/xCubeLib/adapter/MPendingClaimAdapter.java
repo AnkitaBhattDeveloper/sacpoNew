@@ -38,7 +38,52 @@ public class MPendingClaimAdapter extends RecyclerView.Adapter<MPendingClaimAdap
     String Labels;
     MPendingClaimsA baseActivity;
     String m_student_name;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
 
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
 
     public MPendingClaimAdapter(List<MPendingClaimObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MPendingClaimsA baseActivity) {
         this.aObjList = aObjList;
@@ -79,7 +124,7 @@ public class MPendingClaimAdapter extends RecyclerView.Adapter<MPendingClaimAdap
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
 
             holder.lblYear.setTextColor(res.getColor(R.color.white));
@@ -120,7 +165,8 @@ public class MPendingClaimAdapter extends RecyclerView.Adapter<MPendingClaimAdap
 
                 Labels =this.getLabelFromDb("l_btn_pending_claim",R.string.l_btn_pending_claim);
                 holder.btnApprovedStipend.setText(Labels);
-                holder.btnApprovedStipend.setTextColor(res.getColor(R.color.row_link));
+                holder.btnApprovedStipend.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnApprovedStipend.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 holder.btnApprovedStipend.setTypeface(holder.btnApprovedStipend.getTypeface(), Typeface.BOLD);
                 holder.btnApprovedStipend.setVisibility(View.VISIBLE);
                 holder.lblApprovedStipend.setVisibility(View.GONE);

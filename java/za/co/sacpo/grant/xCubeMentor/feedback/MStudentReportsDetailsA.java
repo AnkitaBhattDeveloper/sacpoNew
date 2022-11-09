@@ -4,6 +4,7 @@ package za.co.sacpo.grant.xCubeMentor.feedback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,7 +48,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class MStudentReportsDetailsA extends BaseAPCPrivate {
     private String ActivityId = "338";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView,tv_AboutLearnerTraining,tv_Experience,tv_Feedback;
 
@@ -159,6 +160,8 @@ public class MStudentReportsDetailsA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
+
         tv_AboutLearnerTraining = findViewById(R.id.tv_AboutLearnerTraining);
         tv_Experience = findViewById(R.id.tv_Experience);
         tv_Feedback = findViewById(R.id.tv_Feedback);
@@ -237,6 +240,7 @@ public class MStudentReportsDetailsA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_338", R.string.h_338);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_338_lbl_exp", R.string.l_338_lbl_exp);
         lblView = (TextView) findViewById(R.id.lblAboutLearnerExp);
@@ -254,6 +258,11 @@ public class MStudentReportsDetailsA extends BaseAPCPrivate {
         lblReportWriting.setText(Label);
         Label = getLabelFromDb("l_338_comment", R.string.l_338_comment);
         lblComment.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
     }
 
     @Override
@@ -286,8 +295,8 @@ public class MStudentReportsDetailsA extends BaseAPCPrivate {
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
-                        student_id=dataM.getString("s_w_r_student_id");
-                        student_name= dataM.getString("student_name");
+                      //  student_id=dataM.getString("s_w_r_student_id");
+                       // student_name= dataM.getString("student_name");
                         txtReportTitle.setText(dataM.getString("title"));
                         txtWeekendDate.setText(dataM.getString("date"));
                         String feedback = dataM.getString("feedback");
@@ -388,8 +397,7 @@ public class MStudentReportsDetailsA extends BaseAPCPrivate {
             inputUri.putString("student_name", student_name);
             inputUri.putString("generator", generator);
             inputUri.putString("month_year", month_year);
-            inputUri.putString("student_id", student_id);
-            printLogs(LogTag, "onOptionsItemSelected", "firstValue-Stipend"+student_id + "second=2" + generator);
+            printLogs(LogTag, "onOptionsItemSelected", "student_id"+student_id+"-student_name"+student_name + "generator" + generator);
             Intent intent = new Intent(MStudentReportsDetailsA.this, MStudentReports.class);
             intent.putExtras(inputUri);
             printLogs(LogTag, "onOptionsItemSelected", "MStudentReports");

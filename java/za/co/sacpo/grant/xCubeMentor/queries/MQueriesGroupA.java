@@ -2,6 +2,7 @@ package za.co.sacpo.grant.xCubeMentor.queries;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,7 +17,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class MQueriesGroupA extends MentorBaseDrawerA {
     private String ActivityId="402M";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView,myQueries,adminQueries;
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId){
         baseApcContext = cnt;
@@ -34,13 +35,12 @@ public class MQueriesGroupA extends MentorBaseDrawerA {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             fetchVersionData();
             verifyVersion();
@@ -93,6 +93,7 @@ public class MQueriesGroupA extends MentorBaseDrawerA {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         myQueries = (TextView)findViewById(R.id.lblTitle_my);
         adminQueries = (TextView)findViewById(R.id.lblTitle_admin);
         printLogs(LogTag,"initializeViews","exit");
@@ -103,15 +104,23 @@ public class MQueriesGroupA extends MentorBaseDrawerA {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_402",R.string.h_402);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_402_my_queries",R.string.l_402_my_queries);
         myQueries.setText(Label);
+        myQueries.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
         Label = getLabelFromDb("l_402_admin_queries",R.string.l_402_admin_queries);
         adminQueries.setText(Label);
+        adminQueries.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
-    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
+
+        }
     @Override
     protected void initializeInputs(){
     }

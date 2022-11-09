@@ -45,7 +45,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 /*a_m_leave*/
 public class MSLeaveListA extends BaseAPCPrivate {
     private String ActivityId="M410";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private TextView mILeavesTTText,lblMLeavess;
     String student_id,generator,m_student_name;
@@ -87,7 +87,7 @@ public class MSLeaveListA extends BaseAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -151,16 +151,13 @@ public class MSLeaveListA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
-        mILeavesTTText = (TextView) findViewById(R.id.lblLeavesTT);
+        heading = findViewById(R.id.heading);
         lblMLeavess = (TextView) findViewById(R.id.lblMLeavess);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVLeaves);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVLeaves);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
 
         
 
@@ -171,13 +168,19 @@ public class MSLeaveListA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label  = getLabelFromDb("h_M410",R.string.h_M410);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
 
     }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
         lblMLeavess.setText(m_student_name);
+        lblMLeavess.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
     }
     @Override
     protected void initializeListeners() {

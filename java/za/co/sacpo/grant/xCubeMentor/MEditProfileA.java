@@ -2,6 +2,7 @@ package za.co.sacpo.grant.xCubeMentor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
@@ -47,7 +48,7 @@ public class MEditProfileA extends BaseFormAPCPrivate {
     private String KEY_SURNAME="lname";
     private String KEY_PHONE="mobile";
     public EditText inputFirstName,inputLastName,inputMobile;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutFirstName,inputLayoutLastName,inputLayoutMobile;
     public Button btnUpdate;
 
@@ -137,6 +138,7 @@ public class MEditProfileA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
     }
     @Override
@@ -144,13 +146,16 @@ public class MEditProfileA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_M167_profile_name",R.string.l_M167_profile_name);
         lblView = (TextView)findViewById(R.id.lblFirstName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_M167_edit_profile_mobile",R.string.i_M167_edit_profile_mobile);
         lblView = (TextView)findViewById(R.id.lblMobile);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_M167_sur_name",R.string.lbl_M167_sur_name);
         lblView = (TextView)findViewById(R.id.lblLastName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
@@ -159,8 +164,19 @@ public class MEditProfileA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_M167",R.string.h_M167);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnUpdate.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputMobile.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputFirstName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLastName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");

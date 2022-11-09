@@ -63,6 +63,52 @@ public class MAttSummaryAdapter extends RecyclerView.Adapter<MAttSummaryAdapter.
 
     MAttMonthlyA baseActivity;
     private double total;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
 
     public MAttSummaryAdapter(List<MAttSummaryObj.Item> aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MAttMonthlyA baseActivity) {
         this.aObjList = aObjList;
@@ -111,13 +157,10 @@ public class MAttSummaryAdapter extends RecyclerView.Adapter<MAttSummaryAdapter.
 
 
         if (position == 0) {
-            BColor = res.getColor(R.color.row_head_1);
-
-
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.lblTime.setTextColor(res.getColor(R.color.white));
             holder.lblTime.setTypeface(holder.lblTime.getTypeface(), Typeface.BOLD);
-
 
             holder.lblDate.setTextColor(res.getColor(R.color.white));
             holder.lblDate.setTypeface(holder.lblDate.getTypeface(), Typeface.BOLD);
@@ -134,7 +177,6 @@ public class MAttSummaryAdapter extends RecyclerView.Adapter<MAttSummaryAdapter.
             holder.lblCordDifference.setTextColor(res.getColor(R.color.white));
             holder.lblCordDifference.setTypeface(holder.lblCordDifference.getTypeface(), Typeface.BOLD);
 
-
             holder.lblAttendanceStatus.setTextColor(res.getColor(R.color.white));
             holder.lblAttendanceStatus.setTypeface(holder.lblAttendanceStatus.getTypeface(), Typeface.BOLD);
 
@@ -149,7 +191,6 @@ public class MAttSummaryAdapter extends RecyclerView.Adapter<MAttSummaryAdapter.
             } else {
                 BColor = res.getColor(R.color.row_odd);
             }
-
 
             if(aObjList.get(holder.getAdapterPosition()).remark11.equalsIgnoreCase("0")) {
                 holder.lblLComment.setText("-");

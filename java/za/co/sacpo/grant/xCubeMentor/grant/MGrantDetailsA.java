@@ -44,7 +44,7 @@ import za.co.sacpo.grant.xCubeMentor.messages.MChatA;
 
 public class MGrantDetailsA extends BaseAPCPrivate {
     private String ActivityId="230";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     private TextView lblView,txt_b_heading;
 
@@ -143,6 +143,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         txt_b_heading=(TextView) findViewById(R.id.txt_b_heading);
         txtSetaName=(TextView) findViewById(R.id.txtSetaName);
@@ -186,6 +187,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_230",R.string.h_230);
         lblView = (TextView)findViewById(R.id.txt_b_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_230_seta_manager",R.string.lbl_230_seta_manager);
@@ -215,17 +217,13 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         mLEAEmailButton.setText(Label);
 
 
-
         Label = getLabelFromDb("b_230_Call",R.string.b_230_Call);
         mLEACallButton.setText(Label);
-
-
 
 
         Label = getLabelFromDb("lbl_230_grant_email",R.string.lbl_230_grant_email);
         lblView = (TextView)findViewById(R.id.lblGrantAdminEmail);
         lblView.setText(Label);
-
 
 
         Label = getLabelFromDb("lbl_230_grant_cell",R.string.lbl_230_grant_cell);
@@ -241,7 +239,17 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         lblView = (TextView)findViewById(R.id.lblGEndDate);
         lblView.setText(Label);
 
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mLEAEmailButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mLEAEmailButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            mLEAContactButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            mLEACallButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            mLEAContactButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            mLEACallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+        }
+        }
     @Override
     protected void initializeListeners() {
         mLEAContactButton.setOnClickListener(new View.OnClickListener() {
@@ -271,8 +279,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         mLEACallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                grantSessionObj = new OlumsGrantSession(baseApcContext);
-                String cell = grantSessionObj.getGrantMentorCell();
+                String cell = txtGrantAdmin_cellNo.getText().toString().trim();
                 Uri call = Uri.parse("tel:" + cell);
                 Intent surf = new Intent(Intent.ACTION_DIAL, call);
                 startActivity(surf);
@@ -285,8 +292,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setData(Uri.parse("mailto:"));
                 intent.setType("plain/text");
-                grantSessionObj = new OlumsGrantSession(baseApcContext);
-                String email = grantSessionObj.getGrantMentorEmail();
+                String email = txtGrantAdminEmail.getText().toString().trim();
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
                 startActivity(Intent.createChooser(intent, "Send Email"));
             }

@@ -8,21 +8,18 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeMentor.queries.MQueriesCommentsA"
+    tools:context=".xCubeMentor.queries.MQueriesCommentsA"
     tools:showIn="@layout/c_m_ticket_comments">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/SmallerDp"
                 android:background="@drawable/myaccount_border"
                 android:padding="@dimen/SmallerDp">
@@ -74,7 +71,7 @@
                         android:elevation="0dp"
                         android:visibility="visible"
                         app:srcCompat="@drawable/p_logo" />-->
-<include layout="@layout/logo_impl"/>
+<!--<include layout="@layout/logo_impl"/>-->
                     <LinearLayout
                         android:id="@+id/commentsContainer"
                         android:layout_width="match_parent"
@@ -388,7 +385,7 @@ tools:ignore="MissingPrefix"
 
                 </LinearLayout>
             </RelativeLayout>
-        </LinearLayout>
+
 
 
     </ScrollView>

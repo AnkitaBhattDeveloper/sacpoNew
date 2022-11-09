@@ -136,7 +136,7 @@ public class URLHelper {
     public static final String M_EDIT_PRIVATE_REPORT = "/remove-private-report-api";
     public static final String M_REMOVE_WORKSTATION = "/remove-workstation-api";
     public static final String M_REMOVE_COMMENT = "/remove-comment-api";
-    public static final String ADD_TICKETS_COMMENTS = "/add-tickets-comments";
+    public static final String ADD_TICKETS_COMMENTS = "/add-ticket-comments-api";
     public static final String EDIT_WORKSTATION = "/edit-work-station-api";
     public static final String REF_M_199 = "/document-center-m-api";
     public static final String REF_M_411_1 = "/leave-reason-details-api";

@@ -37,6 +37,52 @@ public class ETrainingPlanAdapter  extends RecyclerView.Adapter<ETrainingPlanAda
     private AppCompatActivity activityInCall;
     protected DbHelper dbSetaObj;
     String Labels;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     //Todo: Table Width Problem
     public ETrainingPlanAdapter(List<ETrainingPlanObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall) {
         this.aObjList = aObjList;
@@ -79,7 +125,7 @@ public class ETrainingPlanAdapter  extends RecyclerView.Adapter<ETrainingPlanAda
         holder.hItem = aObjList.get(holder.getAdapterPosition());
         int BColor;
         if (holder.getAdapterPosition() == 0) {
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.lblAction1.setVisibility(View.VISIBLE);
             holder.lblAction1.setTextColor(res.getColor(R.color.white));
@@ -132,7 +178,8 @@ public class ETrainingPlanAdapter  extends RecyclerView.Adapter<ETrainingPlanAda
                     holder.lblAction1.setVisibility(View.GONE);
                     holder.btnAction1.setVisibility(View.VISIBLE);
                     holder.btnAction1.setText("EDIT");
-
+                    holder.btnAction1.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                    holder.btnAction1.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 } else {
                     holder.lblAction1.setVisibility(View.VISIBLE);
                     holder.lblAction1.setText("-");

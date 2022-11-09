@@ -3,6 +3,8 @@ package za.co.sacpo.grant.xCubeMentor.notes;
 import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -42,7 +44,7 @@ public class MDeleteNoteA extends BaseFormAPCPrivate {
     private String KEY_STUDENT_ID = "n_id";
 
     public EditText inputHoliDaysName, inputHoliDaysDate,inputApprove;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     public View mProgressRView, mContentRView;
     public EditText inputMStudentID, inputLeaveReasons, inputMStuDate;
@@ -94,9 +96,9 @@ public class MDeleteNoteA extends BaseFormAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
-        if (isConnected == true) {
+        if (isConnected) {
             syncToken(baseApcContext, activityIn);
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -128,6 +130,7 @@ public class MDeleteNoteA extends BaseFormAPCPrivate {
 
         String   Label = getLabelFromDb("h_227",R.string.h_227);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
        
         Label = getLabelFromDb("l_229_btn_save", R.string.l_229_btn_yes);
@@ -146,8 +149,15 @@ public class MDeleteNoteA extends BaseFormAPCPrivate {
         lblView = (Button) findViewById(R.id.btn_no);
         btn_no.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btn_no.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_yes.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
 
-    }
+        }
+
+
+        }
 
 
     @Override
@@ -156,6 +166,7 @@ public class MDeleteNoteA extends BaseFormAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
 
         lbl_date = (TextView) findViewById(R.id.lbl_date);
 

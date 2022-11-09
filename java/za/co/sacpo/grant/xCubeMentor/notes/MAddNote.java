@@ -7,6 +7,8 @@ import android.database.Cursor;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -54,7 +56,7 @@ public class MAddNote extends BaseFormAPCPrivate {
     private MAddNote thisClass;
     String user_id;
     public EditText inputFirstName,inputLastName,inputMobile,inputNote;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
 
     public Button btnAddNote;
     TextInputLayout inputLayoutNote;
@@ -77,8 +79,6 @@ public class MAddNote extends BaseFormAPCPrivate {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(),this,this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag,"onCreate","init");
-        printLogs(LogTag,"onCreate","init");
-        printLogs(LogTag,"onCreate","init");
         Bundle activeInputUri = getIntent().getExtras();
         user_id = activeInputUri.getString("user_id");
         generator = activeInputUri.getString("generator");
@@ -93,7 +93,7 @@ public class MAddNote extends BaseFormAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -152,10 +152,9 @@ public class MAddNote extends BaseFormAPCPrivate {
     protected void initializeViews() {
         printLogs(LogTag,"initializeViews","init");
         inputMobile = (EditText) findViewById(R.id.inputMobile);
-
-
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         btnAddNote = (Button) findViewById(R.id.btnAddNote);
         inputNote = (EditText) findViewById(R.id.inputNote);
         inputLayoutNote = (TextInputLayout) findViewById(R.id.inputLayoutNote);
@@ -168,9 +167,8 @@ public class MAddNote extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_add_not",R.string.l_add_not);
         lblView = (TextView)findViewById(R.id.lblNote);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-
-
 
         Label = getLabelFromDb("b_553_add_note",R.string.b_553_add_note);
         btnAddNote.setText(Label);
@@ -178,9 +176,17 @@ public class MAddNote extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_553",R.string.h_553);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnAddNote.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            txtStudentName.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            inputNote.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnerCategory.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
 
+        }
     }
     @Override
     protected void initializeInputs(){

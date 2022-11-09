@@ -154,15 +154,14 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.separator7.setText("#");
             holder.separator8.setText("#");
 
-            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-
+            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
 
             Labels=this.getLabelFromDb("t_head_M401_LI",R.string.t_head_M401_LI);
             holder.tvC1R1C1.setText(Labels);
@@ -486,7 +485,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.tvC6R3C2.setTypeface(holder.tvC6R3C2.getTypeface(), Typeface.BOLD);
             holder.tvC7R3C1.setTypeface(holder.tvC7R3C1.getTypeface(), Typeface.BOLD);
             holder.tvC8R3C1.setTypeface(holder.tvC8R3C1.getTypeface(), Typeface.BOLD);
-            BColorD = res.getDrawable(R.drawable.backcell_1);
+
 
 
 
@@ -499,12 +498,10 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                 BColor=res.getColor(R.color.row_even);
                 BColorRedLink=res.getColor(R.color.red_link_back_even);
 
-                //BColorD = res.getDrawable(R.drawable.backcell_data_even);
             }
             else{
                 BColor=res.getColor(R.color.row_odd);
                 BColorRedLink=res.getColor(R.color.red_link_back_odd);
-                //BColorD = res.getDrawable(R.drawable.backcell_data_odd);
             }
             String posNP = String.valueOf(holder.getAdapterPosition());
             //String pos = "00"+holder.getAdapterPosition();
@@ -512,6 +509,8 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             int ProcessDate1=res.getColor(R.color.process_1_color_data);
             int ProcessDate2=res.getColor(R.color.process_2_color_data);
             int ProcessDate3=res.getColor(R.color.process_3_color_data);
+
+
            /* Log.i("color",R.color.process_1_color_data+"---"+pos);
             holder.LLC1.setBackgroundColor(ProcessDate1);
             holder.LLC2.setBackgroundColor(ProcessDate1);
@@ -537,15 +536,14 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.separator7.setText(pos);
             holder.separator8.setText(pos);
 
-            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("row_head")));
-
+            holder.separator1.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator2.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator3.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator4.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator5.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator6.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator7.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
+            holder.separator8.setBackgroundColor(baseActivityContext.getResources().getColor(R.color.colorPrimaryDark));
 
 
             holder.tvC1R3C0.setTextColor(res.getColor(R.color.row_link));

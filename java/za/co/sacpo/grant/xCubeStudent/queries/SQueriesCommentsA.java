@@ -68,7 +68,7 @@ public class SQueriesCommentsA extends BaseFormAPCPrivate {
     private String KEY_TICKET_ID="i_id";
     private String KEY_IMAGE = "uploaded_file";
     private String KEY_EXT = "extension";
-    private String extension;
+    private String extension="";
     public EditText inputComment;
     public View mProgressView, mContentView,mProgressRView,mContentRView,heading;
     public TextInputLayout inputLayoutComment,inputLayoutPassword;
@@ -263,9 +263,6 @@ recyclerViewQ.setNestedScrollingEnabled(false);
         btnUploadContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                container_uploadwithImage.setVisibility(View.VISIBLE);
-                container_upload.setVisibility(View.GONE);
                 ChooseFile();
             }
         });
@@ -296,7 +293,6 @@ recyclerViewQ.setNestedScrollingEnabled(false);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-        rr_showImg.setVisibility(View.VISIBLE);
     }
 
     public String getStringImage(Bitmap bmp){
@@ -310,15 +306,17 @@ recyclerViewQ.setNestedScrollingEnabled(false);
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 get_image01.setImageBitmap(bitmap);
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 String mimeType = getContentResolver().getType(filePath);
                 extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
+                printLogs(LogTag,"onActivityResult","extension "+extension);
+                container_uploadwithImage.setVisibility(View.VISIBLE);
+                rr_showImg.setVisibility(View.VISIBLE);
+                container_upload.setVisibility(View.GONE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -451,7 +449,7 @@ recyclerViewQ.setNestedScrollingEnabled(false);
         String comment = inputComment.getText().toString().trim();
         setCustomError(inputLayoutComment,null,inputComment);
         if (comment.isEmpty() || isValidMessageComment(comment)) {
-            String sMessage = getLabelFromDb("error_try_again",R.string.error_try_again);
+            String sMessage = getLabelFromDb("error_S105_empty",R.string.error_S105_empty);
             setCustomError(inputLayoutComment,sMessage,inputComment);
             return false;
         } else {
@@ -471,10 +469,13 @@ recyclerViewQ.setNestedScrollingEnabled(false);
             jsonBody.put("token", token);
             jsonBody.put(KEY_COMMENT, comment);
             jsonBody.put(KEY_TICKET_ID, t_id);
-            jsonBody.put(KEY_IMAGE,image);
             jsonBody.put(KEY_EXT,extension);
+            jsonBody.put(KEY_IMAGE,image);
+
 
             printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
+            printLogs(LogTag, "FormSubmit", "extension " + extension);
+            printLogs(LogTag, "FormSubmit", "image " + image);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -542,6 +543,7 @@ recyclerViewQ.setNestedScrollingEnabled(false);
             jsonBody.put("token", token);
             jsonBody.put(KEY_COMMENT, comment);
             jsonBody.put(KEY_TICKET_ID, t_id);
+
             printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
         } catch (JSONException e) {
             e.printStackTrace();

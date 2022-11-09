@@ -243,7 +243,6 @@ public class MMonthlyFeedbackA extends BaseAPCPrivate {
                             int aId2 = Integer.parseInt(rec.getString("f_q_id"));
                             String SFQues3 = rec.getString("f_q_question");
                             String SFQ_Id4 = rec.getString("f_q_id");
-
                             String SANS_TYPE5 = rec.getString("set_answer_type");
                             String SANS_ID6 = rec.getString("set_answer_id");
                             String SANS_TYPE_17 = rec.getString("answer_type1");

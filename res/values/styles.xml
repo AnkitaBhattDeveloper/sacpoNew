@@ -6,7 +6,13 @@
         <item name="colorAccent">@color/sacpocolorAccent</item>
         <item name="listPreferredItemHeightSmall">40dp</item>
     </style>
-
+    <!--Portal id - 1 -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="listPreferredItemHeightSmall">40dp</item>
+    </style>-->
     <style name="PopupAnimation" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@animator/popup_in</item>
         <item name="android:windowExitAnimation">@animator/popup_out</item>

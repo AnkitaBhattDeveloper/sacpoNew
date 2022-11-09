@@ -72,7 +72,7 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
     private String KEY_EXT = "extension";
     private String extension;
     public EditText inputComment;
-    public View mProgressView, mContentView,mProgressRView,mContentRView;
+    public View mProgressView, mContentView,mProgressRView,mContentRView,heading;
     public TextInputLayout inputLayoutComment,inputLayoutPassword;
     public Button btnCommitContainer,btnCommitContainerwithImage;
     public ImageButton btnUploadContainer;
@@ -185,14 +185,12 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rvComments);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rvComments);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
         btnCommitContainer = (Button) findViewById(R.id.btnCommitContainer);
         btnCommitContainerwithImage = (Button) findViewById(R.id.btnCommitContainerwithImage);
@@ -207,6 +205,7 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
     protected void initializeLabels(){
         String Label = getLabelFromDb("l_319_comments",R.string.l_319_comments);
         lblView = (TextView)findViewById(R.id.lblComment);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_319_btn_comments",R.string.l_319_btn_comments);
@@ -219,8 +218,17 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_319",R.string.h_319);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnCommitContainerwithImage.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnCommitContainer.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputComment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
@@ -258,8 +266,7 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
         btnUploadContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                container_uploadwithImage.setVisibility(View.VISIBLE);
-                container_upload.setVisibility(View.GONE);
+
                 ChooseFile();
 
             }
@@ -313,7 +320,7 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-        rr_showImg.setVisibility(View.VISIBLE);
+
     }
 
     public String getStringImage(Bitmap bmp){
@@ -327,7 +334,6 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
@@ -336,6 +342,9 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 String mimeType = getContentResolver().getType(filePath);
                 extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
+                container_uploadwithImage.setVisibility(View.VISIBLE);
+                container_upload.setVisibility(View.GONE);
+                rr_showImg.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -450,7 +459,7 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
         String comment = inputComment.getText().toString().trim();
         setCustomError(inputLayoutComment,null,inputComment);
         if (comment.isEmpty() || isValidMessageComment(comment)) {
-            String sMessage = getLabelFromDb("error_try_again",R.string.error_try_again);
+            String sMessage = getLabelFromDb("error_S105_empty",R.string.error_S105_empty);
             setCustomError(inputLayoutComment,sMessage,inputComment);
             return false;
         } else {
@@ -470,8 +479,8 @@ public class MQueriesCommentsA extends BaseFormAPCPrivate {
             jsonBody.put("token", token);
             jsonBody.put(KEY_COMMENT, comment);
             jsonBody.put(KEY_TICKET_ID, t_id);
-            jsonBody.put(KEY_IMAGE,image);
             jsonBody.put(KEY_EXT,extension);
+            jsonBody.put(KEY_IMAGE,image);
             printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
         } catch (JSONException e) {
             e.printStackTrace();

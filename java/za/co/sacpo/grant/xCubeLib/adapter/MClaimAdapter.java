@@ -25,6 +25,7 @@ import java.net.URL;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.dataObj.MClaimObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
@@ -46,6 +47,52 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
     String Labels,clailExit;
     MPastClaimA baseActivity;
     String m_student_name,month_year19,monthField_18;
+BaseAPC baseAPC = new BaseAPC() {
+    @Override
+    protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+    }
+
+    @Override
+    protected void initializeViews() {
+
+    }
+
+    @Override
+    protected void initializeListeners() {
+
+    }
+
+    @Override
+    protected void initializeInputs() {
+
+    }
+
+    @Override
+    protected void initializeLabels() {
+
+    }
+
+    @Override
+    protected void setLayoutXml() {
+
+    }
+
+    @Override
+    protected void verifyVersion() {
+
+    }
+
+    @Override
+    protected void fetchVersionData() {
+
+    }
+
+    @Override
+    protected void internetChangeBroadCast() {
+
+    }
+};
 
     public MClaimAdapter(List<MClaimObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MPastClaimA baseActivity) {
         this.aObjList = aObjList;
@@ -88,7 +135,7 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
             holder.lblClaimYear.setTextColor(res.getColor(R.color.white));
             holder.lblClaimYear.setTypeface(holder.lblClaimYear.getTypeface(), Typeface.BOLD);
 
@@ -101,7 +148,6 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
             holder.lblDownloadSignedform.setTextColor(res.getColor(R.color.white));
             holder.lblDownloadSignedform.setVisibility(View.VISIBLE);
             holder.btnDownSignForm.setVisibility(View.GONE);
-
 
 
             holder.lblClaimMonth.setTextColor(res.getColor(R.color.white));
@@ -132,7 +178,10 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
                 Labels = this.getLabelFromDb("l_205_lbl_download", R.string.l_205_lbl_download);
                 holder.btnDownCF.setText(Labels);
                 holder.btnDownCF.setVisibility(View.VISIBLE);
+                holder.btnDownCF.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnDownCF.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 holder.lblDownCF.setVisibility(View.GONE);
+
 
             }
             if(aObjList.get(holder.getAdapterPosition()).claSDCFLinkStatus13.equals("0")) {
@@ -143,6 +192,8 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
                 Labels = this.getLabelFromDb("l_205_lbl_download", R.string.l_205_lbl_download);
                 holder.btnDownSignForm.setText(Labels);
                 holder.btnDownSignForm.setVisibility(View.VISIBLE);
+                holder.btnDownSignForm.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                holder.btnDownSignForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
                 holder.lblDownloadSignedform.setVisibility(View.GONE);
 
             }
@@ -162,7 +213,7 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
                 String download_url = holder.hItem.claDCFLink10;
                 URL url = null;
                 try {
-                    url = new URL(URLHelper.DOMAIN_URL+""+download_url);
+                    url = new URL(download_url);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -182,7 +233,7 @@ public class MClaimAdapter extends RecyclerView.Adapter<MClaimAdapter.ClaimHolde
                 String download_url = holder.hItem.claSDCFLink12;
                 URL url = null;
                 try {
-                    url = new URL(URLHelper.DOMAIN_URL+""+download_url);
+                    url = new URL(download_url);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

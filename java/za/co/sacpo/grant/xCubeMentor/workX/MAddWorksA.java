@@ -90,7 +90,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.OnConnectionFailedListener {
     private String ActivityId = "314";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     // private String generator;
     private String KEY_LATE = "latitude";
     private String KEY_Long = "longitude";
@@ -220,6 +220,7 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         inputAddDeptName = findViewById(R.id.inputAddDeptName);
         act_physical_address =  findViewById(R.id.act_physical_address);
         inputLayoutAddDeptName = (TextInputLayout) findViewById(R.id.inputLayoutAddDeptName);
@@ -232,13 +233,27 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("lbl_314_add_wx_name", R.string.lbl_314_add_wx_name);
         lblView = (TextView) findViewById(R.id.lblAddDeptName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("h_314", R.string.h_314);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_314_btnDeptAdd", R.string.lbl_314_btnDeptAdd);
         lblView = (TextView) findViewById(R.id.btnDeptAdd);
         btnDeptAdd.setText(Label);
+
+        Label = getLabelFromDb("lbl_164_btn_work_address", R.string.lbl_164_btn_work_address);
+        lblView = findViewById(R.id.lblWorkstationAddress);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnDeptAdd.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputAddDeptName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            act_physical_address.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
     }
 
 
@@ -634,31 +649,6 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
         }
     }
 
-    /*public boolean validateLatitude(EditText inputDeptAddLatitude, TextInputLayout inputLayoutDeptAddLatitude) {
-        String lat = inputDeptAddLatitude.getText().toString().trim();
-        setCustomError(inputLayoutDeptAddLatitude, null, inputDeptAddLatitude);
-        if (lat.isEmpty()) {
-            String sMessage = getLabelFromDb("error_dept_lat", R.string.error_dept_lat);
-            setCustomError(inputLayoutDeptAddLatitude, sMessage, inputDeptAddLatitude);
-            return false;
-        } else {
-            setCustomErrorDisabled(inputLayoutDeptAddLatitude, inputDeptAddLatitude);
-            return true;
-        }
-    }
-
-    public boolean validateLongtitude(EditText inputDeptAddLongitude, TextInputLayout inputLayoutDeptAddLongitude) {
-        String longitude = inputDeptAddLongitude.getText().toString().trim();
-        setCustomError(inputLayoutDeptAddLongitude, null, inputDeptAddLongitude);
-        if (longitude.isEmpty()) {
-            String sMessage = getLabelFromDb("error_dept_long", R.string.error_dept_long);
-            setCustomError(inputLayoutDeptAddLongitude, sMessage, inputDeptAddLongitude);
-            return false;
-        } else {
-            setCustomErrorDisabled(inputLayoutDeptAddLongitude, inputDeptAddLongitude);
-            return true;
-        }
-    }*/
 
     public boolean validateDeptName(String et_err) {
         if (et_err.isEmpty()) {
@@ -671,18 +661,6 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
         }
     }
 
-    public boolean validateDeptCode(EditText inputDeptCode, TextInputLayout inputLayoutwXDeptCode) {
-        String dept_code = inputDeptCode.getText().toString().trim();
-        setCustomError(inputLayoutwXDeptCode, null, inputDeptCode);
-        if (dept_code.isEmpty()) {
-            String sMessage = getLabelFromDb("error_162_ws_code", R.string.error_dept_code);
-            setCustomError(inputLayoutwXDeptCode, sMessage, inputDeptCode);
-            return false;
-        } else {
-           // setCustomErrorDisabled(inputLayoutwXDeptCode, inputDeptCode);
-            return true;
-        }
-    }
 
     private void getLocation() {
         myCurrentLocation = null;
@@ -807,26 +785,6 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
             return false;
         } else return !(lng < -180) && !(lng > 180);
     }
-
-    public boolean isValidate(double lat, double lng) {
-        printLogs(LogTag, "isValidate", "DATA : " + lat + " -- " + lng);
-        if (lat < -90 || lat > 90) {
-            String sTitle = "Error :" + ActivityId + "-106";
-            String sMessage = getLabelFromDb("error_314_106", R.string.error_314_106);
-            String sButtonLabelClose = "Close";
-            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-            return false;
-        } else if (lng < -180 || lng > 180) {
-            String sTitle = "Error :" + ActivityId + "-107";
-            String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-            String sButtonLabelClose = "Close";
-            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-            return false;
-        }
-        return true;
-    }
-
-
 
     public void customRedirector() {
         Intent intent = new Intent(MAddWorksA.this, MDashboardDA.class);

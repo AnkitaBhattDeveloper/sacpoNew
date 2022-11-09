@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.MLeavesObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
 import za.co.sacpo.grant.xCubeMentor.leaves.MLeaveApproval;
@@ -32,6 +33,52 @@ public class MLeavesAdapter extends RecyclerView.Adapter<MLeavesAdapter.LeavesHo
     protected DbHelper dbSetaObj;
     String Labels;
     MSLeaveDetailListA baseActivity;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     public MLeavesAdapter(List<MLeavesObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall, MSLeaveDetailListA baseActivity) {
         this.aObjList = aObjList;
         this.baseActivityContext = baseActivityContext;
@@ -85,7 +132,7 @@ public class MLeavesAdapter extends RecyclerView.Adapter<MLeavesAdapter.LeavesHo
         int BColor;
         int BColorRed = res.getColor(R.color.red_link);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             Labels = this.getLabelFromDb("l_M409_txt_month", R.string.l_M409_txt_month);
             holder.tvMonth3.setText(Labels);

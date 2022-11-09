@@ -6,6 +6,8 @@ import android.content.Intent;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -42,7 +44,7 @@ public class MChangePassword extends BaseFormAPCPrivate {
     private String KEY_OLD_PASS="oldpassword";
     private String KEY_NEW_PASS="newpassword";
     private String KEY_CON_NEW_PASS="con_newpassword";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutOldPass,inputLayoutNewPass,inputLayoutConfirmPass;
     String generator;
     Button btnSubmit;
@@ -133,8 +135,7 @@ public class MChangePassword extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
-
-
+        heading = findViewById(R.id.heading);
         inputOldPass = (EditText) findViewById(R.id.inputOldPass);
         inputNewPass = (EditText) findViewById(R.id.inputNewPass);
         inputConfirmPass = (EditText) findViewById(R.id.inputConfirmPass);
@@ -171,19 +172,32 @@ public class MChangePassword extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("l_178_old_pass",R.string.l_178_old_pass);
         lblView = (TextView)findViewById(R.id.lblOldPass);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_178_new_pass",R.string.l_178_new_pass);
         lblView = (TextView)findViewById(R.id.lblNewPass);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_178_confirm_pass",R.string.l_178_confirm_pass);
         lblView = (TextView)findViewById(R.id.lblConfirmPass);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_178_update_pass",R.string.l_178_update_pass);
         btnSubmit.setText(Label);
         Label = getLabelFromDb("h_178",R.string.h_178);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmit.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputOldPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputNewPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputConfirmPass.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+        }
     public void validateForm() {
         boolean cancel = false;
         printLogs(LogTag,"validateForm","init");

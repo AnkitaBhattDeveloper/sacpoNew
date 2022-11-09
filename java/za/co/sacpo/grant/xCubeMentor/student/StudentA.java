@@ -51,7 +51,7 @@ import za.co.sacpo.grant.xCubeStudent.stipends.SStipendsDA;
 
 public class StudentA extends BaseAPCPrivate {
     private String ActivityId = "145";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView lblView;
     TextView txtStudentName, txtEmail, txtStudentID, txtSetaManagerName, txtGenderName, txtStartDate, txtEndDate, txtMentorName, txtHostEmployer,
             txtGrantAdmin, txtLeadEmployer, txtWorkStation, txtSetaName,lblLearnertName;
@@ -152,6 +152,7 @@ public class StudentA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         // txtStdeName=(TextView) findViewById(R.id.txtStdeName);
         txtStudentID = (TextView) findViewById(R.id.txtStudentID);
@@ -233,6 +234,7 @@ public class StudentA extends BaseAPCPrivate {
 
          Label = getLabelFromDb("lbl_145_grant_details", R.string.lbl_145_grant_details);
         lblView = (TextView) findViewById(R.id.lblGrantDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
 
@@ -246,12 +248,16 @@ public class StudentA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_145", R.string.h_145);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_145_learner_details", R.string.l_145_learner_details);
         lblView = (TextView) findViewById(R.id.lblLearnertName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
 
     }
 

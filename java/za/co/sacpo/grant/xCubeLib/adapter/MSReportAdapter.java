@@ -40,7 +40,52 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
     protected DbHelper dbSetaObj;
     String Labels,read_Count7,student_name,student_id;
     private BaseAdapter bAI;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
 
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     MStudentReports baseActivity;
     public MSReportAdapter(List<SReportsObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall,MStudentReports baseActivity) {
         //this.bAI = ((BaseAdapter) baseActivityContext);
@@ -85,7 +130,7 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
         int BColorRedLink;
         BColorRed = res.getColor(R.color.red_link);
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.TxtReportTitle.setTextColor(res.getColor(R.color.white));
             holder.TxtReportTitle.setTypeface(holder.TxtReportTitle.getTypeface(), Typeface.BOLD);
@@ -95,7 +140,6 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
 
             holder.TxtMonth.setTextColor(res.getColor(R.color.white));
             holder.TxtMonth.setTypeface(holder.TxtMonth.getTypeface(), Typeface.BOLD);
-
 
             holder.TxtReportNo.setTextColor(res.getColor(R.color.white));
             holder.TxtReportNo.setTypeface(holder.TxtReportNo.getTypeface(), Typeface.BOLD);
@@ -118,17 +162,13 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
             }
 
 
-
-
             holder.TxtReportNo.setTextColor(res.getColor(R.color.row_link));
             holder.TxtReportNo.setTypeface(holder.TxtReportNo.getTypeface(), Typeface.NORMAL);
-
 
 
             holder.TxtReportTitle.setTextColor(res.getColor(R.color.row_link));
             holder.TxtReportTitle.setPaintFlags(holder.TxtReportTitle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             holder.TxtReportTitle.getPaint().setUnderlineText(true);
-
 
             holder.btnAction.setTextColor(res.getColor(R.color.colorPrimary));
             holder.btnAction.setTypeface(holder.btnAction.getTypeface(), Typeface.BOLD);
@@ -140,7 +180,8 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
                 holder.txtAction.setVisibility(View.GONE);
                 holder.txtAction.setBackgroundColor(BColor);
                 holder.btnAction.setVisibility(View.VISIBLE);
-                holder.LinearLayoutAction.setBackgroundColor(BColorRed);
+                holder.btnAction.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+              holder.btnAction.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
             }
             else{
                 holder.LinearLayoutAction.setBackgroundColor(BColor);
@@ -148,9 +189,6 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
                 holder.txtAction.setBackgroundColor(BColor);
                 holder.btnAction.setVisibility(View.GONE);
             }
-
-
-
 
             holder.TxtReportTitle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -250,13 +288,7 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
 
         holder.TxtReportNo.setText(aObjList.get(holder.getAdapterPosition()).mReportN6);
         holder.TxtReportNo.setBackgroundColor(BColor);
-        holder.TxtReportTitle.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-            String sToolTip=aObjList.get(holder.getAdapterPosition()).msfReportTitle3;
-            ((BaseAPC)activityInCall).showTooltip(holder.TxtReportTitle,sToolTip,4);
-            }
-        });
+
 
     }
 

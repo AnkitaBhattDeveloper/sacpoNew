@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class MExistingTrainingPlanA extends BaseAPCPrivate {
     private String ActivityId="M312";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView,activity_heading;
     public Bundle activeUri;
     public String generator , student_id,student_name;
@@ -147,6 +147,8 @@ public class MExistingTrainingPlanA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
+
         activity_heading = findViewById(R.id.activity_heading);
         rDataObjList = rDataObj.getITEMS();
         btnAddTraining = (Button) findViewById(R.id.btnAddTraining);
@@ -169,10 +171,18 @@ public class MExistingTrainingPlanA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_M312",R.string.h_M312);
         activity_heading.setText(Label);
+        activity_heading.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
         Label = getLabelFromDb("btn_M313_add",R.string.btn_M313_add);
         btnAddTraining.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnAddTraining.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");

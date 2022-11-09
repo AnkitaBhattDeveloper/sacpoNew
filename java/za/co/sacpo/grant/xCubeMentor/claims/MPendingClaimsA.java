@@ -50,7 +50,7 @@ public class MPendingClaimsA extends BaseAPCPrivate {
 
     private String ActivityId = "M413";
     String student_id,m_student_name,generator;
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     public TextView lblView,lblStudentName;
     private RecyclerView recyclerViewQ;
     public MPendingClaimObj rDataObj = new MPendingClaimObj();
@@ -92,7 +92,7 @@ public class MPendingClaimsA extends BaseAPCPrivate {
 
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
@@ -132,6 +132,7 @@ public class MPendingClaimsA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeViews", "init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         lblStudentName = findViewById(R.id.lblStudentName);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVPendingClaim);
@@ -140,9 +141,7 @@ public class MPendingClaimsA extends BaseAPCPrivate {
 
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
-        View recyclerView = findViewById(R.id.rVPendingClaim);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
 
     }
 
@@ -151,12 +150,18 @@ public class MPendingClaimsA extends BaseAPCPrivate {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("h_340", R.string.h_340);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
 
     @Override
     protected void initializeInputs() {
         lblStudentName.setText(m_student_name);
+        lblStudentName.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
     }
 
     @Override

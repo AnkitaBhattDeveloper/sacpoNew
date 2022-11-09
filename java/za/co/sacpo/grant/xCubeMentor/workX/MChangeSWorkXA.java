@@ -49,7 +49,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MChangeSWorkXA extends BaseFormAPCPrivate {
     private String ActivityId="313";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private String selectedWorks;
     public SpinnerSetAdapter adapterWorks;
     private String KEY_DEPARTMENT_ID= "department_id";
@@ -78,20 +78,12 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(),this,this.getClass().getSimpleName(),ActivityId);
         Bundle activeInputUri = getIntent().getExtras();
-
-
         student_id = activeInputUri.getString("student_id");
         work_x_name = activeInputUri.getString("work_x_name");
         work_x_id = activeInputUri.getString("work_x_id");
         mwX_student_name4 = activeInputUri.getString("mwX_student_name4");
         mWorkstation_name = activeInputUri.getString("mWorkstation_name");
         generator = activeInputUri.getString("generator");
-
-      //  student_id = Integer.toString(activeInputUri.getInt("student_id"));
-       // work_x_name = activeInputUri.getString("work_x_name");
-      //  work_x_id = activeInputUri.getString("work_x_id");
-      //  mwX_student_name4 = activeInputUri.getString("mwX_student_name4");
-      //  mWorkstation_name = activeInputUri.getString("mWorkstation_name");
 
         printLogs(LogTag,"onCreate","student_id "+student_id);
         printLogs(LogTag,"onCreate","work_x_name "+work_x_name);
@@ -103,7 +95,7 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -168,6 +160,7 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
         txtStudent_Name = (TextView) findViewById(R.id.txtStudent_Name);
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         inputSpinnerWorkX = (Spinner) findViewById(R.id.inputSpinnerWorkX);
         btnAssignWorkX = (Button) findViewById(R.id.btnAssignWorkX);
         TxtRegisterWorkX= (TextView) findViewById(R.id.btnRegisterWorkX);
@@ -176,20 +169,6 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeListeners() {
-
-
-      /*  if(work_x_id.equals("-")){
-            //do nothing....
-
-        }else{
-
-                    int workstation_name = 3;
-                    inputSpinnerWorkX.setSelection(workstation_name);
-                    printLogs(LogTag,"initializeListeners","SetupSpinner_Workstation"+workstation_name);
-
-        }*/
-
-
 
         inputSpinnerWorkX.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -201,24 +180,10 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
 
             }
 
-
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-
-      /*  //spinner from local android db...
-        inputSpinnerWorkX.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,int position, long id) {
-                int item =position;
-                intSelectedWorks= workxSpin[item].getId();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {  }
-        });*/
 
         btnAssignWorkX.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +220,7 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_313",R.string.h_313);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_313_assign",R.string.lbl_313_assign);
@@ -264,6 +230,12 @@ public class MChangeSWorkXA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("lbl_313_btn_regis",R.string.lbl_313_btn_regis);
         lblView = (TextView)findViewById(R.id.btnRegisterWorkX);
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnAssignWorkX.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputSpinnerWorkX.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+        }
 
     }
 

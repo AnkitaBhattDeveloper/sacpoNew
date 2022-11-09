@@ -873,9 +873,13 @@ public class SignOutA extends BaseFormAPCPrivate implements GoogleApiClient.Conn
         String LabelPre = getLabelFromDb("l_S108_old_pending_pre", R.string.l_S108_old_pending_pre);
         String LabelPost = getLabelFromDb("l_S108_old_pending_post", R.string.l_S108_old_pending_post);
         txtiPunchOutPre.setText(LabelPre);
+        txtiPunchOutPre.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtiPunchOutPost.setText(LabelPost);
+        txtiPunchOutPost.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtPunchOutDate.setText(OldDate);
+        txtPunchOutDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         iDateOld.setText(OldDate);
+        iDateOld.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
        // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
         printLogs(LogTag, "enableOldPunchOutActions", "init");
         showProgress(false, mContentView, mProgressView);
@@ -883,7 +887,7 @@ public class SignOutA extends BaseFormAPCPrivate implements GoogleApiClient.Conn
 
     private void disableActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
 
-        if ((currentLat instanceof Double) && (currentLong instanceof Double)) {
+        if ((currentLat != null) && (currentLong != null)) {
             createMarker(currentLat, currentLong, "SIGN-OUT", "", BitmapDescriptorFactory.HUE_AZURE);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), 5));
         }

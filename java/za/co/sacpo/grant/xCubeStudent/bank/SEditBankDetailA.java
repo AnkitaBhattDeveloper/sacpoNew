@@ -217,6 +217,13 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             mSaveButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            et_account_number.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            et_initial_name.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            et_surname.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            spinner_bank_name.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            spinner_branch_code.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            spinner_account_type.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
         }
 
     }

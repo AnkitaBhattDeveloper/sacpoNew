@@ -89,7 +89,7 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
     }
 
     public static boolean isValidTraining(String input) {
-        Boolean result;
+        boolean result;
         result = input.length() <= 20;
         if(input.length()<100){
             result = false;
@@ -98,19 +98,19 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
     }
 
     public static boolean isValidMessageContent(String input) {
-        Boolean result;
+        boolean result;
         result = input.length() <= 20;
         return result;
 
     }
     public static boolean isValidReason(String input) {
-        Boolean result;
-        result = input.length() <= 8;
+        boolean result;
+        result = input.length() <= 10;
         return result;
 
     }
     public static boolean isValidMessageComment(String input) {
-        Boolean result;
+        boolean result;
         result = input.length() <= 10;
         return result;
 

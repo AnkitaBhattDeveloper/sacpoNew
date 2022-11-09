@@ -45,7 +45,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 public class MQueriesDetailsA extends BaseAPCPrivate {
     private String ActivityId="320";
     public String KEY_ID = "id";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private TextView lblView;
     private TextView lblTitle,lblDate,lblData,lblRef,lblStatus;
     private ImageView imQueryImage;
@@ -135,6 +135,7 @@ public class MQueriesDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
 
         lblTitle= (TextView) findViewById(R.id.lblTitle);
         lblRef= (TextView) findViewById(R.id.lblRef);
@@ -155,7 +156,20 @@ public class MQueriesDetailsA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("h_320",R.string.h_320);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            mCommentsBtn.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            lblRef.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        }
+
+
+
+
     }
     @Override
     protected void initializeInputs(){

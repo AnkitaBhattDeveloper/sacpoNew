@@ -49,7 +49,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 public class MPastClaimA extends BaseAPCPrivate {
 
     public String ActivityId = "M412";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
 
     public Button mDateInputButton;
     private TextView lblView,mIClaimTTText, lblClaim;
@@ -171,6 +171,7 @@ public class MPastClaimA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
 
         mDateInputButton = (Button) findViewById(R.id.btnFilterData);
       //  spinnerMonth = (Spinner) findViewById(R.id.inputSpinnerMonth);
@@ -189,6 +190,7 @@ public class MPastClaimA extends BaseAPCPrivate {
 
         lblClaim = (TextView)findViewById(R.id.lblClaim);
         lblClaim.setText(m_student_name);
+        lblClaim.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
     }
     @Override
@@ -196,11 +198,14 @@ public class MPastClaimA extends BaseAPCPrivate {
         String Label = getLabelFromDb("b_205_filter",R.string.b_205_filter);
         mDateInputButton.setText(Label);
 
-
-
         Label = getLabelFromDb("h_205",R.string.h_205);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
     }
 
 

@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
@@ -59,7 +60,7 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
     private String ActivityId="M345";
     public EditText inputTitle ;
     public TextInputLayout inputLayoutTitle ;
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public String  student_id,student_name;;
 
     public Button btnBrows , btnSubmit ;
@@ -167,14 +168,12 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
-
+        heading = findViewById(R.id.heading);
         inputTitle =  findViewById(R.id.inputTitle);
         inputTitle.setText(training_title);
         inputLayoutTitle =  findViewById(R.id.inputLayouTitle);
-
         btnBrows = findViewById(R.id.btnBrows);
         btnSubmit = findViewById(R.id.btnSubmit);
-
         lblFileName = findViewById(R.id.lblFileName);
         btnSubmit.setVisibility(View.GONE);
 
@@ -210,10 +209,12 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String  Label = getLabelFromDb("h_M345",R.string.h_M345);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_M345_title",R.string.lbl_M345_title);
         lblView = (TextView)findViewById(R.id.lblTitle);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_M345_brows", R.string.b_M345_brows);
@@ -226,12 +227,22 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("lbl_M345_nofileChosen", R.string.lbl_M345_nofileChosen);
         lblView = (TextView) findViewById(R.id.lblFileName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
                 Label = getLabelFromDb("lbl_M345_pdf", R.string.lbl_M345_pdf);
         lblView = (TextView) findViewById(R.id.lblPdf);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSubmit.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnBrows.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputTitle.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+        }
 
     public void callDataApi(){
         printLogs(LogTag,"callDataApi","init");
@@ -490,7 +501,6 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
                 final String training_plan = inputTitle.getText().toString().trim();
                 String token = userSessionObj.getToken();
                 String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.M_REF_345_2;
-                FINAL_URL=FINAL_URL+"/token/"+token;
                 printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
 
                 JSONObject jsonBody = new JSONObject();

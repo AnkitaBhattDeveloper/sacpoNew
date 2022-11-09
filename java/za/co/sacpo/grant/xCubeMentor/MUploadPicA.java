@@ -54,10 +54,9 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 /*activity_muplode_pic*/
 public class MUploadPicA extends BaseFormAPCPrivate {
     private String ActivityId="170";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private String KEY_IMAGE = "uploaded_file";
     private String extension;
-    /*http://seta.local/api/user/type/uploadImage/token/123ha?uploaded_file=&extension=img*/
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST= 99;
 
@@ -147,6 +146,7 @@ public class MUploadPicA extends BaseFormAPCPrivate {
         mContentView = findViewById(R.id.content_container);
         checker = new PermissionsChecker(this);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         btnFileUpload = (Button) findViewById(R.id.btnFileUpload);
         btnChoose = (Button)findViewById(R.id.btnChoose);
         headLogo = (ImageView)findViewById(R.id.headLogo);
@@ -158,10 +158,18 @@ public class MUploadPicA extends BaseFormAPCPrivate {
         btnChoose.setText(Label);
         Label = getLabelFromDb("h_170",R.string.h_170);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("l_171_102_btn",R.string.l_171_102_btn);
         btnFileUpload.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnFileUpload.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnChoose.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","initializeInputs-In");

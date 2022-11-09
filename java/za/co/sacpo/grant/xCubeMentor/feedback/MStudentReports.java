@@ -45,7 +45,7 @@ import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 
 public class MStudentReports extends BaseAPCPrivate{
     private String ActivityId="336";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
     private TextView lblView;
     private RecyclerView recyclerViewQ;
     private String student_id,student_name,generator;
@@ -78,7 +78,7 @@ public class MStudentReports extends BaseAPCPrivate{
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
@@ -145,6 +145,7 @@ public class MStudentReports extends BaseAPCPrivate{
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading = findViewById(R.id.heading);
 
       
 
@@ -152,21 +153,25 @@ public class MStudentReports extends BaseAPCPrivate{
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVstudentReports);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        View recyclerView = findViewById(R.id.rVstudentReports);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag,"initializeViews","exit");
     }
     @Override
     protected void initializeLabels(){
-        String Label = getLabelFromDb("l_336_Student_feedback",R.string.l_336_Student_feedback);
+
         lblView = (TextView)findViewById(R.id.lblStudentAttendance);
         lblView.setText(student_name);
-      
-        Label = getLabelFromDb("h_336",R.string.h_336);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        String  Label = getLabelFromDb("h_336",R.string.h_336);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+        }
+
     }
     @Override
     protected void initializeInputs(){

@@ -49,11 +49,12 @@ public class MAttMonthlyA extends BaseAPCPrivate {
 
 
     private String ActivityId = "M406";
-    public View mProgressView, mContentView,mProgressRView, mContentRView;
+    public View mProgressView, mContentView,mProgressRView, mContentRView,heading,heading2,heading3,heading4
+            ,l_heading1,l_heading2,l_heading3,lt_heading1,lt_heading2,lt_heading3
+            ,g_heading1,g_heading2,g_heading3;
     public TextView lblView,lblAttendance;
     private int selectedStudent;
     private RecyclerView recyclerViewQ;
-    Bundle activeUri;
     String student_id,generator,m_student_name,date_input,month,year;
 
     public MAttSummaryObj rDataObj = new MAttSummaryObj();
@@ -172,7 +173,19 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
-
+        heading = findViewById(R.id.heading);
+        heading2    = findViewById(R.id.heading2);
+        heading3    = findViewById(R.id.heading3);
+        heading4    = findViewById(R.id.heading4);
+        l_heading1  = findViewById(R.id.l_heading1);
+        l_heading2  = findViewById(R.id.l_heading2);
+        l_heading3  = findViewById(R.id.l_heading3);
+        lt_heading1 = findViewById(R.id.lt_heading1);
+        lt_heading2 = findViewById(R.id.lt_heading2);
+        lt_heading3 = findViewById(R.id.lt_heading3);
+        g_heading1  = findViewById(R.id.g_heading1);
+        g_heading2  = findViewById(R.id.g_heading2);
+        g_heading3  = findViewById(R.id.g_heading3);
         lblAttendance = (TextView) findViewById(R.id.lblAttendance);
 
         rDataObjList = rDataObj.getITEMS();
@@ -184,7 +197,7 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeViews","exit");
 
         lblAttendance.setText(m_student_name);
-
+        lblAttendance.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
     }
     @SuppressLint("SetTextI18n")
     @Override
@@ -192,6 +205,23 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         String Label = getLabelFromDb("h_195",R.string.h_195);
         lblView = (TextView)findViewById(R.id.activity_heading);
         lblView.setText(Label+" - "+month+"/"+year);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading4.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+        }
     }
     @Override
     protected void initializeInputs() {
@@ -390,18 +420,22 @@ public class MAttMonthlyA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_GrantDetails",R.string.h_GrantDetails);
         lblView = (TextView)findViewById(R.id.h_GrantDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_LDetails",R.string.h_LDetails);
         lblView = (TextView)findViewById(R.id.h_LDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_GADetail",R.string.h_GADetail);
         lblView = (TextView)findViewById(R.id.h_GADetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_TotalLeaves",R.string.h_TotalLeaves);
         lblView = (TextView)findViewById(R.id.h_totalLeaves);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         String token = userSessionObj.getToken();

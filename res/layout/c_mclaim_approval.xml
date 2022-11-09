@@ -9,7 +9,7 @@
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeMentor.claims.MPendingClaimsA"
+    tools:context=".xCubeMentor.claims.MPendingClaimsA"
     tools:showIn="@layout/a_mclaim_approval">
 
   <ScrollView
@@ -54,13 +54,14 @@
               android:textSize="@dimen/BigTextSize"
               android:textStyle="bold"
               />
-          <TextView
-              android:layout_marginLeft="@dimen/ExtraGiantDp"
-              android:layout_marginRight="@dimen/ExtraGiantDp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/heading_1"
-              />
+          <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
           <LinearLayout
               android:visibility="gone"
               android:id="@+id/filterContainer"

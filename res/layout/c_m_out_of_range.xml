@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeMentor.attendance.MCurrentAttA"
+    tools:context=".xCubeMentor.attendance.MCurrentAttA"
     tools:showIn="@layout/container_c_m_att_out_of_range">
 
     <ScrollView

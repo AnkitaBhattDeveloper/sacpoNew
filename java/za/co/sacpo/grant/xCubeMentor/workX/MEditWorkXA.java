@@ -74,7 +74,7 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
 public class MEditWorkXA extends BaseFormAPCPrivate {
     private String ActivityId="164";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     private String KEY_LATE="latitude";
     private String KEY_Long="longitude";
     private String KEY_DEPT="departmentName";
@@ -194,6 +194,7 @@ public class MEditWorkXA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeViews","init");
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         inputAddDeptName = (EditText) findViewById(R.id.inputAddDeptName);
         inputLayoutAddDeptName = (TextInputLayout) findViewById(R.id.inputLayoutAddDeptName);
         btnDeptAdd = (Button) findViewById(R.id.btnDeptAdd);
@@ -206,9 +207,11 @@ public class MEditWorkXA extends BaseFormAPCPrivate {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("lbl_164_add_wx_name",R.string.lbl_164_add_wx_name);
         lblView = (TextView)findViewById(R.id.lblAddDeptName);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("h_164",R.string.h_164);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_164_btnDeptAdd",R.string.lbl_164_btnDeptAdd);
         lblView = (TextView)findViewById(R.id.btnDeptAdd);
@@ -218,8 +221,18 @@ public class MEditWorkXA extends BaseFormAPCPrivate {
         btnDeptAddMoveMarker.setText(Label);
         Label = getLabelFromDb("lbl_164_btn_work_address", R.string.lbl_164_btn_work_address);
         lblView = findViewById(R.id.lblWorkstationAddress);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnDeptAdd.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnDeptAddMoveMarker.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputAddDeptName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            act_physical_address.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");

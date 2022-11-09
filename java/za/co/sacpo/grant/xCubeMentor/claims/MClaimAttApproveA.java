@@ -54,7 +54,9 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
 
     public String ActivityId = "M329";
     MClaimAttApproveA thisClass;
-    public View mProgressView, mContentView, mProgressRView, mContentRView;
+    public View mProgressView, mContentView, mProgressRView, mContentRView,heading,heading2,heading3,heading4
+            ,l_heading1,l_heading2,l_heading3,lt_heading1,lt_heading2,lt_heading3
+            ,g_heading1,g_heading2,g_heading3;
     public TextView lblView, lblAttendance;
     private Button btnAddRemark, btn_back;
     public WebView wv_information;
@@ -155,6 +157,19 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
         mProgressView = findViewById(R.id.progress_bar);
         mContentRView = findViewById(R.id.content_container_r);
         mProgressRView = findViewById(R.id.progress_bar_r);
+        heading     = findViewById(R.id.heading);
+        heading2    = findViewById(R.id.heading2);
+        heading3    = findViewById(R.id.heading3);
+        heading4    = findViewById(R.id.heading4);
+        l_heading1  = findViewById(R.id.l_heading1);
+        l_heading2  = findViewById(R.id.l_heading2);
+        l_heading3  = findViewById(R.id.l_heading3);
+        lt_heading1 = findViewById(R.id.lt_heading1);
+        lt_heading2 = findViewById(R.id.lt_heading2);
+        lt_heading3 = findViewById(R.id.lt_heading3);
+        g_heading1  = findViewById(R.id.g_heading1);
+        g_heading2  = findViewById(R.id.g_heading2);
+        g_heading3  = findViewById(R.id.g_heading3);
 
         btnAddRemark = (Button) findViewById(R.id.btnAddRemark);
         inputRemarks =  findViewById(R.id.inputRemarks);
@@ -167,12 +182,11 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVMViewAtt);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewQ.setLayoutManager(linearLayoutManager);
-        View recyclerView = findViewById(R.id.rVMViewAtt);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerViewQ);
         printLogs(LogTag, "initializeViews", "exit");
 
         lblAttendance.setText(m_student_name);
+        lblAttendance.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
 
         wv_information = findViewById(R.id.wv_information);
@@ -243,6 +257,7 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
 
         String Label = getLabelFromDb("h_329", R.string.h_329);
         lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("l_329_btn_next", R.string.l_329_btn_next);
@@ -253,10 +268,31 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
         lblView.setText(Label);*/
         Label = getLabelFromDb("lbl_189_remark",R.string.lbl_189_remark);
         lblView = (TextView)findViewById(R.id.lblRemarks);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("i_329_message",R.string.i_329_message);
         wv_information.loadData(Label, "text/html", "UTF-8");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading4.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+
+            btnAddRemark.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputRemarks.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+
+        }
 
     }
 
@@ -452,18 +488,22 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("h_GrantDetails",R.string.h_GrantDetails);
         lblView = (TextView)findViewById(R.id.h_GrantDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_LDetails",R.string.h_LDetails);
         lblView = (TextView)findViewById(R.id.h_LDetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_GADetail",R.string.h_GADetail);
         lblView = (TextView)findViewById(R.id.h_GADetails);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_TotalLeaves",R.string.h_TotalLeaves);
         lblView = (TextView)findViewById(R.id.h_totalLeaves);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         String token = userSessionObj.getToken();

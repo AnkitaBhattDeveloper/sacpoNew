@@ -204,9 +204,11 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btn_view_Leave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputSpinnerLeaveType.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputLeaveReasons.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLeaveInDays.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
         }
-
-        }
+    }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
@@ -453,7 +455,7 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         printLogs(LogTag,"onCreate","validateReason");
         String reasons = inputLeaveReasons.getText().toString().trim();
         setCustomError(inputLayoutLeaveReasons,null,inputLeaveReasons);
-      //  Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/<>.^*()%!-]");
+        //  Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/<>.^*()%!-]");
         Pattern regex = Pattern.compile("[$&+:;=\\\\?@#|/<>^*!]");
         if (reasons.isEmpty() || isValidReason(reasons) || regex.matcher(reasons).find()) {
             String sMessage = getLabelFromDb("error_S113_105",R.string.error_S113_105);
@@ -471,21 +473,21 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
     }
 
     public void  customRedirector(){
-            Intent intent = new Intent(SAddLeavesA.this, SDashboardDA.class);
-            Bundle activeUri = new Bundle();
-            intent.putExtras(activeUri);
-            startActivity(intent);
-            finish();
+        Intent intent = new Intent(SAddLeavesA.this, SDashboardDA.class);
+        Bundle activeUri = new Bundle();
+        intent.putExtras(activeUri);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         printLogs(LogTag,"onOptionsItemSelected","init");
-                Intent intent = new Intent(SAddLeavesA.this,SDashboardDA.class);
-                printLogs(LogTag,"onOptionsItemSelected","SDashboardDA");
-                startActivity(intent);
-                finish();
+        Intent intent = new Intent(SAddLeavesA.this,SDashboardDA.class);
+        printLogs(LogTag,"onOptionsItemSelected","SDashboardDA");
+        startActivity(intent);
+        finish();
 
         return true;
     }

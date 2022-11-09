@@ -50,7 +50,7 @@ import java.util.Map;
 public class MTrainingPlanA extends BaseFormAPCPrivate {
 
     private String ActivityId="M313";
-    public View mProgressView, mContentView;
+    public View mProgressView, mContentView,heading;
     public String generator,student_id,student_name;
     int selected_Training_plan;
     Button btnSave , btnAddTraining , btnTariningList  ;
@@ -156,17 +156,13 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         txtStudent_Name = (TextView) findViewById(R.id.txtStudent_Name);
         btnSave = (Button) findViewById(R.id.btnSave);
         Spiner_training_plan = findViewById(R.id.Spiner_training_plan);
         btnAddTraining = (Button) findViewById(R.id.btnAddTraining);
         btnTariningList = (Button) findViewById(R.id.btnTrainingList);
         txtStudent_Name.setText(student_name);
-
-        /*inputTitle = findViewById(R.id.inputTitle);
-        inputLayoutTitle = findViewById(R.id.inputLayoutTitle);
-        btnBrows = findViewById(R.id.btnPickFile);*/
-
         wv_information = findViewById(R.id.wv_information);
         final WebSettings webSettingsF = wv_information.getSettings();
         Resources res = getResources();
@@ -178,9 +174,6 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeListeners() {
-        /*Todo:Hold for now*/
-        //btnAddTraining.setVisibility(View.GONE);
-        //btnTariningList.setVisibility(View.GONE);
         btnTariningList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -249,6 +242,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
 
         String  Label = getLabelFromDb("h_M313",R.string.h_M313);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("h_M313",R.string.i_M313_message);
@@ -257,6 +251,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("tv_M313_title",R.string.tv_M313_title);
         lblView = (TextView)findViewById(R.id.lblTitle);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("btn_M313_save",R.string.btn_M313_save);
@@ -269,8 +264,15 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("btn_M313_list",R.string.btn_M313_list);
         btnTariningList.setText(Label);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnSave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnAddTraining.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btnTariningList.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            Spiner_training_plan.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+        }
 
-    }
+        }
 
     @Override
     protected void initializeInputs() {

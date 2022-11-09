@@ -22,6 +22,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.dataObj.MDCenterObj;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
@@ -36,6 +37,52 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
     protected DbHelper dbSetaObj;
     String Labels;
     MDocumentCenterA baseActivity;
+    BaseAPC baseAPC = new BaseAPC() {
+        @Override
+        protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
+
+        }
+
+        @Override
+        protected void initializeViews() {
+
+        }
+
+        @Override
+        protected void initializeListeners() {
+
+        }
+
+        @Override
+        protected void initializeInputs() {
+
+        }
+
+        @Override
+        protected void initializeLabels() {
+
+        }
+
+        @Override
+        protected void setLayoutXml() {
+
+        }
+
+        @Override
+        protected void verifyVersion() {
+
+        }
+
+        @Override
+        protected void fetchVersionData() {
+
+        }
+
+        @Override
+        protected void internetChangeBroadCast() {
+
+        }
+    };
     //Todo: Table Width Problem
     public MDCenterAdapter(List<MDCenterObj.Item > aObjList, Context baseActivityContext, AppCompatActivity activityInCall,MDocumentCenterA baseActivity) {
         this.aObjList = aObjList;
@@ -78,7 +125,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
         holder.hItem=aObjList.get(holder.getAdapterPosition());
         int BColor;
         if(holder.getAdapterPosition()==0){
-            BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
 
             holder.lblYear.setBackgroundColor(BColor);
             holder.lblMonth.setBackgroundColor(BColor);
@@ -159,6 +206,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                 if (aDownloadStatus == 1) {
                     holder.lblDownloadAttendanceRegister.setVisibility(View.GONE);
                     holder.btnDownloadAttendanceRegister.setVisibility(View.VISIBLE);
+                    holder.btnDownloadAttendanceRegister.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                     holder.btnDownloadAttendanceRegister.setText("DOWNLOAD");
 
                 } else {
@@ -171,6 +219,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                 if (aDownloadStatusS == 1) {
                     holder.lblDownloadSignedClaimForm.setVisibility(View.GONE);
                     holder.btnDownloadSignedClaimForm.setVisibility(View.VISIBLE);
+                    holder.btnDownloadSignedClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                     holder.btnDownloadSignedClaimForm.setText("DOWNLOAD");
 
                 } else {
@@ -183,6 +232,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                 if (aDownloadStatusu == 1) {
                     holder.lblDownloadClaimForm.setVisibility(View.GONE);
                     holder.btnDownloadClaimForm.setVisibility(View.VISIBLE);
+                    holder.btnDownloadClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                     holder.btnDownloadClaimForm.setText("DOWNLOAD");
 
                 } else {
@@ -195,6 +245,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                 if (aUploadStatus == 1) {
                     holder.lblUploadClaimForm.setVisibility(View.GONE);
                     holder.btnUploadClaimForm.setVisibility(View.VISIBLE);
+                    holder.btnUploadClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                     holder.btnUploadClaimForm.setText("UPLOAD");
 
                 } else {

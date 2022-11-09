@@ -55,7 +55,7 @@ public class MFeedbackA extends BaseFormAPCPrivate {
     private String KEY_REPORT_ID="report_id";
     private String KEY_STUDENT_ID="student_id";
     public EditText inputComment;
-    public View mProgressView, mContentView,mProgressRView,mContentRView;
+    public View mProgressView, mContentView,mProgressRView,mContentRView,heading;
     public TextInputLayout inputLayoutComment,inputLayoutPassword;
     public Button btnCommitContainer;
     private TextView lblView,lbl_training_progress,lbl_report_writing,lbl_report_number;
@@ -148,6 +148,7 @@ public class MFeedbackA extends BaseFormAPCPrivate {
 
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
+        heading = findViewById(R.id.heading);
         lbl_report_number = findViewById(R.id.lbl_report_number);
         rg_optn = (RadioGroup) findViewById(R.id.rg_optn);
         rb_option_tp_1 = (RadioButton) findViewById(R.id.rb_option_tp_1);
@@ -210,8 +211,16 @@ public class MFeedbackA extends BaseFormAPCPrivate {
 
         Label = getLabelFromDb("h_337",R.string.h_337);
         lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-    }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            btnCommitContainer.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            inputComment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
+
+        }
     @Override
     protected void initializeInputs(){
         lbl_report_number.setText(report_number);
