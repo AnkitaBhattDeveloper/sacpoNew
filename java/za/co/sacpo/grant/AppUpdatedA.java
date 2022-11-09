@@ -101,10 +101,14 @@ public class AppUpdatedA extends BaseAPC {
         printLogs(LogTag,"initializeLabels","init");
         String Label = getLabelFromDb("i_A404_update_message",R.string.i_A404_update_message);
         lblView = (TextView)findViewById(R.id.iUpdateMessage);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("b_A404_market",R.string.b_A404_market);
         mGooglePlayButton.setText(Label);
+        mGooglePlayButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+
+
     }
 
     @Override
