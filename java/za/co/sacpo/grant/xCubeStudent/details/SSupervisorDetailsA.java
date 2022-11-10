@@ -185,11 +185,11 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             mMentorOfficeCallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            mMentorOfficeCallButton.setTextColor(getResources().getColor(R.color.white));
+            mMentorOfficeCallButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
             mMentorCallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            mMentorCallButton.setTextColor(getResources().getColor(R.color.white));
+            mMentorCallButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
             mMentorEmailButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            mMentorEmailButton.setTextColor(getResources().getColor(R.color.white));
+            mMentorEmailButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
 
 
         }

@@ -108,7 +108,6 @@ public class AppUpdatedA extends BaseAPC {
         mGooglePlayButton.setText(Label);
         mGooglePlayButton.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
 
-
     }
 
     @Override

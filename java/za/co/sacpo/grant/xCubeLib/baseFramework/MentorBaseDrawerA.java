@@ -1,6 +1,8 @@
 package za.co.sacpo.grant.xCubeLib.baseFramework;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,14 +81,31 @@ public abstract class MentorBaseDrawerA extends BaseDrawerA {
             return true;
         }*/
         else if (id == R.id.action_logout) {
-            clearSession(this.getApplicationContext());
-            mTokenDeleteTask = new TokenDelete(baseApcContext);
-            mTokenDeleteTask.execute((Void) null);
-            Intent intent = new Intent(baseApcContext, LoginA.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            baseApcContext.startActivity(intent);
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("DO YOU WANT TO LOGOUT THE APP ?");
+            //  builder.setMessage("DO YOU WANT TO LOGOUT THE APP ?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    clearSession(getApplicationContext());
+                    mTokenDeleteTask = new TokenDelete(baseApcContext);
+                    mTokenDeleteTask.execute((Void) null);
+                    Intent intent = new Intent(baseApcContext, LoginA.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    baseApcContext.startActivity(intent);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -164,21 +183,31 @@ public abstract class MentorBaseDrawerA extends BaseDrawerA {
         }*/
 
         else if (id == R.id.nav_logout) {
-            clearSession(this.getApplicationContext());
-            mTokenDeleteTask = new TokenDelete(baseApcContext);
-            mTokenDeleteTask.execute((Void) null);
-            Intent intent = new Intent(baseApcContext,LoginA.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            baseApcContext.startActivity(intent);
-            finish();
-          /*  userSessionObj.clearUserSession();
-            userSessionObj.setHasSession(false);
-            Intent intent = new Intent(baseApcContext,SplashA.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            baseApcContext.startActivity(intent);
-            finish();*/
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("DO YOU WANT TO LOGOUT THE APP ?");
+            //  builder.setMessage("DO YOU WANT TO LOGOUT THE APP ?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    clearSession(getApplicationContext());
+                    mTokenDeleteTask = new TokenDelete(baseApcContext);
+                    mTokenDeleteTask.execute((Void) null);
+                    Intent intent = new Intent(baseApcContext, LoginA.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    baseApcContext.startActivity(intent);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

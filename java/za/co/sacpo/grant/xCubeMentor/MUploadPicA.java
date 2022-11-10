@@ -85,7 +85,7 @@ public class MUploadPicA extends BaseFormAPCPrivate {
     }
     @Override
     protected void bootStrapInit() {
-        Boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
         validateLogin(baseApcContext, activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
