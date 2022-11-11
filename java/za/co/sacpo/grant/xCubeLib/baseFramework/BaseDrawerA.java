@@ -22,7 +22,8 @@ import za.co.sacpo.grant.xCubeLib.component.CropCircleTransformation;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
 import za.co.sacpo.grant.xCubeMentor.MEditProfileA;
-import za.co.sacpo.grant.xCubeStudent.SEditProfileA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileMainA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepOneA;
 
 public abstract class BaseDrawerA extends BaseAPCPrivate
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -96,7 +97,8 @@ public abstract class BaseDrawerA extends BaseAPCPrivate
             LLHeadTop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(baseApcContext, SEditProfileA.class);
+                    //Intent intent = new Intent(baseApcContext, SEditProfileStepOneA.class);
+                    Intent intent = new Intent(baseApcContext, SEditProfileMainA.class);
                     startActivity(intent);
                     finish();
                 }

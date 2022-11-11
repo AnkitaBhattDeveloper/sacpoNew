@@ -1,0 +1,1438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_edit_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/a_edit_profile_step_two">
+
+    <ScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/bigDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/bigDp">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/progress_bar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:text="HEADING"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/homelanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblhomelanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerhomelanguage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/title"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/telephoneContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lbltelephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayouttelephone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                 android:id="@+id/inputtelephone"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:inputType="number"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/faxContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblfax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutfax"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputfax"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/physicalcodeContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphysicalcode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphysicalcode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphysicalcode"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/physicaladd1Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphyaddress1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphyaddress1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphyaddress1"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/physicaladd2Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphyaddress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphyaddress2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphyaddress2"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/physicaladd3Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphyaddress3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphyaddress3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphyaddress3"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+<!--Auto completeText municipality-->
+                    <LinearLayout
+                        android:id="@+id/municipalityContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblmunicipality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutmunicipality"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                       <!--     <EditText
+                                android:id="@+id/inputphyaddress3"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />-->
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                 android:id="@+id/txtmunicipality"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/urbanrural"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblurbanrural"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerurbanrural"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblcountry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnercountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <!--dropdown after physical country
+                       province,city,suburb-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/province"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblprovince"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnerprovince"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblcity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnercity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/suburb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblsuburb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnersuburb"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <!--edittext after country
+                    province,city,suburb-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/phyprovinceContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphyprovince"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphyprovince"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphyprovince"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/phycityContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphycity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphycity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphycity"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/physuburubContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblphysuburub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutphysuburub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputphysuburub"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+<!--Postal layouts-->
+                    <LinearLayout
+                        android:id="@+id/postalcodeContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostalcode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutpostalcode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputpostalcode"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/postaladd1Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostaladdress1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutpostaladdress1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputpostaladdress1"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/postaladd2Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostaladdress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutpostaladdress2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputpostaladdress2"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/postaladdress3Container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostaladdress3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutpostaladdress3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputpostaladdress3"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <!--Auto completeText municipality-->
+                    <LinearLayout
+                        android:id="@+id/postalmunicipalityContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostalmunicipality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutpostalmunicipality"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <!--     <EditText
+                                     android:id="@+id/inputphyaddress3"
+                                     style="@style/editText_1"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:inputType="text"
+                                     android:maxLines="1"
+                                     android:text=""
+                                     android:textColor="@android:color/black"
+                                     app:errorTextAppearance="@style/errorText"
+                                     tools:ignore="MissingPrefix" />-->
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtpostalmunicipality"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/postalurbanrural"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostalurbanrural"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerpostalurbanrural"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/postalcountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblpostalcountry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerpostalcountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <!--dropdown after physical country
+                       province,city,suburb-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/postalprovince"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblpostalprovince"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnerpostalprovince"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/postalcity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblpostalcity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnerpostalcity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/postalsuburb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblpostalsuburb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+
+                            <Spinner
+                                android:id="@+id/inputSpinnerpostalsuburb"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="1"
+                                android:entries="@array/race"
+                                android:background="@drawable/spinner_bg_1"
+                                android:spinnerMode="dropdown"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColor"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <!--edittext after country
+                    province,city,suburb-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/postalprovinceContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lbletpostalprovince"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutetpostalprovince"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/inputetpostalprovince"
+                                    style="@style/editText_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint=""
+                                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    android:maxLines="1"
+                                    app:errorTextAppearance="@style/errorText"
+                                    tools:ignore="MissingPrefix" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/etpostalcityContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lbletpostalcity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutetpostalcity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/inputetpostalcity"
+                                    style="@style/editText_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint=""
+                                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    android:maxLines="1"
+                                    app:errorTextAppearance="@style/errorText"
+                                    tools:ignore="MissingPrefix" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/etpostalsuburubContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="@dimen/small"
+                            android:layout_marginTop="@dimen/small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lbletpostalsuburb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutetpostalsuburub"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/inputetpostalsuburub"
+                                    style="@style/editText_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint=""
+                                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    android:maxLines="1"
+                                    app:errorTextAppearance="@style/errorText"
+                                    tools:ignore="MissingPrefix" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <!--Auto completeText school emis-->
+                    <LinearLayout
+                        android:id="@+id/schoolemisContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblschoolemis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutschoolemis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <!--     <EditText
+                                     android:id="@+id/inputphyaddress3"
+                                     style="@style/editText_1"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:inputType="text"
+                                     android:maxLines="1"
+                                     android:text=""
+                                     android:textColor="@android:color/black"
+                                     app:errorTextAppearance="@style/errorText"
+                                     tools:ignore="MissingPrefix" />-->
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtschoolemis"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lastscyearContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lbllastscyear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutlastscyear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputlastscyear"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/equity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblequity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerequity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/residentstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblresidentstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerresidentstatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:id="@+id/buttonContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/updateContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/bigDp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnUpdate"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="337dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/middleDp"
+                                android:background="@drawable/themed_button"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text=""
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

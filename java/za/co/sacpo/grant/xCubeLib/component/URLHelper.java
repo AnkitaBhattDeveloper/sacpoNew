@@ -43,6 +43,7 @@ public class URLHelper {
       public static final String REF_S_107_SAVE = "/punch-in-api";
       public static final String REF_S_108_SAVE = "/punch-out-api";
       public static final String S_REF_105_1 = "/student-details-api";
+      public static final String S_REF_105_B = "/stu-details-api-two";
       public static final String REF_S_108 = "/dtwldfl-out";
       public static final String M_REF_167 = "/user-details-api";
       public static final String PROFILE_URL = "/user-details-api";

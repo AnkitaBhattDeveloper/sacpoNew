@@ -33,7 +33,7 @@ import za.co.sacpo.grant.xCubeMentor.workX.MAddWorksA;
 import za.co.sacpo.grant.xCubeMentor.workX.MChangeSWorkXA;
 import za.co.sacpo.grant.xCubeMentor.workX.MEditWorkXA;
 import za.co.sacpo.grant.xCubeStudent.SChangePasswordA;
-import za.co.sacpo.grant.xCubeStudent.SEditProfileA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepOneA;
 import za.co.sacpo.grant.xCubeStudent.attendance.EditAttCalenderA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SAttPostCommentA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SignInA;
@@ -833,7 +833,7 @@ public class ErrorDialog {
     }
 
 
-    public static void showSuccessDialogSEditProfile(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileA activityToRedirect) {
+    public static void showSuccessDialogSEditProfile(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileStepOneA activityToRedirect) {
         isErrorDialogShowing = true;
         printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
         androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);

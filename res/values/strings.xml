@@ -940,7 +940,6 @@
     <string name="lbl_309_btn_save">Save</string>
 
 
-
     <string name="title_activity_login_screen">Sign in</string>
 
 
@@ -1114,6 +1113,9 @@
     <string name="l_S105_profile_name">First Name</string>
     <string name="i_S105_edit_profile_email"> Email</string>
     <string name="i_S105_edit_profile_mobile"> Mobile Number</string>
+    <string name="i_S105_edit_profile_national_id"> National Id</string>
+    <string name="i_S105_edit_profile_sRegNo"> Student Reg No.</string>
+    <string name="i_S105_edit_profile_alternativeid"> Alternative Id</string>
     <string name="i_S105_address"> Address </string>
     <string name="i_S105_gender"> Gender </string>
     <string name="lbl_S105_nationality">Nationality</string>
@@ -1133,11 +1135,11 @@
     <string name="lbl_S105_intern_category_Q">Intern Category Qualification</string>
     <string name="lbl_S105_Tax_ref_no">TAX Ref Number</string>
     <string name="lbl_S105_gender">Gender</string>
-    <string name ="h_S267">DOWNLOADS</string>
-    <string name ="t_head_S267_title">DOCUMENT TITLE</string>
-    <string name ="t_head_S267_download">DOWNLOAD</string>
-    <string name ="t_head_S267_upload">RE-UPLOAD</string>
-    <string name ="t_head_S267_remove">REMOVE</string>
+    <string name="h_S267">DOWNLOADS</string>
+    <string name="t_head_S267_title">DOCUMENT TITLE</string>
+    <string name="t_head_S267_download">DOWNLOAD</string>
+    <string name="t_head_S267_upload">RE-UPLOAD</string>
+    <string name="t_head_S267_remove">REMOVE</string>
     <string name="lbl_S105_country_name">Country Name</string>
     <string name="m_S105_title">SUCCESS .</string>
     <string name="m_204_title">SUCCESS .</string>
@@ -1171,6 +1173,9 @@
     <string name="error_S167_name">Error! Name is not valid .</string>
     <string name="error_S105_address">Error! in address is not valid .</string>
     <string name="error_S105_number">Error! Mobile is not valid .</string>
+    <string name="error_S105_nationalid">Error! National Id is not valid .</string>
+    <string name="error_S105_sregno">Error! Student Reg No is not valid .</string>
+    <string name="error_S105_alternativeid">Error! Alternative Id is not valid .</string>
     <string name="error_S105_email">Error! Email is not valid .</string>
     <string name="error_S105_empty">Error! Field cannot be empty.</string>
 
@@ -1179,6 +1184,36 @@
     <string name="m_A102_message">Your new Password Link had been sent to your Email Address.  Follow the Link to Change your Password</string>
     <string name="b_A404_market">Update Now</string>
     <string name="i_A404_update_message">Kindly update your app from Google Play Market by clicking the link below, the version installed in your device is not up to date. We had introduce new functions and also resolved a few bugs.</string>
+
+    <!--Edit Profile Step 2-->
+    <string name="lbl_S105_homelanguage">Home Language</string>
+    <string name="lbl_S105_telephone">Telephone</string>
+    <string name="lbl_S105_fax">Fax</string>
+    <string name="lbl_S105_physicalcode">Physical Code</string>
+    <string name="lbl_S105_phyaddress1">Physical Address 1</string>
+    <string name="lbl_S105_phyaddress2">Physical Address 2</string>
+    <string name="lbl_S105_phyaddress3">Physical Address 3</string>
+    <string name="lbl_S105_municipality">Physical Municipality</string>
+    <string name="lbl_S105_urbanrural">Physical Urban Rural</string>
+    <string name="lbl_S105_country">Country</string>
+    <string name="lbl_S105_province">Physical Province</string>
+    <string name="lbl_S105_city">Physical City</string>
+    <string name="lbl_S105_suburb">Physical Suburb</string>
+
+    <string name="lbl_S105_postalcode">Postal Code</string>
+    <string name="lbl_S105_postaladdress1">Postal Address 1</string>
+    <string name="lbl_S105_postaladdress2">Postal Address 2</string>
+    <string name="lbl_S105_postaladdress3">Postal Address 3</string>
+    <string name="lbl_S105_postalmunicipality">Postal Municipality</string>
+    <string name="lbl_S105_postalurbanrural">Postal Urban Rural</string>
+    <string name="lbl_S105_postalcountry">Postal Country</string>
+    <string name="lbl_S105_postalprovince">Postal Province</string>
+    <string name="lbl_S105_postalcity">Postal City</string>
+    <string name="lbl_S105_postalsuburb">Postal Suburb</string>
+    <string name="lbl_S105_schoolemis">Last School EMIS</string>
+    <string name="lbl_S105_lastscyear">Last School Year</string>
+    <string name="lbl_S105_lblequity">Equity</string>
+    <string name="lbl_S105_residentstatus">Citizen Resident Status</string>
 
 
     <!--ClaimA-->
@@ -1954,6 +1989,7 @@
     <string name="t_head_500_M_Day">DAY</string>
     <string name="t_head_500_Fid11">Cord F id</string>
     <string name="b_S105_save">save</string>
+    <string name="b_S105_step2">step 2</string>
 
     <string name="t_head_149_M_StudentAttendanceStatus">STATUS</string>
     <string name="t_head_149_M_MentorAttendanceStatus">SUPERVISOR APPROVAL</string>

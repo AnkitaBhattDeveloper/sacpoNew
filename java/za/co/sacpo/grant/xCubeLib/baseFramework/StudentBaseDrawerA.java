@@ -16,7 +16,7 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.asyncCalls.TokenDelete;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
-import za.co.sacpo.grant.xCubeStudent.SEditProfileA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileMainA;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 import za.co.sacpo.grant.xCubeStudent.SUploadPicA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SAttDA;
@@ -70,7 +70,8 @@ public abstract class StudentBaseDrawerA extends BaseDrawerA {
         }
 
         else if (id == R.id.action_edit_profile) {
-            Intent intent = new Intent(baseApcContext,SEditProfileA.class);
+            //Intent intent = new Intent(baseApcContext, SEditProfileStepOneA.class);
+            Intent intent = new Intent(baseApcContext, SEditProfileMainA.class);
             startActivity(intent);
             return true;
         }
