@@ -33,6 +33,20 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
+            android:name=".xCubeStudent.editprofile.SEditProfileStepFourA"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".xCubeStudent.editprofile.SEDitProfileStepThreeA"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".xCubeStudent.editprofile.SEditProfileMainA"
             android:exported="false">
             <meta-data

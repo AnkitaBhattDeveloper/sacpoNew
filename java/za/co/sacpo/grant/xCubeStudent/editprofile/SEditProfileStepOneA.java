@@ -83,12 +83,12 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private String KEY_STATUS_DATE = "date";
 
     final ArrayList<ListarClientes> datalist = new ArrayList<>();
-    String rb_genderValue,rb_disableValue,spin_race,spin_enroll,spin_title,spin_day,spin_month,spin_year,spin_disability;
+    String rb_genderValue,rb_disableValue,spin_race,spin_nationality,spin_title,spin_day,spin_month,spin_year,spin_disability;
     public EditText inputFirstName, inputLastName, inputMobile,inputNational_id,inputsRegNo,inputalternative_id, inputEmail, inputLearnerNo, inputLearnerId, inputNameOfKin, inputContactOfKin, inputInternUTO, inputInternCategoryQualification, inputTaxRefNo;
     public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutMobile,inputLayoutNational_id, inputLayoutEmail, inputLayoutsRegNo, inputLayoutalternative_id,inputLayoutLearnerId, inputLayoutNameOfKin, inputLayoutContactOfKin, inputLayoutInternUTO, inputLayoutInternCategoryQualification, inputLayoutTaxRefNo;
     public Button btnUpdate;
-    private Spinner inputSpinnerTitle, inputSpinnerRace, SpinnerDay, SpinnerMonth, SpinnerYear, SpinnerDisabilityType, Spin_EnrollmentYear,spinner_InternCategoryQualification;
+    private Spinner inputSpinnerTitle, inputSpinnerRace, SpinnerDay, SpinnerMonth, SpinnerYear, inputSpinnerNationality, Spin_EnrollmentYear,spinner_InternCategoryQualification;
     private LinearLayout ll_DisabilityType;
     private RadioGroup RGPhysicalDisAbility, RgGender;
     private RadioButton rb_disable_y, rb_disable_n, rb_male, rb_female;
@@ -312,6 +312,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         SpinnerDay = findViewById(R.id.SpinnerDay);
         SpinnerMonth = findViewById(R.id.SpinnerMonth);
         SpinnerYear = findViewById(R.id.SpinnerYear);
+        inputSpinnerNationality = findViewById(R.id.inputSpinnerNationality);
                rb_male = findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
 
@@ -471,6 +472,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
            // ll_DisabilityType.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerRace.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
@@ -583,7 +585,27 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
             }
         });
+        final ArrayAdapter<CharSequence> nationalityadapter = ArrayAdapter.createFromResource(this, R.array.race, android.R.layout.simple_spinner_item);
+        nationalityadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputSpinnerNationality.setAdapter(nationalityadapter);
+        nationalityadapter.notifyDataSetChanged();
 
+
+        inputSpinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                race_value = String.valueOf(parent.getSelectedItemId());
+                printLogs(LogTag, "initializeListeners", "race_id" + race_value);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
       /*  final ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(this, R.array.disability_type, android.R.layout.simple_spinner_item);
         adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -939,7 +961,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
     private void fetchData() {
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_105_1;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_105_A;
         FINAL_URL = FINAL_URL + "?token=" + token;
         printLogs(LogTag, "fetchData", "URL : " + FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
@@ -950,35 +972,32 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                     printLogs(LogTag, "fetchData", "RESPONSE : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
-                        JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
-                        spin_day =  dataM.getString("day");
-                        spin_month =  dataM.getString("month");
-                        spin_years =  dataM.getString("year");
-                       // spin_disability =  dataM.getString("disability");
-                        rb_genderValue =  dataM.getString("gender");
-                      //  rb_disableValue =  dataM.getString("is_disability");
-                        spin_race =  dataM.getString("race_id");
-                      //  spin_enroll =  dataM.getString("enroll_year");
-                        spin_title =  dataM.getString("u_title");
-                        inputFirstName.setText(dataM.getString("u_p_fname"));
-                        inputLastName.setText(dataM.getString("u_p_surname"));
-                        inputMobile.setText(dataM.getString("u_p_cell_no"));
-                        inputNational_id.setText(dataM.getString("u_p_cell_no"));
-                        inputsRegNo.setText(dataM.getString("u_p_cell_no"));
-                        inputalternative_id.setText(dataM.getString("u_p_cell_no"));
-                        inputEmail.setText(dataM.getString("u_email"));
-                       // inputLearnerNo.setText(dataM.getString("u_learner_no"));
-                       // inputLearnerId.setText(dataM.getString("u_learner_id"));
-                     //   inputNameOfKin.setText(dataM.getString("kin_name"));
-                       // inputContactOfKin.setText(dataM.getString("kin_tel"));
-                       // inputInternUTO.setText(dataM.getString("intern_uot"));
-                       // String spin_categoryquali = dataM.getString("learner_qual_category");
-                        String spin_categoryquali = dataM.getString("learner_qual_category_id");
-                      //  inputInternCategoryQualification.setText(dataM.getString("learner_qual_category"));
-//                        spinner_InternCategoryQualification.setSelection(Integer.parseInt(spin_categoryquali));
 
-                        inputTaxRefNo.setText(dataM.getString("txt_ref_no"));
-                        showProgress(false, mContentView, mProgressView);
+                        JSONArray jsonArray = jsonObject.getJSONArray(KEY_DATA);
+                        for (int i = 0; i <jsonArray.length() ; i++) {
+                            JSONObject dataM = jsonArray.getJSONObject(i);
+
+                            inputFirstName.setText(dataM.getString("fname"));
+                            inputLastName.setText(dataM.getString("surname"));
+                            inputMobile.setText(dataM.getString("cell"));
+                            inputEmail.setText(dataM.getString("email"));
+                            inputNational_id.setText(dataM.getString("s_id_no"));
+                            inputsRegNo.setText(dataM.getString("s_s_no"));
+                            inputTaxRefNo.setText(dataM.getString("s_s_tax_ref_no"));
+                            inputalternative_id.setText(dataM.getString("s_c_o_alternative_id"));
+
+
+                            rb_genderValue =  dataM.getString("gender");
+                            spin_day =  dataM.getString("day");
+                            spin_month =  dataM.getString("month");
+                            spin_years =  dataM.getString("year");
+                            spin_race =  dataM.getString("race");
+                            spin_title =  dataM.getString("u_title");
+                            spin_nationality =  dataM.getString("s_nationality");
+
+
+                        }
+
                             //SpinnerDay, SpinnerMonth, SpinnerYear
                             //SET DOB Spinner data--PENDING..!!
                         if(!spin_day.equals("")){
@@ -996,11 +1015,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                         //set the default according to value
                         SpinnerYear.setSelection(spinnerPosition);
 
-
                         //spinner item..
                         inputSpinnerRace.setSelection(Integer.parseInt(spin_race));
                         //inputEnrollmentYear.setSelection(Integer.parseInt(spin_enroll));
                         inputSpinnerTitle.setSelection(Integer.parseInt(spin_title));
+                        inputSpinnerNationality.setSelection(Integer.parseInt(spin_nationality));
 
                       /*  //spinner disability
                         SpinnerDisabilityType.setSelection(Integer.parseInt(spin_disability));

@@ -99,6 +99,12 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
         step2.setOnClickListener(view -> {
             startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepTwoA.class));
         });
+        step3.setOnClickListener(view -> {
+            startActivity(new Intent(SEditProfileMainA.this,SEDitProfileStepThreeA.class));
+        });
+        step4.setOnClickListener(view -> {
+            startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepFourA.class));
+        });
     }
 
     @Override

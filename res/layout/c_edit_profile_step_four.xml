@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c_edit_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/footer_MarginBottom"
+    android:background="@color/background_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/a_edit_profile_step_four">
+
+    <ScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/bigDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/bigDp">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/biggestDp"
+                    android:layout_marginTop="@dimen/biggestDp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/progress_bar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:text="HEADING"
+                        android:textAlignment="center" android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/heading"
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/heading_1"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/NameOfKin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblNameOfKin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutNameOfKin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputNameOfKin"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ContactOfKin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblContactOfKin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutContactOfKin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputContactOfKin"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                       android:id="@+id/PhysicalDisability"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"
+                       android:layout_marginBottom="@dimen/small"
+                       android:layout_marginTop="@dimen/small"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:id="@+id/lblPhysicalDis"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="@dimen/SmallerDp"
+                           android:text=""
+                           android:textAllCaps="true"
+                           android:textColor="@color/textColor"
+                           android:textSize="@dimen/SmallerTextSize" />
+
+
+                       <RadioGroup
+                           android:id="@+id/RGPhysicalDisAbility"
+                           android:orientation="horizontal"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content">
+
+                           <RadioButton
+                               android:id="@+id/rb_disable_y"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:tag="1"
+                               android:layout_weight="1"
+                               android:text="Yes"/>
+                           <RadioButton
+                               android:id="@+id/rb_disable_n"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:tag="2"
+                               android:layout_weight="1"
+                               android:text="No"/>
+                       </RadioGroup>
+
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:id="@+id/ll_DisabilityType"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"
+                       android:layout_marginBottom="@dimen/small"
+                       android:layout_marginTop="@dimen/small"
+                       android:visibility="gone"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:id="@+id/lblDisabilityType"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginBottom="@dimen/SmallerDp"
+                           android:layout_marginLeft="@dimen/SmallerDp"
+                           android:text=""
+                           android:textAllCaps="true"
+                           android:textColor="@color/textColor"
+                           android:textSize="@dimen/SmallerTextSize" />
+
+
+                       <Spinner
+                           android:id="@+id/inputDisabilityType"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="start"
+                           android:layout_weight="1"
+                           android:background="@drawable/spinner_bg_1"
+                           android:spinnerMode="dropdown"
+                           android:textAlignment="textStart"
+                           android:textColor="@color/textColor"
+                           android:textStyle="bold" />
+
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:id="@+id/InternCategoryQualification"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"
+                       android:layout_marginBottom="@dimen/small"
+                       android:layout_marginTop="@dimen/small"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:id="@+id/lblInternCategoryQualification"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="@dimen/SmallerDp"
+                           android:text=""
+                           android:textAllCaps="true"
+                           android:textColor="@color/textColor"
+                           android:textSize="@dimen/SmallerTextSize" />
+                       <Spinner
+                           android:id="@+id/spinner_InternCategoryQualification"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="start"
+                           android:layout_weight="1"
+                           android:background="@drawable/spinner_bg_1"
+                           android:spinnerMode="dropdown"
+                           android:textAlignment="textStart"
+                           android:textColor="@color/textColor"
+                           android:textStyle="bold" />
+                       </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/institution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblinstitution"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerinstitution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/university"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lbluniversity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinneruniversity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/college"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblcollege"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnercollege"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:id="@+id/buttonContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/updateContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/bigDp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnUpdate"
+                                style="?android:textAppearanceSmall"
+                                android:layout_width="337dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/middleDp"
+                                android:background="@drawable/themed_button"
+                                android:minHeight="@dimen/btnHeight"
+                                android:minWidth="@dimen/btnWidth"
+                                android:text=""
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/a_edit_profile_step_one">
+    tools:showIn="@layout/a_edit_profile_step_three">
 
     <ScrollView
         android:scrollbars="vertical"
@@ -65,8 +65,11 @@
                         android:background="@drawable/heading_1"
                         />
 
+
+
+                    <!--Auto completeText ssareacode-->
                     <LinearLayout
-                        android:id="@+id/Title"
+                        android:id="@+id/ssareacodeContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -76,7 +79,41 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblTitle"
+                            android:id="@+id/lblssareacode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutssareacode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtssareacode"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/actstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblactstatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/SmallerDp"
@@ -87,209 +124,11 @@
 
 
                         <Spinner
-                            android:id="@+id/inputSpinnerTitle"
+                            android:id="@+id/inputSpinneractstatus"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:layout_weight="1"
-                            android:entries="@array/title"
-                            android:background="@drawable/spinner_bg_1"
-                            android:spinnerMode="dropdown"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/textColor"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/firstNameContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblFirstName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutFirstName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                                android:id="@+id/inputFirstName"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint=""
-                                android:inputType="textAutoCorrect"
-                                android:maxLines="1"
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lastNameContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblLastName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                           android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutLastName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/inputLastName"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint=""
-                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                                android:maxLines="1"
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/mobileNumberContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblMobile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutMobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/inputMobile"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:maxLength="13"
-                                android:maxLines="1"
-                                android:text=""
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:id="@+id/EmailContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblEmail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/inputEmail"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLines="1"
-                                android:text=""
-                                android:textColor="@android:color/black"
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Race"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblRace"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/SmallerDp"
-                           android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-
-                        <Spinner
-                            android:id="@+id/inputSpinnerRace"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:entries="@array/race"
                             android:background="@drawable/spinner_bg_1"
                             android:spinnerMode="dropdown"
                             android:textAlignment="textStart"
@@ -300,7 +139,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/Gender"
+                        android:id="@+id/actstatusdate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -310,56 +149,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblGender"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginBottom="@dimen/SmallerDp"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-
-
-                        <RadioGroup
-                            android:id="@+id/RgGender"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RadioButton
-                                android:id="@+id/rb_male"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:tag="3"
-                                android:layout_weight="1"
-                                android:text="Male"/>
-                            <RadioButton
-                                android:id="@+id/rb_female"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:tag="4"
-                                android:layout_weight="1"
-                                android:text="Female"/>
-                        </RadioGroup>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/DOB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblDob"
+                            android:id="@+id/lblactstatusdate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/SmallerDp"
@@ -386,7 +176,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
-                                     android:layout_weight="1"
+                                    android:layout_weight="1"
                                     android:background="@drawable/spinner_bg_1"
                                     android:spinnerMode="dropdown"
                                     android:textAlignment="textStart"
@@ -443,8 +233,9 @@
 
                     </LinearLayout>
 
+                    <!--Auto completeText OFO code-->
                     <LinearLayout
-                        android:id="@+id/National_id"
+                        android:id="@+id/ofocodeContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -454,7 +245,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblnational_id"
+                            android:id="@+id/lblofocode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/SmallerDp"
@@ -464,26 +255,19 @@
                             android:textSize="@dimen/SmallerTextSize" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutNational_id"
+                            android:id="@+id/inputLayoutofocode"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <EditText
-                                android:id="@+id/inputNational_id"
-                                style="@style/editText_1"
+                            <AutoCompleteTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLength="25"
-                                android:maxLines="1"
-                                android:text=""
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
+                                android:id="@+id/txtofocode"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/sRegNo"
+                        android:id="@+id/sponsorship"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -493,86 +277,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblsRegNo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutsRegNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/inputsRegNo"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLength="25"
-                                android:maxLines="1"
-                                android:text=""
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/alternative_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblalternative_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutalternative_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/inputalternative_id"
-                                style="@style/editText_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLength="25"
-                                android:maxLines="1"
-                                android:text=""
-                                app:errorTextAppearance="@style/errorText"
-                                tools:ignore="MissingPrefix" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Nationality"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lblNationality"
+                            android:id="@+id/lblsponsorship"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/SmallerDp"
@@ -584,7 +289,7 @@
 
 
                         <Spinner
-                            android:id="@+id/inputSpinnerNationality"
+                            android:id="@+id/inputSpinnersponsorship"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -600,7 +305,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/TaxRefNo"
+                        android:id="@+id/financialyear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -610,32 +315,655 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblTaxRefNo"
+                            android:id="@+id/lblfinancialyear"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                           android:layout_marginLeft="@dimen/SmallerDp"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerfinancialyear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nqflevel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblnqflevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnernqflevel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/race"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/saqaidContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblsaqaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
                             android:text=""
                             android:textAllCaps="true"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/SmallerTextSize" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputLayoutTaxRefNo"
+                            android:id="@+id/inputLayoutsaqaid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:id="@+id/inputTaxRefNo"
+                                android:id="@+id/inputsaqaid"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:inputType="number"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/empsdlnoContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblempsdlno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutempsdlno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputempsdlno"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint=""
+                                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/providersdlnoContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblprovidersdlno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutprovidersdlno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputprovidersdlno"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/economicstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lbleconomicstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnereconomicstatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wilstartdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblwilstartdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_marginRight="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilstartDay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginRight="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilstartMonth"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:entries="@array/month_type"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginLeft="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilstartYear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wilenddate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblwilenddate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_marginRight="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilendDay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginRight="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilendMonth"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:entries="@array/month_type"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginLeft="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnerwilendYear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/msregdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblmsregdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_marginRight="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnermsregDay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginRight="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnermsregMonth"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:entries="@array/month_type"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginLeft="@dimen/margin_5"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Spinner
+                                    android:id="@+id/SpinnermsregYear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/spinner_bg_1"
+                                    android:spinnerMode="dropdown"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/textColor"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/enrollmentstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblenrollmentstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerenrollmentstatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/projectContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblproject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutproject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputproject"
                                 style="@style/editText_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
-                                android:maxLength="25"
                                 android:maxLines="1"
                                 android:text=""
+                                android:textColor="@android:color/black"
                                 app:errorTextAppearance="@style/errorText"
-tools:ignore="MissingPrefix" />
+                                tools:ignore="MissingPrefix" />
                         </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/refnoContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblrefno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutrefno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputrefno"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@android:color/black"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wiltype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblwiltype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/SmallerDp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/SmallerTextSize" />
+
+
+                        <Spinner
+                            android:id="@+id/inputSpinnerwiltype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
                     </LinearLayout>
 
                     <LinearLayout
