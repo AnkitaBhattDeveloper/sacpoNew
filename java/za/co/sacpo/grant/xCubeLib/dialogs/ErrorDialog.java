@@ -45,6 +45,7 @@ import za.co.sacpo.grant.xCubeStudent.claims.SImpactStudiesA;
 import za.co.sacpo.grant.xCubeStudent.claims.SCMonthlyFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.claims.SConfirmBankDetailsA;
 import za.co.sacpo.grant.xCubeStudent.claims.SSubmitClaim;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepTwoA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SAddFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SEditFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SRemoveFeedbackA;
@@ -847,7 +848,20 @@ public class ErrorDialog {
         ErrorDialog = localBuilder.create();
         ErrorDialog.show();
     }
-
+public static void showSuccessDialogSEditProfileTwo(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileStepTwoA activityToRedirect) {
+        isErrorDialogShowing = true;
+        printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
+        androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
+        localBuilder.setCancelable(false);
+        localBuilder.setTitle(title).setMessage(message).setNegativeButton(closeButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                removeErrorDialog();
+                activityToRedirect.customRedirector();
+            }
+        });
+        ErrorDialog = localBuilder.create();
+        ErrorDialog.show();
+    }
     public static void showSuccessDialogSAttCommentsA(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SAttPostCommentA activityToRedirect) {
         isErrorDialogShowing = true;
         printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);

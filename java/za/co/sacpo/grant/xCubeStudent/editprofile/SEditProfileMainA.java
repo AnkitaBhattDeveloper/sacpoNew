@@ -25,7 +25,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
     public View mProgressView, mContentView,heading;
     private TextView lblView;
     SEditProfileMainA thisClass;
-    LinearLayout step1,step2,step3,step4;
+    LinearLayout step1,step2,step3,step4,step5;
 
 
     @Override
@@ -69,11 +69,8 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            //  fetchEnrollment();
-            // fetchData();
             callDataApi();
             initializeListeners();
-            //  fetchQualCategoryType();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
             //showProgress(false, mContentView, mProgressView);
         }
@@ -89,6 +86,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
         step2 = findViewById(R.id.step2);
         step3 = findViewById(R.id.step3);
         step4 = findViewById(R.id.step4);
+        step5 = findViewById(R.id.step5);
     }
 
     @Override
@@ -100,9 +98,12 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
             startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepTwoA.class));
         });
         step3.setOnClickListener(view -> {
-            startActivity(new Intent(SEditProfileMainA.this,SEDitProfileStepThreeA.class));
+            startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepTwoBA.class));
         });
         step4.setOnClickListener(view -> {
+            startActivity(new Intent(SEditProfileMainA.this,SEDitProfileStepThreeA.class));
+        });
+        step5.setOnClickListener(view -> {
             startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepFourA.class));
         });
     }

@@ -105,4 +105,94 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+
+    <string-array name="popiact_status_type">
+        <item>---SELECT STATUS---</item>
+        <item>AGREE</item>
+        <item>DISAGREE</item>
+        <item>N/A</item>
+    </string-array>
+    <string-array name="popiact_status_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+  <string-array name="sponsorship_type">
+        <item>---SELECT SPONSORSHIP---</item>
+        <item>INDUSTRY FUNDED</item>
+        <item>SETA FUNDED</item>
+    </string-array>
+    <string-array name="sponsorship_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+<string-array name="economic_status_type">
+        <item>---SELECT ECONOMIC STATUS---</item>
+        <item>EMPLOYED</item>
+        <item>UNEMPLOYED</item>
+    </string-array>
+    <string-array name="economic_status_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+<string-array name="enrollment_status_type">
+        <item>---SELECT ENROLLMENT STATUS---</item>
+        <item>ENROLLED</item>
+        <item>NON-ENDORSED ACHIEVMENT</item>
+        <item>WAITING FOR WIL</item>
+        <item>WIL IN PROGRESS</item>
+    </string-array>
+    <string-array name="enrollment_status_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+<string-array name="wil_type">
+        <item>---SELECT WIL TYPE---</item>
+        <item>WIL-TVET</item>
+        <item>WIL-University of Technology</item>
+    </string-array>
+    <string-array name="wil_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+<string-array name="institution_type">
+        <item>---SELECT INSTITUTION---</item>
+        <item>UNIVERSITY</item>
+        <item>COLLEGE</item>
+    </string-array>
+    <string-array name="institution_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+  <string-array name="disability_type">
+    <item>----SELECT DISABILITY TYPE---</item>
+    <item>DEAF-BLIND</item>
+    <item>STRAIN INJURY</item>
+    <item>DEAF</item>
+    <item>BLINDLESS</item>
+    <item>COLOUR BLINDLESS</item>
+    <item>STATURING</item>
+    </string-array>
+    <string-array name="disability_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+
+
+
 </resources>

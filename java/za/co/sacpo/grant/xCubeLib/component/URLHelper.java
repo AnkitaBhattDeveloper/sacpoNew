@@ -45,6 +45,12 @@ public class URLHelper {
       public static final String S_REF_105_1 = "/student-details-api";
       public static final String S_REF_105_A = "/stu-details-api-one";
       public static final String S_REF_105_B = "/stu-details-api-two";
+      public static final String S_REF_105_C = "/stu-details-api-three";
+      public static final String S_REF_105_D = "/stu-details-api-four";
+      public static final String UPDATEDETAILS_105_B = "/stu-update-details-api";
+      public static final String UPDATEDETAILS_105_A = "/stu-update-details-api-one";
+      public static final String UPDATEDETAILS_105_C = "/stu-update-details-api-three";
+      public static final String UPDATEDETAILS_105_D = "/stu-update-details-api-four";
       public static final String REF_S_108 = "/dtwldfl-out";
       public static final String M_REF_167 = "/user-details-api";
       public static final String PROFILE_URL = "/user-details-api";
@@ -90,6 +96,20 @@ public class URLHelper {
     public static final String STU_ISSUE_TITLE_TYPE = "/stu-issue-title-type-api";
     public static final String STU_TITLE_TYPE = "/issue-title-type-api";
     public static final String Qual_Category_Type = "/inter-qual-category-type-api";
+    public static final String NATIONALITY_105A = "/nationality-api";
+    public static final String LANGAUGE_105B = "/language-api";
+    public static final String MUNICIPALITY_105B = "/municipality-api";
+    public static final String SCHOOLEMI_105B = "/school-emi-api";
+    public static final String STATS_AREACODE_105C = "/stats-area-code-api";
+    public static final String COUNTRY_105 = "/country-api";
+    public static final String PROVINCE_105 = "/province-api";
+    public static final String CITY_105 = "/city-api";
+    public static final String SUBURBS_105 = "/suburbs-api";
+    public static final String NQF_105C = "/nqf-api";
+    public static final String FINANCIAL_YEARS_105C = "/financial-years-api";
+    public static final String OFOCODES_105C = "/ofo-api";
+    public static final String UNIVERSITY_105D = "/university-api";
+    public static final String COLLEGE_105D = "/college-api";
 
 
       /*Api's for mentor*/

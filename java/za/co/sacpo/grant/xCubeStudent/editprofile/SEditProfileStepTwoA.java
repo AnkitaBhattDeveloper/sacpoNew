@@ -1,5 +1,6 @@
 package za.co.sacpo.grant.xCubeStudent.editprofile;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,17 +29,22 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
+import za.co.sacpo.grant.xCubeLib.adapter.AutoCompleteAdapter;
+import za.co.sacpo.grant.xCubeLib.adapter.SpinAdapter;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
+import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -46,7 +53,9 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     public View mProgressView, mContentView,heading;
     private TextView lblView;
     SEditProfileStepTwoA thisClass;
-    String phyurbanrural_value,postalurbanrural_value,equity_value,residentstatus_value,spin_homelanguage,spin_day,spin_month,spin_year,spin_disability;
+    String phyurbanrural_value,postalurbanrural_value,equity_value,residentstatus_value,spin_homelanguage
+            ,spin_day,spin_month,spin_year,municipality_value,postalmunicipality_value,schoolEMI_value,
+            homelanguage_value="";
     public EditText inputtelephone,inputfax,inputphysicalcode, inputphyaddress1, inputphyaddress2, inputphyaddress3,
             inputphyprovince, inputphycity, inputphysuburub, inputpostalcode, inputpostaladdress1,
             inputpostaladdress2,inputpostaladdress3,inputetpostalprovince,inputetpostalcity,inputetpostalsuburub,inputlastscyear;
@@ -56,15 +65,32 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
             inputLayoutpostaladdress2,inputLayoutpostaladdress3,inputLayoutpostalmunicipality,inputLayoutetpostalprovince
             ,inputLayoutetpostalcity,inputLayoutetpostalsuburub,inputLayoutschoolemis,inputLayoutlastscyear;
     public Button btnUpdate;
-    private Spinner inputSpinnerurbanrural, inputSpinnerpostalurbanrural, inputSpinnerequity, inputSpinnerresidentstatus, inputSpinnerhomelanguage, SpinnerDisabilityType, Spin_EnrollmentYear,spinner_InternCategoryQualification;
-
+    private Spinner inputSpinnerurbanrural, inputSpinnerpostalurbanrural, inputSpinnerequity,
+            inputSpinnerresidentstatus, inputSpinnerhomelanguage, inputSpinnercountry,inputSpinnersuburb,
+            inputSpinnerprovince,inputSpinnercity,inputSpinnerpostalcountry,inputSpinnerpostalcity,inputSpinnerpostalprovince,
+            inputSpinnerpostalsuburb;
     AutoCompleteTextView txtmunicipality,txtpostalmunicipality,txtschoolemis;
-    String[] countries={"India","Australia","West indies","indonesia","Indiana",
-            "South Africa","England","Bangladesh","Srilanka","singapore","iscbsjdkbs","insfwefwef","inwdawefawf","inDWEFEF","INWDFEF","insfefafgr"};
+    String spin_urbanrural,spin_country,spin_province,spin_city,spin_suburb,urbanrual_value="",country_value="",
+            province_value="",city_value="",suburb_value="";
+    String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalcity,spin_postalsuburb
+            ,spin_equity="",spin_residentstatus="",postalurbanrual_value="",postalcountry_value="",
+            postalprovince_value="",postalcity_value="",postalsuburb_value="",phyMunicipality_value="",
+            postMunicipality_value="",lastschoolEMI_value=""
+            ,phyUrbanrual="",phyCountry="",phyProvince="",phyCity="",phySuburb="";
 
-String spin_urbanrural,spin_country,spin_province,spin_city,spin_suburb;
-String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalcity,spin_postalsuburb
-        ,spin_equity,spin_residentstatus;
+    public SpinnerObj[] LanguageType;
+    public SpinnerObj[] CountryType;
+    public SpinnerObj[] ProvinceType;
+    public SpinnerObj[] CityType;
+    public SpinnerObj[] SuburbsType;
+    public SpinnerObj[] MunicipalityType;
+    ArrayList<String> municipality_list = new ArrayList<>();
+    public SpinnerObj[] SchoolEMIType;
+    ArrayList<String> SchoolEMI_list = new ArrayList<>();
+    LinearLayout spinnersLayout,edittextLayouts,postalspinnersLayout,postaledittextLayouts;
+
+
+
 
     @Override
     protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
@@ -100,7 +126,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             internetChangeBroadCast();
             initializeViews();
             initBackBtn();
-            //showProgress(true, mContentView, mProgressView);
+            showProgress(true, mContentView, mProgressView);
             initializeLabels();
             initializeInputs();
             userToken = userSessionObj.getToken();
@@ -108,15 +134,19 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            //  fetchEnrollment();
             fetchData();
+
             callDataApi();
             initializeListeners();
-            //  fetchQualCategoryType();
+
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-            //showProgress(false, mContentView, mProgressView);
         }
     }
+
+
+
+
+
 
     @Override
     protected void setLayoutXml() {
@@ -129,9 +159,13 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         printLogs(LogTag, "initializeViews", "init");
 
         txtmunicipality = findViewById(R.id.txtmunicipality);
-        txtpostalmunicipality = findViewById(R.id.txtpostalmunicipality);
+       /* txtpostalmunicipality = findViewById(R.id.txtpostalmunicipality);
         txtschoolemis = findViewById(R.id.txtschoolemis);
-
+       */ spinnersLayout = findViewById(R.id.spinnersLayout);
+        edittextLayouts = findViewById(R.id.edittextLayouts);
+       /* postalspinnersLayout = findViewById(R.id.postalspinnersLayout);
+        postaledittextLayouts = findViewById(R.id.postaledittextLayouts);
+*/
         mContentView = findViewById(R.id.content_container);
         mProgressView = findViewById(R.id.progress_bar);
         heading = findViewById(R.id.heading);
@@ -148,7 +182,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         inputLayoutphyprovince = findViewById(R.id.inputLayoutphyprovince);
         inputLayoutphycity = findViewById(R.id.inputLayoutphycity);
         inputLayoutphysuburub = findViewById(R.id.inputLayoutphysuburub);
-        inputLayoutpostalcode = findViewById(R.id.inputLayoutpostalcode);
+       /* inputLayoutpostalcode = findViewById(R.id.inputLayoutpostalcode);
         inputLayoutpostaladdress1 = findViewById(R.id.inputLayoutpostaladdress1);
         inputLayoutpostaladdress2 = findViewById(R.id.inputLayoutpostaladdress2);
         inputLayoutpostaladdress3 = findViewById(R.id.inputLayoutpostaladdress3);
@@ -158,14 +192,22 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         inputLayoutetpostalsuburub = findViewById(R.id.inputLayoutetpostalsuburub);
         inputLayoutschoolemis = findViewById(R.id.inputLayoutschoolemis);
         inputLayoutlastscyear = findViewById(R.id.inputLayoutlastscyear);
-
+*/
         /*Spinners*/
         inputSpinnerurbanrural = findViewById(R.id.inputSpinnerurbanrural);
-        inputSpinnerpostalurbanrural = findViewById(R.id.inputSpinnerpostalurbanrural);
-        inputSpinnerequity = findViewById(R.id.inputSpinnerequity);
-        inputSpinnerresidentstatus = findViewById(R.id.inputSpinnerresidentstatus);
+       // inputSpinnerpostalurbanrural = findViewById(R.id.inputSpinnerpostalurbanrural);
+      //  inputSpinnerequity = findViewById(R.id.inputSpinnerequity);
+      //  inputSpinnerresidentstatus = findViewById(R.id.inputSpinnerresidentstatus);
         inputSpinnerhomelanguage = findViewById(R.id.inputSpinnerhomelanguage);
-
+        inputSpinnercountry = findViewById(R.id.inputSpinnercountry);
+        inputSpinnerprovince = findViewById(R.id.inputSpinnerprovince);
+        inputSpinnercity = findViewById(R.id.inputSpinnercity);
+        inputSpinnersuburb = findViewById(R.id.inputSpinnersuburb);
+        /*inputSpinnerpostalcountry = findViewById(R.id.inputSpinnerpostalcountry);
+        inputSpinnerpostalprovince = findViewById(R.id.inputSpinnerpostalprovince);
+        inputSpinnerpostalcity = findViewById(R.id.inputSpinnerpostalcity);
+        inputSpinnerpostalsuburb = findViewById(R.id.inputSpinnerpostalsuburb);
+*/
         /*Edittext*/
         inputtelephone = findViewById(R.id.inputtelephone);
         inputfax = findViewById(R.id.inputfax);
@@ -178,7 +220,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         inputphysuburub = findViewById(R.id.inputphysuburub);
 
         /*Postal edittext*/
-        inputpostalcode = findViewById(R.id.inputpostalcode);
+      /*  inputpostalcode = findViewById(R.id.inputpostalcode);
         inputpostaladdress1 = findViewById(R.id.inputpostaladdress1);
         inputpostaladdress2 = findViewById(R.id.inputpostaladdress2);
         inputpostaladdress3 = findViewById(R.id.inputpostaladdress3);
@@ -186,7 +228,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         inputetpostalcity = findViewById(R.id.inputetpostalcity);
         inputetpostalsuburub = findViewById(R.id.inputetpostalsuburub);
         inputlastscyear = findViewById(R.id.inputlastscyear);
-
+*/
     }
 
     @Override
@@ -199,29 +241,11 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             }
         });
 
-
-
-
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,countries);
-        txtmunicipality.setThreshold(2);
-        txtmunicipality.setAdapter(adapter);
-
-        ArrayAdapter<String> txtpostalmunicipalityadapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,countries);
-        txtpostalmunicipality.setThreshold(2);
-        txtpostalmunicipality.setAdapter(txtpostalmunicipalityadapter);
-
-        ArrayAdapter<String> txtschoolemisadapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,countries);
-        txtschoolemis.setThreshold(2);
-        txtschoolemis.setAdapter(txtschoolemisadapter);
-
-
-
         /*Physical urban rural spinner*/
 
         ArrayAdapter<CharSequence> urbanruraladapter = ArrayAdapter.createFromResource(this, R.array.phyUrbRural_type, android.R.layout.simple_spinner_item);
         urbanruraladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerurbanrural.setAdapter(urbanruraladapter);
-        urbanruraladapter.notifyDataSetChanged();
 
         inputSpinnerurbanrural.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -238,12 +262,12 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             }
         });
 
- /*Postal urban rural spinner*/
+      /*  *//*Postal urban rural spinner*//*
 
         ArrayAdapter<CharSequence> postalurbanruraladapter = ArrayAdapter.createFromResource(this, R.array.postalUrbRural_type, android.R.layout.simple_spinner_item);
         postalurbanruraladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerpostalurbanrural.setAdapter(postalurbanruraladapter);
-        postalurbanruraladapter.notifyDataSetChanged();
+
 
         inputSpinnerpostalurbanrural.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -262,7 +286,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         ArrayAdapter<CharSequence> equityadapter = ArrayAdapter.createFromResource(this, R.array.equity_type, android.R.layout.simple_spinner_item);
         equityadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerequity.setAdapter(equityadapter);
-        equityadapter.notifyDataSetChanged();
+
 
         inputSpinnerequity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -281,7 +305,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         ArrayAdapter<CharSequence> residentstatusadapter = ArrayAdapter.createFromResource(this, R.array.c_rStatus_type, android.R.layout.simple_spinner_item);
         residentstatusadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerresidentstatus.setAdapter(residentstatusadapter);
-        residentstatusadapter.notifyDataSetChanged();
+
 
         inputSpinnerresidentstatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -296,12 +320,9 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+        showProgress(false, mContentView, mProgressView);
     }
-
-
-
-
 
     @Override
     protected void initializeInputs() {
@@ -381,7 +402,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
-        /*Postal layouts labels*/
+        /*Postal layouts labels*//*
 
         Label = getLabelFromDb("lbl_S105_postalcode", R.string.lbl_S105_postalcode);
         lblView = (TextView) findViewById(R.id.lblpostalcode);
@@ -452,7 +473,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         lblView = (TextView) findViewById(R.id.lblresidentstatus);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-
+*/
 
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
@@ -466,14 +487,40 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnUpdate.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
-            txtmunicipality.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            txtpostalmunicipality.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputtelephone.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputfax.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphysicalcode.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphyaddress1.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphyaddress2.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphyaddress3.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphyprovince.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphycity.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputphysuburub.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           /* inputpostalcode.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputpostaladdress1.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputpostaladdress2.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputpostaladdress3.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputetpostalprovince.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputetpostalcity.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputetpostalsuburub.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputlastscyear.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+          */  txtmunicipality.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            /*txtpostalmunicipality.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             txtschoolemis.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            */inputSpinnerhomelanguage.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnercountry.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerprovince.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnercity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnersuburb.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerurbanrural.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            inputSpinnerpostalurbanrural.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+           /* inputSpinnerpostalurbanrural.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerpostalcountry.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerpostalprovince.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerpostalcity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerpostalsuburb.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerequity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerresidentstatus.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-        }
+       */ }
     }
 
 
@@ -491,106 +538,65 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
                     printLogs(LogTag, "fetchData", "RESPONSE : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
-                        JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
+                        JSONArray jsonArray = jsonObject.getJSONArray(KEY_DATA);
+                        for (int i = 0; i <jsonArray.length() ; i++) {
+                            JSONObject dataM = jsonArray.getJSONObject(i);
+                            homelanguage_value =  dataM.getString("s_d_o_home_lang");
+                            inputtelephone.setText(dataM.getString("s_d_o_telephone"));
+                            inputfax.setText(dataM.getString("s_d_o_fax"));
+                            inputphysicalcode.setText(dataM.getString("s_d_o_phy_code"));
+                            inputphyaddress1.setText(dataM.getString("s_d_o_phy_add_one"));
+                            inputphyaddress2.setText(dataM.getString("s_d_o_phy_add_two"));
+                            inputphyaddress3.setText(dataM.getString("s_d_o_phy_add_three"));
+                            inputphyprovince.setText(dataM.getString("s_d_o_other_province_name"));
+                            inputphycity.setText(dataM.getString("s_d_o_other_city_name"));
+                            inputphysuburub.setText(dataM.getString("s_d_o_other_suburb_name"));
+                            phyMunicipality_value = dataM.getString("s_d_o_phy_municipality");
+                            phyUrbanrual= dataM.getString("s_d_o_is_urban_rural");
+                            phyCountry = dataM.getString("s_d_o_country");
+                            phyProvince = dataM.getString("s_d_o_physical_province");
+                            phyCity = dataM.getString("s_d_o_physical_city");
+                            phySuburb = dataM.getString("s_d_o_physical_suburb");
 
-                        spin_homelanguage =  dataM.getString("s_d_o_home_lang");
-                        inputtelephone.setText(dataM.getString("s_d_o_telephone"));
-                        inputfax.setText(dataM.getString("s_d_o_fax"));
-                        inputphysicalcode.setText(dataM.getString("s_d_o_phy_code"));
-                        inputphyaddress1.setText(dataM.getString("s_d_o_phy_add_one"));
-                        inputphyaddress2.setText(dataM.getString("s_d_o_phy_add_two"));
-                        inputphyaddress3.setText(dataM.getString("s_d_o_phy_add_three"));
-                        inputphyprovince.setText(dataM.getString("s_d_o_other_province_name"));
-                        inputphycity.setText(dataM.getString("s_d_o_other_city_name"));
-                        inputphysuburub.setText(dataM.getString("s_d_o_other_suburb_name"));
-                        txtmunicipality.setText(dataM.getString("s_d_o_phy_municipality"));
+                            /*postal data*//*
+                            inputpostalcode.setText(dataM.getString("s_d_o_postal_code"));
+                            inputpostaladdress1.setText(dataM.getString("s_d_o_postal_add_line_one"));
+                            inputpostaladdress2.setText(dataM.getString("s_d_o_postal_add_line_two"));
+                            inputpostaladdress3.setText(dataM.getString("s_d_o_postal_add_line_three"));
+                            postMunicipality_value = dataM.getString("s_d_o_postal_municipality");
+                            inputetpostalprovince.setText(dataM.getString("s_d_o_postal_province_name"));
+                            inputetpostalcity.setText(dataM.getString("s_d_o_postal_city_name"));
+                            inputetpostalsuburub.setText(dataM.getString("s_d_o_postal_suburb_name"));
+                            lastschoolEMI_value = dataM.getString("s_d_o_last_school_emi");
+                            inputlastscyear.setText(dataM.getString("s_d_o_last_school_year"));
+                            postalurbanrual_value = dataM.getString("s_d_o_postal_urban_rural");
+                            postalcountry_value = dataM.getString("s_d_o_postal_country");
+                            postalprovince_value = dataM.getString("s_d_o_postal_province");
+                            postalcity_value = dataM.getString("s_d_o_postal_city");
+                            postalsuburb_value = dataM.getString("s_d_o_postal_suburb");
+                            spin_residentstatus = dataM.getString("s_d_o_citizen_resident");
+                            spin_equity = dataM.getString("s_d_o_equity");
+*/
 
-                        spin_urbanrural = dataM.getString("s_d_o_is_urban_rural");
-                        spin_country = dataM.getString("s_d_o_country");
-                        spin_province = dataM.getString("s_d_o_physical_province");
-                        spin_city = dataM.getString("s_d_o_physical_city");
-                        spin_suburb = dataM.getString("s_d_o_physical_suburb");
-
-                        /*postal data*/
-                        inputpostalcode.setText(dataM.getString("s_d_o_postal_code"));
-                        inputpostaladdress1.setText(dataM.getString("s_d_o_postal_add_line_one"));
-                        inputpostaladdress2.setText(dataM.getString("s_d_o_postal_add_line_two"));
-                        inputpostaladdress3.setText(dataM.getString("s_d_o_postal_add_line_three"));
-                        txtpostalmunicipality.setText(dataM.getString("s_d_o_postal_municipality"));
-                        inputetpostalprovince.setText(dataM.getString("s_d_o_postal_province_name"));
-                        inputetpostalcity.setText(dataM.getString("s_d_o_postal_city_name"));
-                        inputetpostalsuburub.setText(dataM.getString("s_d_o_postal_suburb_name"));
-                        txtschoolemis.setText(dataM.getString("s_d_o_last_school_emi"));
-                        inputlastscyear.setText(dataM.getString("s_d_o_last_school_year"));
-
-                        spin_postalurbanrural = dataM.getString("s_d_o_postal_urban_rural");
-                        spin_postalcountry = dataM.getString("s_d_o_postal_country");
-                        spin_postalprovince = dataM.getString("s_d_o_postal_province");
-                        spin_postalcity = dataM.getString("s_d_o_postal_city");
-                        spin_postalsuburb = dataM.getString("s_d_o_postal_suburb");
-                        spin_residentstatus = dataM.getString("s_d_o_citizen_resident");
-                        spin_equity = dataM.getString("s_d_o_equity");
-
-                     /*   String spin_categoryquali = dataM.getString("learner_qual_category_id");
-                        //  inputInternCategoryQualification.setText(dataM.getString("learner_qual_category"));
-//                        spinner_InternCategoryQualification.setSelection(Integer.parseInt(spin_categoryquali));
-
-                        inputTaxRefNo.setText(dataM.getString("txt_ref_no"));
-                        showProgress(false, mContentView, mProgressView);
-                        //SpinnerDay, SpinnerMonth, SpinnerYear
-                        //SET DOB Spinner data--PENDING..!!
-                        if(!spin_day.equals("")){
-                            int dday = Integer.parseInt(spin_day);
-                            int new_day = dday-1;
-                            String ryt_date = String.valueOf(new_day);
-                            SpinnerDay.setSelection(Integer.parseInt(ryt_date));
                         }
-                        if(!spin_month.equals("")){
-                            SpinnerMonth.setSelection(Integer.parseInt(spin_month)-1);
-                        }
-                        String mYear = spin_years; //the value you want the position for
-                        ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
-                        int spinnerPosition = mAdpt.getPosition(mYear);
-                        //set the default according to value
-                        SpinnerYear.setSelection(spinnerPosition);
-
-
-                        //spinner item..
-                        inputSpinnerRace.setSelection(Integer.parseInt(spin_race));
-                        //inputEnrollmentYear.setSelection(Integer.parseInt(spin_enroll));
-                        inputSpinnerTitle.setSelection(Integer.parseInt(spin_title));
-
-                      *//*  //spinner disability
-                        SpinnerDisabilityType.setSelection(Integer.parseInt(spin_disability));
-
-                        //spinner enrollment year
-                        int enroll_id=0;
-                        for (int i = 0; i <datalist.size() ; i++) {
-                             if(datalist.get(i).getName().equals(spin_enroll)){
-                                enroll_id = i;
-                                printLogs(LogTag, "fetchData", "enroll_id : " + enroll_id);
-                            }
-                        }
-                        Spin_EnrollmentYear.setSelection(enroll_id);*//*
-                        //CONDITION FOR GENDER MALE FEMALE
-                        String Rbtn =  rb_genderValue;
-                        if( Rbtn.equals("3")){
-                            rb_male.setChecked(true);
-                        }else{
-                            rb_female.setChecked(true);
+                        fetchCountry(phyCountry,phyProvince,phyCity,phySuburb);
+                        fetchLanguage();
+                        fetchMunicipality();
+                       /* if(!spin_equity.equals("")){
+                            inputSpinnerequity.setSelection(Integer.parseInt(spin_equity));
                         }*/
-                        //CONDITION FOR DISABILITY
-                        /*String DisBtn =  rb_disableValue;
-                        if( DisBtn.equals("1")){
-                            rb_disable_y.setChecked(true);
-                            ll_DisabilityType.setVisibility(View.VISIBLE);
-                        }else{
-                            rb_disable_n.setChecked(true);
-                            ll_DisabilityType.setVisibility(View.GONE);
+                        if(!phyUrbanrual.equals("")){
+                            inputSpinnerurbanrural.setSelection(Integer.parseInt(phyUrbanrual));
+                        }
+                        /*if(!spin_residentstatus.equals("")){
+                            inputSpinnerresidentstatus.setSelection(Integer.parseInt(spin_residentstatus));
+                        }
+                        if(!postalurbanrual_value.equals("")){
+                            inputSpinnerpostalurbanrural.setSelection(Integer.parseInt(postalurbanrual_value));
                         }*/
 
                     } else if (Status.equals("2")) {
-                        showProgress(false, mContentView, mProgressView);
+                       // showProgress(false, mContentView, mProgressView);
                     } else {
                         //showProgress(false,mContentView,mProgressView);
                         printLogs(LogTag, "fetchData", "ERROR_S105_101 : DATA_ERROR");
@@ -637,8 +643,1056 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
     }
 
 
+    private void fetchCountry(String phyCountry, String phyProvince, String phyCity, String phySuburb) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.COUNTRY_105;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchCountrySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchCountrySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        CountryType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            CountryType[i] = new SpinnerObj();
+                            CountryType[i].setId(jsonObject.getString("country_id"));
+                            CountryType[i].setName(jsonObject.getString("country_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, CountryType);
+                        inputSpinnercountry.setAdapter(adapter);
+                        if(!phyCountry.equals("")){
+                                int spinnerPosition = getSelectedPoostion(inputSpinnercountry, phyCountry);
+                                inputSpinnercountry.setSelection(spinnerPosition);
+                        }
+                        inputSpinnercountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_country = adapter.getItem(i).getId();
+                                if(spin_country.equals("1")){
+                                    fetchProvince(phyProvince,phyCity,phySuburb);
+                                    spinnersLayout.setVisibility(View.VISIBLE);
+                                    edittextLayouts.setVisibility(View.GONE);
+                                }else{
+                                    spinnersLayout.setVisibility(View.GONE);
+                                    edittextLayouts.setVisibility(View.VISIBLE);
+                                }
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchPostalCountry() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.COUNTRY_105;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchPostalCountrySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchPostalCountrySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        CountryType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            CountryType[i] = new SpinnerObj();
+                            CountryType[i].setId(jsonObject.getString("country_id"));
+                            CountryType[i].setName(jsonObject.getString("country_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, CountryType);
+                        inputSpinnerpostalcountry.setAdapter(adapter);
+                        if(!postalcountry_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerpostalcountry, postalcountry_value);
+                            inputSpinnerpostalcountry.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerpostalcountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_postalcountry = adapter.getItem(i).getId();
+                                if(spin_postalcountry.equals("1")){
+                                    fetchPostalProvince();
+                                    postalspinnersLayout.setVisibility(View.VISIBLE);
+                                    postaledittextLayouts.setVisibility(View.GONE);
+                                }else{
+                                    postalspinnersLayout.setVisibility(View.GONE);
+                                    postaledittextLayouts.setVisibility(View.VISIBLE);
+                                }
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
 
 
+    private void fetchPostalProvince() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.PROVINCE_105;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchProvinceSpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchProvinceSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        ProvinceType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            ProvinceType[i] = new SpinnerObj();
+                            ProvinceType[i].setId(jsonObject.getString("province_id"));
+                            ProvinceType[i].setName(jsonObject.getString("province_type"));
+
+                        }
+                       SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, ProvinceType);
+                        inputSpinnerpostalprovince.setAdapter(adapter);
+                        if(!postalprovince_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerpostalprovince, postalprovince_value);
+                            inputSpinnerpostalprovince.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerpostalprovince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_postalprovince = adapter.getItem(i).getId();
+                               if(!spin_postalprovince.equals("")){
+                                    fetchPostalCity(spin_postalprovince);
+                                }
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchPostalCity(String spin_postalprovince) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.CITY_105;
+        FINAL_URL=FINAL_URL+"?token="+token+"&province_id="+spin_postalprovince;
+        printLogs(LogTag,"fetchCitySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchCitySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        CityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            CityType[i] = new SpinnerObj();
+                            CityType[i].setId(jsonObject.getString("city_id"));
+                            CityType[i].setName(jsonObject.getString("city_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, CityType);
+                        inputSpinnerpostalcity.setAdapter(adapter);
+                        if(!postalcity_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerpostalcity, postalcity_value);
+                            inputSpinnerpostalcity.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerpostalcity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_postalcity = adapter.getItem(i).getId();
+                                if(!spin_postalcity.equals("")){
+                                    fetchPostalSuburbs(spin_postalcity);
+                                }
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchPostalSuburbs(String spin_postalcity) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.SUBURBS_105;
+        FINAL_URL=FINAL_URL+"?token="+token+"&city_id="+spin_postalcity;
+        printLogs(LogTag,"fetchSuburbsSpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchSuburbsSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        SuburbsType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            SuburbsType[i] = new SpinnerObj();
+                            SuburbsType[i].setId(jsonObject.getString("suburb_id"));
+                            SuburbsType[i].setName(jsonObject.getString("suburb_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, SuburbsType);
+                        inputSpinnerpostalsuburb.setAdapter(adapter);
+                        if(!postalsuburb_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerpostalsuburb, postalsuburb_value);
+                            inputSpinnerpostalsuburb.setSelection(spinnerPosition);
+                        }
+
+                        inputSpinnerpostalsuburb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_postalsuburb = adapter.getItem(i).getId();
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchProvince(String phyProvince, String phyCity, String phySuburb) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.PROVINCE_105;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchProvinceSpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchProvinceSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        ProvinceType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            ProvinceType[i] = new SpinnerObj();
+                            ProvinceType[i].setId(jsonObject.getString("province_id"));
+                            ProvinceType[i].setName(jsonObject.getString("province_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, ProvinceType);
+                        inputSpinnerprovince.setAdapter(adapter);
+                        if(!phyProvince.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerprovince, phyProvince);
+                            inputSpinnerprovince.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerprovince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_province = adapter.getItem(i).getId();
+                                if(!spin_province.equals("")){
+                                    fetchCity(spin_province,phyCity,phySuburb);
+                                }
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchCity(String spin_province, String phyCity, String phySuburb) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.CITY_105;
+        FINAL_URL=FINAL_URL+"?token="+token+"&province_id="+spin_province;
+        printLogs(LogTag,"fetchCitySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchCitySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        CityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            CityType[i] = new SpinnerObj();
+                            CityType[i].setId(jsonObject.getString("city_id"));
+                            CityType[i].setName(jsonObject.getString("city_type"));
+
+                        }
+                        SpinAdapter cityadapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, CityType);
+                        inputSpinnercity.setAdapter(cityadapter);
+                        if(!phyCity.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnercity, phyCity);
+                            inputSpinnercity.setSelection(spinnerPosition);
+                        }
+                        inputSpinnercity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                               spin_city = cityadapter.getItem(i).getId();
+                                printLogs(LogTag, "fetchCitySpinner", "spin_city : " + spin_city);
+                                if(!spin_city.equals("")){
+                                    fetchSuburbs(spin_city,phySuburb);
+                                }
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchSuburbs(String spin_city, String phySuburb) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.SUBURBS_105;
+        FINAL_URL=FINAL_URL+"?token="+token+"&city_id="+spin_city;
+        printLogs(LogTag,"fetchSuburbsSpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchSuburbsSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        SuburbsType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            SuburbsType[i] = new SpinnerObj();
+                            SuburbsType[i].setId(jsonObject.getString("suburb_id"));
+                            SuburbsType[i].setName(jsonObject.getString("suburb_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, SuburbsType);
+                        inputSpinnersuburb.setAdapter(adapter);
+                        if(!phySuburb.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnersuburb, phySuburb);
+                            inputSpinnersuburb.setSelection(spinnerPosition);
+                        }
+                        inputSpinnersuburb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_suburb = adapter.getItem(i).getId();
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchLastSchoolEMI() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.SCHOOLEMI_105B;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchschoolEMISpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchschoolEMISpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        SchoolEMIType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            SchoolEMI_list.add(jsonObject.getString("school_emi_type"));
+                            SchoolEMIType[i] = new SpinnerObj();
+                            SchoolEMIType[i].setId(jsonObject.getString("school_emi_id"));
+                            SchoolEMIType[i].setName(jsonObject.getString("school_emi_type"));
+
+                        }
+
+                        AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEditProfileStepTwoA.this,android.R.layout.simple_spinner_item,android.R.id.text1,SchoolEMI_list);
+                        txtschoolemis.setAdapter(autoCompleteAdapter);
+                        if(!lastschoolEMI_value.equals("")){
+                            for (int j = 0; j <SchoolEMIType.length ; j++) {
+                                if(SchoolEMIType[j].getId().equals(lastschoolEMI_value)){
+                                    txtschoolemis.setText(SchoolEMIType[j].getName());
+                                }
+                            }
+                        }
+
+                        txtschoolemis.setThreshold(2);
+
+
+                        txtschoolemis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                String schoolemi_value1 = autoCompleteAdapter.getItem(i);
+                                printLogs(LogTag, "fetchschoolEMISpinner", "schoolemi_value1 id: " + schoolemi_value1);
+
+                                for (int j = 0; j <SchoolEMIType.length ; j++) {
+                                    if(SchoolEMIType[j].getName().equals(schoolemi_value1)){
+                                        schoolEMI_value = SchoolEMIType[j].getId();
+                                        printLogs(LogTag, "fetchschoolEMISpinner", "schoolEMI_value id: " + schoolEMI_value);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchMunicipality() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.MUNICIPALITY_105B;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchMunicipalitySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchLanguageSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        MunicipalityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            municipality_list.add(jsonObject.getString("muncipality_type"));
+                            MunicipalityType[i] = new SpinnerObj();
+                            MunicipalityType[i].setId(jsonObject.getString("muncipality_id"));
+                            MunicipalityType[i].setName(jsonObject.getString("muncipality_type"));
+
+                        }
+                        AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEditProfileStepTwoA.this,android.R.layout.simple_spinner_item,android.R.id.text1,municipality_list);
+                        txtmunicipality.setAdapter(autoCompleteAdapter);
+                        if(!phyMunicipality_value.equals("")){
+                        for (int j = 0; j <MunicipalityType.length ; j++) {
+                            if(MunicipalityType[j].getId().equals(phyMunicipality_value)){
+                                txtmunicipality.setText(MunicipalityType[j].getName());
+                            }
+                        }
+                        }
+                        txtmunicipality.setThreshold(2);
+                        txtmunicipality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                String municipality_value1 = autoCompleteAdapter.getItem(i);
+                                for (int j = 0; j <MunicipalityType.length ; j++) {
+                                    if(MunicipalityType[j].getName().equals(municipality_value1)){
+                                        municipality_value = MunicipalityType[j].getId();
+                                        printLogs(LogTag, "fetchmunicipalitySpinner", "municipality_value id: " + municipality_value);
+                                    }
+                                }
+                            }
+                        });
+                        /*txtpostalmunicipality.setAdapter(autoCompleteAdapter);
+                        if(!postMunicipality_value.equals("")){
+                            for (int j = 0; j <MunicipalityType.length ; j++) {
+                                if(MunicipalityType[j].getId().equals(postMunicipality_value)){
+                                    txtpostalmunicipality.setText(MunicipalityType[j].getName());
+                                }
+                            }
+                        }
+                        txtpostalmunicipality.setThreshold(2);
+                        txtpostalmunicipality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                String postalmunicipality_value1 = autoCompleteAdapter.getItem(i);
+                                for (int j = 0; j <MunicipalityType.length ; j++) {
+                                    if(MunicipalityType[j].getName().equals(postalmunicipality_value1)){
+                                        postalmunicipality_value = MunicipalityType[j].getId();
+                                        printLogs(LogTag, "fetchmunicipalitySpinner", "postalmunicipality_value id: " + postalmunicipality_value);
+                                    }
+                                }
+                            }
+                        });*/
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchLanguage() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.LANGAUGE_105B;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchLanguageSpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchLanguageSpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        LanguageType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            LanguageType[i] = new SpinnerObj();
+                            LanguageType[i].setId(jsonObject.getString("lang_id"));
+                            LanguageType[i].setName(jsonObject.getString("lang_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepTwoA.this, android.R.layout.simple_spinner_item, LanguageType);
+                        inputSpinnerhomelanguage.setAdapter(adapter);
+                        if(!homelanguage_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerhomelanguage, homelanguage_value);
+                            inputSpinnerhomelanguage.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerhomelanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_homelanguage = adapter.getItem(i).getId();
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private int getSelectedPoostion(Spinner spinner, String selectedItem) {
+        //Long val = Long.parseLong(value);
+        int pos=0;
+        SpinAdapter adapter = (SpinAdapter) spinner.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            printLogs(LogTag,"getSelectedPosition","init"+position+"==="+adapter.getItem(position).getId()+"==00=="+selectedItem +"Counting"+adapter.getCount());
+            if(adapter.getItem(position).getId().equals (selectedItem)){
+                printLogs(LogTag,"getSelectedPosition","position"+position+"=="+selectedItem);
+                pos = position;
+            }
+        }
+        return pos;
+    }
     @Override
     protected void verifyVersion() {
         printLogs(LogTag, "verifyVersion", "init");
@@ -700,7 +1754,7 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
 
     @Override
     public void validateForm() {
-            boolean cancel = false;
+        boolean cancel = false;
             /*if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
                 cancel = true;
             } else if (!validateLastName(inputLastName, inputLayoutLastName)) {
@@ -723,17 +1777,16 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
                 cancel = true;
             }*/
 
-            if (cancel) {
-                return;
-            } else {
-                showProgress(true, mContentView, mProgressView);
-                this.FormSubmit();
-            }
-            printLogs(LogTag, "validateForm", "exit");
+        if (cancel) {
+            return;
+        } else {
+            showProgress(true, mContentView, mProgressView);
+            this.FormSubmit();
+        }
+        printLogs(LogTag, "validateForm", "exit");
     }
 
     public void FormSubmit() {
-
         final String telephone = inputtelephone.getText().toString().trim();
         final String fax = inputfax.getText().toString().trim();
         final String physicalCode = inputphysicalcode.getText().toString().trim();
@@ -753,25 +1806,25 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
         final String lastschoolyear = inputlastscyear.getText().toString().trim();
 
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_105_3;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.UPDATEDETAILS_105_B;
         printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", token);
-            jsonBody.put("home_language", "1");
+            jsonBody.put("home_language", spin_homelanguage);
             jsonBody.put("telephone", telephone);
             jsonBody.put("fax", fax);
             jsonBody.put("physicalCode", physicalCode);
             jsonBody.put("phyaddress1", phyaddress1);
             jsonBody.put("phyaddress2", phyaddress2);
             jsonBody.put("phyaddress3", phyaddress3);
-            jsonBody.put("phy_municipality", "2");
-            jsonBody.put("phy_urbanrural", "3");
-            jsonBody.put("phy_country", "2");
-            jsonBody.put("phy_province", "2");
-            jsonBody.put("phy_city", "2");
-            jsonBody.put("phy_suburb", "2");
+            jsonBody.put("phy_municipality", municipality_value);
+            jsonBody.put("phy_urbanrural", phyurbanrural_value);
+            jsonBody.put("phy_country", spin_country);
+            jsonBody.put("phy_province", spin_province);
+            jsonBody.put("phy_city", spin_city);
+            jsonBody.put("phy_suburb", spin_suburb);
             jsonBody.put("phy_province_name", phyprovince);
             jsonBody.put("phy_city_name", phycity);
             jsonBody.put("phy_suburub_name", physuburub);
@@ -779,77 +1832,75 @@ String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalc
             jsonBody.put("postaladdress1", postaladdress1);
             jsonBody.put("postaladdress2", postaladdress2);
             jsonBody.put("postaladdress3", postaladdress3);
-            jsonBody.put("postal_municipality", "2");
-            jsonBody.put("postal_urbanrural", "3");
-            jsonBody.put("postal_country", "2");
-            jsonBody.put("postal_province", "2");
-            jsonBody.put("postal_city", "2");
-            jsonBody.put("postal_suburb", "2");
+            jsonBody.put("postal_municipality", postalmunicipality_value);
+            jsonBody.put("postal_urbanrural", postalurbanrural_value);
+            jsonBody.put("postal_country", spin_postalcountry);
+            jsonBody.put("postal_province", spin_postalprovince);
+            jsonBody.put("postal_city", spin_postalcity);
+            jsonBody.put("postal_suburb", spin_postalsuburb);
             jsonBody.put("postal_province_name", postalprovince);
             jsonBody.put("postal_city_name", postalcity);
             jsonBody.put("postal_suburub_name", postalsuburub);
-            jsonBody.put("lastschool_emi", "4");
+            jsonBody.put("lastschool_emi", schoolEMI_value);
             jsonBody.put("lastschool_year", lastschoolyear);
-            jsonBody.put("equity", "1");
-            jsonBody.put("c_resident_status", "1");
+            jsonBody.put("equity", spin_equity);
+            jsonBody.put("c_resident_status", spin_residentstatus);
 
             printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject;
+                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                try {
+                    jsonObject = new JSONObject(String.valueOf(response));
+                    String Status = jsonObject.getString(KEY_STATUS);
+                    if (Status.equals("1")) {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = getLabelFromDb("m_S105_title", R.string.m_S105_title);
+                        String sMessage = getLabelFromDb("m_S105_message", R.string.m_S105_message);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showSuccessDialogSEditProfileTwo(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
+                    } else {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = "Error :" + ActivityId + "-104";
+                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    showProgress(false, mContentView, mProgressView);
+                    String sTitle = "Error :" + ActivityId + "-S105";
+                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                    String sButtonLabelClose = "Close";
+                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                }
+            }
 
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showProgress(false, mContentView, mProgressView);
+                String sTitle = "Error :" + ActivityId + "-106";
+                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> header = new HashMap<>();
+                header.put("Content-Type", "application/json; charset=utf-8");
+                header.put("Accept","*/*");
+                return header;
+            }
+        };
 
-//        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                JSONObject jsonObject;
-//                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
-//                try {
-//                    jsonObject = new JSONObject(String.valueOf(response));
-//                    String Status = jsonObject.getString(KEY_STATUS);
-//                    if (Status.equals("1")) {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = SEditProfileA.this.getLabelFromDb("m_S105_title", R.string.m_S105_title);
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("m_S105_message", R.string.m_S105_message);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showSuccessDialogSEditProfile(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
-//                    } else {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = "Error :" + ActivityId + "-104";
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                    }
-//                } catch (JSONException e) {
-//                    SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                    String sTitle = "Error :" + ActivityId + "-S105";
-//                    String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                    String sButtonLabelClose = "Close";
-//                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                }
-//            }
-//
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                showProgress(false, mContentView, mProgressView);
-//                String sTitle = "Error :" + ActivityId + "-106";
-//                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-//                String sButtonLabelClose = "Close";
-//                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//            }
-//        }) {
-//        @Override
-//        public Map<String, String> getHeaders() {
-//            Map<String, String> header = new HashMap<>();
-//            header.put("Content-Type", "application/json; charset=utf-8");
-//            header.put("Accept","*/*");
-//            return header;
-//        }
-//    };
-//
-//    RequestQueue requestQueue = Volley.newRequestQueue(SEditProfileA.this);
-//        requestQueue.add(jsonObjectRequest);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
     }
 
     @Override

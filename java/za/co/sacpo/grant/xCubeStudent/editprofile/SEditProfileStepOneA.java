@@ -103,6 +103,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     String race_value, title_value,enrollment_no,month_value;
     int disability_value,qualcategory_value;
     public SpinnerObj[] StuQualcatType ;
+    public SpinnerObj[] NationalityType;
     SEditProfileStepOneA thisClass;
 
 
@@ -148,99 +149,18 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 syncToken(baseApcContext, activityIn);
             }
           //  fetchEnrollment();
+            fetchNationality();
             fetchData();
             callDataApi();
             initializeListeners();
-          //  fetchQualCategoryType();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
             showProgress(false, mContentView, mProgressView);
         }
     }
 
-    private void fetchQualCategoryType() {
-        String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.Qual_Category_Type;
-        FINAL_URL=FINAL_URL+"/"+token;
-        printLogs(LogTag,"fetchTicketIssueSpinner","URL : "+FINAL_URL);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject outputJson= new JSONObject(String.valueOf(response));
-                    printLogs(LogTag, "fetchTicketIssueSpinner", "response : " + response);
-                    String Status = outputJson.getString(KEY_STATUS);
-                    if(Status.equals("1")){
-                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
-                        StuQualcatType = new SpinnerObj[dataM.length()];
-                        for (int i = 0; i <dataM.length() ; i++) {
-                            JSONObject jsonObject = dataM.getJSONObject(i);
-                            StuQualcatType[i] = new SpinnerObj();
-                            StuQualcatType[i].setId(jsonObject.getString("type_id"));
-                            StuQualcatType[i].setName(jsonObject.getString("type_title"));
-
-                        }
-                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_item, StuQualcatType);
-                        spinner_InternCategoryQualification.setAdapter(adapter);
-                        spinner_InternCategoryQualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                qualcategory_value = Integer.parseInt(adapter.getItem(i).getId());
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
-
-                            }
-                        });
-                    }
-                    else if(Status.equals("2")) {
-                        // showProgress(false,mContentRView,mProgressRView);
-                    }
-                    else{
-                        // showProgress(false,mContentRView,mProgressRView);
-                        String sTitle="Error :"+ActivityId+"-102";
-                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                        String sButtonLabelClose="Close";
-                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    //showProgress(false,mContentRView,mProgressRView);
-                    String sTitle="Error :"+ActivityId+"-103";
-                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                    String sButtonLabelClose="Close";
-                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //  showProgress(false,mContentRView,mProgressRView);
-                        String sTitle="Error :"+ActivityId+"-104";
-                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
-                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                        String sButtonLabelClose="Close";
-                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<>();
-                params.put("Accept", "*/*");
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(jsonObjectRequest);
 
 
-    }
+
 
 
     @Override
@@ -295,8 +215,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         inputLayoutalternative_id = findViewById(R.id.inputLayoutalternative_id);
         inputLayoutEmail = findViewById(R.id.inputLayoutEmail);
         inputLayoutLastName = findViewById(R.id.inputLayoutLastName);
-
-      //  inputLayoutInternCategoryQualification = findViewById(R.id.inputLayoutInternCategoryQualification);
         inputLayoutTaxRefNo = findViewById(R.id.inputLayoutTaxRefNo);
 
         mContentView = findViewById(R.id.content_container);
@@ -304,16 +222,14 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         heading = findViewById(R.id.heading);
         btnUpdate = findViewById(R.id.btnUpdate);
 
-
         RgGender = findViewById(R.id.RgGender);
-
         inputSpinnerTitle = findViewById(R.id.inputSpinnerTitle);
         inputSpinnerRace = findViewById(R.id.inputSpinnerRace);
         SpinnerDay = findViewById(R.id.SpinnerDay);
         SpinnerMonth = findViewById(R.id.SpinnerMonth);
         SpinnerYear = findViewById(R.id.SpinnerYear);
         inputSpinnerNationality = findViewById(R.id.inputSpinnerNationality);
-               rb_male = findViewById(R.id.rb_male);
+        rb_male = findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
 
         /*inputLearnerNo = findViewById(R.id.inputLearnerNo);
@@ -487,13 +403,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     @Override
     protected void initializeInputs() {
         printLogs(LogTag, "initializeInputs", "init");
-
-
-        //SPINNER FROM API
-    /*    SpinnerAdapter adapter5 = new SpinnerAdapter(SEditProfileA.this, android.R.layout.simple_spinner_dropdown_item, datalist);
-        Spin_EnrollmentYear.setAdapter(adapter5);*/
-
-
     }
 
     @Override
@@ -505,19 +414,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 validateForm();
             }
         });
-
-
-      /*  RGPhysicalDisAbility.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rb = (RadioButton) findViewById(checkedId);
-                disability_status = RGPhysicalDisAbility.getCheckedRadioButtonId();
-                printLogs(LogTag, "initializeListeners", "disability_status : " + disability_status);
-
-            }
-        });*/
-
-
         RgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -529,26 +425,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
             }
         });
-
-
-  /*      rb_disable_y.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ll_DisabilityType.setVisibility(View.VISIBLE);
-                //disability_key_status = rb_disable_y.getTag().toString();
-            }
-        });
-
-        rb_disable_n.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ll_DisabilityType.setVisibility(View.GONE);
-              //  disability_key_status = rb_disable_n.getTag().toString();
-            }
-        });*/
-
-
         rb_male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -606,29 +482,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
             }
         });
-
-      /*  final ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(this, R.array.disability_type, android.R.layout.simple_spinner_item);
-        adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpinnerDisabilityType.setAdapter(adapter7);
-        adapter7.notifyDataSetChanged();
-
-
-        SpinnerDisabilityType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
-                disability_value = Math.toIntExact(parent.getSelectedItemId());
-                printLogs(LogTag, "initializeListeners", "disability_value" + disability_value);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-*/
 
 
    final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
@@ -804,7 +657,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
   public boolean validateNationalId(EditText inputEditMobile, TextInputLayout inputLayoutNational_id) {
         String phone = inputEditMobile.getText().toString().trim();
         setCustomError(inputLayoutNational_id, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidMobile(phone)) {
+        if (phone.isEmpty() || !isValidLName(phone)) {
             String sMessage = getLabelFromDb("error_S105_nationalid", R.string.error_S105_nationalid);
             setCustomError(inputLayoutNational_id, sMessage, inputEditMobile);
             return false;
@@ -816,7 +669,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateRegNo(EditText inputEditMobile, TextInputLayout inputLayoutsRegNo) {
         String phone = inputEditMobile.getText().toString().trim();
         setCustomError(inputLayoutsRegNo, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidMobile(phone)) {
+        if (phone.isEmpty() || !isValidLName(phone)) {
             String sMessage = getLabelFromDb("error_S105_sregno", R.string.error_S105_sregno);
             setCustomError(inputLayoutsRegNo, sMessage, inputEditMobile);
             return false;
@@ -828,7 +681,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateAlternativeId(EditText inputEditMobile, TextInputLayout inputLayoutalternative_id) {
         String phone = inputEditMobile.getText().toString().trim();
         setCustomError(inputLayoutalternative_id, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidMobile(phone)) {
+        if (phone.isEmpty() || !isValidLName(phone)) {
             String sMessage = getLabelFromDb("error_S105_alternativeid", R.string.error_S105_alternativeid);
             setCustomError(inputLayoutalternative_id, sMessage, inputEditMobile);
             return false;
@@ -957,6 +810,90 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                     break;
             }
         }
+    }
+
+    private void fetchNationality() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.NATIONALITY_105A;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchNationalitySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchNationalitySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        NationalityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            NationalityType[i] = new SpinnerObj();
+                            NationalityType[i].setId(jsonObject.getString("nationality_id"));
+                            NationalityType[i].setName(jsonObject.getString("nationality_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_item, NationalityType);
+                        inputSpinnerNationality.setAdapter(adapter);
+                        inputSpinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_nationality = adapter.getItem(i).getId();
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+
     }
 
     private void fetchData() {
@@ -1178,12 +1115,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         final int race_id = Integer.parseInt(String.valueOf(race_value));
         final int title = Integer.parseInt(String.valueOf(title_value));
 
-       /* if(rb_disable_y.isChecked()){
-            disability_key_status = rb_disable_y.getTag().toString();
-        }else if(rb_disable_n.isChecked()){
-            disability_key_status = rb_disable_n.getTag().toString();
-        }
-        final int disability_type = disability_value;*/
+
 if(rb_male.isChecked()){
     gender_key_status = rb_male.getTag().toString();
         }else if(rb_female.isChecked()){
@@ -1214,9 +1146,10 @@ if(rb_male.isChecked()){
         final String sRegNo = inputsRegNo.getText().toString().trim();
         final String alternativeId = inputalternative_id.getText().toString().trim();
         final String sur_name = inputLastName.getText().toString().trim();
+        final String email = inputEmail.getText().toString().trim();
 
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_105_3;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.UPDATEDETAILS_105_A;
         printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
 
         JSONObject jsonBody = new JSONObject();
@@ -1228,17 +1161,12 @@ if(rb_male.isChecked()){
             jsonBody.put("national_id", national_id);
             jsonBody.put("sRegNo", sRegNo);
             jsonBody.put("alternative_id", alternativeId);
-           jsonBody.put("nationality", "2");
-           // jsonBody.put(KEY_KIN_CONTACT, kin_con);
-           // jsonBody.put(KEY_INTERN_UOT, intern_uot);
-          //  jsonBody.put(KEY_INTERN_QUALIFICATION, qualCategoryType_value);
+           jsonBody.put("nationality", spin_nationality);
+           jsonBody.put("email", email);
             jsonBody.put(KEY_TAX_REF, tax_ref);
-           // jsonBody.put(KEY_STATUS_DISABILITY, disability_key_status);
             jsonBody.put(KEY_STATUS_GENDER, gender_key_status);
-          //  jsonBody.put(KEY_STATUS_DISABILITY_TYPE, String.valueOf(disability_type));
             jsonBody.put(KEY_STATUS_RACE, String.valueOf(race_id));
             jsonBody.put(KEY_STATUS_TITLE, String.valueOf(title));
-          //  jsonBody.put(KEY_STATUS_ENROLL, String.valueOf(enroll_year));
             jsonBody.put(KEY_STATUS_MONTH, String.valueOf(month));
             jsonBody.put(KEY_STATUS_DATE, String.valueOf(date));
             jsonBody.put(KEY_STATUS_YEAR, String.valueOf(year));
@@ -1247,58 +1175,57 @@ if(rb_male.isChecked()){
             e.printStackTrace();
         }
 
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject;
+                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                try {
+                    jsonObject = new JSONObject(String.valueOf(response));
+                    String Status = jsonObject.getString(KEY_STATUS);
+                    if (Status.equals("1")) {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = getLabelFromDb("m_S105_title", R.string.m_S105_title);
+                        String sMessage = getLabelFromDb("m_S105_message", R.string.m_S105_message);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showSuccessDialogSEditProfile(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
+                    } else {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = "Error :" + ActivityId + "-104";
+                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    showProgress(false, mContentView, mProgressView);
+                    String sTitle = "Error :" + ActivityId + "-S105";
+                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                    String sButtonLabelClose = "Close";
+                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                }
+            }
 
-//        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                JSONObject jsonObject;
-//                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
-//                try {
-//                    jsonObject = new JSONObject(String.valueOf(response));
-//                    String Status = jsonObject.getString(KEY_STATUS);
-//                    if (Status.equals("1")) {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = SEditProfileA.this.getLabelFromDb("m_S105_title", R.string.m_S105_title);
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("m_S105_message", R.string.m_S105_message);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showSuccessDialogSEditProfile(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
-//                    } else {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = "Error :" + ActivityId + "-104";
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                    }
-//                } catch (JSONException e) {
-//                    SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                    String sTitle = "Error :" + ActivityId + "-S105";
-//                    String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                    String sButtonLabelClose = "Close";
-//                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                }
-//            }
-//
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                showProgress(false, mContentView, mProgressView);
-//                String sTitle = "Error :" + ActivityId + "-106";
-//                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-//                String sButtonLabelClose = "Close";
-//                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//            }
-//        }) {
-//        @Override
-//        public Map<String, String> getHeaders() {
-//            Map<String, String> header = new HashMap<>();
-//            header.put("Content-Type", "application/json; charset=utf-8");
-//            header.put("Accept","*/*");
-//            return header;
-//        }
-//    };
-//
-//    RequestQueue requestQueue = Volley.newRequestQueue(SEditProfileA.this);
-//        requestQueue.add(jsonObjectRequest);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showProgress(false, mContentView, mProgressView);
+                String sTitle = "Error :" + ActivityId + "-106";
+                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            }
+        }) {
+        @Override
+        public Map<String, String> getHeaders() {
+            Map<String, String> header = new HashMap<>();
+            header.put("Content-Type", "application/json; charset=utf-8");
+            header.put("Accept","*/*");
+            return header;
+        }
+    };
+
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
     }
 
     public void customRedirector() {

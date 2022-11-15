@@ -1236,7 +1236,7 @@
     <string name="lbl_S105C_refno">Reference Number</string>
     <string name="lbl_S105C_wiltype">Wil Type</string>
 
- <!--Edit Profile Step 4-->
+    <!--Edit Profile Step 4-->
     <string name="lbl_S105D_nameOfKin">Name of Kin</string>
     <string name="lbl_S105D_contactOfKin">Contact of Kin</string>
     <string name="lbl_S105D_PhysicalDis">Physically Disable</string>
@@ -1245,9 +1245,6 @@
     <string name="lbl_S105D_institution">Institution</string>
     <string name="lbl_S105D_university">University</string>
     <string name="lbl_S105D_college">College</string>
-
-
-
 
 
     <!--ClaimA-->
