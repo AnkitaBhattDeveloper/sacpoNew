@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,8 +71,9 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     EditText inputsaqaid,inputempsdlno,inputprovidersdlno,inputproject,inputrefno;
     public SpinnerObj[] NQFLevelType;
     public SpinnerObj[] FinYearType;
+    TextInputLayout inputLayoutsaqaid,inputLayoutempsdlno;
     /*fetch data strings*/
-    String statssaAreaCode="",popiActStatus="",popiActDate="",popiActMonth="",popiActYear="",OFOCode="",
+    String statssaAreaCode="",popiActStatus="",popiActDate="",popiActMonth="",popiActYear="",
     Sponsorship="",FinancialYear="",NQFLevel="",EconomicStatus="",EnrollmentStatus="",WILType="",
     WILStartDate="",WILStartMonth="",WILStartYear="",WILEndDate="",WILEndMonth="",WILEndYear="",
             MRRDate="",MRRMonth="",MRRYear="";
@@ -109,7 +111,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             internetChangeBroadCast();
             initializeViews();
             initBackBtn();
-            //showProgress(true, mContentView, mProgressView);
+            showProgress(true, mContentView, mProgressView);
             initializeLabels();
             initializeInputs();
             userToken = userSessionObj.getToken();
@@ -117,14 +119,15 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            fetchData();
-            fetchSTATSSAAreaCode();
             fetchNQFLevels();
-           // fetchFinancialYears();
+            fetchFinancialYears();
+            fetchSTATSSAAreaCode();
             fetchOFOCode();
+            fetchData();
+
+
             callDataApi();
             initializeListeners();
-            //  fetchQualCategoryType();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
             //showProgress(false, mContentView, mProgressView);
         }
@@ -164,6 +167,8 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         inputproject = findViewById(R.id.inputproject);
         inputrefno = findViewById(R.id.inputrefno);
         inputSpinnerwiltype = findViewById(R.id.inputSpinnerwiltype);
+        inputLayoutsaqaid = findViewById(R.id.inputLayoutsaqaid);
+        inputLayoutempsdlno = findViewById(R.id.inputLayoutempsdlno);
 
     }
 
@@ -288,7 +293,10 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, days);
         Spinner SpinnerDay = (Spinner)findViewById(R.id.SpinnerDay);
         SpinnerDay.setAdapter(adapter4);
-
+        if(!popiActDate.equals("")){
+            int spinnerPosition = getSelectedPoostion(SpinnerDay, popiActDate);
+            SpinnerDay.setSelection(spinnerPosition);
+        }
         SpinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -302,7 +310,11 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerMonth.setAdapter(adapter6);
-        adapter6.notifyDataSetChanged();
+        if(!popiActMonth.equals("")){
+            int spinnerPosition = getSelectedPoostion(SpinnerMonth, popiActMonth);
+            SpinnerMonth.setSelection(spinnerPosition);
+        }
+
 
         SpinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -318,7 +330,10 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
         SpinnerYear.setAdapter(adapter3);
-
+        if(!popiActYear.equals("")){
+            int spinnerPosition = getSelectedPoostion(SpinnerYear, popiActYear);
+            SpinnerYear.setSelection(spinnerPosition);
+        }
         SpinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -550,7 +565,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
 
-        Label = getLabelFromDb("h_505", R.string.h_505);
+        Label = getLabelFromDb("lbl_S105C_heading", R.string.lbl_S105C_heading);
         lblView = (TextView) findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
@@ -621,35 +636,98 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                             inputprovidersdlno.setText(dataM.getString("s_d_t_provider_sdl_num"));
                             inputrefno.setText(dataM.getString("s_d_t_prefrence_number"));
 
-                                    statssaAreaCode=dataM.getString("s_d_t_statssa_code");
+                            ssareacode_value=dataM.getString("s_d_t_statssa_code");
                                     popiActStatus=dataM.getString("s_d_t_popi_status");
-                                    popiActDate=dataM.getString("s_d_t_popi_date");
-                                    popiActMonth=dataM.getString("s_d_t_popi_date");
-                                    popiActYear=dataM.getString("s_d_t_popi_date");
-                                    OFOCode=dataM.getString("s_d_t_ofo_code");
+                                    popiActDate=dataM.getString("popiDay");
+                                    popiActMonth=dataM.getString("popiMonth");
+                                    popiActYear=dataM.getString("popiYear");
+                            txtofocode_value=dataM.getString("s_d_t_ofo_code");
                                     Sponsorship=dataM.getString("s_d_t_sponsorship");
                                     FinancialYear=dataM.getString("s_d_t_financial_year");
                                     NQFLevel=dataM.getString("s_d_t_nql_level");
                                     EconomicStatus=dataM.getString("s_d_t_socio_status");
                                     EnrollmentStatus=dataM.getString("s_d_t_enrolment_status");
                                     WILType=dataM.getString("s_d_t_wil_type");
-                                    WILStartDate=dataM.getString("s_d_t_wil_start_date");
-                                    WILStartMonth=dataM.getString("s_d_t_wil_start_date");
-                                    WILStartYear=dataM.getString("s_d_t_wil_start_date");
-                                    WILEndDate=dataM.getString("s_d_t_wil_end_date");
-                                    WILEndMonth=dataM.getString("s_d_t_wil_end_date");
-                                    WILEndYear=dataM.getString("s_d_t_wil_end_date");
-                                    MRRDate=dataM.getString("s_d_t_recent_reg_date");
-                                    MRRMonth=dataM.getString("s_d_t_recent_reg_date");
-                                    MRRYear=dataM.getString("s_d_t_recent_reg_date");
+                                    WILStartDate=dataM.getString("wsDay");
+                                    WILStartMonth=dataM.getString("wsMonth");
+                                    WILStartYear=dataM.getString("wsYear");
+                                    WILEndDate=dataM.getString("weDay");
+                                    WILEndMonth=dataM.getString("weMonth");
+                                    WILEndYear=dataM.getString("weYear");
+                                    MRRDate=dataM.getString("regDay");
+                                    MRRMonth=dataM.getString("regMonth");
+                                    MRRYear=dataM.getString("regYear");
 
                         }
+/*popiAct Date Spinner*/
+                        if(!popiActDate.equals("")){
+                            int dday = Integer.parseInt(popiActDate);
+                            int new_day = dday-1;
+                            String ryt_date = String.valueOf(new_day);
+                            SpinnerDay.setSelection(Integer.parseInt(ryt_date));
+                        }
+                        if(!popiActMonth.equals("")){
+                            SpinnerMonth.setSelection(Integer.parseInt(popiActMonth)-1);
+                        }
+                        String mYear = popiActYear; //the value you want the position for
+                        ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = mAdpt.getPosition(mYear);
+                        //set the default according to value
+                        SpinnerYear.setSelection(spinnerPosition);
 
-                        printLogs(LogTag, "fetchData", "popiActStatus : " + popiActStatus);
-                        printLogs(LogTag, "fetchData", "Sponsorship : " + Sponsorship);
-                        printLogs(LogTag, "fetchData", "EconomicStatus : " + EconomicStatus);
-                        printLogs(LogTag, "fetchData", "EnrollmentStatus : " + EnrollmentStatus);
-                        printLogs(LogTag, "fetchData", "WILType : " + WILType);
+                        /*Wil Start date Spinner*/
+
+                        if(!WILStartDate.equals("")){
+                            int dday = Integer.parseInt(WILStartDate);
+                            int new_day = dday-1;
+                            String ryt_date = String.valueOf(new_day);
+                            SpinnerwilstartDay.setSelection(Integer.parseInt(ryt_date));
+                        }
+                        if(!WILStartMonth.equals("")){
+                            SpinnerwilstartMonth.setSelection(Integer.parseInt(WILStartMonth)-1);
+                        }
+                        String wilstartYear = WILStartYear; //the value you want the position for
+                        ArrayAdapter wilstartmAdpt = (ArrayAdapter) SpinnerwilstartYear.getAdapter(); //cast to an ArrayAdapter
+                        int wilstartmAdptspinnerPosition = wilstartmAdpt.getPosition(wilstartYear);
+                        //set the default according to value
+                        SpinnerwilstartYear.setSelection(wilstartmAdptspinnerPosition);
+
+                        /*Wil end date Spinner*/
+
+                        if(!WILEndDate.equals("")){
+                            int dday = Integer.parseInt(WILEndDate);
+                            int new_day = dday-1;
+                            String ryt_date = String.valueOf(new_day);
+                            SpinnerwilendDay.setSelection(Integer.parseInt(ryt_date));
+                        }
+                        if(!WILEndMonth.equals("")){
+                            SpinnerwilendMonth.setSelection(Integer.parseInt(WILEndMonth)-1);
+                        }
+                        String wilEndYear = WILEndYear; //the value you want the position for
+                        ArrayAdapter wilEndmAdpt = (ArrayAdapter) SpinnerwilendYear.getAdapter(); //cast to an ArrayAdapter
+                        int wilEndmAdptspinnerPosition = wilEndmAdpt.getPosition(wilEndYear);
+                        //set the default according to value
+                        SpinnerwilendYear.setSelection(wilEndmAdptspinnerPosition);
+
+                        /*Most recent registration date Spinner*/
+
+                        if(!MRRDate.equals("")){
+                            int dday = Integer.parseInt(MRRDate);
+                            int new_day = dday-1;
+                            String ryt_date = String.valueOf(new_day);
+                            SpinnermsregDay.setSelection(Integer.parseInt(ryt_date));
+                        }
+                        if(!MRRMonth.equals("")){
+                            SpinnermsregMonth.setSelection(Integer.parseInt(MRRMonth)-1);
+                        }
+                        String MRYear = MRRYear; //the value you want the position for
+                        ArrayAdapter MRRmAdpt = (ArrayAdapter) SpinnermsregYear.getAdapter(); //cast to an ArrayAdapter
+                        int MRRmAdptspinnerPosition = MRRmAdpt.getPosition(MRYear);
+                        //set the default according to value
+                        SpinnermsregYear.setSelection(MRRmAdptspinnerPosition);
+
+
+
                         if(!Sponsorship.equals("")) {
                             inputSpinnersponsorship.setSelection(Integer.parseInt(Sponsorship));
                         }
@@ -665,6 +743,15 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                         if(!WILType.equals("")){
                             inputSpinnerwiltype.setSelection(Integer.parseInt(WILType));
                         }
+                        fetchNQFLevels();
+                        fetchFinancialYears();
+
+                        fetchOFOCode();
+                        fetchSTATSSAAreaCode();
+
+
+
+
 
 
                         } else if (Status.equals("2")) {
@@ -741,9 +828,9 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                         }
                         AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEDitProfileStepThreeA.this,android.R.layout.simple_spinner_item,android.R.id.text1,OFOCode_list);
                         txtofocode.setAdapter(autoCompleteAdapter);
-                        if(!OFOCode.equals("")){
+                        if(!txtofocode_value.equals("")){
                             for (int j = 0; j <OFOCodeType.length ; j++) {
-                                if(OFOCodeType[j].getId().equals(OFOCode)){
+                                if(OFOCodeType[j].getId().equals(txtofocode_value)){
                                     txtofocode.setText(OFOCodeType[j].getName());
                                 }
                             }
@@ -828,12 +915,18 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                         for (int i = 0; i <dataM.length() ; i++) {
                             JSONObject jsonObject = dataM.getJSONObject(i);
                             FinYearType[i] = new SpinnerObj();
-                            FinYearType[i].setId(jsonObject.getString("f_year_id"));
-                            FinYearType[i].setName(jsonObject.getString("f_year_type"));
+                            FinYearType[i].setId(jsonObject.getString("fy_id"));
+                            FinYearType[i].setName(jsonObject.getString("fy_type"));
 
                         }
                         SpinAdapter adapter = new SpinAdapter(SEDitProfileStepThreeA.this, android.R.layout.simple_spinner_item, FinYearType);
                         inputSpinnerfinancialyear.setAdapter(adapter);
+                        if(!FinancialYear.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerfinancialyear, FinancialYear);
+                            inputSpinnerfinancialyear.setSelection(spinnerPosition);
+                        }
+
+
                         inputSpinnerfinancialyear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -921,7 +1014,6 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                         if(!NQFLevel.equals("")){
                             int spinnerPosition = getSelectedPoostion(inputSpinnernqflevel, NQFLevel);
                             inputSpinnernqflevel.setSelection(spinnerPosition);
-
                         }
 
                         inputSpinnernqflevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1008,9 +1100,9 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                         }
                         AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEDitProfileStepThreeA.this,android.R.layout.simple_spinner_item,android.R.id.text1,AreaCode_list);
                         txtssareacode.setAdapter(autoCompleteAdapter);
-                        if(!statssaAreaCode.equals("")){
+                        if(!ssareacode_value.equals("")){
                             for (int j = 0; j <AreaCodeType.length ; j++) {
-                                if(AreaCodeType[j].getId().equals(statssaAreaCode)){
+                                if(AreaCodeType[j].getId().equals(ssareacode_value)){
                                     txtssareacode.setText(AreaCodeType[j].getName());
                                 }
                             }
@@ -1028,6 +1120,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                                 }
                             }
                         });
+                        showProgress(false, mContentView, mProgressView);
                     }
                     else if(Status.equals("2")) {
                         // showProgress(false,mContentRView,mProgressRView);
@@ -1075,6 +1168,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
     private int getSelectedPoostion(Spinner spinner, String selectedItem) {
         //Long val = Long.parseLong(value);
         int pos=0;
@@ -1120,28 +1214,11 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     @Override
     public void validateForm() {
         boolean cancel = false;
-        /*if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
+        if (!validateSAQAId(inputsaqaid, inputLayoutsaqaid)) {
             cancel = true;
-        } else if (!validateLastName(inputLastName, inputLayoutLastName)) {
+        } else if (!validateEmpSDLNo(inputempsdlno, inputLayoutempsdlno)) {
             cancel = true;
-        } else if (!validateNumber(inputMobile, inputLayoutMobile)) {
-            cancel = true;
-        } else if (!validateNationalId(inputNational_id, inputLayoutNational_id)) {
-            cancel = true;
-        }else if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
-            cancel = true;
-        } else if (!validateAlternativeId(inputalternative_id, inputLayoutalternative_id)) {
-            cancel = true;
-        }else if (!validateEmail(inputEmail, inputLayoutEmail)) {
-            cancel = true;
-        }*//* else if (!validateLearnerNo(inputLearnerNo, inputLayoutLearnerNo)) {
-            cancel = true;
-        } else if (!validateLearnerId(inputLearnerId, inputLayoutLearnerId)) {
-            cancel = true;
-        }*//*else if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
-            cancel = true;
-        }*/
-
+        }
         if (cancel) {
             return;
         } else {
@@ -1151,6 +1228,32 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         printLogs(LogTag, "validateForm", "exit");
     }
 
+    private boolean validateEmpSDLNo(EditText inputempsdlno, TextInputLayout inputLayoutempsdlno) {
+        String sRegNo = inputempsdlno.getText().toString().trim();
+        setCustomError(inputLayoutempsdlno, null, inputempsdlno);
+        if (sRegNo.isEmpty() || !isValidSDLNo(sRegNo)) {
+            String sMessage = getLabelFromDb("error_S105_empsdlno", R.string.error_S105_empsdlno);
+            setCustomError(inputLayoutempsdlno, sMessage, inputempsdlno);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutempsdlno, inputempsdlno);
+            return true;
+        }
+    }
+
+    private boolean validateSAQAId(EditText inputsaqaid, TextInputLayout inputLayoutsaqaid) {
+        String sRegNo = inputsaqaid.getText().toString().trim();
+        setCustomError(inputLayoutsaqaid, null, inputsaqaid);
+        if (sRegNo.isEmpty() || !isValidSDLNo(sRegNo)) {
+            String sMessage = getLabelFromDb("error_S105_saqaid", R.string.error_S105_saqaid);
+            setCustomError(inputLayoutsaqaid, sMessage, inputsaqaid);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutsaqaid, inputsaqaid);
+            return true;
+        }
+    }
+
     @Override
     public void FormSubmit() {
 
@@ -1158,23 +1261,26 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         final int date = Integer.parseInt(String.valueOf(spin_actstatusdate));
         final int year = Integer.parseInt(String.valueOf(spin_actstatusyear));
 
-        String actstatusdate = date+"-"+month+"-"+year;
+        String actstatusdate = year+"-"+month+"-"+date;
+
 
         final int wilstartmonth = Integer.parseInt(String.valueOf(spin_wilstartmonth)) +1;
         final int wilstartdate = Integer.parseInt(String.valueOf(spin_wilstartdate));
         final int wilstartyear = Integer.parseInt(String.valueOf(spin_wilstartyear));
 
-        String wilstart_date = wilstartdate+"-"+wilstartmonth+"-"+wilstartyear;
+        String wilstart_date = wilstartyear+"-"+wilstartmonth+"-"+wilstartdate;
+
         final int wilendmonth = Integer.parseInt(String.valueOf(spin_wilendmonth)) +1;
         final int wilenddate = Integer.parseInt(String.valueOf(spin_wilenddate));
         final int wilendyear = Integer.parseInt(String.valueOf(spin_wilendyear));
 
-        String wilend_date = wilenddate+"-"+wilendmonth+"-"+wilendyear;
+        String wilend_date = wilendyear+"-"+wilendmonth+"-"+wilenddate;
+
         final int msregmonth = Integer.parseInt(String.valueOf(spin_msregmonth)) +1;
         final int msregdate = Integer.parseInt(String.valueOf(spin_msregdate));
         final int msregyear = Integer.parseInt(String.valueOf(spin_msregyear));
 
-        String msreg_date = msregdate+"-"+msregmonth+"-"+msregyear;
+        String msreg_date = msregyear+"-"+msregmonth+"-"+msregdate;
 
         final String saqaid = inputsaqaid.getText().toString().trim();
         final String empsdlno = inputempsdlno.getText().toString().trim();
@@ -1215,57 +1321,57 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         }
 
 
-//        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                JSONObject jsonObject;
-//                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
-//                try {
-//                    jsonObject = new JSONObject(String.valueOf(response));
-//                    String Status = jsonObject.getString(KEY_STATUS);
-//                    if (Status.equals("1")) {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = SEditProfileA.this.getLabelFromDb("m_S105_title", R.string.m_S105_title);
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("m_S105_message", R.string.m_S105_message);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showSuccessDialogSEditProfile(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
-//                    } else {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = "Error :" + ActivityId + "-104";
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                    }
-//                } catch (JSONException e) {
-//                    SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                    String sTitle = "Error :" + ActivityId + "-S105";
-//                    String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                    String sButtonLabelClose = "Close";
-//                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                }
-//            }
-//
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                showProgress(false, mContentView, mProgressView);
-//                String sTitle = "Error :" + ActivityId + "-106";
-//                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-//                String sButtonLabelClose = "Close";
-//                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//            }
-//        }) {
-//        @Override
-//        public Map<String, String> getHeaders() {
-//            Map<String, String> header = new HashMap<>();
-//            header.put("Content-Type", "application/json; charset=utf-8");
-//            header.put("Accept","*/*");
-//            return header;
-//        }
-//    };
-//
-//    RequestQueue requestQueue = Volley.newRequestQueue(SEditProfileA.this);
-//        requestQueue.add(jsonObjectRequest);
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject;
+                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                try {
+                    jsonObject = new JSONObject(String.valueOf(response));
+                    String Status = jsonObject.getString(KEY_STATUS);
+                    if (Status.equals("1")) {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = getLabelFromDb("m_S105_title", R.string.m_S105_title);
+                        String sMessage = getLabelFromDb("m_S105_message", R.string.m_S105_message);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showSuccessDialogSEditProfileThree(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
+                    } else {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = "Error :" + ActivityId + "-104";
+                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    showProgress(false, mContentView, mProgressView);
+                    String sTitle = "Error :" + ActivityId + "-S105";
+                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                    String sButtonLabelClose = "Close";
+                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showProgress(false, mContentView, mProgressView);
+                String sTitle = "Error :" + ActivityId + "-106";
+                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            }
+        }) {
+        @Override
+        public Map<String, String> getHeaders() {
+            Map<String, String> header = new HashMap<>();
+            header.put("Content-Type", "application/json; charset=utf-8");
+            header.put("Accept","*/*");
+            return header;
+        }
+    };
+
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
     }
     public void callDataApi() {
         printLogs(LogTag, "callDataApi", "init");

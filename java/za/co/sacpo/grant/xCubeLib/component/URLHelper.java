@@ -48,6 +48,7 @@ public class URLHelper {
       public static final String S_REF_105_C = "/stu-details-api-three";
       public static final String S_REF_105_D = "/stu-details-api-four";
       public static final String UPDATEDETAILS_105_B = "/stu-update-details-api";
+      public static final String UPDATEDETAILS_105_BB = "/stu-update-details-api-b";
       public static final String UPDATEDETAILS_105_A = "/stu-update-details-api-one";
       public static final String UPDATEDETAILS_105_C = "/stu-update-details-api-three";
       public static final String UPDATEDETAILS_105_D = "/stu-update-details-api-four";
@@ -106,8 +107,9 @@ public class URLHelper {
     public static final String CITY_105 = "/city-api";
     public static final String SUBURBS_105 = "/suburbs-api";
     public static final String NQF_105C = "/nqf-api";
-    public static final String FINANCIAL_YEARS_105C = "/financial-years-api";
+    public static final String FINANCIAL_YEARS_105C = "/financial-year-api";
     public static final String OFOCODES_105C = "/ofo-api";
+    public static final String INSTITUTION_105D = "/institution-api";
     public static final String UNIVERSITY_105D = "/university-api";
     public static final String COLLEGE_105D = "/college-api";
 
@@ -171,6 +173,7 @@ public class URLHelper {
 
     public static final String REF_M_337 = "/progress-report-comment-mentor-api";
     public static final String S_REF_196 = "/document-center-for-learner-api";
+    public static final String S_REF_196B = "/upload-composit-doc-api";
 
 
     /*old seta*/

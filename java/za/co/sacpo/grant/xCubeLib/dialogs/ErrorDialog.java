@@ -33,6 +33,8 @@ import za.co.sacpo.grant.xCubeMentor.workX.MAddWorksA;
 import za.co.sacpo.grant.xCubeMentor.workX.MChangeSWorkXA;
 import za.co.sacpo.grant.xCubeMentor.workX.MEditWorkXA;
 import za.co.sacpo.grant.xCubeStudent.SChangePasswordA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEDitProfileStepThreeA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepFourA;
 import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepOneA;
 import za.co.sacpo.grant.xCubeStudent.attendance.EditAttCalenderA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SAttPostCommentA;
@@ -46,6 +48,7 @@ import za.co.sacpo.grant.xCubeStudent.claims.SCMonthlyFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.claims.SConfirmBankDetailsA;
 import za.co.sacpo.grant.xCubeStudent.claims.SSubmitClaim;
 import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepTwoA;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileStepTwoBA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SAddFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SEditFeedbackA;
 import za.co.sacpo.grant.xCubeStudent.feedback.SRemoveFeedbackA;
@@ -59,6 +62,7 @@ import za.co.sacpo.grant.xCubeStudent.queries.SQueriesCommentsA;
 import za.co.sacpo.grant.xCubeStudent.upload.DownloadCenterA;
 import za.co.sacpo.grant.xCubeStudent.upload.SUploadDocumentA;
 import za.co.sacpo.grant.xCubeStudent.upload.UploadCv;
+import za.co.sacpo.grant.xCubeStudent.upload.UploadMultipleDocsA;
 
 public class ErrorDialog {
     public static boolean isErrorDialogShowing = false;
@@ -242,7 +246,20 @@ public class ErrorDialog {
         ErrorDialog = localBuilder.create();
         ErrorDialog.show();
     }
-
+ public static void showSuccessDialogUploadMultipleDocS(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final UploadMultipleDocsA activityToRedirect) {
+        isErrorDialogShowing = true;
+        printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
+        androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
+        localBuilder.setCancelable(false);
+        localBuilder.setTitle(title).setMessage(message).setNegativeButton(closeButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                removeErrorDialog();
+                activityToRedirect.customRedirector();
+            }
+        });
+        ErrorDialog = localBuilder.create();
+        ErrorDialog.show();
+    }
 
     public static void showSuccessDialogEditTrainingPlan(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final MEditTrainingPlanA activityToRedirect) {
         isErrorDialogShowing = true;
@@ -848,7 +865,49 @@ public class ErrorDialog {
         ErrorDialog = localBuilder.create();
         ErrorDialog.show();
     }
+    public static void showSuccessDialogSEditProfileThree(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEDitProfileStepThreeA activityToRedirect) {
+        isErrorDialogShowing = true;
+        printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
+        androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
+        localBuilder.setCancelable(false);
+        localBuilder.setTitle(title).setMessage(message).setNegativeButton(closeButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                removeErrorDialog();
+                activityToRedirect.customRedirector();
+            }
+        });
+        ErrorDialog = localBuilder.create();
+        ErrorDialog.show();
+    }
+    public static void showSuccessDialogSEditProfileFour(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileStepFourA activityToRedirect) {
+        isErrorDialogShowing = true;
+        printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
+        androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
+        localBuilder.setCancelable(false);
+        localBuilder.setTitle(title).setMessage(message).setNegativeButton(closeButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                removeErrorDialog();
+                activityToRedirect.customRedirector();
+            }
+        });
+        ErrorDialog = localBuilder.create();
+        ErrorDialog.show();
+    }
 public static void showSuccessDialogSEditProfileTwo(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileStepTwoA activityToRedirect) {
+        isErrorDialogShowing = true;
+        printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
+        androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);
+        localBuilder.setCancelable(false);
+        localBuilder.setTitle(title).setMessage(message).setNegativeButton(closeButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                removeErrorDialog();
+                activityToRedirect.customRedirector();
+            }
+        });
+        ErrorDialog = localBuilder.create();
+        ErrorDialog.show();
+    }
+    public static void showSuccessDialogSEditProfileTwoB(final Context context, final AppCompatActivity activityClass, String title, String message, String closeButton, final SEditProfileStepTwoBA activityToRedirect) {
         isErrorDialogShowing = true;
         printLogs("showSuccessDialog","isErrorDialogShowing : "+isErrorDialogShowing);
         androidx.appcompat.app.AlertDialog.Builder localBuilder = new androidx.appcompat.app.AlertDialog.Builder(activityClass);

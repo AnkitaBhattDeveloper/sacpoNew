@@ -80,7 +80,8 @@ public class SUploadDocumentA extends BaseFormAPCPrivate {
 
     @Override
     protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
-        baseApcContext = cnt;CAId=cTAId;
+        baseApcContext = cnt;
+        CAId=cTAId;
         activityIn = ain;
         LogTag = lt;
         thisClass = this;

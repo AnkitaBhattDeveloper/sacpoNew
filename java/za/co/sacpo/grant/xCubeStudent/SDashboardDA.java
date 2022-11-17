@@ -616,7 +616,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         }
                         if(Integer.parseInt(reportDue)>0){
                             is_report_due = 1;
-                            btn_reports_due.setText(reportDue+" Reports Due");
+                            btn_reports_due.setText(reportDue);
                             tv_reports_done.setVisibility(GONE);
                             btn_reports_due.setVisibility(View.VISIBLE);
                         }

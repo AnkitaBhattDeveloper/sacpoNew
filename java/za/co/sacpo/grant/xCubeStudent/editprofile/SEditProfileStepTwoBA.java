@@ -53,26 +53,19 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
     public View mProgressView, mContentView,heading;
     private TextView lblView;
     SEditProfileStepTwoBA thisClass;
-    String phyurbanrural_value,postalurbanrural_value,equity_value,residentstatus_value,spin_homelanguage
-            ,spin_day,spin_month,spin_year,municipality_value,postalmunicipality_value,schoolEMI_value,
-            homelanguage_value="";
-    public EditText inputpostalcode, inputpostaladdress1,
-            inputpostaladdress2,inputpostaladdress3,inputetpostalprovince,inputetpostalcity,inputetpostalsuburub,inputlastscyear;
-    public TextInputLayout  inputLayoutpostalcode, inputLayoutpostaladdress1,
-            inputLayoutpostaladdress2,inputLayoutpostaladdress3,inputLayoutpostalmunicipality,inputLayoutetpostalprovince
+    String postalurbanrural_value,equity_value,residentstatus_value,postalmunicipality_value="",schoolEMI_value="";
+    public EditText inputpostalcode, inputpostaladdress1,inputpostaladdress2,inputpostaladdress3,
+            inputetpostalprovince,inputetpostalcity,inputetpostalsuburub,inputlastscyear;
+    public TextInputLayout  inputLayoutpostalcode, inputLayoutpostaladdress1,inputLayoutpostaladdress2,
+            inputLayoutpostaladdress3,inputLayoutpostalmunicipality,inputLayoutetpostalprovince
             ,inputLayoutetpostalcity,inputLayoutetpostalsuburub,inputLayoutschoolemis,inputLayoutlastscyear;
     public Button btnUpdate;
-    private Spinner inputSpinnerpostalurbanrural, inputSpinnerequity,
-            inputSpinnerresidentstatus,inputSpinnerpostalcountry,inputSpinnerpostalcity,inputSpinnerpostalprovince,
-            inputSpinnerpostalsuburb;
+    private Spinner inputSpinnerpostalurbanrural, inputSpinnerequity,inputSpinnerresidentstatus,
+            inputSpinnerpostalcountry,inputSpinnerpostalcity,inputSpinnerpostalprovince,inputSpinnerpostalsuburb;
     AutoCompleteTextView txtpostalmunicipality,txtschoolemis;
-    String spin_urbanrural,spin_country,spin_province,spin_city,spin_suburb,urbanrual_value="",country_value="",
-            province_value="",city_value="",suburb_value="";
-    String spin_postalurbanrural,spin_postalcountry,spin_postalprovince,spin_postalcity,spin_postalsuburb
-            ,spin_equity="",spin_residentstatus="",postalurbanrual_value="",postalcountry_value="",
-            postalprovince_value="",postalcity_value="",postalsuburb_value="",phyMunicipality_value="",
-            postMunicipality_value="",lastschoolEMI_value="";
-    public SpinnerObj[] LanguageType;
+    String spin_postalcountry,spin_postalprovince,spin_postalcity,spin_postalsuburb,spin_equity="",
+            spin_residentstatus="",postalurbanrual_value="",postalcountry_value="",postalprovince_value="",
+            postalcity_value="",postalsuburb_value="";
     public SpinnerObj[] CountryType;
     public SpinnerObj[] ProvinceType;
     public SpinnerObj[] CityType;
@@ -125,13 +118,11 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            fetchData();
-
             fetchMunicipality();
             fetchLastSchoolEMI();
+            fetchData();
             callDataApi();
             initializeListeners();
-
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
     }
@@ -188,6 +179,15 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeListeners() {
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validateForm();
+            }
+        });
+
+
         /*Postal urban rural spinner*/
 
         ArrayAdapter<CharSequence> postalurbanruraladapter = ArrayAdapter.createFromResource(this, R.array.postalUrbRural_type, android.R.layout.simple_spinner_item);
@@ -218,7 +218,7 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                equity_value = String.valueOf(parent.getSelectedItemId());
+                spin_equity = String.valueOf(parent.getSelectedItemId());
                 printLogs(LogTag, "initializeListeners", "equity_value" + equity_value);
 
             }
@@ -237,7 +237,7 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                residentstatus_value = String.valueOf(parent.getSelectedItemId());
+                spin_residentstatus = String.valueOf(parent.getSelectedItemId());
                 printLogs(LogTag, "initializeListeners", "residentstatus_value" + residentstatus_value);
 
             }
@@ -247,9 +247,6 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
             }
         });
-
-        showProgress(false, mContentView, mProgressView);
-
     }
 
     @Override
@@ -262,72 +259,72 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
         /*Postal layouts labels*/
 
        String Label = getLabelFromDb("lbl_S105_postalcode", R.string.lbl_S105_postalcode);
-        lblView = (TextView) findViewById(R.id.lblpostalcode);
+        lblView =findViewById(R.id.lblpostalcode);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_postaladdress1", R.string.lbl_S105_postaladdress1);
-        lblView = (TextView) findViewById(R.id.lblpostaladdress1);
+        lblView =  findViewById(R.id.lblpostaladdress1);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postaladdress2", R.string.lbl_S105_postaladdress2);
-        lblView = (TextView) findViewById(R.id.lblpostaladdress2);
+        lblView =  findViewById(R.id.lblpostaladdress2);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postaladdress3", R.string.lbl_S105_postaladdress3);
-        lblView = (TextView) findViewById(R.id.lblpostaladdress3);
+        lblView =  findViewById(R.id.lblpostaladdress3);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalmunicipality", R.string.lbl_S105_postalmunicipality);
-        lblView = (TextView) findViewById(R.id.lblpostalmunicipality);
+        lblView =  findViewById(R.id.lblpostalmunicipality);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalurbanrural", R.string.lbl_S105_postalurbanrural);
-        lblView = (TextView) findViewById(R.id.lblpostalurbanrural);
+        lblView =  findViewById(R.id.lblpostalurbanrural);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalcountry", R.string.lbl_S105_postalcountry);
-        lblView = (TextView) findViewById(R.id.lblpostalcountry);
+        lblView =  findViewById(R.id.lblpostalcountry);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalprovince", R.string.lbl_S105_postalprovince);
-        lblView = (TextView) findViewById(R.id.lblpostalprovince);
+        lblView =  findViewById(R.id.lblpostalprovince);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalcity", R.string.lbl_S105_postalcity);
-        lblView = (TextView) findViewById(R.id.lblpostalcity);
+        lblView =  findViewById(R.id.lblpostalcity);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalsuburb", R.string.lbl_S105_postalsuburb);
-        lblView = (TextView) findViewById(R.id.lblpostalsuburb);
+        lblView =  findViewById(R.id.lblpostalsuburb);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalprovince", R.string.lbl_S105_postalprovince);
-        lblView = (TextView) findViewById(R.id.lbletpostalprovince);
+        lblView =  findViewById(R.id.lbletpostalprovince);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalcity", R.string.lbl_S105_postalcity);
-        lblView = (TextView) findViewById(R.id.lbletpostalcity);
+        lblView =  findViewById(R.id.lbletpostalcity);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_postalsuburb", R.string.lbl_S105_postalsuburb);
-        lblView = (TextView) findViewById(R.id.lbletpostalsuburb);
+        lblView =  findViewById(R.id.lbletpostalsuburb);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_schoolemis", R.string.lbl_S105_schoolemis);
-        lblView = (TextView) findViewById(R.id.lblschoolemis);
+        lblView =  findViewById(R.id.lblschoolemis);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_lastscyear", R.string.lbl_S105_lastscyear);
-        lblView = (TextView) findViewById(R.id.lbllastscyear);
+        lblView =  findViewById(R.id.lbllastscyear);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_lblequity", R.string.lbl_S105_lblequity);
-        lblView = (TextView) findViewById(R.id.lblequity);
+        lblView =  findViewById(R.id.lblequity);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_residentstatus", R.string.lbl_S105_residentstatus);
-        lblView = (TextView) findViewById(R.id.lblresidentstatus);
+        lblView =  findViewById(R.id.lblresidentstatus);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
@@ -335,8 +332,8 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
 
-        Label = getLabelFromDb("h_505", R.string.h_505);
-        lblView = (TextView) findViewById(R.id.activity_heading);
+        Label = getLabelFromDb("lbl_S105BA_heading", R.string.lbl_S105BA_heading);
+        lblView =  findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
@@ -386,11 +383,11 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                             inputpostaladdress1.setText(dataM.getString("s_d_o_postal_add_line_one"));
                             inputpostaladdress2.setText(dataM.getString("s_d_o_postal_add_line_two"));
                             inputpostaladdress3.setText(dataM.getString("s_d_o_postal_add_line_three"));
-                            postMunicipality_value = dataM.getString("s_d_o_postal_municipality");
+                            postalmunicipality_value = dataM.getString("s_d_o_postal_municipality");
                             inputetpostalprovince.setText(dataM.getString("s_d_o_postal_province_name"));
                             inputetpostalcity.setText(dataM.getString("s_d_o_postal_city_name"));
                             inputetpostalsuburub.setText(dataM.getString("s_d_o_postal_suburb_name"));
-                            lastschoolEMI_value = dataM.getString("s_d_o_last_school_emi");
+                            schoolEMI_value = dataM.getString("s_d_o_last_school_emi");
                             inputlastscyear.setText(dataM.getString("s_d_o_last_school_year"));
                             postalurbanrual_value = dataM.getString("s_d_o_postal_urban_rural");
                             postalcountry_value = dataM.getString("s_d_o_postal_country");
@@ -402,13 +399,6 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
 
                         }
-
-                        printLogs(LogTag, "fetchData", "postalprovince_value =======: " + postalprovince_value);
-                        printLogs(LogTag, "fetchData", "postalcity_value =======: " + postalcity_value);
-                        printLogs(LogTag, "fetchData", "postalsuburb_value =======: " + postalsuburb_value);
-                        printLogs(LogTag, "fetchData", "spin_residentstatus =======: " + spin_residentstatus);
-
-
                         if(!spin_equity.equals("")){
                             inputSpinnerequity.setSelection(Integer.parseInt(spin_equity));
                         }
@@ -419,6 +409,11 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                             inputSpinnerpostalurbanrural.setSelection(Integer.parseInt(postalurbanrual_value));
                         }
                         fetchPostalCountry();
+
+                        fetchMunicipality();
+                        fetchLastSchoolEMI();
+
+
 
                     } else if (Status.equals("2")) {
                          showProgress(false, mContentView, mProgressView);
@@ -862,9 +857,9 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
                         AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEditProfileStepTwoBA.this,android.R.layout.simple_spinner_item,android.R.id.text1,SchoolEMI_list);
                         txtschoolemis.setAdapter(autoCompleteAdapter);
-                        if(!lastschoolEMI_value.equals("")){
+                        if(!schoolEMI_value.equals("")){
                             for (int j = 0; j <SchoolEMIType.length ; j++) {
-                                if(SchoolEMIType[j].getId().equals(lastschoolEMI_value)){
+                                if(SchoolEMIType[j].getId().equals(schoolEMI_value)){
                                     txtschoolemis.setText(SchoolEMIType[j].getName());
                                 }
                             }
@@ -887,8 +882,8 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                                 }
                             }
                         });
-                    }
-                    else if(Status.equals("2")) {
+                        showProgress(false, mContentView, mProgressView);
+                    } else if(Status.equals("2")) {
                         // showProgress(false,mContentRView,mProgressRView);
                     }
                     else{
@@ -961,9 +956,9 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                         }
                         AutoCompleteAdapter autoCompleteAdapter = new AutoCompleteAdapter(SEditProfileStepTwoBA.this,android.R.layout.simple_spinner_item,android.R.id.text1,municipality_list);
                         txtpostalmunicipality.setAdapter(autoCompleteAdapter);
-                        if(!postMunicipality_value.equals("")){
+                        if(!postalmunicipality_value.equals("")){
                             for (int j = 0; j <MunicipalityType.length ; j++) {
-                                if(MunicipalityType[j].getId().equals(postMunicipality_value)){
+                                if(MunicipalityType[j].getId().equals(postalmunicipality_value)){
                                     txtpostalmunicipality.setText(MunicipalityType[j].getName());
                                 }
                             }
@@ -1105,13 +1100,122 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
 
     @Override
-    protected void validateForm() {
-
+    public void validateForm() {
+        boolean cancel = false;
+       /* if (!validatetelephone(inputtelephone, inputLayouttelephone)) {
+            cancel = true;
+        } else if (!validatefax(inputfax, inputLayoutfax)) {
+            cancel = true;
+        } else if (!validatePhyCode(inputphysicalcode, inputLayoutphysicalcode)) {
+            cancel = true;
+        } else if (!validateAdd1(inputphyaddress1, inputLayoutphyaddress1)) {
+            cancel = true;
+        }else if (!validatePostalAdd1(inputpostaladdress1, inputLayoutpostaladdress1)) {
+            cancel = true;
+        } else if (!validateLSchoolYear(inputlastscyear, inputLayoutlastscyear)) {
+            cancel = true;
+        }*/
+        if (cancel) {
+            return;
+        } else {
+            showProgress(true, mContentView, mProgressView);
+            this.FormSubmit();
+        }
+        printLogs(LogTag, "validateForm", "exit");
     }
 
     @Override
-    protected void FormSubmit() {
+    public void FormSubmit() {
 
+        final String postalcode = inputpostalcode.getText().toString().trim();
+        final String postaladdress1 = inputpostaladdress1.getText().toString().trim();
+        final String postaladdress2 = inputpostaladdress2.getText().toString().trim();
+        final String postaladdress3 = inputpostaladdress3.getText().toString().trim();
+        final String postalprovince = inputetpostalprovince.getText().toString().trim();
+        final String postalcity = inputetpostalcity.getText().toString().trim();
+        final String postalsuburub = inputetpostalsuburub.getText().toString().trim();
+        final String lastschoolyear = inputlastscyear.getText().toString().trim();
+
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.UPDATEDETAILS_105_BB;
+        printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("token", token);
+            jsonBody.put("postalcode", postalcode);
+            jsonBody.put("postaladdress1", postaladdress1);
+            jsonBody.put("postaladdress2", postaladdress2);
+            jsonBody.put("postaladdress3", postaladdress3);
+            jsonBody.put("postal_municipality", postalmunicipality_value);
+            jsonBody.put("postal_urbanrural", postalurbanrural_value);
+            jsonBody.put("postal_country", spin_postalcountry);
+            jsonBody.put("postal_province", spin_postalprovince);
+            jsonBody.put("postal_city", spin_postalcity);
+            jsonBody.put("postal_suburb", spin_postalsuburb);
+            jsonBody.put("postal_province_name", postalprovince);
+            jsonBody.put("postal_city_name", postalcity);
+            jsonBody.put("postal_suburub_name", postalsuburub);
+            jsonBody.put("lastschool_emi", schoolEMI_value);
+            jsonBody.put("lastschool_year", lastschoolyear);
+            jsonBody.put("equity", spin_equity);
+            jsonBody.put("c_resident_status", spin_residentstatus);
+
+            printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject;
+                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                try {
+                    jsonObject = new JSONObject(String.valueOf(response));
+                    String Status = jsonObject.getString(KEY_STATUS);
+                    if (Status.equals("1")) {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = getLabelFromDb("m_S105_title", R.string.m_S105_title);
+                        String sMessage = getLabelFromDb("m_S105_message", R.string.m_S105_message);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showSuccessDialogSEditProfileTwoB(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
+                    } else {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = "Error :" + ActivityId + "-104";
+                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    showProgress(false, mContentView, mProgressView);
+                    String sTitle = "Error :" + ActivityId + "-S105";
+                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                    String sButtonLabelClose = "Close";
+                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showProgress(false, mContentView, mProgressView);
+                String sTitle = "Error :" + ActivityId + "-106";
+                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> header = new HashMap<>();
+                header.put("Content-Type", "application/json; charset=utf-8");
+                header.put("Accept","*/*");
+                return header;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
     }
     @Override
     protected void onPause() {

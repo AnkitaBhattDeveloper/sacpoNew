@@ -83,7 +83,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private String KEY_STATUS_DATE = "date";
 
     final ArrayList<ListarClientes> datalist = new ArrayList<>();
-    String rb_genderValue,rb_disableValue,spin_race,spin_nationality,spin_title,spin_day,spin_month,spin_year,spin_disability;
+    String rb_genderValue,Nationality,spin_race,spin_nationality,spin_title,spin_day,spin_month,spin_year,spin_disability;
     public EditText inputFirstName, inputLastName, inputMobile,inputNational_id,inputsRegNo,inputalternative_id, inputEmail, inputLearnerNo, inputLearnerId, inputNameOfKin, inputContactOfKin, inputInternUTO, inputInternCategoryQualification, inputTaxRefNo;
     public View mProgressView, mContentView,heading;
     public TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutMobile,inputLayoutNational_id, inputLayoutEmail, inputLayoutsRegNo, inputLayoutalternative_id,inputLayoutLearnerId, inputLayoutNameOfKin, inputLayoutContactOfKin, inputLayoutInternUTO, inputLayoutInternCategoryQualification, inputLayoutTaxRefNo;
@@ -149,12 +149,12 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 syncToken(baseApcContext, activityIn);
             }
           //  fetchEnrollment();
-            fetchNationality();
+
             fetchData();
             callDataApi();
             initializeListeners();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-            showProgress(false, mContentView, mProgressView);
+         //   showProgress(false, mContentView, mProgressView);
         }
     }
 
@@ -292,16 +292,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
-       /* Label = getLabelFromDb("lbl_S105_learner_no", R.string.lbl_S105_learner_no);
-        lblView = (TextView) findViewById(R.id.lblLearnerNo);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_learner_id", R.string.lbl_S105_learner_id);
-        lblView = (TextView) findViewById(R.id.lblLearnerId);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);*/
-
         Label = getLabelFromDb("lbl_S105_race", R.string.lbl_S105_race);
         lblView = (TextView) findViewById(R.id.lblRace);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
@@ -317,39 +307,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
-      /*  Label = getLabelFromDb("lbl_S105_PhysicalDis", R.string.lbl_S105_PhysicalDis);
-        lblView = (TextView) findViewById(R.id.lblPhysicalDis);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-        Label = getLabelFromDb("lbl_S105_disability_type", R.string.lbl_S105_disability_type);
-        lblView = (TextView) findViewById(R.id.lblDisabilityType);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_enrollment_year", R.string.lbl_S105_enrollment_year);
-        lblView = (TextView) findViewById(R.id.lblYearOfEnrollment);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_name_of_kin", R.string.lbl_S105_name_of_kin);
-        lblView = (TextView) findViewById(R.id.lblNameOfKin);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_contact_of_kin", R.string.lbl_S105_contact_of_kin);
-        lblView = (TextView) findViewById(R.id.lblContactOfKin);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_intern_UTO", R.string.lbl_S105_intern_UTO);
-        lblView = (TextView) findViewById(R.id.lblInternUTO);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
-
-        Label = getLabelFromDb("lbl_S105_intern_category_Q", R.string.lbl_S105_intern_category_Q);
-        lblView = (TextView) findViewById(R.id.lblInternCategoryQualification);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);*/
         Label = getLabelFromDb("lbl_S105_Tax_ref_no", R.string.lbl_S105_Tax_ref_no);
         lblView = (TextView) findViewById(R.id.lblTaxRefNo);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
@@ -363,7 +320,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
 
-        Label = getLabelFromDb("h_505", R.string.h_505);
+        Label = getLabelFromDb("b_S105_heading", R.string.b_S105_heading);
         lblView = (TextView) findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
@@ -379,22 +336,13 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             inputFirstName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputLastName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputEmail.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            /*inputLearnerNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputLearnerId.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputNameOfKin.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputContactOfKin.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputInternUTO.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));*/
-            inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-           // ll_DisabilityType.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+             inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerRace.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            //.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-           // Spin_EnrollmentYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-          //  spinner_InternCategoryQualification.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
 
 
         }
@@ -601,15 +549,9 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             cancel = true;
         }else if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
             cancel = true;
-        } else if (!validateAlternativeId(inputalternative_id, inputLayoutalternative_id)) {
-            cancel = true;
         }else if (!validateEmail(inputEmail, inputLayoutEmail)) {
             cancel = true;
-        }/* else if (!validateLearnerNo(inputLearnerNo, inputLayoutLearnerNo)) {
-            cancel = true;
-        } else if (!validateLearnerId(inputLearnerId, inputLayoutLearnerId)) {
-            cancel = true;
-        }*/else if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
+        }else if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
             cancel = true;
         }
 
@@ -646,7 +588,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         String phone = inputEditMobile.getText().toString().trim();
         setCustomError(inputLayoutMobile, null, inputEditMobile);
         if (phone.isEmpty() || !isValidMobile(phone)) {
-            String sMessage = getLabelFromDb("error_S105_nationalid", R.string.error_S105_nationalid);
+            String sMessage = getLabelFromDb("error_S105_number", R.string.error_S105_number);
             setCustomError(inputLayoutMobile, sMessage, inputEditMobile);
             return false;
         } else {
@@ -654,42 +596,31 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             return true;
         }
     }
-  public boolean validateNationalId(EditText inputEditMobile, TextInputLayout inputLayoutNational_id) {
-        String phone = inputEditMobile.getText().toString().trim();
-        setCustomError(inputLayoutNational_id, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidLName(phone)) {
+  public boolean validateNationalId(EditText inputNational_id, TextInputLayout inputLayoutNational_id) {
+        String national_id = inputNational_id.getText().toString().trim();
+        setCustomError(inputLayoutNational_id, null, inputNational_id);
+        if (national_id.isEmpty() || !isValidNationalId(national_id)) {
             String sMessage = getLabelFromDb("error_S105_nationalid", R.string.error_S105_nationalid);
-            setCustomError(inputLayoutNational_id, sMessage, inputEditMobile);
+            setCustomError(inputLayoutNational_id, sMessage, inputNational_id);
             return false;
         } else {
-            setCustomErrorDisabled(inputLayoutNational_id, inputEditMobile);
+            setCustomErrorDisabled(inputLayoutNational_id, inputNational_id);
             return true;
         }
     }
-    public boolean validateRegNo(EditText inputEditMobile, TextInputLayout inputLayoutsRegNo) {
-        String phone = inputEditMobile.getText().toString().trim();
-        setCustomError(inputLayoutsRegNo, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidLName(phone)) {
+    public boolean validateRegNo(EditText inputsRegNo, TextInputLayout inputLayoutsRegNo) {
+        String sRegNo = inputsRegNo.getText().toString().trim();
+        setCustomError(inputLayoutsRegNo, null, inputsRegNo);
+        if (sRegNo.isEmpty() || !isValidSregNo(Integer.parseInt(sRegNo))) {
             String sMessage = getLabelFromDb("error_S105_sregno", R.string.error_S105_sregno);
-            setCustomError(inputLayoutsRegNo, sMessage, inputEditMobile);
+            setCustomError(inputLayoutsRegNo, sMessage, inputsRegNo);
             return false;
         } else {
-            setCustomErrorDisabled(inputLayoutsRegNo, inputEditMobile);
+            setCustomErrorDisabled(inputLayoutsRegNo, inputsRegNo);
             return true;
         }
     }
-    public boolean validateAlternativeId(EditText inputEditMobile, TextInputLayout inputLayoutalternative_id) {
-        String phone = inputEditMobile.getText().toString().trim();
-        setCustomError(inputLayoutalternative_id, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidLName(phone)) {
-            String sMessage = getLabelFromDb("error_S105_alternativeid", R.string.error_S105_alternativeid);
-            setCustomError(inputLayoutalternative_id, sMessage, inputEditMobile);
-            return false;
-        } else {
-            setCustomErrorDisabled(inputLayoutalternative_id, inputEditMobile);
-            return true;
-        }
-    }
+
     public boolean validateFirstName(EditText inputUser, TextInputLayout inputLayoutUser) {
         String name = inputUser.getText().toString().trim();
         setCustomError(inputLayoutUser, null, inputUser);
@@ -805,9 +736,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                     case R.id.inputsRegNo:
                     validateRegNo(EditView,EditLayout);
                     break;
-                    case R.id.inputalternative_id:
-                    validateAlternativeId(EditView,EditLayout);
-                    break;
             }
         }
     }
@@ -837,6 +765,10 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                         }
                         SpinAdapter adapter = new SpinAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_item, NationalityType);
                         inputSpinnerNationality.setAdapter(adapter);
+                        if(!Nationality.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerNationality, Nationality);
+                            inputSpinnerNationality.setSelection(spinnerPosition);
+                        }
                         inputSpinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -930,11 +862,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                             spin_years =  dataM.getString("year");
                             spin_race =  dataM.getString("race");
                             spin_title =  dataM.getString("u_title");
-                            spin_nationality =  dataM.getString("s_nationality");
+                            Nationality =  dataM.getString("s_nationality");
 
 
                         }
-
+                        fetchNationality();
                             //SpinnerDay, SpinnerMonth, SpinnerYear
                             //SET DOB Spinner data--PENDING..!!
                         if(!spin_day.equals("")){
@@ -949,27 +881,12 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                          String mYear = spin_years; //the value you want the position for
                         ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
                         int spinnerPosition = mAdpt.getPosition(mYear);
-                        //set the default according to value
                         SpinnerYear.setSelection(spinnerPosition);
 
-                        //spinner item..
                         inputSpinnerRace.setSelection(Integer.parseInt(spin_race));
-                        //inputEnrollmentYear.setSelection(Integer.parseInt(spin_enroll));
                         inputSpinnerTitle.setSelection(Integer.parseInt(spin_title));
-                        inputSpinnerNationality.setSelection(Integer.parseInt(spin_nationality));
 
-                      /*  //spinner disability
-                        SpinnerDisabilityType.setSelection(Integer.parseInt(spin_disability));
 
-                        //spinner enrollment year
-                        int enroll_id=0;
-                        for (int i = 0; i <datalist.size() ; i++) {
-                             if(datalist.get(i).getName().equals(spin_enroll)){
-                                enroll_id = i;
-                                printLogs(LogTag, "fetchData", "enroll_id : " + enroll_id);
-                            }
-                        }
-                        Spin_EnrollmentYear.setSelection(enroll_id);*/
                         //CONDITION FOR GENDER MALE FEMALE
                         String Rbtn =  rb_genderValue;
                         if( Rbtn.equals("3")){
@@ -977,16 +894,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                         }else{
                             rb_female.setChecked(true);
                         }
-                        //CONDITION FOR DISABILITY
-                        /*String DisBtn =  rb_disableValue;
-                        if( DisBtn.equals("1")){
-                            rb_disable_y.setChecked(true);
-                            ll_DisabilityType.setVisibility(View.VISIBLE);
-                        }else{
-                            rb_disable_n.setChecked(true);
-                            ll_DisabilityType.setVisibility(View.GONE);
-                        }*/
-
+                        showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentView, mProgressView);
                     } else {
@@ -1034,82 +942,21 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void fetchEnrollment() {
-        String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_105_2;
-        FINAL_URL = FINAL_URL + "?token=" + token;//+"/seta_id/"+selected_Bank;
-        printLogs(LogTag, "fetchEnrollment", "URL : " + FINAL_URL);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                JSONObject jsonObject;
-                printLogs(LogTag, "fetchEnrollment", String.format("RESPONSE : %s", response));
-                try {
-                    jsonObject = new JSONObject(String.valueOf(response));
-                    String Status = jsonObject.getString(KEY_STATUS);
-                    if (Status.equals("1")) {
-
-                        JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
-                        for (int i = 0; i < dataM.length(); i++) {
-                            JSONObject rec = dataM.getJSONObject(i);
-                          /*  String seta_name = rec.getString("grant_name");
-                            SetaName.add(seta_name);
-                              */
-                            ListarClientes GetDatadp = new ListarClientes();
-                            /* String seta_name = rec.getString("grant_name");
-                             SetaName.add(seta_name);*/
-                            GetDatadp.setName(rec.getString("year"));
-                            GetDatadp.setId(rec.getString("id"));
-                            datalist.add(GetDatadp);
-                            showProgress(false, mContentView, mProgressView);
-                        }
-                        //  inputSpinnerGrant.setAdapter(new ArrayAdapter<String>(GAProcessStipendClaimA.this, android.R.layout.simple_spinner_dropdown_item, SetaName));
-                        SpinnerAdapter adapter = new SpinnerAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_dropdown_item, datalist);
-                        Spin_EnrollmentYear.setAdapter(adapter);
-                    } else if (Status.equals("2")) {
-                        showProgress(false, mContentView, mProgressView);
-                    } else {
-                        //showProgress(false,mContentView,mProgressView);
-                        printLogs(LogTag, "fetchData", "error_try_again : DATA_ERROR");
-                        String sTitle = "Error :" + ActivityId + "-109";
-                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-                        String sButtonLabelClose = "Close";
-                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-                    }
-                } catch (JSONException e) {
-                    printLogs(LogTag, "fetchData", "error_try_again : " + e.getMessage());
-                    e.printStackTrace();
-                    //showProgress(false,mContentView,mProgressView);
-                    String sTitle = "Error :" + ActivityId + "-110";
-                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-                    String sButtonLabelClose = "Close";
-                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-                }
+    private int getSelectedPoostion(Spinner spinner, String selectedItem) {
+        //Long val = Long.parseLong(value);
+        int pos=0;
+        SpinAdapter adapter = (SpinAdapter) spinner.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            printLogs(LogTag,"getSelectedPosition","init"+position+"==="+adapter.getItem(position).getId()+"==00=="+selectedItem +"Counting"+adapter.getCount());
+            if(adapter.getItem(position).getId().equals (selectedItem)){
+                printLogs(LogTag,"getSelectedPosition","position"+position+"=="+selectedItem);
+                pos = position;
             }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                printLogs(LogTag, "fetchData", "error_try_again: " + error.getMessage());
-                String sTitle = "Error :" + ActivityId + "-111";
-                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-                String sButtonLabelClose = "Close";
-                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> header = new HashMap<String, String>();
-                header.put("Content-Type", "application/json; charset=utf-8");
-                header.put("Accept", "*/*");
-                return header;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        }
+        return pos;
     }
+
 
     public void FormSubmit() {
         final int race_id = Integer.parseInt(String.valueOf(race_value));

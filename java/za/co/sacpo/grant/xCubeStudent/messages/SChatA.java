@@ -82,7 +82,7 @@ public class SChatA extends BaseFormAPCPrivate {
     public View mProgressView, mContentView;
     private TextView lblView;
     String fId,fName,fIsGroup,fImage;
-    private ArrayList<ChatMessageObj> messages;
+    private ArrayList<ChatMessageObj> messages = new ArrayList<>();;
     public static final String KEY_MESSAGE = "msg";
     public static final String KEY_FRIEND_ID = "fid";
     public static final String KEY_U_ID = "u_id";
@@ -222,7 +222,7 @@ public class SChatA extends BaseFormAPCPrivate {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        messages = new ArrayList<>();
+
 
     }
 
@@ -363,7 +363,7 @@ public class SChatA extends BaseFormAPCPrivate {
                     jsonObject = new JSONObject(String.valueOf(response));
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
-                        showProgress(false, mContentView, mProgressView);
+                        fetchData();
                     } else {
                         showProgress(false, mContentView, mProgressView);
                         String sTitle = "Error :" + ActivityId + "-100";
@@ -419,6 +419,7 @@ public class SChatA extends BaseFormAPCPrivate {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void fetchData() {
+        messages.clear();
         String token = userSessionObj.getToken();
         final int uId = userSessionObj.getUserId();
         String FINAL_URL;
@@ -460,6 +461,7 @@ public class SChatA extends BaseFormAPCPrivate {
                         adapter = new ChatMessageAdapter(SChatA.this, messages, uId);
                         recyclerView.setAdapter(adapter);
                         scrollToBottom();
+                        showProgress(false,mContentView,mProgressView);
                     } else if(Status.equals("2")){
                         showProgress(false,mContentView,mProgressView);
                     }else {
@@ -655,7 +657,6 @@ public class SChatA extends BaseFormAPCPrivate {
                         outputJson = new JSONObject(String.valueOf(response));
                         String Status = outputJson.getString(KEY_STATUS);
                         if (Status.equals("1")) {
-                            showProgress(false, mContentView, mProgressView);
                             myDialog.dismiss();
                             fetchData();
                         } else {

@@ -701,6 +701,7 @@
                             android:layout_height="1dp"
                             android:layout_marginLeft="@dimen/SmallerDp"
                             android:layout_marginRight="@dimen/SmallerDp"
+                            android:visibility="gone"
                             android:background="@color/divider_horizontal_dark"
                             tools:ignore="DuplicateIds" />
                         <LinearLayout
@@ -710,7 +711,7 @@
                             android:layout_marginBottom="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/lbl_head_process_2_1"
@@ -805,6 +806,7 @@
                             android:layout_marginRight="@dimen/SmallerDp"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:visibility="gone"
                             android:background="@color/divider_horizontal_dark" />
                         <LinearLayout
                             android:id="@+id/c_head_process_3_1"
@@ -813,7 +815,7 @@
                             android:layout_marginBottom="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
                             android:orientation="vertical"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             tools:ignore="TooManyViews">
 
                             <TextView
@@ -833,6 +835,7 @@
                             android:layout_marginRight="@dimen/SmallerDp"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:visibility="gone"
                             android:background="@color/divider_horizontal_dark" />
 
                         <LinearLayout
@@ -842,7 +845,7 @@
                             android:layout_marginBottom="@dimen/margin_one"
                             android:layout_marginTop="@dimen/margin_one"
                             android:orientation="horizontal"
-
+                            android:visibility="visible"
                             >
 
                             <TextView
@@ -851,7 +854,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|center_horizontal"
                                 android:layout_margin="@dimen/ExtraSmallerDp"
-                                android:textAlignment="center" android:gravity="center_horizontal"
+                                android:textAlignment="center"
+                                android:gravity="center_horizontal"
                                 android:textAllCaps="true"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="@dimen/NormalTextSize"
@@ -936,6 +940,7 @@
                             android:layout_marginRight="@dimen/SmallerDp"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:visibility="gone"
                             android:background="@color/divider_horizontal_dark" />
                         <LinearLayout
                             android:id="@+id/c_head_process_4_1"
@@ -944,7 +949,7 @@
                             android:layout_marginBottom="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/lbl_head_process_4_1"

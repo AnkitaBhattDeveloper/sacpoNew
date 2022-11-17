@@ -19,22 +19,22 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         }
 
     public static boolean isValidBranchName(String input){
-        Boolean result;
+        boolean result;
         result = input.length() >= 5;
         return result;
     }
     public static boolean isValidBankName(String input){
-        Boolean result;
+        boolean result;
         result = input.length() >= 5;
         return result;
     }
     public static boolean isValidBranchCode(String input){
-        Boolean result;
+        boolean result;
         result = input.length() >= 5;
         return result;
     }
     public static boolean isValidFName(String fname) {
-        Boolean result;
+        boolean result;
         result = fname.length() >= 3;
         if (fname.length() > 60) {
             result = false;
@@ -42,7 +42,7 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         return result;
     }
     public static boolean isValidLName(String lname) {
-        Boolean result;
+        boolean result;
         result = lname.length() >= 3;
         if (lname.length() > 60) {
             result = false;
@@ -50,20 +50,46 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         return result;
     }
     public static boolean isValidMobile(String mobile) {
-        Boolean result;
+        boolean result;
         result = mobile.length() >= 9;
         if (mobile.length() > 12) {
             result = false;
         }
         return result;
     }
+    public static boolean isValidNationalId(String id) {
+        boolean result;
+        result = id.length() >= 5;
+        if (id.length() > 15) {
+            result = false;
+        }
+        return result;
+    }
+    public static boolean isValidYear(String year) {
+        boolean result;
+        result = year.length() >= 4;
+        if (year.length() > 4) {
+            result = false;
+        }
+        return result;
+    }
+    public static boolean isValidSregNo(int number) {
+        boolean result;
+        result = number > 5;
+        return result;
+    }
+    public static boolean isValidSDLNo(String number) {
+        boolean result;
+        result = number.length() > 5;
+        return result;
+    }
     public static boolean isValidNumber(int number) {
-        Boolean result;
+        boolean result;
         result = number > 0;
         return result;
     }
     public static boolean isValidName(String name) {
-        Boolean result;
+        boolean result;
         result = name.length() >= 3;
         if(name.length()>60){
             result = false;
@@ -71,7 +97,7 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         return result;
     }
     public static boolean isValidTitleContactUs(String input) {
-        Boolean result;
+        boolean result;
         result = input.length() <= 5;
         if(input.length()<100){
             result = false;
@@ -80,7 +106,7 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
     }
 
     public static boolean departmentName(String input) {
-        Boolean result;
+        boolean result;
         result = input.length() <= 5;
         if(input.length()<100){
             result = false;

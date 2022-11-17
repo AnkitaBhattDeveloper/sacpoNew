@@ -37,24 +37,32 @@
     <string name="b_S104_SIGN_OUT">Sign-Out</string>
     <string name="info_S104_page"><![CDATA[<b>HOW TO SIGN-IN AND SIGN-OUT</b><br/><br/>CLICK the SIGN-IN TIME and SIGN-OUT TIME on the current date of Attendance to Sign-in and to Sign-out. Your Attendance would be automatically recorded on the Portal Online Register. DO NOT FORGET to SIGN-OUT at the end of the Working Day. Your GPS Location is also recorded when you Sign-In and Sign-Out.<br/><br/><br/><br/><b>HOW TO EDIT THE ATTENDANCE REGISTER IF THE LEARNER DID NOT SIGN-IN</b><br/><br/>The Learner is NOT permitted to EDIT the ATTENDANCE REGISTER if they had not SIGNED-IN on any previous dates. ONLY SUPERVISORS are given RIGHTS to EDIT the LEARNER ATTENDANCE REGISTERS. The Learner must request his/her Supervisor to go to PROCESS 1 of the Supervisor Dashboard and EDIT the Attendance Register.]]></string>
     <string name="b_S103_view_supervisor">view</string>
-    <string name="b_S103_leave">LEAVE APPLICATION</string>
+    <!--<string name="b_S103_leave">LEAVE APPLICATION</string>-->
+    <string name="b_S103_leave">SUBMIT LEAVE APPLICATION TO SUPERVISOR</string>
     <string name="b_S103_view_docs">view</string>
     <string name="l_S103_head_process_1_1">Attendance Register</string>
     <string name="l_S103_head_process_1_1_1">Daily Sign-in \n sign out</string>
     <string name="l_S103_head_process_1_1_2">View all \nAttendance Register</string>
     <string name="l_S103_head_process_2_1">Submit Leave Application</string>
     <string name="l_S103_head_process_3_1">Monthly Stipend Claim</string>
-    <string name="l_S103_head_process_3_1_1">Submit New Claim</string>
+    <!-- <string name="l_S103_head_process_3_1_1">Submit New Claim</string>-->
+    <string name="l_S103_head_process_3_1_1">Submit Monthly Stipend Claim To Supervisor</string>
     <string name="b_S103_submit_claim">Pending Claim</string>
     <string name="l_S103_head_process_4_1">Workstation</string>
     <string name="l_S103_head_process_4_1_1">Assigned Workstation</string>
-    <string name="l_S103_head_process_5_1">Progress/Research Report</string>
-    <string name="l_S103_head_process_5_1_1">View Progress/Research\n reports completed</string>
+    <!--    <string name="l_S103_head_process_5_1">Progress/Research Report</string>-->
+    <string name="l_S103_head_process_5_1">Progress Reports</string>
+    <string name="l_S103_head_process_5_1_1">reports completed</string>
+    <!--    <string name="l_S103_head_process_5_1_1">View Progress/Research\n reports completed</string>-->
     <string name="l_S103_head_process_5_1_2">Reports Due</string>
-    <string name="l_S103_head_process_6_1">Training plan/Project management plan</string>
+    <string name="l_S103_head_process_6_1">Training plan/Training Programme</string>
+    <!--    <string name="l_S103_head_process_6_1">Training plan/Project management plan</string>-->
     <string name="l_S103_head_process_7_1">Document Center</string>
+    <string name="l_S193_compositeupload">COMPOSITE UPLOAD</string>
+    <string name="l_S193_errortitle">Title should be minimum 3 Characters.</string>
+    <string name="l_S193_selectdocs">Select Documents</string>
     <string name="l_S111_SAtt_details">GPS LOCATION</string>
-    <string name="t_head_S104_in_date">DATE</string>;
+    <string name="t_head_S104_in_date">DATE</string>
     <string name="t_head_S104_day">DAY</string>
     <string name="t_head_S104_in_time">SIGN-IN TIME</string>
     <string name="t_head_S104_out_time">SIGN-OUT TIME</string>
@@ -1109,6 +1117,8 @@
 
 
     <!-- Edit Profile -->
+
+    <string name="b_S105_heading">Step 1</string>
     <string name="b_S105_m_editprofile">save</string>
     <string name="l_S105_profile_name">First Name</string>
     <string name="i_S105_edit_profile_email"> Email</string>
@@ -1175,6 +1185,13 @@
     <string name="error_S105_number">Error! Mobile is not valid .</string>
     <string name="error_S105_nationalid">Error! National Id is not valid .</string>
     <string name="error_S105_sregno">Error! Student Reg No is not valid .</string>
+    <string name="error_S105_fax">Error! Fax is not valid .</string>
+    <string name="error_S105_phycode">Error! Physical Code is not valid .</string>
+    <string name="error_S105_phyadd1">Error! Physical Address 1 is not valid .</string>
+    <string name="error_S105_postaladd1">Error! Postal Address 1 is not valid .</string>
+    <string name="error_S105_lsyear">Error! Last School Year 1 is not valid .</string>
+    <string name="error_S105_saqaid">Error! SAQA Id 1 is not valid .</string>
+    <string name="error_S105_empsdlno">Error! Employer SDL No 1 is not valid .</string>
     <string name="error_S105_alternativeid">Error! Alternative Id is not valid .</string>
     <string name="error_S105_email">Error! Email is not valid .</string>
     <string name="error_S105_empty">Error! Field cannot be empty.</string>
@@ -1186,6 +1203,7 @@
     <string name="i_A404_update_message">Kindly update your app from Google Play Market by clicking the link below, the version installed in your device is not up to date. We had introduce new functions and also resolved a few bugs.</string>
 
     <!--Edit Profile Step 2-->
+    <string name="lbl_S105B_heading">Step 2</string>
     <string name="lbl_S105_homelanguage">Home Language</string>
     <string name="lbl_S105_telephone">Telephone</string>
     <string name="lbl_S105_fax">Fax</string>
@@ -1200,6 +1218,8 @@
     <string name="lbl_S105_city">Physical City</string>
     <string name="lbl_S105_suburb">Physical Suburb</string>
 
+    <!--Edit Profile Step 3-->
+    <string name="lbl_S105BA_heading">Step 3</string>
     <string name="lbl_S105_postalcode">Postal Code</string>
     <string name="lbl_S105_postaladdress1">Postal Address 1</string>
     <string name="lbl_S105_postaladdress2">Postal Address 2</string>
@@ -1217,6 +1237,7 @@
 
 
     <!--Edit Profile Step 3-->
+    <string name="lbl_S105C_heading">Step 4</string>
     <string name="lbl_S105C_ssareacode">StatSSA Area Code</string>
     <string name="lbl_S105C_actstatus">POPI Act Status</string>
     <string name="lbl_S105C_actstatusdate">POPI Act Status Date</string>
@@ -1237,6 +1258,7 @@
     <string name="lbl_S105C_wiltype">Wil Type</string>
 
     <!--Edit Profile Step 4-->
+    <string name="lbl_S105D_heading">Step 5</string>
     <string name="lbl_S105D_nameOfKin">Name of Kin</string>
     <string name="lbl_S105D_contactOfKin">Contact of Kin</string>
     <string name="lbl_S105D_PhysicalDis">Physically Disable</string>

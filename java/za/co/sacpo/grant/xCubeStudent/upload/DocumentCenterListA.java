@@ -273,6 +273,18 @@ public class DocumentCenterListA extends BaseAPCPrivate {
         String tHeader10 = getLabelFromDb("t_head_S193_download",R.string.t_head_S193_download);
         //aName3,aDay4,aPrevious5,aIsPrevious6,aIsUpload7,aUploadType8,aIsDownload9,aDownload10
         rDataObj.addItem(rDataObj.createItem(0,0,tHeader3,tHeader4,tHeader5,tHeader6,tHeader7,tHeader8,tHeader9,tHeader10));
+        printLogs(LogTag,"callHeaderBuilder","init");
+        String tHeader13 = getLabelFromDb("l_S193_compositeupload",R.string.l_S193_compositeupload);
+        String tHeader14 ="";
+        String tHeader15 = "";
+        String tHeader16 = "";
+        String tHeader17 = getLabelFromDb("t_head_S193_upload",R.string.t_head_S193_upload);
+        String tHeader18 = "";
+        String tHeader19 = "";
+        String tHeader110 = "";
+        //aName3,aDay4,aPrevious5,aIsPrevious6,aIsUpload7,aUploadType8,aIsDownload9,aDownload10
+        rDataObj.addItem(rDataObj.createItem(1,0,tHeader13,tHeader14,tHeader15,tHeader16,tHeader17,tHeader18,tHeader19,tHeader110));
+
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {

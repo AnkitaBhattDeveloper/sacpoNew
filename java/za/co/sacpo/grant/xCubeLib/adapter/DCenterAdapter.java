@@ -28,8 +28,10 @@ import java.util.List;
         import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.dataObj.DCenterObj;
         import za.co.sacpo.grant.xCubeLib.db.DbHelper;
+import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileMainA;
 import za.co.sacpo.grant.xCubeStudent.upload.DownloadCenterA;
 import za.co.sacpo.grant.xCubeStudent.upload.SUploadDocumentA;
+import za.co.sacpo.grant.xCubeStudent.upload.UploadMultipleDocsA;
 
 /**
  * Created by xcube-06 on 7/8/18.
@@ -144,6 +146,39 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
 
             holder.lblName.setTextColor(res.getColor(R.color.white));
             holder.lblName.setTypeface(holder.lblName.getTypeface(), Typeface.BOLD);
+        }else if(holder.getAdapterPosition()==1){
+            BColor=res.getColor(R.color.row_odd);
+         /*   holder.lblAction1.setTextColor(res.getColor(R.color.white));
+            holder.lblAction1.setVisibility(View.VISIBLE);
+            holder.btnAction1.setVisibility(View.GONE);
+            holder.lblAction1.setTypeface(holder.lblAction1.getTypeface(), Typeface.BOLD);*/
+            holder.lblAction2.setTextColor(res.getColor(R.color.white));
+            holder.lblAction2.setVisibility(View.GONE);
+            holder.lblAction2.setTypeface(holder.lblAction2.getTypeface(), Typeface.BOLD);
+            holder.btnAction2.setVisibility(View.VISIBLE);
+            holder.btnAction2.setText("UPLOAD");
+            holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+            holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+
+
+            holder.btnAction2.setOnClickListener(view -> {
+                Bundle inputUri = new Bundle();
+             //   inputUri.putString("document_id", String.valueOf(holder.hItem.aId2));
+              //  inputUri.putString("document_name", String.valueOf(holder.hItem.aName3));
+             //   inputUri.putString("documentType", String.valueOf(holder.hItem.aUploadType8));
+                inputUri.putString("generator", "S193");
+                Context context = view.getContext();
+                Intent intent = new Intent(context, UploadMultipleDocsA.class);
+                intent.putExtras(inputUri);
+                context.startActivity(intent);
+            });
+
+
+/*            holder.lblAction3.setTextColor(res.getColor(R.color.white));
+            holder.lblAction3.setVisibility(View.VISIBLE);
+            holder.btnAction3.setVisibility(View.GONE);
+            holder.lblAction3.setTypeface(holder.lblAction3.getTypeface(), Typeface.BOLD);*/
+
         }
         else{
 
@@ -170,7 +205,7 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
 
         holder.lblAction3.setText(aObjList.get(holder.getAdapterPosition()).aDownload10);
         holder.lblAction3.setBackgroundColor(BColor);
-        if(holder.getAdapterPosition()>0) {
+        if(holder.getAdapterPosition()>1) {
             Labels = this.getLabelFromDb("l_S104_view_comment", R.string.l_S104_view_comment);
             int aPreviousStatus = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).aIsPrevious6);
             if (aPreviousStatus == 1) {

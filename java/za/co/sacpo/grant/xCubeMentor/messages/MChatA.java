@@ -372,6 +372,7 @@ public class MChatA extends BaseFormAPCPrivate {
                     jsonObject = new JSONObject(String.valueOf(response));
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        fetchData();
                     }
                     else{
                         showProgress(false,mContentView,mProgressView);
@@ -429,6 +430,7 @@ public class MChatA extends BaseFormAPCPrivate {
     }
 
     private void fetchData() {
+        messages.clear();
         String token = userSessionObj.getToken();
         final int uId = userSessionObj.getUserId();
         String FINAL_URL;
@@ -439,7 +441,6 @@ public class MChatA extends BaseFormAPCPrivate {
             FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.R_REF_142_4;
         }
         FINAL_URL = FINAL_URL+"?fid="+fId+"&token="+token;
-       // FINAL_URL=FINAL_URL+"/token/"+token+"/fid/"+fId;
         printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -472,6 +473,7 @@ public class MChatA extends BaseFormAPCPrivate {
                         adapter = new ChatMessageAdapter(MChatA.this, messages, uId);
                         recyclerView.setAdapter(adapter);
                         scrollToBottom();
+                        showProgress(false,mContentView,mProgressView);
                     }else if(Status.equals("2")){
                         showProgress(false,mContentView,mProgressView);
                     }

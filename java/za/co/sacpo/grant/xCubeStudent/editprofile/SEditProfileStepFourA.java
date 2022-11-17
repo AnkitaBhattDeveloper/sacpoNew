@@ -100,7 +100,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             internetChangeBroadCast();
             initializeViews();
             initBackBtn();
-            //showProgress(true, mContentView, mProgressView);
+            showProgress(true, mContentView, mProgressView);
             initializeLabels();
             initializeInputs();
             userToken = userSessionObj.getToken();
@@ -108,12 +108,10 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            fetchUniversity();
-            fetchColleges();
             fetchData();
             callDataApi();
             initializeListeners();
-            fetchQualCategoryType();
+
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
     }
@@ -146,6 +144,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                             spin_disability =  dataM.getString("s_physical_disable_type");
 
                         }
+                        fetchQualCategoryType();
                         if(!college_value.equals("")){
                             inputSpinnercollege.setSelection(Integer.parseInt(college_value));
                         }
@@ -172,7 +171,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                             rb_disable_n.setChecked(true);
                             ll_DisabilityType.setVisibility(View.GONE);
                         }
-
+                        showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentView, mProgressView);
                     } else {
@@ -220,10 +219,10 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void fetchColleges() {
+    private void fetchColleges(String institution_value) {
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.COLLEGE_105D;
-        FINAL_URL=FINAL_URL+"?token="+token;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.INSTITUTION_105D;
+        FINAL_URL=FINAL_URL+"?token="+token+"&inst_type="+institution_value;
         printLogs(LogTag,"fetchColleges","URL : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -239,12 +238,16 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                         for (int i = 0; i <dataM.length() ; i++) {
                             JSONObject jsonObject = dataM.getJSONObject(i);
                             CollegeType[i] = new SpinnerObj();
-                            CollegeType[i].setId(jsonObject.getString("college_id"));
-                            CollegeType[i].setName(jsonObject.getString("college_type"));
+                            CollegeType[i].setId(jsonObject.getString("inst_id"));
+                            CollegeType[i].setName(jsonObject.getString("inst_name"));
 
                         }
                         SpinAdapter adapter = new SpinAdapter(SEditProfileStepFourA.this, android.R.layout.simple_spinner_item, CollegeType);
                         inputSpinnercollege.setAdapter(adapter);
+                        if(!college_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnercollege, college_value);
+                            inputSpinnercollege.setSelection(spinnerPosition);
+                        }
                         inputSpinnercollege.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -303,10 +306,10 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void fetchUniversity() {
+    private void fetchUniversity(String institution_value) {
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.UNIVERSITY_105D;
-        FINAL_URL=FINAL_URL+"?token="+token;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.INSTITUTION_105D;
+        FINAL_URL=FINAL_URL+"?token="+token+"&inst_type="+institution_value;
         printLogs(LogTag,"fetchUniversity","URL : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -322,12 +325,16 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                         for (int i = 0; i <dataM.length() ; i++) {
                             JSONObject jsonObject = dataM.getJSONObject(i);
                             UniversityType[i] = new SpinnerObj();
-                            UniversityType[i].setId(jsonObject.getString("university_id"));
-                            UniversityType[i].setName(jsonObject.getString("university_type"));
+                            UniversityType[i].setId(jsonObject.getString("inst_id"));
+                            UniversityType[i].setName(jsonObject.getString("inst_name"));
 
                         }
                         SpinAdapter adapter = new SpinAdapter(SEditProfileStepFourA.this, android.R.layout.simple_spinner_item, UniversityType);
                         inputSpinneruniversity.setAdapter(adapter);
+                        if(!university_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinneruniversity, university_value);
+                            inputSpinneruniversity.setSelection(spinnerPosition);
+                        }
                         inputSpinneruniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -385,7 +392,19 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
-
+    private int getSelectedPoostion(Spinner spinner, String selectedItem) {
+        //Long val = Long.parseLong(value);
+        int pos=0;
+        SpinAdapter adapter = (SpinAdapter) spinner.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            printLogs(LogTag,"getSelectedPosition","init"+position+"==="+adapter.getItem(position).getId()+"==00=="+selectedItem +"Counting"+adapter.getCount());
+            if(adapter.getItem(position).getId().equals (selectedItem)){
+                printLogs(LogTag,"getSelectedPosition","position"+position+"=="+selectedItem);
+                pos = position;
+            }
+        }
+        return pos;
+    }
     @Override
     protected void initializeViews() {
         mContentView = findViewById(R.id.content_container);
@@ -454,13 +473,15 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 institution_value = String.valueOf(parent.getSelectedItemId());
-                if(institution_value.equals("1")){
+                if (institution_value.equals("1")) {
+                    fetchUniversity(institution_value);
                     ll_college.setVisibility(View.GONE);
                     ll_university.setVisibility(View.VISIBLE);
                 }else if(institution_value.equals("2")){
+                    fetchColleges(institution_value);
                     ll_college.setVisibility(View.VISIBLE);
                     ll_university.setVisibility(View.GONE);
-                }else{
+            } else{
                     ll_college.setVisibility(View.GONE);
                     ll_university.setVisibility(View.GONE);
                 }
@@ -544,7 +565,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
 
-        Label = getLabelFromDb("h_505", R.string.h_505);
+        Label = getLabelFromDb("lbl_S105D_heading", R.string.lbl_S105D_heading);
         lblView = (TextView) findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
@@ -595,6 +616,10 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                         }
                         SpinAdapter adapter = new SpinAdapter(SEditProfileStepFourA.this, android.R.layout.simple_spinner_item, StuQualcatType);
                         spinner_InternCategoryQualification.setAdapter(adapter);
+                        if(!qualcategory_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(spinner_InternCategoryQualification, qualcategory_value);
+                            spinner_InternCategoryQualification.setSelection(spinnerPosition);
+                        }
                         spinner_InternCategoryQualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -779,57 +804,57 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         }
 
 
-//        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                JSONObject jsonObject;
-//                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
-//                try {
-//                    jsonObject = new JSONObject(String.valueOf(response));
-//                    String Status = jsonObject.getString(KEY_STATUS);
-//                    if (Status.equals("1")) {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = SEditProfileA.this.getLabelFromDb("m_S105_title", R.string.m_S105_title);
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("m_S105_message", R.string.m_S105_message);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showSuccessDialogSEditProfile(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
-//                    } else {
-//                        SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                        String sTitle = "Error :" + ActivityId + "-104";
-//                        String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                        String sButtonLabelClose = "Close";
-//                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                    }
-//                } catch (JSONException e) {
-//                    SEditProfileA.this.showProgress(false, mContentView, mProgressView);
-//                    String sTitle = "Error :" + ActivityId + "-S105";
-//                    String sMessage = SEditProfileA.this.getLabelFromDb("error_try_again", R.string.error_try_again);
-//                    String sButtonLabelClose = "Close";
-//                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//                }
-//            }
-//
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                showProgress(false, mContentView, mProgressView);
-//                String sTitle = "Error :" + ActivityId + "-106";
-//                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
-//                String sButtonLabelClose = "Close";
-//                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
-//            }
-//        }) {
-//        @Override
-//        public Map<String, String> getHeaders() {
-//            Map<String, String> header = new HashMap<>();
-//            header.put("Content-Type", "application/json; charset=utf-8");
-//            header.put("Accept","*/*");
-//            return header;
-//        }
-//    };
-//
-//    RequestQueue requestQueue = Volley.newRequestQueue(SEditProfileA.this);
-//        requestQueue.add(jsonObjectRequest);
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, FINAL_URL, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject;
+                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                try {
+                    jsonObject = new JSONObject(String.valueOf(response));
+                    String Status = jsonObject.getString(KEY_STATUS);
+                    if (Status.equals("1")) {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = getLabelFromDb("m_S105_title", R.string.m_S105_title);
+                        String sMessage = getLabelFromDb("m_S105_message", R.string.m_S105_message);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showSuccessDialogSEditProfileFour(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose, thisClass);
+                    } else {
+                        showProgress(false, mContentView, mProgressView);
+                        String sTitle = "Error :" + ActivityId + "-104";
+                        String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                        String sButtonLabelClose = "Close";
+                        ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    showProgress(false, mContentView, mProgressView);
+                    String sTitle = "Error :" + ActivityId + "-S105";
+                    String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                    String sButtonLabelClose = "Close";
+                    ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showProgress(false, mContentView, mProgressView);
+                String sTitle = "Error :" + ActivityId + "-106";
+                String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            }
+        }) {
+        @Override
+        public Map<String, String> getHeaders() {
+            Map<String, String> header = new HashMap<>();
+            header.put("Content-Type", "application/json; charset=utf-8");
+            header.put("Accept","*/*");
+            return header;
+        }
+    };
+
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
     }
 
     @Override
