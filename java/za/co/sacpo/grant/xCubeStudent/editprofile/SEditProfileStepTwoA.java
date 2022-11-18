@@ -45,6 +45,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step1DataVisibilityObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step2DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -75,6 +77,10 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     public SpinnerObj[] MunicipalityType;
     ArrayList<String> municipality_list = new ArrayList<>();
     LinearLayout spinnersLayout,edittextLayouts;
+    ArrayList<Step2DataVisibilityObj> Step2ArrayList = new ArrayList<>();
+    LinearLayout homelanguage,telephoneContainer,faxContainer,physicalcodeContainer,physicaladd1Container,
+            physicaladd2Container,physicaladd3Container,municipalityContainer,urbanrural,country,
+            province,city,suburb,phyprovinceContainer,phycityContainer,physuburubContainer;
 
 
     @Override
@@ -90,6 +96,9 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        Step2ArrayList = (ArrayList<Step2DataVisibilityObj>) args.getSerializable("Step2ArrayList");
         bootStrapInit();
         printLogs(LogTag, "onCreate", "initConnected");
 
@@ -179,6 +188,24 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
         inputphycity = findViewById(R.id.inputphycity);
         inputphysuburub = findViewById(R.id.inputphysuburub);
 
+
+       homelanguage           = findViewById(R.id.homelanguage          );
+       telephoneContainer     = findViewById(R.id.telephoneContainer    );
+       faxContainer           = findViewById(R.id.faxContainer          );
+       physicalcodeContainer  = findViewById(R.id.physicalcodeContainer );
+       physicaladd1Container  = findViewById(R.id.physicaladd1Container );
+       physicaladd2Container  = findViewById(R.id.physicaladd2Container );
+       physicaladd3Container  = findViewById(R.id.physicaladd3Container );
+       municipalityContainer  = findViewById(R.id.municipalityContainer );
+       urbanrural             = findViewById(R.id.urbanrural            );
+       country                = findViewById(R.id.country               );
+       province               = findViewById(R.id.province              );
+       city                   = findViewById(R.id.city                  );
+       suburb                 = findViewById(R.id.suburb                );
+       phyprovinceContainer   = findViewById(R.id.phyprovinceContainer  );
+       phycityContainer       = findViewById(R.id.phycityContainer      );
+       physuburubContainer    = findViewById(R.id.physuburubContainer   );
+
     }
 
     @Override
@@ -217,6 +244,93 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeInputs() {
+
+
+        for (int i = 0; i <Step2ArrayList.size() ; i++) {
+            if(Step2ArrayList.get(i).getHomeLang_is_v_2().equals("1")){
+                homelanguage.setVisibility(View.VISIBLE);
+            }else{
+                homelanguage.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getTele_is_v_2().equals("1")){
+                telephoneContainer.setVisibility(View.VISIBLE);
+            }else{
+                telephoneContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getFax_is_v_2().equals("1")){
+                faxContainer.setVisibility(View.VISIBLE);
+            }else{
+                faxContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyCode_is_v_2().equals("1")){
+                physicalcodeContainer.setVisibility(View.VISIBLE);
+            }else{
+                physicalcodeContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyAdd1_is_v_2().equals("1")){
+                physicaladd1Container.setVisibility(View.VISIBLE);
+            }else{
+                physicaladd1Container.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyAdd2_is_v_2().equals("1")){
+                physicaladd2Container.setVisibility(View.VISIBLE);
+            }else{
+                physicaladd2Container.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyAdd3_is_v_2().equals("1")){
+                physicaladd3Container.setVisibility(View.VISIBLE);
+            }else{
+                physicaladd3Container.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyMuni_is_v_2().equals("1")){
+                municipalityContainer.setVisibility(View.VISIBLE);
+            }else{
+                municipalityContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhyUrban_is_v_2().equals("1")){
+                urbanrural.setVisibility(View.VISIBLE);
+            }else{
+                urbanrural.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getCountry_is_v_2().equals("1")){
+                country.setVisibility(View.VISIBLE);
+            }else{
+                country.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_provinceSP_is_v_2().equals("1")){
+                province.setVisibility(View.VISIBLE);
+            }else{
+                province.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_citySP_is_v_2().equals("1")){
+                city.setVisibility(View.VISIBLE);
+            }else{
+                city.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_suburbSP_is_v_2().equals("1")){
+                suburb.setVisibility(View.VISIBLE);
+            }else{
+                suburb.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_province_is_v_2().equals("1")){
+                phyprovinceContainer.setVisibility(View.VISIBLE);
+            }else{
+                phyprovinceContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_city_is_v_2().equals("1")){
+                phycityContainer.setVisibility(View.VISIBLE);
+            }else{
+                phycityContainer.setVisibility(View.GONE);
+            }
+            if(Step2ArrayList.get(i).getPhy_suburb_is_v_2().equals("1")){
+                physuburubContainer.setVisibility(View.VISIBLE);
+            }else{
+                physuburubContainer.setVisibility(View.GONE);
+            }
+
+
+        }
+
 
     }
 

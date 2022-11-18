@@ -45,6 +45,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step2DataVisibilityObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step3DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -75,6 +77,11 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
     public SpinnerObj[] SchoolEMIType;
     ArrayList<String> SchoolEMI_list = new ArrayList<>();
     LinearLayout postalspinnersLayout,postaledittextLayouts;
+    ArrayList<Step3DataVisibilityObj> Step3ArrayList = new ArrayList<>();
+    LinearLayout postalcodeContainer,postaladd1Container,postaladd2Container,postaladd3Container,postalmunicipalityContainer,
+            postalurbanrural,postalcountry,postalprovince,postalcity,postalsuburb,postalprovinceContainer,
+            etpostalcityContainer,etpostalsuburubContainer,schoolemisContainer,lastscyearContainer,equity,
+            residentstatus;
 
 
 
@@ -91,6 +98,9 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        Step3ArrayList = (ArrayList<Step3DataVisibilityObj>) args.getSerializable("Step3ArrayList");
         bootStrapInit();
         printLogs(LogTag, "onCreate", "initConnected");
 
@@ -173,6 +183,24 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
         inputetpostalsuburub = findViewById(R.id.inputetpostalsuburub);
         inputlastscyear = findViewById(R.id.inputlastscyear);
 
+        postalcodeContainer         = findViewById(R.id.postalcodeContainer        );
+        postaladd1Container         = findViewById(R.id.postaladd1Container        );
+        postaladd2Container         = findViewById(R.id.postaladd2Container        );
+        postaladd3Container         = findViewById(R.id.postaladd3Container        );
+        postalmunicipalityContainer = findViewById(R.id.postalmunicipalityContainer);
+        postalurbanrural            = findViewById(R.id.postalurbanrural           );
+        postalcountry               = findViewById(R.id.postalcountry              );
+        postalprovince              = findViewById(R.id.postalprovince             );
+        postalcity                  = findViewById(R.id.postalcity                 );
+        postalsuburb                = findViewById(R.id.postalsuburb               );
+        postalprovinceContainer     = findViewById(R.id.postalprovinceContainer    );
+        etpostalcityContainer       = findViewById(R.id.etpostalcityContainer      );
+        etpostalsuburubContainer    = findViewById(R.id.etpostalsuburubContainer   );
+        schoolemisContainer         = findViewById(R.id.schoolemisContainer        );
+        lastscyearContainer         = findViewById(R.id.lastscyearContainer        );
+        equity                      = findViewById(R.id.equity                     );
+        residentstatus              = findViewById(R.id.residentstatus             );
+
 
 
     }
@@ -251,6 +279,98 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeInputs() {
+
+        for (int i = 0; i <Step3ArrayList.size() ; i++) {
+
+            if(Step3ArrayList.get(i).getPostalCode_is_v_3().equals("1")){
+                postalcodeContainer.setVisibility(View.VISIBLE);
+            }else{
+                postalcodeContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalAdd1_is_v_3().equals("1")){
+                postaladd1Container.setVisibility(View.VISIBLE);
+            }else{
+                postaladd1Container.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalAdd2_is_v_3().equals("1")){
+                postaladd2Container.setVisibility(View.VISIBLE);
+            }else{
+                postaladd2Container.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalAdd3_is_v_3().equals("1")){
+                postaladd3Container.setVisibility(View.VISIBLE);
+            }else{
+                postaladd3Container.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalMuni_is_v_3().equals("1")){
+                postalmunicipalityContainer.setVisibility(View.VISIBLE);
+            }else{
+                postalmunicipalityContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalUrban_is_v_3().equals("1")){
+                postalurbanrural.setVisibility(View.VISIBLE);
+            }else{
+                postalurbanrural.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalCountry_is_v_3().equals("1")){
+                postalcountry.setVisibility(View.VISIBLE);
+            }else{
+                postalcountry.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalProvinceSP_is_v_3().equals("1")){
+                postalprovince.setVisibility(View.VISIBLE);
+            }else{
+                postalprovince.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalCitySP_is_v_3().equals("1")){
+                postalcity.setVisibility(View.VISIBLE);
+            }else{
+                postalcity.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalSuburbSP_is_v_3().equals("1")){
+                postalsuburb.setVisibility(View.VISIBLE);
+            }else{
+                postalsuburb.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalProvince_is_v_3().equals("1")){
+                postalprovinceContainer.setVisibility(View.VISIBLE);
+            }else{
+                postalprovinceContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalCity_is_v_3().equals("1")){
+                etpostalcityContainer.setVisibility(View.VISIBLE);
+            }else{
+                etpostalcityContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalSuburb_is_v_3().equals("1")){
+                etpostalsuburubContainer.setVisibility(View.VISIBLE);
+            }else{
+                etpostalsuburubContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalScEMI_is_v_3().equals("1")){
+                schoolemisContainer.setVisibility(View.VISIBLE);
+            }else{
+                schoolemisContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalScYear_is_v_3().equals("1")){
+                lastscyearContainer.setVisibility(View.VISIBLE);
+            }else{
+                lastscyearContainer.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalEquity_is_v_3().equals("1")){
+                equity.setVisibility(View.VISIBLE);
+            }else{
+                equity.setVisibility(View.GONE);
+            }
+            if(Step3ArrayList.get(i).getPostalCRStatus_is_v_3().equals("1")){
+                residentstatus.setVisibility(View.VISIBLE);
+            }else{
+                residentstatus.setVisibility(View.GONE);
+            }
+
+        }
+
+
 
     }
 

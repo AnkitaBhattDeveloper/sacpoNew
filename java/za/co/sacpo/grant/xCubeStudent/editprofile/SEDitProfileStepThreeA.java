@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,6 +46,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step3DataVisibilityObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step4DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -77,6 +80,12 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     Sponsorship="",FinancialYear="",NQFLevel="",EconomicStatus="",EnrollmentStatus="",WILType="",
     WILStartDate="",WILStartMonth="",WILStartYear="",WILEndDate="",WILEndMonth="",WILEndYear="",
             MRRDate="",MRRMonth="",MRRYear="";
+    ArrayList<Step4DataVisibilityObj> Step4ArrayList = new ArrayList<>();
+    LinearLayout ssareacodeContainer,actstatus,actstatusdate,ofocodeContainer,sponsorship,financialyear,
+            nqflevel,saqaidContainer,empsdlnoContainer,providersdlnoContainer,economicstatus,wilstartdate,
+            wilenddate,msregdate,enrollmentstatus,projectContainer,refnoContainer,wiltype;
+
+
 
     @Override
     protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
@@ -91,6 +100,9 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        Step4ArrayList = (ArrayList<Step4DataVisibilityObj>) args.getSerializable("Step4ArrayList");
         bootStrapInit();
         printLogs(LogTag, "onCreate", "initConnected");
 
@@ -169,6 +181,25 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         inputSpinnerwiltype = findViewById(R.id.inputSpinnerwiltype);
         inputLayoutsaqaid = findViewById(R.id.inputLayoutsaqaid);
         inputLayoutempsdlno = findViewById(R.id.inputLayoutempsdlno);
+
+        ssareacodeContainer    = findViewById(R.id.ssareacodeContainer   );
+        actstatus              = findViewById(R.id.actstatus             );
+        actstatusdate          = findViewById(R.id.actstatusdate         );
+        ofocodeContainer       = findViewById(R.id.ofocodeContainer      );
+        sponsorship            = findViewById(R.id.sponsorship           );
+        financialyear          = findViewById(R.id.financialyear         );
+        nqflevel               = findViewById(R.id.nqflevel              );
+        saqaidContainer        = findViewById(R.id.saqaidContainer       );
+        empsdlnoContainer      = findViewById(R.id.empsdlnoContainer     );
+        providersdlnoContainer = findViewById(R.id.providersdlnoContainer);
+        economicstatus         = findViewById(R.id.economicstatus        );
+        wilstartdate           = findViewById(R.id.wilstartdate          );
+        wilenddate             = findViewById(R.id.wilenddate            );
+        msregdate              = findViewById(R.id.msregdate             );
+        enrollmentstatus       = findViewById(R.id.enrollmentstatus      );
+        projectContainer       = findViewById(R.id.projectContainer      );
+        refnoContainer         = findViewById(R.id.refnoContainer        );
+        wiltype                = findViewById(R.id.wiltype               );
 
     }
 
@@ -479,6 +510,102 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeInputs() {
+
+        for (int i = 0; i <Step4ArrayList.size() ; i++) {
+            if(Step4ArrayList.get(i).getSTATSSA_is_v_4().equals("1")){
+                ssareacodeContainer.setVisibility(View.VISIBLE);
+            }else{
+                ssareacodeContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getPOPIStatus_is_v_4().equals("1")){
+                actstatus.setVisibility(View.VISIBLE);
+            }else{
+                actstatus.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getPOPIDate_is_v_4().equals("1")){
+                actstatusdate.setVisibility(View.VISIBLE);
+            }else{
+                actstatusdate.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getOFO_is_v_4().equals("1")){
+                ofocodeContainer.setVisibility(View.VISIBLE);
+            }else{
+                ofocodeContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getSponsorship_is_v_4().equals("1")){
+                sponsorship.setVisibility(View.VISIBLE);
+            }else{
+                sponsorship.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getfYear_is_v_4().equals("1")){
+                financialyear.setVisibility(View.VISIBLE);
+            }else{
+                financialyear.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getNQF_is_v_4().equals("1")){
+                nqflevel.setVisibility(View.VISIBLE);
+            }else{
+                nqflevel.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getSAQA_is_v_4().equals("1")){
+                saqaidContainer.setVisibility(View.VISIBLE);
+            }else{
+                saqaidContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getEmpSDL_is_v_4().equals("1")){
+                empsdlnoContainer.setVisibility(View.VISIBLE);
+            }else{
+                empsdlnoContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getPSDL_is_v_4().equals("1")){
+                providersdlnoContainer.setVisibility(View.VISIBLE);
+            }else{
+                providersdlnoContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getEcoStatus_is_v_4().equals("1")){
+                economicstatus.setVisibility(View.VISIBLE);
+            }else{
+                economicstatus.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getWilStart_is_v_4().equals("1")){
+                wilstartdate.setVisibility(View.VISIBLE);
+            }else{
+                wilstartdate.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getWilEnd_is_v_4().equals("1")){
+                wilenddate.setVisibility(View.VISIBLE);
+            }else{
+                wilenddate.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getMSregDate_is_v_4().equals("1")){
+                msregdate.setVisibility(View.VISIBLE);
+            }else{
+                msregdate.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getEnroll_is_v_4().equals("1")){
+                enrollmentstatus.setVisibility(View.VISIBLE);
+            }else{
+                enrollmentstatus.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getProject_is_v_4().equals("1")){
+                projectContainer.setVisibility(View.VISIBLE);
+            }else{
+                projectContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getRefNo_is_v_4().equals("1")){
+                refnoContainer.setVisibility(View.VISIBLE);
+            }else{
+                refnoContainer.setVisibility(View.GONE);
+            }
+            if(Step4ArrayList.get(i).getWilType_is_v_4().equals("1")){
+                wiltype.setVisibility(View.VISIBLE);
+            }else{
+                wiltype.setVisibility(View.GONE);
+            }
+
+        }
+
+
 
     }
 

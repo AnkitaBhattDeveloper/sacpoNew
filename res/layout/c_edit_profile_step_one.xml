@@ -66,7 +66,7 @@
                         />
 
                     <LinearLayout
-                        android:id="@+id/Title"
+                        android:id="@+id/ll_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -262,7 +262,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/Race"
+                        android:id="@+id/RaceContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -300,7 +300,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/Gender"
+                        android:id="@+id/GenderContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -349,7 +349,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/DOB"
+                        android:id="@+id/DOBContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -444,7 +444,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/National_id"
+                        android:id="@+id/National_idContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -483,7 +483,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/sRegNo"
+                        android:id="@+id/sRegNoContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -523,7 +523,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/alternative_id"
+                        android:id="@+id/alternative_idContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -562,7 +562,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/Nationality"
+                        android:id="@+id/NationalityContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -600,7 +600,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/TaxRefNo"
+                        android:id="@+id/TaxRefNoContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"

@@ -319,7 +319,8 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         LinearLayout help_cam_container = (LinearLayout) findViewById(R.id.help_cam_container);
         TextView activity_title = findViewById(R.id.activityIdTitle);
         activity_title.setText("REF " + ActivityId);
-        activity_title.setBackground(getDrawable(getDrwabaleResourceId("circle_footer")));
+        activity_title.setTextColor(getColor(R.color.sacpocolorPrimary));
+        activity_title.setBackground(getDrawable(R.drawable.white_circle_bg));
         activity_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

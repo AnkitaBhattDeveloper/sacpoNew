@@ -103,7 +103,6 @@ public class UploadMultipleDocsA extends BaseAPCPrivate {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(),this,this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag,"onCreate","init");
-        Intent inputIntent = getIntent();
         inBundle = getIntent().getExtras();
         generator = inBundle.getString("generator");
         bootStrapInit();

@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -33,6 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step5DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -66,6 +69,9 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     LinearLayout ll_university,ll_college,ll_DisabilityType;
     RadioGroup RGPhysicalDisAbility;
     RadioButton rb_disable_y,rb_disable_n;
+    ArrayList<Step5DataVisibilityObj> Step5ArrayList = new ArrayList<>();
+    LinearLayout NameOfKin,ContactOfKin,PhysicalDisability,InternCategoryQualification,institution;
+    boolean spinnerdisability;
 
 
     @Override
@@ -81,6 +87,9 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        Step5ArrayList = (ArrayList<Step5DataVisibilityObj>) args.getSerializable("Step5ArrayList");
         bootStrapInit();
         printLogs(LogTag, "onCreate", "initConnected");
 
@@ -424,6 +433,12 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         RGPhysicalDisAbility = findViewById(R.id.RGPhysicalDisAbility);
         rb_disable_y = findViewById(R.id.rb_disable_y);
         rb_disable_n = findViewById(R.id.rb_disable_n);
+
+        NameOfKin = findViewById(R.id.NameOfKin);
+        ContactOfKin = findViewById(R.id.ContactOfKin);
+        PhysicalDisability = findViewById(R.id.PhysicalDisability);
+        InternCategoryQualification = findViewById(R.id.InternCategoryQualification);
+        institution = findViewById(R.id.institution);
     }
 
     @Override
@@ -521,6 +536,62 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeInputs() {
+
+        for (int i = 0; i <Step5ArrayList.size() ; i++) {
+            if(Step5ArrayList.get(i).getKinName_is_v_5().equals("1")){
+                NameOfKin.setVisibility(View.VISIBLE);
+            }else{
+                NameOfKin.setVisibility(View.GONE);
+            }
+
+            if(Step5ArrayList.get(i).getKinName_is_r_5().equals("1")){
+                spinnerdisability = true;
+            }else{
+                spinnerdisability = false;
+            }
+
+            if(Step5ArrayList.get(i).getKinContact_is_v_5().equals("1")){
+                ContactOfKin.setVisibility(View.VISIBLE);
+            }else{
+                ContactOfKin.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getPhyDisable_is_v_5().equals("1")){
+                PhysicalDisability.setVisibility(View.VISIBLE);
+            }else{
+                PhysicalDisability.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getDisablityType_is_v_5().equals("1")){
+                ll_DisabilityType.setVisibility(View.VISIBLE);
+            }else{
+                ll_DisabilityType.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getICQuali_is_v_5().equals("1")){
+                InternCategoryQualification.setVisibility(View.VISIBLE);
+            }else{
+                InternCategoryQualification.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getInsti_is_v_5().equals("1")){
+                institution.setVisibility(View.VISIBLE);
+            }else{
+                institution.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getUni_is_v_5().equals("1")){
+                ll_university.setVisibility(View.VISIBLE);
+            }else{
+                ll_university.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getCollege_is_v_5().equals("1")){
+                ll_college.setVisibility(View.VISIBLE);
+            }else{
+                ll_college.setVisibility(View.GONE);
+            }
+        }
+
+
+
+    }
+
+    public void validateInput(EditText inputNameOfKin) {
 
     }
 
@@ -740,6 +811,11 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     @Override
     public void validateForm() {
         boolean cancel = false;
+
+            /*if(!validateSpinner(spinnerdisability,inputDisabilityType)){
+                cancel = true;
+            }*/
+
         /*if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
             cancel = true;
         } else if (!validateLastName(inputLastName, inputLayoutLastName)) {
@@ -769,6 +845,23 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             this.FormSubmit();
         }
         printLogs(LogTag, "validateForm", "exit");
+    }
+
+    private boolean validateSpinner(boolean spinnerdisability, Spinner inputDisabilityType) {
+        if(spinnerdisability){
+            if(inputDisabilityType != null && inputDisabilityType.getSelectedItem() != null){
+                printLogs(LogTag, "validateForm", "if(i");
+                return false;
+            }else{
+                printLogs(LogTag, "validateForm", "else{");
+                Toast.makeText(thisClass, "Please select disability type", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        }else{
+            printLogs(LogTag, "validateForm", "}el");
+            return false;
+        }
+
     }
 
     @Override

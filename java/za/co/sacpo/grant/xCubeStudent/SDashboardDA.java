@@ -369,7 +369,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
             btn_view_att.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btn_leave.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btn_view_docs.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
-            c_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
+           // c_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
             btn_view_bank_details.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));
             btn_view_managed_by.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));
             btn_view_supervisor.setBackground(getDrawable(getDrwabaleResourceId("theme_view_button_small")));

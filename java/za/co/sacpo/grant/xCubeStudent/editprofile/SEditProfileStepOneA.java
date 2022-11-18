@@ -28,6 +28,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -51,6 +52,7 @@ import za.co.sacpo.grant.xCubeLib.ListarClientes;
 import za.co.sacpo.grant.xCubeLib.adapter.SpinAdapter;
 import za.co.sacpo.grant.xCubeLib.adapter.SpinnerAdapter;
 import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
+import za.co.sacpo.grant.xCubeLib.dataObj.Step1DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
@@ -105,7 +107,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public SpinnerObj[] StuQualcatType ;
     public SpinnerObj[] NationalityType;
     SEditProfileStepOneA thisClass;
-
+    ArrayList<String> object;
+    ArrayList<Step1DataVisibilityObj> Step1ArrayList = new ArrayList<>();
+    LinearLayout ll_title,firstNameContainer,lastNameContainer,mobileNumberContainer,EmailContainer,RaceContainer,
+            GenderContainer,DOBContainer,National_idContainer,sRegNoContainer,alternative_idContainer,NationalityContainer,
+            TaxRefNoContainer;
 
 
 
@@ -122,7 +128,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        Step1ArrayList = (ArrayList<Step1DataVisibilityObj>) args.getSerializable("Step1ArrayList");
         bootStrapInit();
+        printLogs(LogTag, "onCreate", "Step1ArrayList");
         printLogs(LogTag, "onCreate", "initConnected");
     }
 
@@ -148,13 +158,13 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-          //  fetchEnrollment();
+            //  fetchEnrollment();
 
             fetchData();
             callDataApi();
             initializeListeners();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-         //   showProgress(false, mContentView, mProgressView);
+            //   showProgress(false, mContentView, mProgressView);
         }
     }
 
@@ -232,26 +242,21 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         rb_male = findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
 
-        /*inputLearnerNo = findViewById(R.id.inputLearnerNo);
-        inputLearnerId = findViewById(R.id.inputLearnerId);
-        inputNameOfKin = findViewById(R.id.inputNameOfKin);
-        inputContactOfKin = findViewById(R.id.inputContactOfKin);
-        inputInternUTO = findViewById(R.id.inputInternUTO);
-        ll_DisabilityType = findViewById(R.id.ll_DisabilityType);
-        inputLayoutLearnerNo = findViewById(R.id.inputLayoutLearnerNo);
-        inputLayoutLearnerId = findViewById(R.id.inputLayoutLearnerId);
-        inputLayoutNameOfKin = findViewById(R.id.inputLayoutNameOfKin);
-        inputLayoutContactOfKin = findViewById(R.id.inputLayoutContactOfKin);
-        inputLayoutInternUTO = findViewById(R.id.inputLayoutInternUTO);
-        RGPhysicalDisAbility = findViewById(R.id.RGPhysicalDisAbility);
-        SpinnerDisabilityType = findViewById(R.id.inputDisabilityType);
-        Spin_EnrollmentYear = findViewById(R.id.inputEnrollmentYear);
-        spinner_InternCategoryQualification = findViewById(R.id.spinner_InternCategoryQualification);
 
-        rb_disable_y = findViewById(R.id.rb_disable_y);
-        rb_disable_n = findViewById(R.id.rb_disable_n);
+        ll_title                = findViewById(R.id.ll_title);
+        firstNameContainer      = findViewById(R.id.firstNameContainer);
+        lastNameContainer       = findViewById(R.id.lastNameContainer);
+        mobileNumberContainer   = findViewById(R.id.mobileNumberContainer);
+        EmailContainer          = findViewById(R.id.EmailContainer);
+        RaceContainer           = findViewById(R.id.RaceContainer);
+        GenderContainer         = findViewById(R.id.GenderContainer);
+        DOBContainer            = findViewById(R.id.DOBContainer);
+        National_idContainer    = findViewById(R.id.National_idContainer);
+        sRegNoContainer         = findViewById(R.id.sRegNoContainer);
+        alternative_idContainer = findViewById(R.id.alternative_idContainer);
+        NationalityContainer    = findViewById(R.id.NationalityContainer);
+        TaxRefNoContainer     = findViewById(R.id.TaxRefNoContainer);
 
-        // inputInternCategoryQualification = findViewById(R.id.inputInternCategoryQualification);*/
     }
 
     @Override
@@ -336,8 +341,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             inputFirstName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputLastName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputEmail.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-             inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-           inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerRace.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
@@ -350,6 +355,74 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeInputs() {
+        printLogs(LogTag, "initializeInputs", "Step1ArrayList "+Step1ArrayList);
+        for (int i = 0; i <Step1ArrayList.size() ; i++) {
+            //Toast.makeText(thisClass, Step1ArrayList.get(i).getTitle_is_v_1(), Toast.LENGTH_SHORT).show();
+            if(Step1ArrayList.get(i).getTitle_is_v_1().equals("1")){
+                ll_title.setVisibility(View.VISIBLE);
+            }else{
+                ll_title.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getfName_is_v_1().equals("1")){
+                firstNameContainer.setVisibility(View.VISIBLE);
+            }else{
+                firstNameContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getlName_is_v_1().equals("1")){
+                lastNameContainer.setVisibility(View.VISIBLE);
+            }else{
+                lastNameContainer.setVisibility(View.GONE);
+            }if(Step1ArrayList.get(i).getMob_is_v_1().equals("1")){
+                mobileNumberContainer.setVisibility(View.VISIBLE);
+            }else{
+                mobileNumberContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getEmail_is_v_1().equals("1")){
+                EmailContainer.setVisibility(View.VISIBLE);
+            }else{
+                EmailContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getRace_is_v_1().equals("1")){
+                RaceContainer.setVisibility(View.VISIBLE);
+            }else{
+                RaceContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getGender_is_v_1().equals("1")){
+                GenderContainer.setVisibility(View.VISIBLE);
+            }else{
+                GenderContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getDob_is_v_1().equals("1")){
+                DOBContainer.setVisibility(View.VISIBLE);
+            }else{
+                DOBContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getNationalId_is_v_1().equals("1")){
+                National_idContainer.setVisibility(View.VISIBLE);
+            }else{
+                National_idContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getsRegNo_is_v_1().equals("1")){
+                sRegNoContainer.setVisibility(View.VISIBLE);
+            }else{
+                sRegNoContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getAlterID_is_v_1().equals("1")){
+                alternative_idContainer.setVisibility(View.VISIBLE);
+            }else{
+                alternative_idContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getNationalId_is_v_1().equals("1")){
+                NationalityContainer.setVisibility(View.VISIBLE);
+            }else{
+                NationalityContainer.setVisibility(View.GONE);
+            }
+            if(Step1ArrayList.get(i).getTaxRef_is_v_1().equals("1")){
+                TaxRefNoContainer.setVisibility(View.VISIBLE);
+            }else{
+                TaxRefNoContainer.setVisibility(View.GONE);
+            }
+        }
         printLogs(LogTag, "initializeInputs", "init");
     }
 
@@ -432,7 +505,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         });
 
 
-   final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerMonth.setAdapter(adapter6);
         adapter6.notifyDataSetChanged();
@@ -489,7 +562,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         SpinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               // spin_year = parent.getItemAtPosition(position).toString();
+                // spin_year = parent.getItemAtPosition(position).toString();
                 spin_year = parent.getItemAtPosition(SpinnerYear.getSelectedItemPosition()).toString();
                 //getSpinYearPos(spin_year);
             }
@@ -596,7 +669,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             return true;
         }
     }
-  public boolean validateNationalId(EditText inputNational_id, TextInputLayout inputLayoutNational_id) {
+    public boolean validateNationalId(EditText inputNational_id, TextInputLayout inputLayoutNational_id) {
         String national_id = inputNational_id.getText().toString().trim();
         setCustomError(inputLayoutNational_id, null, inputNational_id);
         if (national_id.isEmpty() || !isValidNationalId(national_id)) {
@@ -733,7 +806,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 case R.id.inputNational_id:
                     validateNationalId(EditView,EditLayout);
                     break;
-                    case R.id.inputsRegNo:
+                case R.id.inputsRegNo:
                     validateRegNo(EditView,EditLayout);
                     break;
             }
@@ -867,8 +940,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
                         }
                         fetchNationality();
-                            //SpinnerDay, SpinnerMonth, SpinnerYear
-                            //SET DOB Spinner data--PENDING..!!
+                        //SpinnerDay, SpinnerMonth, SpinnerYear
+                        //SET DOB Spinner data--PENDING..!!
                         if(!spin_day.equals("")){
                             int dday = Integer.parseInt(spin_day);
                             int new_day = dday-1;
@@ -878,7 +951,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                         if(!spin_month.equals("")){
                             SpinnerMonth.setSelection(Integer.parseInt(spin_month)-1);
                         }
-                         String mYear = spin_years; //the value you want the position for
+                        String mYear = spin_years; //the value you want the position for
                         ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
                         int spinnerPosition = mAdpt.getPosition(mYear);
                         SpinnerYear.setSelection(spinnerPosition);
@@ -930,7 +1003,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "*/*");
-              return params;
+                return params;
             }
 
         };
@@ -963,19 +1036,19 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         final int title = Integer.parseInt(String.valueOf(title_value));
 
 
-if(rb_male.isChecked()){
-    gender_key_status = rb_male.getTag().toString();
+        if(rb_male.isChecked()){
+            gender_key_status = rb_male.getTag().toString();
         }else if(rb_female.isChecked()){
-    gender_key_status = rb_female.getTag().toString();
+            gender_key_status = rb_female.getTag().toString();
         }
 
-    //    final int enroll_year = Integer.parseInt(String.valueOf(selected_enroll_year));
+        //    final int enroll_year = Integer.parseInt(String.valueOf(selected_enroll_year));
 
 
         final int month = Integer.parseInt(String.valueOf(month_value)) +1;
         final int date = Integer.parseInt(String.valueOf(spin_date));
         final int year = Integer.parseInt(String.valueOf(spin_year));
-       // final int qualCategoryType_value = qualcategory_value;
+        // final int qualCategoryType_value = qualcategory_value;
 
         printLogs(LogTag, "FormSubmit", "VALUE__DOB__" +"  "+date+"   "+month +"  "+year+"   "+selected_enroll_year+" titleValueee  " +title);
 
@@ -1008,8 +1081,8 @@ if(rb_male.isChecked()){
             jsonBody.put("national_id", national_id);
             jsonBody.put("sRegNo", sRegNo);
             jsonBody.put("alternative_id", alternativeId);
-           jsonBody.put("nationality", spin_nationality);
-           jsonBody.put("email", email);
+            jsonBody.put("nationality", spin_nationality);
+            jsonBody.put("email", email);
             jsonBody.put(KEY_TAX_REF, tax_ref);
             jsonBody.put(KEY_STATUS_GENDER, gender_key_status);
             jsonBody.put(KEY_STATUS_RACE, String.valueOf(race_id));
@@ -1062,16 +1135,16 @@ if(rb_male.isChecked()){
                 ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
             }
         }) {
-        @Override
-        public Map<String, String> getHeaders() {
-            Map<String, String> header = new HashMap<>();
-            header.put("Content-Type", "application/json; charset=utf-8");
-            header.put("Accept","*/*");
-            return header;
-        }
-    };
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> header = new HashMap<>();
+                header.put("Content-Type", "application/json; charset=utf-8");
+                header.put("Accept","*/*");
+                return header;
+            }
+        };
 
-    RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
 

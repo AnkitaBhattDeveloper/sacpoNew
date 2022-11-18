@@ -6,18 +6,27 @@
     <color name="colorPrimaryDark">#0D47A1</color>
     <color name="colorPrimaryLighter">#1976D2</color>
 
-    <color name="sacpocolorPrimary">#F1C64F</color>
-    <color name="sacpocolorPrimaryDark">#fcb900</color>
-    <color name="sacpocolorAccent">#F1C64F</color>
+
+
+    <color name="sacpocolorPrimary">#006C43</color>
+    <color name="sacpocolorPrimaryDark">#000000</color>
+    <color name="sacpocolorAccent">#006C43</color>
+    <color name="sacpcolorPrimaryLighter">#0E9864</color>
+    <color name="dashboard_back_1">#FCBB1F</color>
+    <color name="dashboard_back_2">#FFD97C</color>
+    <!--<color name="sacpocolorPrimary">#006C43</color>
+    <color name="sacpocolorPrimaryDark">#bfbfbf</color>
+    <color name="sacpocolorAccent">#010101</color>
+    <color name="sacpocolorAccent">#FCBB1F</color>-->
 
     <color name="dashboard_textColor_1">#0D47A1</color>
-    <color name="dashboard_textColor_2">#585C61</color>
+    <color name="dashboard_textColor_2">#010101</color>
     <color name="drawer_item_textColor_1">#0D47A1</color>
-    <color name="drawer_item_textColor_2">#585C61</color>
+    <color name="drawer_item_textColor_2">#010101</color>
     <color name="list_textColor_1">#0D47A1</color>
     <color name="list_textColor_2">#ffffff</color>
     <color name="row_head_1">#1976D2</color>
-    <color name="row_head_2">#fcb900</color>
+    <color name="row_head_2">#FCBB1F</color>
     <color name="spinnertext_1">#00487F</color>
     <color name="spinnertext_2">#000000</color>
 
@@ -52,7 +61,7 @@
     <color name="back_small_heading">#efefef</color>
     <color name="background_s_dashboard">#fffbfb</color>
     <color name="background_s_divider">#bf8fd6ff</color>
-    <color name="background_footer">#f1f1f1</color>
+    <color name="background_footer">#000000</color>
     <color name="background_s_view">#e4e4e4</color>
     <color name="back_small_value">#ffffff</color>
 

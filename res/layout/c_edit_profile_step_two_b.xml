@@ -187,7 +187,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/postaladdress3Container"
+                        android:id="@+id/postaladd3Container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"

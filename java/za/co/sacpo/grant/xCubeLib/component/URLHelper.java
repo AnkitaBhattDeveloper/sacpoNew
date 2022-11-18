@@ -92,6 +92,7 @@ public class URLHelper {
     public static final String R_REF_106 = "/change-password-api";
     public static final String R_REF_142_1 = "/send-api";
     public static final String TICKET_DETAILS_URL = "/issue-details-api";
+    public static final String STU_FIELDS_PERMISSION = "/stu-fields-permission-api";
 
     //spinners
     public static final String STU_ISSUE_TITLE_TYPE = "/stu-issue-title-type-api";
