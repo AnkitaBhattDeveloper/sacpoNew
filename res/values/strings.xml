@@ -998,7 +998,9 @@
     <string name="error_invalid_designation_l">Designation must be between 3 to 60 Characters</string>
     <string name="error_invalid_institution">Institution name is required</string>
     <string name="error_invalid_institution_l">Institution name must be between 3 to 60 Characters</string>
-    <string name="error_invalid_mobile">Mobile should be between 9 to 12 digits</string>
+    <string name="error_invalid_mobile">Mobile should be between 9 to 14 digits</string>
+    <string name="error_invalid_fax">Fax should be between 9 to 14 digits</string>
+    <string name="error_invalid_taxref">Tax Ref No should be between 5 to 14 digits</string>
 
     <string name="error_invalid_hobbie">Hobbie name is required</string>
     <string name="error_invalid_hobbie_l">Hobbie name must be between 3 to 60 Characters</string>
@@ -1195,6 +1197,37 @@
     <string name="error_S105_alternativeid">Error! Alternative Id is not valid .</string>
     <string name="error_S105_email">Error! Email is not valid .</string>
     <string name="error_S105_empty">Error! Field cannot be empty.</string>
+    <string name="error_S105_emptyfname">Error! First Name cannot be empty.</string>
+    <string name="error_S105_emptylname">Error! Last Name cannot be empty.</string>
+    <string name="error_S105_emptyemail">Error! Email cannot be empty.</string>
+    <string name="error_S105_emptytaxref">Error! Tax Ref No cannot be empty.</string>
+    <string name="error_S105_emptyregno">Error! Student Ref no cannot be empty.</string>
+    <string name="error_S105_emptynationalid">Error! National Id cannot be empty.</string>
+    <string name="error_S105_emptymobile">Error! Mobile cannot be empty.</string>
+    <string name="error_S105_emptyalterid">Error! Alternative ID cannot be empty.</string>
+    <string name="error_S105_emptyfax">Error! Fax cannot be empty.</string>
+    <string name="error_S105_emptyphycode">Error! Physical Code cannot be empty.</string>
+    <string name="error_S105_emptypostalcode">Error! Postal Code cannot be empty.</string>
+    <string name="error_S105_emptyscyear">Error! Last School Year cannot be empty.</string>
+    <string name="error_S105_emptysaqaid">Error! Qualification SAQA ID cannot be empty.</string>
+    <string name="error_S105_emptyempsdl">Error! Employer SDL No cannot be empty.</string>
+    <string name="error_S105_emptyprosdl">Error! Provider SDL No cannot be empty.</string>
+    <string name="error_S105_emptyrefno">Error! Reference No cannot be empty.</string>
+    <string name="error_S105_emptygender">Error! Gender cannot be empty.</string>
+    <string name="error_S105_emptyphydisabled">Error! Physically Disabled cannot be empty.</string>
+
+
+
+    <string name="error_invalid_refno">Reference No should be between 5 to 15 digits</string>
+    <string name="error_invalid_prono">Provider SDL No should be between 5 to 15 digits</string>
+    <string name="error_invalid_empno">Employer SDL No should be between 5 to 15 digits</string>
+    <string name="error_invalid_regno">Student Reg no should be between 5 to 15 digits</string>
+    <string name="error_invalid_nationalid">National ID should be between 5 to 15 digits</string>
+    <string name="error_invalid_alterid">Alternative ID should be between 5 to 15 digits</string>
+    <string name="error_invalid_saqaid">Qualification SAQA ID should be between 5 to 15 digits</string>
+    <string name="error_invalid_phycode">Physical Code should be between 3 to 15 digits</string>
+    <string name="error_invalid_postalcode">Postal Code should be between 3 to 15 digits</string>
+    <string name="error_invalid_scyear">Last School Year should be 4 digits</string>
 
 
     <string name="m_A102_title">Please check Email</string>
@@ -1234,7 +1267,25 @@
     <string name="lbl_S105_lastscyear">Last School Year</string>
     <string name="lbl_S105_lblequity">Equity</string>
     <string name="lbl_S105_residentstatus">Citizen Resident Status</string>
-
+ <string name="lbl_S105D_errorspposurban">Please Select Postal Urban Rural</string>
+ <string name="lbl_S105D_errorspposcountry">Please Select Postal Country</string>
+ <string name="lbl_S105D_errorspposprovince">Please Select Postal Province</string>
+ <string name="lbl_S105D_errorspposcity">Please Select Postal City</string>
+ <string name="lbl_S105D_errorsppossuburb">Please Select Postal Suburb</string>
+ <string name="lbl_S105D_errorspequity">Please Select Equity</string>
+ <string name="lbl_S105D_errorspresstatus">Please Select Citizen Resident Status</string>
+ <string name="lbl_S105D_errorsphomelang">Please Select Home Language</string>
+ <string name="lbl_S105D_errorspphyurban">Please Select Physical Urban Rural</string>
+ <string name="lbl_S105D_errorspphycountry">Please Select Physical Country</string>
+ <string name="lbl_S105D_errorspphyprovince">Please Select Physical Province</string>
+ <string name="lbl_S105D_errorspphycity">Please Select Physical City</string>
+ <string name="lbl_S105D_errorspphysuburb">Please Select Physical Suburb</string>
+ <string name="lbl_S105D_errorsptitle">Please Select Title</string>
+ <string name="lbl_S105D_errorsprace">Please Select Race</string>
+ <string name="lbl_S105D_errorspnation">Please Select Nationality</string>
+ <string name="lbl_S105D_errorspday">Please Select Valid Date</string>
+ <string name="lbl_S105D_errorspmonth">Please Select Valid Month</string>
+ <string name="lbl_S105D_errorspyear">Please Select Valid Year</string>
 
     <!--Edit Profile Step 3-->
     <string name="lbl_S105C_heading">Step 4</string>
@@ -1256,6 +1307,14 @@
     <string name="lbl_S105C_project">Project</string>
     <string name="lbl_S105C_refno">Reference Number</string>
     <string name="lbl_S105C_wiltype">Wil Type</string>
+    <string name="lbl_S105D_errorspinneractstatus">Please Select POPI Act Status</string>
+    <string name="lbl_S105D_errorspsponsorship">Please Select Sponsorship</string>
+    <string name="lbl_S105D_errorfyear">Please Select Financial Year</string>
+    <string name="lbl_S105D_errorspnqf">Please Select NQF Level</string>
+    <string name="lbl_S105D_errorspeconomic">Please Select Economic Status</string>
+    <string name="lbl_S105D_errorenroll">Please Select Enrollment Status</string>
+    <string name="lbl_S105D_errorspwiltype">Please Select Wil Type</string>
+
 
     <!--Edit Profile Step 4-->
     <string name="lbl_S105D_heading">Step 5</string>
@@ -1267,6 +1326,12 @@
     <string name="lbl_S105D_institution">Institution</string>
     <string name="lbl_S105D_university">University</string>
     <string name="lbl_S105D_college">College</string>
+    <string name="lbl_S105D_errorspinnerdisablity">Please Select Disability Type</string>
+    <string name="lbl_S105D_errorspinnericquali">Please Select Intern Category Qualification</string>
+    <string name="lbl_S105D_errorspinnerinst">Please Select Institution</string>
+    <string name="lbl_S105D_errorspinneruni">Please Select University</string>
+    <string name="lbl_S105D_errorspinnercollege">Please Select College</string>
+
 
 
     <!--ClaimA-->

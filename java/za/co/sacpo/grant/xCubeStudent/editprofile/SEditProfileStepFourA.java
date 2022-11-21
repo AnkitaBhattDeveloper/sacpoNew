@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,7 +73,9 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     ArrayList<Step5DataVisibilityObj> Step5ArrayList = new ArrayList<>();
     LinearLayout NameOfKin,ContactOfKin,PhysicalDisability,InternCategoryQualification,institution;
     boolean spinnerdisability;
-
+    boolean validKinName,validkinContact,validphyDisable,validDisabilitytype,validICQualification,validInst,
+    validUniversity,validCollege;
+    TextInputLayout inputLayoutNameOfKin,inputLayoutContactOfKin;
 
     @Override
     protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
@@ -435,7 +438,9 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         rb_disable_n = findViewById(R.id.rb_disable_n);
 
         NameOfKin = findViewById(R.id.NameOfKin);
+        inputLayoutNameOfKin = findViewById(R.id.inputLayoutNameOfKin);
         ContactOfKin = findViewById(R.id.ContactOfKin);
+        inputLayoutContactOfKin = findViewById(R.id.inputLayoutContactOfKin);
         PhysicalDisability = findViewById(R.id.PhysicalDisability);
         InternCategoryQualification = findViewById(R.id.InternCategoryQualification);
         institution = findViewById(R.id.institution);
@@ -543,13 +548,6 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             }else{
                 NameOfKin.setVisibility(View.GONE);
             }
-
-            if(Step5ArrayList.get(i).getKinName_is_r_5().equals("1")){
-                spinnerdisability = true;
-            }else{
-                spinnerdisability = false;
-            }
-
             if(Step5ArrayList.get(i).getKinContact_is_v_5().equals("1")){
                 ContactOfKin.setVisibility(View.VISIBLE);
             }else{
@@ -585,15 +583,57 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             }else{
                 ll_college.setVisibility(View.GONE);
             }
+            //==================required========================================
+            if(Step5ArrayList.get(i).getKinName_is_r_5().equals("1")){
+                validKinName = true;
+            }else{
+                validKinName = false;
+            }
+            if(Step5ArrayList.get(i).getKinContact_is_r_5().equals("1")){
+                validkinContact = true;
+            }else{
+                validkinContact = false;
+            }
+            if(Step5ArrayList.get(i).getPhyDisable_is_r_5().equals("1")){
+                validphyDisable = true;
+            }else{
+                validphyDisable = false;
+            }
+            if(Step5ArrayList.get(i).getDisablityType_is_r_5().equals("1")){
+                validDisabilitytype = true;
+            }else{
+                validDisabilitytype = false;
+            }
+            if(Step5ArrayList.get(i).getICQuali_is_r_5().equals("1")){
+                validICQualification = true;
+            }else{
+                validICQualification = false;
+            }
+            if(Step5ArrayList.get(i).getInsti_is_r_5().equals("1")){
+                validInst = true;
+            }else{
+                validInst = false;
+            }
+            if(Step5ArrayList.get(i).getUni_is_r_5().equals("1")){
+                validUniversity = true;
+            }else{
+                validUniversity = false;
+            }
+            if(Step5ArrayList.get(i).getCollege_is_r_5().equals("1")){
+                validCollege = true;
+            }else{
+                validCollege = false;
+            }
+
+
+
+
+
         }
 
-
-
     }
 
-    public void validateInput(EditText inputNameOfKin) {
 
-    }
 
     @Override
     protected void initializeLabels() {
@@ -812,32 +852,46 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     public void validateForm() {
         boolean cancel = false;
 
-            /*if(!validateSpinner(spinnerdisability,inputDisabilityType)){
+        if(validDisabilitytype && disability_status == 2131298305){
+            if (!validateSpinnerDisabilitytype(inputDisabilityType)) {
                 cancel = true;
-            }*/
+            }
+        }
+        if(validICQualification){
+            if (!validateSpinnerICQualification(spinner_InternCategoryQualification)) {
+                cancel = true;
+            }
+        }
+        if(validInst){
+            if (!validateSpinnerInst(inputSpinnerinstitution)) {
+                cancel = true;
+            }
+        }
+        if(validUniversity && institution_value.equals("1")){
+            if (!validateSpinnerUniversity(inputSpinneruniversity)) {
+                cancel = true;
+            }
+        }if(validCollege && institution_value.equals("2")){
+            if (!validateSpinnerCollege(inputSpinnercollege)) {
+                cancel = true;
+            }
+        }
+        if(validKinName){
+            if (!validateKinName(inputNameOfKin, inputLayoutNameOfKin)) {
+                cancel = true;
+            }
+        }
+        if(validkinContact){
+            if (!validatekinContact(inputContactOfKin, inputLayoutContactOfKin)) {
+                cancel = true;
+            }
 
-        /*if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
-            cancel = true;
-        } else if (!validateLastName(inputLastName, inputLayoutLastName)) {
-            cancel = true;
-        } else if (!validateNumber(inputMobile, inputLayoutMobile)) {
-            cancel = true;
-        } else if (!validateNationalId(inputNational_id, inputLayoutNational_id)) {
-            cancel = true;
-        }else if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
-            cancel = true;
-        } else if (!validateAlternativeId(inputalternative_id, inputLayoutalternative_id)) {
-            cancel = true;
-        }else if (!validateEmail(inputEmail, inputLayoutEmail)) {
-            cancel = true;
-        }*//* else if (!validateLearnerNo(inputLearnerNo, inputLayoutLearnerNo)) {
-            cancel = true;
-        } else if (!validateLearnerId(inputLearnerId, inputLayoutLearnerId)) {
-            cancel = true;
-        }*//*else if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
-            cancel = true;
-        }*/
-
+        }
+        if(validphyDisable) {
+            if (!validatePhyDisable(RGPhysicalDisAbility)) {
+                cancel = true;
+            }
+        }
         if (cancel) {
             return;
         } else {
@@ -846,23 +900,119 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         }
         printLogs(LogTag, "validateForm", "exit");
     }
+    private boolean validatePhyDisable(RadioGroup RGPhysicalDisAbility) {
+        String PhysicalDisAbility = String.valueOf(RGPhysicalDisAbility.getCheckedRadioButtonId());
+        if (PhysicalDisAbility.isEmpty() ) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("error_S105_emptyphydisabled", R.string.error_S105_emptyphydisabled);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
 
-    private boolean validateSpinner(boolean spinnerdisability, Spinner inputDisabilityType) {
-        if(spinnerdisability){
-            if(inputDisabilityType != null && inputDisabilityType.getSelectedItem() != null){
-                printLogs(LogTag, "validateForm", "if(i");
-                return false;
-            }else{
-                printLogs(LogTag, "validateForm", "else{");
-                Toast.makeText(thisClass, "Please select disability type", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        }else{
-            printLogs(LogTag, "validateForm", "}el");
             return false;
+        }else {
+            //setCustomErrorDisabled(inputLayoutTaxRefNo, inputTaxRefNo);
+            return true;
         }
-
     }
+    private boolean validatekinContact(EditText inputContactOfKin, TextInputLayout inputLayoutContactOfKin) {
+     String ContactOfKin = inputContactOfKin.getText().toString().trim();
+        setCustomError(inputLayoutContactOfKin, null, inputContactOfKin);
+        if (ContactOfKin.isEmpty() ) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutContactOfKin, sMessage, inputContactOfKin);
+            return false;
+        }else if(!isValidMobile(ContactOfKin)){
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutContactOfKin, sMessage, inputContactOfKin);
+            return false;
+        }else {
+            setCustomErrorDisabled(inputLayoutContactOfKin, inputContactOfKin);
+            return true;
+        }
+    }
+
+    private boolean validateKinName(EditText inputNameOfKin, TextInputLayout inputLayoutNameOfKin) {
+        String NameOfKin = inputNameOfKin.getText().toString().trim();
+        setCustomError(inputLayoutNameOfKin, null, inputNameOfKin);
+        if (NameOfKin.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutNameOfKin, sMessage, inputNameOfKin);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutNameOfKin, inputNameOfKin);
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCollege(Spinner inputSpinnercollege) {
+        printLogs(LogTag,"validateSpinnerCollege","spin_college : "+spin_college);
+        if (spin_college.isEmpty() || spin_college.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinnercollege", R.string.lbl_S105D_errorspinnercollege);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerUniversity(Spinner inputSpinneruniversity) {
+    printLogs(LogTag,"validateSpinnerUniversity","spin_university : "+spin_university);
+        if (spin_university.isEmpty() || spin_university.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinneruni", R.string.lbl_S105D_errorspinneruni);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerInst(Spinner inputSpinnerinstitution) {
+   printLogs(LogTag,"validateSpinnerInst","institution_value : "+institution_value);
+        if (institution_value.isEmpty() || institution_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinnerinst", R.string.lbl_S105D_errorspinnerinst);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerICQualification(Spinner spinner_internCategoryQualification) {
+        printLogs(LogTag,"validateSpinnerICQualification","qualcategory_value : "+qualcategory_value);
+        if (qualcategory_value.isEmpty() || qualcategory_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinnericquali", R.string.lbl_S105D_errorspinnericquali);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerDisabilitytype(Spinner inputDisabilityType) {
+        printLogs(LogTag,"validateSpinnerDisabilitytype","disability_value : "+disability_value);
+        if (disability_value == 0 || disability_value == -1) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinnerdisablity", R.string.lbl_S105D_errorspinnerdisablity);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     @Override
     public void FormSubmit() {

@@ -82,7 +82,9 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             postalurbanrural,postalcountry,postalprovince,postalcity,postalsuburb,postalprovinceContainer,
             etpostalcityContainer,etpostalsuburubContainer,schoolemisContainer,lastscyearContainer,equity,
             residentstatus;
-
+    boolean validPostalCode,validPostalAdd1,validPostalAdd2,validPostalAdd3,validPostalMuni,validPostalUrban,
+            validPostalCountry,validPostalProvinceSP,validPostalCitySP,validPostalSuburbSP,validPostalProvince,
+            validPostalCity,validPostalSuburb,validLastScEMI,validLastScYear,validEquity,validCRStatus;
 
 
     @Override
@@ -367,11 +369,94 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             }else{
                 residentstatus.setVisibility(View.GONE);
             }
+////=====================Required=====================================================
 
+            if(Step3ArrayList.get(i).getPostalCode_is_r_3().equals("1")){
+                validPostalCode = true;
+            }else{
+                validPostalCode = false;
+            }
+            if(Step3ArrayList.get(i).getPostalAdd1_is_r_3().equals("1")){
+                validPostalAdd1 = true;
+            }else{
+                validPostalAdd1 = false;
+            }
+            if(Step3ArrayList.get(i).getPostalAdd2_is_r_3().equals("1")){
+                validPostalAdd2 = true;
+            }else{
+                validPostalAdd2 = false;
+            }
+            if(Step3ArrayList.get(i).getPostalAdd3_is_r_3().equals("1")){
+                validPostalAdd3 = true;
+            }else{
+                validPostalAdd3 = false;
+            }
+            if(Step3ArrayList.get(i).getPostalMuni_is_r_3().equals("1")){
+                validPostalMuni = true;
+            }else{
+                validPostalMuni = false;
+            }
+            if(Step3ArrayList.get(i).getPostalUrban_is_r_3().equals("1")){
+                validPostalUrban = true;
+            }else{
+                validPostalUrban = false;
+            }
+            if(Step3ArrayList.get(i).getPostalCountry_is_r_3().equals("1")){
+                validPostalCountry = true;
+            }else{
+                validPostalCountry = false;
+            }
+            if(Step3ArrayList.get(i).getPostalProvinceSP_is_r_3().equals("1")){
+                validPostalProvinceSP = true;
+            }else{
+                validPostalProvinceSP = false;
+            }
+            if(Step3ArrayList.get(i).getPostalCitySP_is_r_3().equals("1")){
+                validPostalCitySP = true;
+            }else{
+                validPostalCitySP = false;
+            }
+            if(Step3ArrayList.get(i).getPostalSuburbSP_is_r_3().equals("1")){
+                validPostalSuburbSP = true;
+            }else{
+                validPostalSuburbSP = false;
+            }
+            if(Step3ArrayList.get(i).getPostalProvince_is_r_3().equals("1")){
+                validPostalProvince = true;
+            }else{
+                validPostalProvince = false;
+            }
+            if(Step3ArrayList.get(i).getPostalCity_is_r_3().equals("1")){
+                validPostalCity = true;
+            }else{
+                validPostalCity = false;
+            }
+            if(Step3ArrayList.get(i).getPostalSuburb_is_r_3().equals("1")){
+                validPostalSuburb = true;
+            }else{
+                validPostalSuburb = false;
+            }
+            if(Step3ArrayList.get(i).getPostalScEMI_is_r_3().equals("1")){
+                validLastScEMI = true;
+            }else{
+                validLastScEMI = false;
+            }
+            if(Step3ArrayList.get(i).getPostalScYear_is_r_3().equals("1")){
+                validLastScYear = true;
+            }else{
+                validLastScYear = false;
+            }
+            if(Step3ArrayList.get(i).getPostalEquity_is_r_3().equals("1")){
+                validEquity = true;
+            }else{
+                validEquity = false;
+            }
+            if(Step3ArrayList.get(i).getPostalCRStatus_is_r_3().equals("1")){
+                validCRStatus = true;
+            }else{
+                validCRStatus = false;
+            }
         }
-
-
-
     }
 
     @Override
@@ -1222,19 +1307,92 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
     @Override
     public void validateForm() {
         boolean cancel = false;
-       /* if (!validatetelephone(inputtelephone, inputLayouttelephone)) {
-            cancel = true;
-        } else if (!validatefax(inputfax, inputLayoutfax)) {
-            cancel = true;
-        } else if (!validatePhyCode(inputphysicalcode, inputLayoutphysicalcode)) {
-            cancel = true;
-        } else if (!validateAdd1(inputphyaddress1, inputLayoutphyaddress1)) {
-            cancel = true;
-        }else if (!validatePostalAdd1(inputpostaladdress1, inputLayoutpostaladdress1)) {
-            cancel = true;
-        } else if (!validateLSchoolYear(inputlastscyear, inputLayoutlastscyear)) {
-            cancel = true;
-        }*/
+
+        if(validPostalUrban){
+            if (!validateSpinnerPostalUrban(inputSpinnerpostalurbanrural)) {
+                cancel = true;
+            }
+        }
+        if(validPostalCountry){
+            if (!validateSpinnerCountry(inputSpinnerpostalcountry)) {
+                cancel = true;
+            }
+        }
+        if(validPostalProvinceSP){
+            if (!validateSpinnerProvinceSP(inputSpinnerpostalprovince)) {
+                cancel = true;
+            }
+        }
+        if(validPostalCitySP){
+            if (!validateSpinnerPostalCitySP(inputSpinnerpostalcity)) {
+                cancel = true;
+            }
+        }
+        if(validPostalSuburbSP){
+            if (!validateSpinnerPostalSuburbSP(inputSpinnerpostalsuburb)) {
+                cancel = true;
+            }
+        }
+        if(validEquity){
+            if (!validateSpinnerEquity(inputSpinnerequity)) {
+                cancel = true;
+            }
+        }
+        if(validCRStatus){
+            if (!validateSpinnerCRStatus(inputSpinnerresidentstatus)) {
+                cancel = true;
+            }
+        }
+        if(validPostalCode){
+                if (!validatePostalCode(inputpostalcode, inputLayoutpostalcode)) {
+                    cancel = true;
+                }
+        }
+        if(validPostalAdd1){
+            if (!validatePostalAdd1(inputpostaladdress1, inputLayoutpostaladdress1)) {
+                cancel = true;
+            }
+        }
+        if(validPostalAdd2){
+            if (!validatePostalAdd2(inputpostaladdress2, inputLayoutpostaladdress2)) {
+                cancel = true;
+            }
+        }
+        if(validPostalAdd3){
+            if (!validatePostalAdd3(inputpostaladdress3, inputLayoutpostaladdress3)) {
+                cancel = true;
+            }
+        }
+        if(validPostalMuni){
+            if (!validatePostalMuni(txtpostalmunicipality, inputLayoutpostalmunicipality)) {
+                cancel = true;
+            }
+        }
+        if(validPostalProvince){
+            if (!validatePostalProvince(inputetpostalprovince, inputLayoutetpostalprovince)) {
+                cancel = true;
+            }
+        }
+        if(validPostalCity){
+            if (!validatePostalCity(inputetpostalcity, inputLayoutetpostalcity)) {
+                cancel = true;
+            }
+        }
+        if(validPostalSuburb){
+            if (!validatePostalSuburb(inputetpostalsuburub, inputLayoutetpostalsuburub)) {
+                cancel = true;
+            }
+        }
+        if(validLastScEMI){
+            if (!validateLastScEMI(txtschoolemis, inputLayoutschoolemis)) {
+                cancel = true;
+            }
+        }
+        if(validLastScYear){
+            if (!validateLastScYear(inputlastscyear, inputLayoutlastscyear)) {
+                cancel = true;
+            }
+        }
         if (cancel) {
             return;
         } else {
@@ -1242,6 +1400,242 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
             this.FormSubmit();
         }
         printLogs(LogTag, "validateForm", "exit");
+    }
+
+    private boolean validateLastScYear(EditText inputlastscyear, TextInputLayout inputLayoutlastscyear) {
+        String lastscyear = inputlastscyear.getText().toString().trim();
+        setCustomError(inputLayoutlastscyear, null, inputlastscyear);
+        if (lastscyear.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyscyear", R.string.error_S105_emptyscyear);
+            setCustomError(inputLayoutlastscyear, sMessage, inputlastscyear);
+            return false;
+        }else if(!isValidYear(lastscyear)){
+            String sMessage = getLabelFromDb("error_invalid_scyear", R.string.error_invalid_scyear);
+            setCustomError(inputLayoutlastscyear, sMessage, inputlastscyear);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutlastscyear, inputlastscyear);
+            return true;
+        }
+    }
+
+    private boolean validateLastScEMI(AutoCompleteTextView txtschoolemis, TextInputLayout inputLayoutschoolemis) {
+        String schoolemis = txtschoolemis.getText().toString().trim();
+        setCustomError(inputLayoutschoolemis, null, txtschoolemis);
+        if (schoolemis.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutschoolemis, sMessage, txtschoolemis);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutschoolemis, txtschoolemis);
+            return true;
+        }
+    }
+
+    private boolean validatePostalSuburb(EditText inputetpostalsuburub, TextInputLayout inputLayoutetpostalsuburub) {
+        String postalsuburub = inputetpostalsuburub.getText().toString().trim();
+        setCustomError(inputLayoutetpostalsuburub, null, inputetpostalsuburub);
+        if (postalsuburub.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutetpostalsuburub, sMessage, inputetpostalsuburub);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutetpostalsuburub, inputetpostalsuburub);
+            return true;
+        }
+    }
+
+    private boolean validatePostalCity(EditText inputetpostalcity, TextInputLayout inputLayoutetpostalcity) {
+        String postalcity = inputetpostalcity.getText().toString().trim();
+        setCustomError(inputLayoutetpostalcity, null, inputetpostalcity);
+        if (postalcity.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutetpostalcity, sMessage, inputetpostalcity);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutetpostalcity, inputetpostalcity);
+            return true;
+        }
+    }
+
+    private boolean validatePostalProvince(EditText inputetpostalprovince, TextInputLayout inputLayoutetpostalprovince) {
+        String postalprovince = inputetpostalprovince.getText().toString().trim();
+        setCustomError(inputLayoutetpostalprovince, null, inputetpostalprovince);
+        if (postalprovince.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutetpostalprovince, sMessage, inputetpostalprovince);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutetpostalprovince, inputetpostalprovince);
+            return true;
+        }
+    }
+
+    private boolean validatePostalMuni(AutoCompleteTextView txtpostalmunicipality, TextInputLayout inputLayoutpostalmunicipality) {
+        String postalmunicipality = txtpostalmunicipality.getText().toString().trim();
+        setCustomError(inputLayoutpostalmunicipality, null, txtpostalmunicipality);
+        if (postalmunicipality.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutpostalmunicipality, sMessage, txtpostalmunicipality);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutpostalmunicipality, txtpostalmunicipality);
+            return true;
+        }
+    }
+
+    private boolean validatePostalAdd3(EditText inputpostaladdress3, TextInputLayout inputLayoutpostaladdress3) {
+        String address3 = inputpostaladdress3.getText().toString().trim();
+        setCustomError(inputLayoutpostaladdress3, null, inputpostaladdress3);
+        if (address3.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutpostaladdress3, sMessage, inputpostaladdress3);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutpostaladdress3, inputpostaladdress3);
+            return true;
+        }
+    }
+private boolean validatePostalAdd2(EditText inputpostaladdress2, TextInputLayout inputLayoutpostaladdress2) {
+        String address2 = inputpostaladdress2.getText().toString().trim();
+        setCustomError(inputLayoutpostaladdress2, null, inputpostaladdress2);
+        if (address2.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutpostaladdress2, sMessage, inputpostaladdress2);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutpostaladdress2, inputpostaladdress2);
+            return true;
+        }
+    }
+    private boolean validatePostalAdd1(EditText inputpostaladdress1, TextInputLayout inputLayoutpostaladdress1) {
+        String address1 = inputpostaladdress1.getText().toString().trim();
+        setCustomError(inputLayoutpostaladdress1, null, inputpostaladdress1);
+        if (address1.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutpostaladdress1, sMessage, inputpostaladdress1);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutpostaladdress1, inputpostaladdress1);
+            return true;
+        }
+    }
+
+    private boolean validatePostalCode(EditText inputpostalcode, TextInputLayout inputLayoutpostalcode) {
+        String postalcode = inputpostalcode.getText().toString().trim();
+        setCustomError(inputLayoutpostalcode, null, inputpostalcode);
+        if (postalcode.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptypostalcode", R.string.error_S105_emptypostalcode);
+            setCustomError(inputLayoutpostalcode, sMessage, inputpostalcode);
+            return false;
+        }else if(!isValidPhyCode(postalcode)){
+            String sMessage = getLabelFromDb("error_invalid_postalcode", R.string.error_invalid_postalcode);
+            setCustomError(inputLayoutpostalcode, sMessage, inputpostalcode);
+            return false;
+
+        } else {
+            setCustomErrorDisabled(inputLayoutpostalcode, inputpostalcode);
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCRStatus(Spinner inputSpinnerresidentstatus) {
+        printLogs(LogTag,"validateSpinnerCRStatus","spin_residentstatus : "+spin_residentstatus);
+        if (spin_residentstatus.isEmpty() || spin_residentstatus.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspresstatus", R.string.lbl_S105D_errorspresstatus);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerEquity(Spinner inputSpinnerequity) {
+        printLogs(LogTag,"validateSpinnerEquity","spin_equity : "+spin_equity);
+        if (spin_equity.isEmpty() || spin_equity.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspequity", R.string.lbl_S105D_errorspequity);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerPostalSuburbSP(Spinner inputSpinnerpostalsuburb) {
+        printLogs(LogTag,"validateSpinnerPostalSuburbSP","spin_postalsuburb : "+spin_postalsuburb);
+        if (spin_postalsuburb.isEmpty() || spin_postalsuburb.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorsppossuburb", R.string.lbl_S105D_errorsppossuburb);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerPostalCitySP(Spinner inputSpinnerpostalcity) {
+        printLogs(LogTag,"validateSpinnerPostalCitySP","spin_postalcity : "+spin_postalcity);
+        if (spin_postalcity.isEmpty() || spin_postalcity.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspposcity", R.string.lbl_S105D_errorspposcity);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerProvinceSP(Spinner inputSpinnerpostalprovince) {
+        printLogs(LogTag,"validateSpinnerProvinceSP","spin_postalprovince : "+spin_postalprovince);
+        if (spin_postalprovince.isEmpty() || spin_postalprovince.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspposprovince", R.string.lbl_S105D_errorspposprovince);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCountry(Spinner inputSpinnerpostalcountry) {
+        printLogs(LogTag,"validateSpinnerCountry","spin_postalcountry : "+spin_postalcountry);
+        if (spin_postalcountry.isEmpty() || spin_postalcountry.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspposcountry", R.string.lbl_S105D_errorspposcountry);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerPostalUrban(Spinner inputSpinnerpostalurbanrural) {
+            printLogs(LogTag,"validateSpinnerPostalUrban","postalurbanrural_value : "+postalurbanrural_value);
+            if (postalurbanrural_value.isEmpty() || postalurbanrural_value.equals("0")) {
+                String sTitle = "";
+                String sMessage = getLabelFromDb("lbl_S105D_errorspposurban", R.string.lbl_S105D_errorspposurban);
+                String sButtonLabelClose = "Close";
+                ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+                return false;
+            } else {
+                return true;
+            }
     }
 
     @Override

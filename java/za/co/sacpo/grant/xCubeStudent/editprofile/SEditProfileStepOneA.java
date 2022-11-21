@@ -112,6 +112,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     LinearLayout ll_title,firstNameContainer,lastNameContainer,mobileNumberContainer,EmailContainer,RaceContainer,
             GenderContainer,DOBContainer,National_idContainer,sRegNoContainer,alternative_idContainer,NationalityContainer,
             TaxRefNoContainer;
+    boolean validTitle,validFName,validLName,validMob,validEmail,validRace,validGender,validDob,validNationalId,
+            validSRegNo,validAlterId,validNationality,validRefNo;
 
 
 
@@ -357,8 +359,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     protected void initializeInputs() {
         printLogs(LogTag, "initializeInputs", "Step1ArrayList "+Step1ArrayList);
         for (int i = 0; i <Step1ArrayList.size() ; i++) {
-            //Toast.makeText(thisClass, Step1ArrayList.get(i).getTitle_is_v_1(), Toast.LENGTH_SHORT).show();
-            if(Step1ArrayList.get(i).getTitle_is_v_1().equals("1")){
+              if(Step1ArrayList.get(i).getTitle_is_v_1().equals("1")){
                 ll_title.setVisibility(View.VISIBLE);
             }else{
                 ll_title.setVisibility(View.GONE);
@@ -421,6 +422,71 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 TaxRefNoContainer.setVisibility(View.VISIBLE);
             }else{
                 TaxRefNoContainer.setVisibility(View.GONE);
+            }
+            //===========required=====================================================
+            if(Step1ArrayList.get(i).getTitle_is_r_1().equals("1")){
+                validTitle = true;
+            }else{
+                validTitle = false;
+            }
+            if(Step1ArrayList.get(i).getfName_is_r_1().equals("1")){
+                validFName = true;
+            }else{
+                validFName = false;
+            }
+            if(Step1ArrayList.get(i).getlName_is_r_1().equals("1")){
+                validLName = true;
+            }else{
+                validLName = false;
+            }if(Step1ArrayList.get(i).getMob_is_r_1().equals("1")){
+                validMob = true;
+            }else{
+                validMob = false;
+            }
+            if(Step1ArrayList.get(i).getEmail_is_r_1().equals("1")){
+                validEmail = true;
+            }else{
+                validEmail = false;
+            }
+            if(Step1ArrayList.get(i).getRace_is_r_1().equals("1")){
+                validRace = true;
+            }else{
+                validRace = false;
+            }
+            if(Step1ArrayList.get(i).getGender_is_r_1().equals("1")){
+                validGender = true;
+            }else{
+                validGender = false;
+            }
+            if(Step1ArrayList.get(i).getDob_is_r_1().equals("1")){
+                validDob = true;
+            }else{
+                validDob = false;
+            }
+            if(Step1ArrayList.get(i).getNationalId_is_r_1().equals("1")){
+                validNationalId = true;
+            }else{
+                validNationalId = false;
+            }
+            if(Step1ArrayList.get(i).getsRegNo_is_r_1().equals("1")){
+                validSRegNo = true;
+            }else{
+                validSRegNo = false;
+            }
+            if(Step1ArrayList.get(i).getAlterID_is_r_1().equals("1")){
+                validAlterId = true;
+            }else{
+                validAlterId = false;
+            }
+            if(Step1ArrayList.get(i).getNationalId_is_r_1().equals("1")){
+                validNationality = true;
+            }else{
+                validNationality = false;
+            }
+            if(Step1ArrayList.get(i).getTaxRef_is_r_1().equals("1")){
+                validRefNo = true;
+            }else{
+                validRefNo = false;
             }
         }
         printLogs(LogTag, "initializeInputs", "init");
@@ -550,6 +616,9 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         ArrayList<String> years = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 1900; i <= thisYear; i++) {
+            if(i == 1900){
+                years.add("");
+            }
             years.add(Integer.toString(i));
         }
 
@@ -573,8 +642,13 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         });
 
         ArrayList<String> days = new ArrayList<String>();
-        for (int i = 1; i <= 31; i++) {
-            days.add(Integer.toString(i));
+        for (int i = 0; i <= 31; i++) {
+            if(i == 0){
+                days.add("");
+            }else{
+                days.add(Integer.toString(i));
+            }
+
         }
 
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, days);
@@ -592,19 +666,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             }
         });
 
-      /*  Spin_EnrollmentYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                ListarClientes myModel = (ListarClientes) parent.getSelectedItem();
-                selected_enroll_year = myModel.getId();
-                printLogs(LogTag,"setOnItemSelectedListener","value_selected_enroll_year"+selected_enroll_year);
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
 
     }
 
@@ -612,22 +673,63 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
     public void validateForm() {
         boolean cancel = false;
-        if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
-            cancel = true;
-        } else if (!validateLastName(inputLastName, inputLayoutLastName)) {
-            cancel = true;
-        } else if (!validateNumber(inputMobile, inputLayoutMobile)) {
-            cancel = true;
-        } else if (!validateNationalId(inputNational_id, inputLayoutNational_id)) {
-            cancel = true;
-        }else if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
-            cancel = true;
-        }else if (!validateEmail(inputEmail, inputLayoutEmail)) {
-            cancel = true;
-        }else if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
-            cancel = true;
+        if(validRace){
+            if (!validateSpinnerRace(inputSpinnerRace)) {
+                cancel = true;
+            }
         }
-
+        if(validDob){
+            if (!validateSpinnerDob(spin_date,month_value,spin_year)) {
+                cancel = true;
+            }
+        }
+        if(validNationality){
+            if (!validateSpinnerNationality(inputSpinnerNationality)) {
+                cancel = true;
+            }
+        }
+        if(validTitle){
+            if (!validateSpinnerTitle(inputSpinnerTitle)) {
+                cancel = true;
+            }
+        } if(validFName){
+            if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
+                cancel = true;
+            }
+        } if(validLName){
+            if (!validateLastName(inputLastName, inputLayoutLastName)) {
+                cancel = true;
+            }
+        } if(validMob){
+            if (!validateNumber(inputMobile, inputLayoutMobile)) {
+                cancel = true;
+            }
+        } if(validEmail){
+             if (!validateEmail(inputEmail, inputLayoutEmail)) {
+                cancel = true;
+            }
+        } if(validNationalId){
+             if (!validateNationalId(inputNational_id, inputLayoutNational_id)) {
+                cancel = true;
+            }
+        } if(validSRegNo){
+            if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
+                cancel = true;
+            }
+        } if(validAlterId){
+            if (!validateAlterId(inputalternative_id, inputLayoutalternative_id)) {
+                cancel = true;
+            }
+        } if(validRefNo){
+          if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
+                cancel = true;
+            }
+        }
+        if(validGender){
+            if (!validateGender(RgGender)) {
+                cancel = true;
+            }
+        }
         if (cancel) {
             return;
         } else {
@@ -636,6 +738,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         }
         printLogs(LogTag, "validateForm", "exit");
     }
+
+
 
 
     public void callDataApi() {
@@ -660,11 +764,16 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateNumber(EditText inputEditMobile, TextInputLayout inputLayoutMobile) {
         String phone = inputEditMobile.getText().toString().trim();
         setCustomError(inputLayoutMobile, null, inputEditMobile);
-        if (phone.isEmpty() || !isValidMobile(phone)) {
-            String sMessage = getLabelFromDb("error_S105_number", R.string.error_S105_number);
+        if (phone.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptymobile", R.string.error_S105_emptymobile);
             setCustomError(inputLayoutMobile, sMessage, inputEditMobile);
             return false;
-        } else {
+        }else if (!isValidMobile(phone)){
+            String sMessage = getLabelFromDb("error_invalid_mobile", R.string.error_invalid_mobile);
+            setCustomError(inputLayoutMobile, sMessage, inputEditMobile);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayoutMobile, inputEditMobile);
             return true;
         }
@@ -672,11 +781,16 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateNationalId(EditText inputNational_id, TextInputLayout inputLayoutNational_id) {
         String national_id = inputNational_id.getText().toString().trim();
         setCustomError(inputLayoutNational_id, null, inputNational_id);
-        if (national_id.isEmpty() || !isValidNationalId(national_id)) {
-            String sMessage = getLabelFromDb("error_S105_nationalid", R.string.error_S105_nationalid);
+        if (national_id.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptynationalid", R.string.error_S105_emptynationalid);
             setCustomError(inputLayoutNational_id, sMessage, inputNational_id);
             return false;
-        } else {
+        } else if (!isValidNationalId(national_id)){
+            String sMessage = getLabelFromDb("error_invalid_nationalid", R.string.error_invalid_nationalid);
+            setCustomError(inputLayoutNational_id, sMessage, inputNational_id);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayoutNational_id, inputNational_id);
             return true;
         }
@@ -684,11 +798,16 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateRegNo(EditText inputsRegNo, TextInputLayout inputLayoutsRegNo) {
         String sRegNo = inputsRegNo.getText().toString().trim();
         setCustomError(inputLayoutsRegNo, null, inputsRegNo);
-        if (sRegNo.isEmpty() || !isValidSregNo(Integer.parseInt(sRegNo))) {
-            String sMessage = getLabelFromDb("error_S105_sregno", R.string.error_S105_sregno);
+        if (sRegNo.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyregno", R.string.error_S105_emptyregno);
             setCustomError(inputLayoutsRegNo, sMessage, inputsRegNo);
             return false;
-        } else {
+        }else if(!isValidSregNo(Integer.parseInt(sRegNo))){
+            String sMessage = getLabelFromDb("error_invalid_regno", R.string.error_invalid_regno);
+            setCustomError(inputLayoutsRegNo, sMessage, inputsRegNo);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayoutsRegNo, inputsRegNo);
             return true;
         }
@@ -697,8 +816,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateFirstName(EditText inputUser, TextInputLayout inputLayoutUser) {
         String name = inputUser.getText().toString().trim();
         setCustomError(inputLayoutUser, null, inputUser);
-        if (name.isEmpty() || !isValidName(name)) {
-            String sMessage = getLabelFromDb("error_S105_name", R.string.error_S105_name);
+        if (name.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyfname", R.string.error_S105_emptyfname);
             setCustomError(inputLayoutUser, sMessage, inputUser);
             return false;
         } else {
@@ -710,8 +829,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     public boolean validateLastName(EditText inputUser, TextInputLayout inputLayoutUser) {
         String name = inputUser.getText().toString().trim();
         setCustomError(inputLayoutUser, null, inputUser);
-        if (name.isEmpty() || !isValidLName(name)) {
-            String sMessage = getLabelFromDb("error_S167_name", R.string.error_S167_name);
+        if (name.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptylname", R.string.error_S105_emptylname);
             setCustomError(inputLayoutUser, sMessage, inputUser);
             return false;
         } else {
@@ -723,58 +842,138 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private boolean validateEmail(EditText inputEmail, TextInputLayout inputLayoutEmail) {
         String email = inputEmail.getText().toString().trim();
         setCustomError(inputLayoutEmail, null, inputEmail);
-        if (email.isEmpty() || !isValidEmail(email)) {
+        if (email.isEmpty() ) {
+            String sMessage = getLabelFromDb("error_S105_emptyemail", R.string.error_S105_emptyemail);
+            setCustomError(inputLayoutEmail, sMessage, inputEmail);
+            return false;
+        }else if(!isValidEmail(email)){
             String sMessage = getLabelFromDb("error_S105_email", R.string.error_S105_email);
             setCustomError(inputLayoutEmail, sMessage, inputEmail);
             return false;
-        } else {
+        }else {
             setCustomErrorDisabled(inputLayoutEmail, inputEmail);
             return true;
         }
     }
 
-    private boolean validateLearnerNo(EditText inputLearnerNo, TextInputLayout inputLayoutLearnerNo) {
-        String LearnerNo = inputLearnerNo.getText().toString().trim();
-        setCustomError(inputLayoutLearnerNo, null, inputLearnerNo);
-        if (LearnerNo.isEmpty() || !isValidLName(LearnerNo)) {
-            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
-            setCustomError(inputLayoutLearnerNo, sMessage, inputLearnerNo);
-            return false;
-        } else {
-            setCustomErrorDisabled(inputLayoutLearnerNo, inputLearnerNo);
-            return true;
-        }
-    }
-
-
-    private boolean validateLearnerId(EditText inputLearnerId, TextInputLayout inputLayoutLearnerId) {
-        String LearnerId = inputLearnerId.getText().toString().trim();
-        setCustomError(inputLayoutLearnerId, null, inputLearnerId);
-        if (LearnerId.isEmpty() || !isValidLName(LearnerId)) {
-            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
-            setCustomError(inputLayoutLearnerId, sMessage, inputLearnerId);
-            return false;
-        } else {
-            setCustomErrorDisabled(inputLayoutLearnerId, inputLearnerId);
-            return true;
-        }
-    }
-
     private boolean validateTaxRefNo(EditText inputTaxRefNo, TextInputLayout inputLayoutTaxRefNo) {
-
         String TaxRefNo = inputTaxRefNo.getText().toString().trim();
         setCustomError(inputLayoutTaxRefNo, null, inputTaxRefNo);
-        if (TaxRefNo.isEmpty() || !isValidLName(TaxRefNo)) {
-            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+        if (TaxRefNo.isEmpty() ) {
+            String sMessage = getLabelFromDb("error_S105_emptytaxref", R.string.error_S105_emptytaxref);
             setCustomError(inputLayoutTaxRefNo, sMessage, inputTaxRefNo);
             return false;
-        } else {
+        }else if (!isValidNumber(TaxRefNo)){
+            String sMessage = getLabelFromDb("error_invalid_taxref", R.string.error_invalid_taxref);
+            setCustomError(inputLayoutTaxRefNo, sMessage, inputTaxRefNo);
+            return false;
+        }else {
             setCustomErrorDisabled(inputLayoutTaxRefNo, inputTaxRefNo);
             return true;
         }
+    }
+    private boolean validateGender(RadioGroup rgGender) {
+        String rgGenderid = String.valueOf(rgGender.getCheckedRadioButtonId());
+        if (rgGenderid.isEmpty() ) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("error_S105_emptygender", R.string.error_S105_emptygender);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        }else {
+            //setCustomErrorDisabled(inputLayoutTaxRefNo, inputTaxRefNo);
+            return true;
+        }
+    }
+    private boolean validateAlterId(EditText inputalternative_id, TextInputLayout inputLayoutalternative_id) {
+        String alternative_id = inputalternative_id.getText().toString().trim();
+        setCustomError(inputLayoutalternative_id, null, inputalternative_id);
+        if (alternative_id.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyalterid", R.string.error_S105_emptyalterid);
+            setCustomError(inputLayoutalternative_id, sMessage, inputalternative_id);
+            return false;
+        }else if(!isValidNumber(alternative_id)){
+            String sMessage = getLabelFromDb("error_invalid_alterid", R.string.error_invalid_alterid);
+            setCustomError(inputLayoutalternative_id, sMessage, inputalternative_id);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutalternative_id, inputalternative_id);
+            return true;
+        }
 
     }
+    private boolean validateSpinnerTitle(Spinner inputSpinnerTitle) {
 
+        String Title = inputSpinnerTitle.getSelectedItem().toString();
+        printLogs(LogTag,"validateSpinnerTitle","title_value : "+title_value);
+       // setCustomError(inputLayoutalternative_id, null, inputalternative_id);
+        if (title_value.isEmpty() || title_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorsptitle", R.string.lbl_S105D_errorsptitle);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+           // setCustomErrorDisabled(inputLayoutalternative_id, inputalternative_id);
+            return true;
+        }
+
+    }
+    private boolean validateSpinnerRace(Spinner inputSpinnerRace) {
+        printLogs(LogTag,"validateSpinnerRace","race_value : "+race_value);
+         if (race_value.isEmpty() || race_value.equals("0")) {
+             String sTitle = "";
+             String sMessage = getLabelFromDb("lbl_S105D_errorsprace", R.string.lbl_S105D_errorsprace);
+             String sButtonLabelClose = "Close";
+             ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+             return false;
+        } else {
+            return true;
+        }
+    }
+    private boolean validateSpinnerNationality(Spinner inputSpinnerNationality) {
+        printLogs(LogTag,"validateSpinnerRace","race_value : "+spin_nationality);
+        if (spin_nationality.isEmpty() || spin_nationality.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspnation", R.string.lbl_S105D_errorspnation);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+             return true;
+        }
+    }
+    private boolean validateSpinnerDob(String spin_day, String spin_month, String spin_year) {
+        printLogs(LogTag,"validateSpinnerDob","spin_day : "+spin_day);
+        printLogs(LogTag,"validateSpinnerDob","spin_month : "+spin_month);
+        printLogs(LogTag,"validateSpinnerDob","spin_year : "+spin_year);
+        if (spin_day.isEmpty() || spin_day.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspday", R.string.lbl_S105D_errorspday);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (spin_month.isEmpty() || spin_month.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspmonth", R.string.lbl_S105D_errorspmonth);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else if (spin_year.isEmpty() || spin_year.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspyear", R.string.lbl_S105D_errorspyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else {
+            return true;
+        }
+    }
 
     protected class ErrorTextWatcher implements TextWatcher {
         private EditText EditView;

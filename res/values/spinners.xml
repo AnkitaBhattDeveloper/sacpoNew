@@ -19,6 +19,7 @@
 
 
     <string-array name="month_type">
+        <item></item>
     <item>January</item>
     <item>February</item>
     <item>March</item>

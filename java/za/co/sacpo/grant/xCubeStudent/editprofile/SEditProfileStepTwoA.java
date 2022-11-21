@@ -81,6 +81,11 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     LinearLayout homelanguage,telephoneContainer,faxContainer,physicalcodeContainer,physicaladd1Container,
             physicaladd2Container,physicaladd3Container,municipalityContainer,urbanrural,country,
             province,city,suburb,phyprovinceContainer,phycityContainer,physuburubContainer;
+    boolean validHomeLang,validTelephone,validFax,validPhyCode,validPhyAdd1,validPhyAdd2,validPhyAdd3,validPhyMuni,
+            validUrban,validPhyCountry,validPhyProvinceSP,validPhyCitySP,validPhySuburbSP,validPhyProvince,validPhyCity,
+            validPhySuburb;
+
+
 
 
     @Override
@@ -245,7 +250,6 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     @Override
     protected void initializeInputs() {
 
-
         for (int i = 0; i <Step2ArrayList.size() ; i++) {
             if(Step2ArrayList.get(i).getHomeLang_is_v_2().equals("1")){
                 homelanguage.setVisibility(View.VISIBLE);
@@ -327,7 +331,89 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
             }else{
                 physuburubContainer.setVisibility(View.GONE);
             }
-
+////======================required====================================
+//            ,,,,,,,
+//                    ,,,
+            if(Step2ArrayList.get(i).getHomeLang_is_r_2().equals("1")){
+                validHomeLang = true;
+            }else{
+                validHomeLang = false;
+            }
+            if(Step2ArrayList.get(i).getTele_is_r_2().equals("1")){
+                validTelephone = true;
+            }else{
+                validTelephone = false;
+            }
+            if(Step2ArrayList.get(i).getFax_is_r_2().equals("1")){
+                validFax = true;
+            }else{
+                validFax = false;
+            }
+            if(Step2ArrayList.get(i).getPhyCode_is_r_2().equals("1")){
+                validPhyCode = true;
+            }else{
+                validPhyCode = false;
+            }
+            if(Step2ArrayList.get(i).getPhyAdd1_is_r_2().equals("1")){
+                validPhyAdd1 = true;
+            }else{
+                validPhyAdd1 = false;
+            }
+            if(Step2ArrayList.get(i).getPhyAdd2_is_r_2().equals("1")){
+                validPhyAdd2 = true;
+            }else{
+                validPhyAdd2 = false;
+            }
+            if(Step2ArrayList.get(i).getPhyAdd3_is_r_2().equals("1")){
+                validPhyAdd3 = true;
+            }else{
+                validPhyAdd3 = false;
+            }
+            if(Step2ArrayList.get(i).getPhyMuni_is_r_2().equals("1")){
+                validPhyMuni = true;
+            }else{
+                validPhyMuni = false;
+            }
+            if(Step2ArrayList.get(i).getPhyUrban_is_r_2().equals("1")){
+                validUrban = true;
+            }else{
+                validUrban = false;
+            }
+            if(Step2ArrayList.get(i).getCountry_is_r_2().equals("1")){
+                validPhyCountry = true;
+            }else{
+                validPhyCountry = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_provinceSP_is_r_2().equals("1")){
+                validPhyProvinceSP = true;
+            }else{
+                validPhyProvinceSP = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_citySP_is_r_2().equals("1")){
+                validPhyCitySP = true;
+            }else{
+                validPhyCitySP = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_suburbSP_is_r_2().equals("1")){
+                validPhySuburbSP = true;
+            }else{
+                validPhySuburbSP = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_province_is_r_2().equals("1")){
+                validPhyProvince = true;
+            }else{
+                validPhyProvince = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_city_is_r_2().equals("1")){
+                validPhyCity = true;
+            }else{
+                validPhyCity = false;
+            }
+            if(Step2ArrayList.get(i).getPhy_suburb_is_r_2().equals("1")){
+                validPhySuburb = true;
+            }else{
+                validPhySuburb = false;
+            }
 
         }
 
@@ -1156,15 +1242,80 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     @Override
     public void validateForm() {
         boolean cancel = false;
-            if (!validatetelephone(inputtelephone, inputLayouttelephone)) {
-                cancel = true;
-            } else if (!validatefax(inputfax, inputLayoutfax)) {
-                cancel = true;
-            } else if (!validatePhyCode(inputphysicalcode, inputLayoutphysicalcode)) {
-                cancel = true;
-            } else if (!validateAdd1(inputphyaddress1, inputLayoutphyaddress1)) {
+
+        if(validHomeLang){
+            if (!validateSpinnerHomeLang(inputSpinnerhomelanguage)) {
                 cancel = true;
             }
+        }
+        if(validUrban){
+            if (!validateSpinnerUrban(inputSpinnerurbanrural)) {
+                cancel = true;
+            }
+        }
+        if(validPhyCountry){
+            if (!validateSpinnerCountry(inputSpinnercountry)) {
+                cancel = true;
+            }
+        }
+        if(validPhyProvinceSP){
+            if (!validateSpinnerProvince(inputSpinnerprovince)) {
+                cancel = true;
+            }
+        }
+        if(validPhyCitySP){
+            if (!validateSpinnerCity(inputSpinnercity)) {
+                cancel = true;
+            }
+        }
+        if(validPhySuburbSP){
+            if (!validateSpinnerSuburb(inputSpinnersuburb)) {
+                cancel = true;
+            }
+        }
+
+            if(validTelephone){
+                if (!validatetelephone(inputtelephone, inputLayouttelephone)) {
+                    cancel = true;
+                }
+            } if(validFax){
+                  if (!validatefax(inputfax, inputLayoutfax)) {
+                    cancel = true;
+                }
+            } if(validPhyCode){
+                  if (!validatePhyCode(inputphysicalcode, inputLayoutphysicalcode)) {
+                    cancel = true;
+                }
+            } if(validPhyAdd1){
+                if (!validateAdd1(inputphyaddress1, inputLayoutphyaddress1)) {
+                    cancel = true;
+                }
+            } if(validPhyAdd2){
+                if (!validateAdd2(inputphyaddress2, inputLayoutphyaddress2)) {
+                    cancel = true;
+                }
+            } if(validPhyAdd3){
+                if (!validateAdd3(inputphyaddress3, inputLayoutphyaddress3)) {
+                    cancel = true;
+                }
+            } if(validPhyMuni){
+                if (!validateMuni(txtmunicipality, inputLayoutmunicipality)) {
+                    cancel = true;
+                }
+            } if(validPhyProvince){
+                if (!validateProvince(inputphyprovince, inputLayoutphyprovince)) {
+                    cancel = true;
+                }
+            } if(validPhyCity){
+                if (!validateCity(inputphycity, inputLayoutphycity)) {
+                    cancel = true;
+                }
+            } if(validPhySuburb){
+                if (!validateSuburb(inputphysuburub, inputLayoutphysuburub)) {
+                    cancel = true;
+                }
+            }
+
         if (cancel) {
             return;
         } else {
@@ -1174,11 +1325,171 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
         printLogs(LogTag, "validateForm", "exit");
     }
 
+    private boolean validateSuburb(EditText inputphysuburub, TextInputLayout inputLayoutphysuburub) {
+        String physuburub = inputphysuburub.getText().toString().trim();
+        setCustomError(inputLayoutphysuburub, null, inputphysuburub);
+        if (physuburub.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutphysuburub, sMessage, inputphysuburub);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutphysuburub, inputphysuburub);
+            return true;
+        }
+    }
+
+    private boolean validateCity(EditText inputphycity, TextInputLayout inputLayoutphycity) {
+        String phycity = inputphycity.getText().toString().trim();
+        setCustomError(inputLayoutphycity, null, inputphycity);
+        if (phycity.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutphycity, sMessage, inputphycity);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutphycity, inputphycity);
+            return true;
+        }
+    }
+
+    private boolean validateProvince(EditText inputphyprovince, TextInputLayout inputLayoutphyprovince) {
+        String phyprovince = inputphyprovince.getText().toString().trim();
+        setCustomError(inputLayoutphyprovince, null, inputphyprovince);
+        if (phyprovince.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutphyprovince, sMessage, inputphyprovince);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutphyprovince, inputphyprovince);
+            return true;
+        }
+    }
+
+    private boolean validateMuni(AutoCompleteTextView txtmunicipality, TextInputLayout inputLayoutmunicipality) {
+        String municipality = txtmunicipality.getText().toString().trim();
+        setCustomError(inputLayoutmunicipality, null, txtmunicipality);
+        if (municipality.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutmunicipality, sMessage, txtmunicipality);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutmunicipality, txtmunicipality);
+            return true;
+        }
+    }
+
+    private boolean validateAdd2(EditText inputphyaddress2, TextInputLayout inputLayoutphyaddress2) {
+        String address2 = inputphyaddress2.getText().toString().trim();
+        setCustomError(inputLayoutphyaddress2, null, inputphyaddress2);
+        if (address2.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutphyaddress2, sMessage, inputphyaddress2);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutphyaddress2, inputphyaddress2);
+            return true;
+        }
+    }
+    private boolean validateAdd3(EditText inputphyaddress3, TextInputLayout inputLayoutphyaddress3) {
+        String address3 = inputphyaddress3.getText().toString().trim();
+        setCustomError(inputLayoutphyaddress3, null, inputphyaddress3);
+        if (address3.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutphyaddress3, sMessage, inputphyaddress3);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutphyaddress3, inputphyaddress3);
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerSuburb(Spinner inputSpinnersuburb) {
+        printLogs(LogTag,"validateSpinnerSuburb","spin_suburb : "+spin_suburb);
+        if (spin_suburb.isEmpty() || spin_suburb.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspphysuburb", R.string.lbl_S105D_errorspphysuburb);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCity(Spinner inputSpinnercity) {
+        printLogs(LogTag,"validateSpinnerCity","spin_city : "+spin_city);
+        if (spin_city.isEmpty() || spin_city.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspphycity", R.string.lbl_S105D_errorspphycity);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerProvince(Spinner inputSpinnerprovince) {
+        printLogs(LogTag,"validateSpinnerProvince","spin_province : "+spin_province);
+        if (spin_province.isEmpty() || spin_province.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspphyprovince", R.string.lbl_S105D_errorspphyprovince);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCountry(Spinner inputSpinnercountry) {
+        printLogs(LogTag,"validateSpinnerCountry","spin_country : "+spin_country);
+        if (spin_country.isEmpty() || spin_country.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspphycountry", R.string.lbl_S105D_errorspphycountry);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerUrban(Spinner inputSpinnerurbanrural) {
+        printLogs(LogTag,"validateSpinnerUrban","phyurbanrural_value : "+phyurbanrural_value);
+        if (phyurbanrural_value.isEmpty() || phyurbanrural_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspphyurban", R.string.lbl_S105D_errorspphyurban);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerHomeLang(Spinner inputSpinnerhomelanguage) {
+        printLogs(LogTag,"validateSpinnerHomeLang","spin_homelanguage : "+spin_homelanguage);
+        if (spin_homelanguage.isEmpty() || spin_homelanguage.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorsphomelang", R.string.lbl_S105D_errorsphomelang);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private boolean validateAdd1(EditText inputphyaddress1, TextInputLayout inputLayoutphyaddress1) {
-        String fax = inputphyaddress1.getText().toString().trim();
-        setCustomError(inputLayoutphyaddress1, null, inputphyaddress1);
-        if (fax.isEmpty() || !isValidSDLNo(fax)) {
-            String sMessage = getLabelFromDb("error_S105_phyadd1", R.string.error_S105_phyadd1);
+        String address1 = inputphyaddress1.getText().toString().trim();
+        if (address1.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
             setCustomError(inputLayoutphyaddress1, sMessage, inputphyaddress1);
             return false;
         } else {
@@ -1188,13 +1499,18 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     }
 
     private boolean validatePhyCode(EditText inputphysicalcode, TextInputLayout inputLayoutphysicalcode) {
-        String fax = inputphysicalcode.getText().toString().trim();
+        String physicalcode = inputphysicalcode.getText().toString().trim();
         setCustomError(inputLayoutphysicalcode, null, inputphysicalcode);
-        if (fax.isEmpty() || !isValidSDLNo(fax)) {
-            String sMessage = getLabelFromDb("error_S105_phycode", R.string.error_S105_phycode);
+        if (physicalcode.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyphycode", R.string.error_S105_emptyphycode);
             setCustomError(inputLayoutphysicalcode, sMessage, inputphysicalcode);
             return false;
-        } else {
+        }else if(!isValidPhyCode(physicalcode)){
+            String sMessage = getLabelFromDb("error_invalid_phycode", R.string.error_invalid_phycode);
+            setCustomError(inputLayoutphysicalcode, sMessage, inputphysicalcode);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayoutphysicalcode, inputphysicalcode);
             return true;
         }
@@ -1203,11 +1519,16 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     private boolean validatefax(EditText inputfax, TextInputLayout inputLayoutfax) {
         String fax = inputfax.getText().toString().trim();
         setCustomError(inputLayoutfax, null, inputfax);
-        if (fax.isEmpty() || !isValidSDLNo(fax)) {
-            String sMessage = getLabelFromDb("error_S105_fax", R.string.error_S105_fax);
+        if (fax.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyfax", R.string.error_S105_emptyfax);
             setCustomError(inputLayoutfax, sMessage, inputfax);
             return false;
-        } else {
+        } else if(!isValidMobile(fax)){
+            String sMessage = getLabelFromDb("error_invalid_fax", R.string.error_invalid_fax);
+            setCustomError(inputLayoutfax, sMessage, inputfax);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayoutfax, inputfax);
             return true;
         }
@@ -1216,11 +1537,16 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     private boolean validatetelephone(EditText inputtelephone, TextInputLayout inputLayouttelephone) {
         String phone = inputtelephone.getText().toString().trim();
         setCustomError(inputLayouttelephone, null, inputtelephone);
-        if (phone.isEmpty() || !isValidMobile(phone)) {
-            String sMessage = getLabelFromDb("error_S105_number", R.string.error_S105_number);
+        if (phone.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptymobile", R.string.error_S105_emptymobile);
             setCustomError(inputLayouttelephone, sMessage, inputtelephone);
             return false;
-        } else {
+        } else if (!isValidMobile(phone)){
+            String sMessage = getLabelFromDb("error_invalid_mobile", R.string.error_invalid_mobile);
+            setCustomError(inputLayouttelephone, sMessage, inputtelephone);
+            return false;
+
+        }else {
             setCustomErrorDisabled(inputLayouttelephone, inputtelephone);
             return true;
         }

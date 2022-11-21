@@ -74,7 +74,8 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     EditText inputsaqaid,inputempsdlno,inputprovidersdlno,inputproject,inputrefno;
     public SpinnerObj[] NQFLevelType;
     public SpinnerObj[] FinYearType;
-    TextInputLayout inputLayoutsaqaid,inputLayoutempsdlno;
+    TextInputLayout inputLayoutsaqaid,inputLayoutempsdlno,inputLayoutssareacode,inputLayoutofocode,
+            inputLayoutprovidersdlno,inputLayoutproject,inputLayoutrefno;
     /*fetch data strings*/
     String statssaAreaCode="",popiActStatus="",popiActDate="",popiActMonth="",popiActYear="",
     Sponsorship="",FinancialYear="",NQFLevel="",EconomicStatus="",EnrollmentStatus="",WILType="",
@@ -84,7 +85,9 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     LinearLayout ssareacodeContainer,actstatus,actstatusdate,ofocodeContainer,sponsorship,financialyear,
             nqflevel,saqaidContainer,empsdlnoContainer,providersdlnoContainer,economicstatus,wilstartdate,
             wilenddate,msregdate,enrollmentstatus,projectContainer,refnoContainer,wiltype;
-
+    boolean vaildSSAAreaCode,validPopiActStatus,validPopiActDate,validOFoCode,validSponsorship,validFYear,
+    validNQFLevel,validSAQAId,validEMPSDlNo,validPSDLNo,validEcoStatus,validWilStartDate,validWilEndDate,
+    validMSRegDate,validEnrollStatus,validProject,validRefNo,validWilType;
 
 
     @Override
@@ -181,6 +184,11 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         inputSpinnerwiltype = findViewById(R.id.inputSpinnerwiltype);
         inputLayoutsaqaid = findViewById(R.id.inputLayoutsaqaid);
         inputLayoutempsdlno = findViewById(R.id.inputLayoutempsdlno);
+        inputLayoutssareacode = findViewById(R.id.inputLayoutssareacode);
+        inputLayoutofocode = findViewById(R.id.inputLayoutofocode);
+        inputLayoutprovidersdlno = findViewById(R.id.inputLayoutprovidersdlno);
+        inputLayoutproject = findViewById(R.id.inputLayoutproject);
+        inputLayoutrefno = findViewById(R.id.inputLayoutrefno);
 
         ssareacodeContainer    = findViewById(R.id.ssareacodeContainer   );
         actstatus              = findViewById(R.id.actstatus             );
@@ -209,11 +217,18 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
 
         ArrayList<String> days = new ArrayList<String>();
         for (int i = 1; i <= 31; i++) {
-            days.add(Integer.toString(i));
+            if(i == 0){
+                days.add("");
+            }else{
+                days.add(Integer.toString(i));
+            }
         }
         ArrayList<String> years = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 1900; i <= thisYear; i++) {
+            if(i == 1900){
+                years.add("");
+            }
             years.add(Integer.toString(i));
         }
 
@@ -602,7 +617,97 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             }else{
                 wiltype.setVisibility(View.GONE);
             }
-
+////=================required===============================================
+            if(Step4ArrayList.get(i).getSTATSSA_is_r_4().equals("1")){
+                vaildSSAAreaCode =true;
+            }else{
+                vaildSSAAreaCode =false;
+            }
+            if(Step4ArrayList.get(i).getPOPIStatus_is_r_4().equals("1")){
+                validPopiActStatus =true;
+            }else{
+                validPopiActStatus =false;
+            }
+            if(Step4ArrayList.get(i).getPOPIDate_is_r_4().equals("1")){
+                validPopiActDate =true;
+            }else{
+                validPopiActDate =false;
+            }
+            if(Step4ArrayList.get(i).getOFO_is_r_4().equals("1")){
+                validOFoCode =true;
+            }else{
+                validOFoCode =false;
+            }
+            if(Step4ArrayList.get(i).getSponsorship_is_r_4().equals("1")){
+                validSponsorship =true;
+            }else{
+                validSponsorship =false;
+            }
+            if(Step4ArrayList.get(i).getfYear_is_r_4().equals("1")){
+                validFYear =true;
+            }else{
+                validFYear =false;
+            }
+            if(Step4ArrayList.get(i).getNQF_is_r_4().equals("1")){
+                validNQFLevel =true;
+            }else{
+                validNQFLevel =false;
+            }
+            if(Step4ArrayList.get(i).getSAQA_is_r_4().equals("1")){
+                validSAQAId =true;
+            }else{
+                validSAQAId =false;
+            }
+            if(Step4ArrayList.get(i).getEmpSDL_is_r_4().equals("1")){
+                validEMPSDlNo =true;
+            }else{
+                validEMPSDlNo =false;
+            }
+            if(Step4ArrayList.get(i).getPSDL_is_r_4().equals("1")){
+                validPSDLNo =true;
+            }else{
+                validPSDLNo =false;
+            }
+            if(Step4ArrayList.get(i).getEcoStatus_is_r_4().equals("1")){
+                validEcoStatus =true;
+            }else{
+                validEcoStatus =false;
+            }
+            if(Step4ArrayList.get(i).getWilStart_is_r_4().equals("1")){
+                validWilStartDate =true;
+            }else{
+                validWilStartDate =false;
+            }
+            if(Step4ArrayList.get(i).getWilEnd_is_r_4().equals("1")){
+                validWilEndDate =true;
+            }else{
+                validWilEndDate =false;
+            }
+            if(Step4ArrayList.get(i).getMSregDate_is_r_4().equals("1")){
+                validMSRegDate =true;
+            }else{
+                validMSRegDate =false;
+            }
+            if(Step4ArrayList.get(i).getEnroll_is_r_4().equals("1")){
+                validEnrollStatus =true;
+            }else{
+                validEnrollStatus =false;
+            }
+            if(Step4ArrayList.get(i).getProject_is_r_4().equals("1")){
+                validProject =true;
+            }else{
+                validProject =false;
+            }
+            if(Step4ArrayList.get(i).getRefNo_is_r_4().equals("1")){
+                validRefNo =true;
+            }else{
+                validRefNo =false;
+            }
+            if(Step4ArrayList.get(i).getWilType_is_r_4().equals("1")){
+                validWilType =true;
+            }else{
+                validWilType =false;
+            }
         }
 
 
@@ -738,7 +843,6 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
         printLogs(LogTag, "setLayoutXml", "edit_profile_stepthree");
         setContentView(R.layout.a_edit_profile_step_three);
     }
-
 
     private void fetchData() {
         String token = userSessionObj.getToken();
@@ -1341,6 +1445,99 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     @Override
     public void validateForm() {
         boolean cancel = false;
+
+        if(validPopiActStatus){
+            if (!validateSpinnerPopiActStatus(inputSpinneractstatus)) {
+                cancel = true;
+            }
+        }
+        if(validPopiActDate){
+            if (!validateSpinnerPopiActDate(popiActDate,popiActMonth,popiActYear)) {
+                cancel = true;
+            }
+        }
+        if(validSponsorship){
+            if (!validateSpinnerSponsorship(inputSpinnersponsorship)) {
+                cancel = true;
+            }
+        }
+        if(validFYear){
+            if (!validateSpinnerFYear(inputSpinnerfinancialyear)) {
+                cancel = true;
+            }
+        }
+        if(validNQFLevel){
+            if (!validateSpinnerNQFLevel(inputSpinnernqflevel)) {
+                cancel = true;
+            }
+        }
+        if(validEcoStatus){
+            if (!validateSpinnerEcoStatus(inputSpinnereconomicstatus)) {
+                cancel = true;
+            }
+        }
+        if(validWilStartDate){
+            if (!validateSpinnerWilStartDate(spin_wilstartdate,spin_wilstartmonth,spin_wilstartyear)) {
+                cancel = true;
+            }
+        }
+        if(validWilEndDate){
+            if (!validateSpinnerWilEndDate(spin_wilenddate,spin_wilendmonth,spin_wilendyear)) {
+                cancel = true;
+            }
+        }if(validMSRegDate){
+            if (!validateSpinnerMSRegDate(spin_msregdate,spin_msregmonth,spin_msregyear)) {
+                cancel = true;
+            }
+        }
+        if(validEnrollStatus){
+            if (!validateSpinnerEnrollStatus(inputSpinnerenrollmentstatus)) {
+                cancel = true;
+            }
+        }
+        if(validWilType){
+            if (!validateSpinnerWilType(inputSpinnerwiltype)) {
+                cancel = true;
+            }
+        }
+        if(vaildSSAAreaCode){
+            if (!validateSSAAreaCode(txtssareacode, inputLayoutssareacode)) {
+                cancel = true;
+            }
+        }
+        if(validOFoCode){
+            if (!validateOFoCode(txtofocode, inputLayoutofocode)) {
+                cancel = true;
+            }
+        }
+        if(validSAQAId){
+            if (!validateSAQAId(inputsaqaid, inputLayoutsaqaid)) {
+                cancel = true;
+            }
+        }
+        if(validEMPSDlNo){
+            if (!validateEMPSDlNo(inputempsdlno, inputLayoutempsdlno)) {
+                cancel = true;
+            }
+        }
+        if(validPSDLNo){
+            if (!validatePSDLNo(inputprovidersdlno, inputLayoutprovidersdlno)) {
+                cancel = true;
+            }
+        }
+        if(validProject){
+            if (!validateProject(inputproject, inputLayoutproject)) {
+                cancel = true;
+            }
+        }
+        if(validRefNo){
+            if (!validateRefNo(inputrefno, inputLayoutrefno)) {
+                cancel = true;
+            }
+        }
+
+
+
         if (!validateSAQAId(inputsaqaid, inputLayoutsaqaid)) {
             cancel = true;
         } else if (!validateEmpSDLNo(inputempsdlno, inputLayoutempsdlno)) {
@@ -1353,6 +1550,298 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             this.FormSubmit();
         }
         printLogs(LogTag, "validateForm", "exit");
+    }
+
+    private boolean validateSpinnerMSRegDate(String spin_msregdate, String spin_msregmonth, String spin_msregyear) {
+        if (spin_msregdate.isEmpty() || spin_msregdate.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspday", R.string.lbl_S105D_errorspday);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (spin_msregmonth.isEmpty() || spin_msregmonth.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspmonth", R.string.lbl_S105D_errorspmonth);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else if (spin_msregyear.isEmpty() || spin_msregyear.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspyear", R.string.lbl_S105D_errorspyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerWilEndDate(String spin_wilenddate, String spin_wilendmonth, String spin_wilendyear) {
+        if (spin_wilenddate.isEmpty() || spin_wilenddate.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspday", R.string.lbl_S105D_errorspday);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (spin_wilendmonth.isEmpty() || spin_wilendmonth.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspmonth", R.string.lbl_S105D_errorspmonth);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else if (spin_wilendyear.isEmpty() || spin_wilendyear.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspyear", R.string.lbl_S105D_errorspyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerWilStartDate(String spin_wilstartdate, String spin_wilstartmonth, String spin_wilstartyear) {
+        if (spin_wilstartdate.isEmpty() || spin_wilstartdate.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspday", R.string.lbl_S105D_errorspday);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (spin_wilstartmonth.isEmpty() || spin_wilstartmonth.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspmonth", R.string.lbl_S105D_errorspmonth);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else if (spin_wilstartyear.isEmpty() || spin_wilstartyear.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspyear", R.string.lbl_S105D_errorspyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean validateRefNo(EditText inputrefno, TextInputLayout inputLayoutrefno) {
+    String refno = inputrefno.getText().toString().trim();
+        setCustomError(inputLayoutrefno, null, inputrefno);
+        if (refno.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyrefno", R.string.error_S105_emptyrefno);
+            setCustomError(inputLayoutrefno, sMessage, inputrefno);
+            return false;
+        } else if(!isValidNumber(refno)){
+            String sMessage = getLabelFromDb("error_invalid_refno", R.string.error_invalid_refno);
+            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutrefno, inputrefno);
+            return true;
+        }
+    }
+
+    private boolean validateProject(EditText inputproject, TextInputLayout inputLayoutproject) {
+    String project = inputproject.getText().toString().trim();
+        setCustomError(inputLayoutproject, null, inputproject);
+        if (project.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutproject, sMessage, inputproject);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutproject, inputproject);
+            return true;
+        }
+    }
+
+    private boolean validatePSDLNo(EditText inputprovidersdlno, TextInputLayout inputLayoutprovidersdlno) {
+     String providersdlno = inputprovidersdlno.getText().toString().trim();
+        setCustomError(inputLayoutprovidersdlno, null, inputprovidersdlno);
+        if (providersdlno.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyprosdl", R.string.error_S105_emptyprosdl);
+            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            return false;
+        } else if(!isValidNumber(providersdlno)){
+            String sMessage = getLabelFromDb("error_invalid_prono", R.string.error_invalid_prono);
+            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutprovidersdlno, inputprovidersdlno);
+            return true;
+        }
+    }
+
+    private boolean validateEMPSDlNo(EditText inputempsdlno, TextInputLayout inputLayoutempsdlno) {
+    String empsdlno = inputempsdlno.getText().toString().trim();
+        setCustomError(inputLayoutempsdlno, null, inputempsdlno);
+        if (empsdlno.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyempsdl", R.string.error_S105_emptyempsdl);
+            setCustomError(inputLayoutempsdlno, sMessage, inputempsdlno);
+            return false;
+        }else if(!isValidNumber(empsdlno)){
+            String sMessage = getLabelFromDb("error_invalid_empno", R.string.error_invalid_empno);
+            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutempsdlno, inputempsdlno);
+            return true;
+        }
+    }
+
+    private boolean validateOFoCode(AutoCompleteTextView txtofocode, TextInputLayout inputLayoutofocode) {
+        String ofocode = txtofocode.getText().toString().trim();
+        setCustomError(inputLayoutofocode, null, txtofocode);
+        if (ofocode.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_empty", R.string.error_S105_empty);
+            setCustomError(inputLayoutofocode, sMessage, txtofocode);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutofocode, txtofocode);
+            return true;
+        }
+    }
+
+    private boolean validateSSAAreaCode(AutoCompleteTextView txtssareacode, TextInputLayout inputLayoutssareacode) {
+        String ssareacode = txtssareacode.getText().toString().trim();
+        setCustomError(inputLayoutssareacode, null, txtssareacode);
+        if (ssareacode.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptysaqaid", R.string.error_S105_emptysaqaid);
+            setCustomError(inputLayoutssareacode, sMessage, txtssareacode);
+            return false;
+        }else if(!isValidNumber(ssareacode)){
+            String sMessage = getLabelFromDb("error_invalid_saqaid", R.string.error_invalid_saqaid);
+            setCustomError(inputLayoutssareacode, sMessage, txtssareacode);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutssareacode, txtssareacode);
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerWilType(Spinner inputSpinnerwiltype) {
+        printLogs(LogTag,"validateSpinnerWilType","wiltype_value : "+wiltype_value);
+        if (wiltype_value.isEmpty() || wiltype_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspwiltype", R.string.lbl_S105D_errorspwiltype);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerEnrollStatus(Spinner inputSpinnerenrollmentstatus) {
+        printLogs(LogTag,"validateSpinnerEnrollStatus","enrollment_value : "+enrollment_value);
+        if (enrollment_value.isEmpty() || enrollment_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorenroll", R.string.lbl_S105D_errorenroll);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerEcoStatus(Spinner inputSpinnereconomicstatus) {
+        printLogs(LogTag,"validateSpinnerEcoStatus","economic_value : "+economic_value);
+        if (economic_value.isEmpty() || economic_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspeconomic", R.string.lbl_S105D_errorspeconomic);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerNQFLevel(Spinner inputSpinnernqflevel) {
+        printLogs(LogTag,"validateSpinnerNQFLevel","spin_nqf : "+spin_nqf);
+        if (spin_nqf.isEmpty() || spin_nqf.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspnqf", R.string.lbl_S105D_errorspnqf);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerFYear(Spinner inputSpinnerfinancialyear) {
+        printLogs(LogTag,"validateSpinnerFYear","spin_financialyear : "+spin_financialyear);
+        if (spin_financialyear.isEmpty() || spin_financialyear.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorfyear", R.string.lbl_S105D_errorfyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerSponsorship(Spinner inputSpinnersponsorship) {
+        printLogs(LogTag,"validateSpinnerSponsorship","sponsorship_value : "+sponsorship_value);
+        if (sponsorship_value.isEmpty() || sponsorship_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspsponsorship", R.string.lbl_S105D_errorspsponsorship);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerPopiActDate(String popiActDate, String popiActMonth, String popiActYear) {
+        printLogs(LogTag,"validateSpinnerPopiActStatus","popiactstatus_value : "+popiactstatus_value);
+        if (popiActDate.isEmpty() || popiActDate.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspday", R.string.lbl_S105D_errorspday);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        } else if (popiActMonth.isEmpty() || popiActMonth.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspmonth", R.string.lbl_S105D_errorspmonth);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else if (popiActYear.isEmpty() || popiActYear.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspyear", R.string.lbl_S105D_errorspyear);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerPopiActStatus(Spinner inputSpinneractstatus) {
+        printLogs(LogTag,"validateSpinnerPopiActStatus","popiactstatus_value : "+popiactstatus_value);
+        if (popiactstatus_value.isEmpty() || popiactstatus_value.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspinneractstatus", R.string.lbl_S105D_errorspinneractstatus);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private boolean validateEmpSDLNo(EditText inputempsdlno, TextInputLayout inputLayoutempsdlno) {

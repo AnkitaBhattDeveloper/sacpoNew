@@ -229,6 +229,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                              nationality = dataM.getJSONObject(i).getJSONObject("nationality");
                              gender = dataM.getJSONObject(i).getJSONObject("gender");
                              alternative_id = dataM.getJSONObject(i).getJSONObject("alternative_id");
+                            /*Step 2*/
                             Step1ArrayList.add(new Step1DataVisibilityObj(title.getString("s_d_f_is_visible"),title.getString("s_d_f_is_compulsory"), f_name.getString("s_d_f_is_visible"),f_name.getString("s_d_f_is_compulsory"),
                                     person_last_name.getString("s_d_f_is_visible"),person_last_name.getString("s_d_f_is_compulsory"),cell_phone_number.getString("s_d_f_is_visible"),cell_phone_number.getString("s_d_f_is_compulsory"),
                                     email.getString("s_d_f_is_visible"),email.getString("s_d_f_is_compulsory"),race.getString("s_d_f_is_visible"),race.getString("s_d_f_is_compulsory"),
@@ -255,17 +256,14 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                            JSONObject city =dataM.getJSONObject(i).getJSONObject("city");
                            JSONObject suburb =dataM.getJSONObject(i).getJSONObject("suburb");
 
-
-
-
-                           /* Step2ArrayList.add(new Step2DataVisibilityObj(home_language.getString("s_d_f_is_visible"),home_language.getString("s_d_f_is_compulsory"), f_name.getString("s_d_f_is_visible"),f_name.getString("s_d_f_is_compulsory"),
-                                    person_last_name.getString("s_d_f_is_visible"),person_last_name.getString("s_d_f_is_compulsory"),cell_phone_number.getString("s_d_f_is_visible"),cell_phone_number.getString("s_d_f_is_compulsory"),
-                                    email.getString("s_d_f_is_visible"),email.getString("s_d_f_is_compulsory"),race.getString("s_d_f_is_visible"),race.getString("s_d_f_is_compulsory"),
-                                    gender.getString("s_d_f_is_visible"),gender.getString("s_d_f_is_compulsory"),birth_date.getString("s_d_f_is_visible"),birth_date.getString("s_d_f_is_compulsory"),
-                                    national_id.getString("s_d_f_is_visible"),national_id.getString("s_d_f_is_compulsory"),ss_number.getString("s_d_f_is_visible"),
-                                    ss_number.getString("s_d_f_is_compulsory"),alternative_id.getString("s_d_f_is_visible"),alternative_id.getString("s_d_f_is_compulsory"),
-                                    nationality.getString("s_d_f_is_visible"),nationality.getString("s_d_f_is_compulsory"),tax_ref_number.getString("s_d_f_is_visible"),tax_ref_number.getString("s_d_f_is_compulsory")));
-*/
+                            Step2ArrayList.add(new Step2DataVisibilityObj(home_language.getString("s_d_f_is_visible"),home_language.getString("s_d_f_is_compulsory"), telephone.getString("s_d_f_is_visible"),telephone.getString("s_d_f_is_compulsory"),
+                                    fax.getString("s_d_f_is_visible"),fax.getString("s_d_f_is_compulsory"),physical_code.getString("s_d_f_is_visible"),physical_code.getString("s_d_f_is_compulsory"),
+                                    physical_address_1.getString("s_d_f_is_visible"),physical_address_1.getString("s_d_f_is_compulsory"),physical_address_2.getString("s_d_f_is_visible"),physical_address_2.getString("s_d_f_is_compulsory"),
+                                    physical_address__3.getString("s_d_f_is_visible"),physical_address__3.getString("s_d_f_is_compulsory"),physical_municipality.getString("s_d_f_is_visible"),physical_municipality.getString("s_d_f_is_compulsory"),
+                                    physical_urban_rural.getString("s_d_f_is_visible"),physical_urban_rural.getString("s_d_f_is_compulsory"),country.getString("s_d_f_is_visible"),country.getString("s_d_f_is_compulsory"),
+                                    physical_province.getString("s_d_f_is_visible"),physical_province.getString("s_d_f_is_compulsory"),physical_city.getString("s_d_f_is_visible"),physical_city.getString("s_d_f_is_compulsory"),
+                                    physical_suburb.getString("s_d_f_is_visible"),physical_suburb.getString("s_d_f_is_compulsory"),province.getString("s_d_f_is_visible"),province.getString("s_d_f_is_compulsory"),
+                                    city.getString("s_d_f_is_visible"),city.getString("s_d_f_is_compulsory"),suburb.getString("s_d_f_is_visible"),suburb.getString("s_d_f_is_compulsory")));
 
                             /*Step 3*/
 
@@ -284,6 +282,14 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                             JSONObject equity = dataM.getJSONObject(i).getJSONObject("equity");
                             JSONObject citizen_resident_status = dataM.getJSONObject(i).getJSONObject("citizen_resident_status");
 
+
+                            Step3ArrayList.add(new Step3DataVisibilityObj(postal_code.getString("s_d_f_is_visible"),postal_code.getString("s_d_f_is_compulsory"), postal_address_line_1.getString("s_d_f_is_visible"),postal_address_line_1.getString("s_d_f_is_compulsory"),
+                                    postal_address_line_2.getString("s_d_f_is_visible"),postal_address_line_2.getString("s_d_f_is_compulsory"),postal_address_line_3.getString("s_d_f_is_visible"),postal_address_line_3.getString("s_d_f_is_compulsory"),
+                                    postal_municipality.getString("s_d_f_is_visible"),postal_municipality.getString("s_d_f_is_compulsory"),postal_urban_rural.getString("s_d_f_is_visible"),postal_urban_rural.getString("s_d_f_is_compulsory"),
+                                    postal_country.getString("s_d_f_is_visible"),postal_country.getString("s_d_f_is_compulsory"),postal_province.getString("s_d_f_is_visible"),postal_province.getString("s_d_f_is_compulsory"),
+                                    postal_city.getString("s_d_f_is_visible"),postal_city.getString("s_d_f_is_compulsory"),postal_suburb.getString("s_d_f_is_visible"),postal_suburb.getString("s_d_f_is_compulsory"),"1","1","1","1","1","1",
+                                    last_school_emis.getString("s_d_f_is_visible"),last_school_emis.getString("s_d_f_is_compulsory"),last_school_year.getString("s_d_f_is_visible"),last_school_year.getString("s_d_f_is_compulsory"),
+                                    equity.getString("s_d_f_is_visible"),equity.getString("s_d_f_is_compulsory"),citizen_resident_status.getString("s_d_f_is_visible"),citizen_resident_status.getString("s_d_f_is_compulsory")));
 
 
                             /*Step 4*/
@@ -307,7 +313,18 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                             JSONObject wil_type = dataM.getJSONObject(i).getJSONObject("wil_type");
 
 
-/*Step 5*/
+                            Step4ArrayList.add(new Step4DataVisibilityObj(statssa_area_code.getString("s_d_f_is_visible"),statssa_area_code.getString("s_d_f_is_compulsory"), popi_act_status.getString("s_d_f_is_visible"),popi_act_status.getString("s_d_f_is_compulsory"),
+                                    popi_act_status_date.getString("s_d_f_is_visible"),popi_act_status_date.getString("s_d_f_is_compulsory"),ofo_code.getString("s_d_f_is_visible"),ofo_code.getString("s_d_f_is_compulsory"),
+                                    sponsorship.getString("s_d_f_is_visible"),sponsorship.getString("s_d_f_is_compulsory"),financial_year.getString("s_d_f_is_visible"),financial_year.getString("s_d_f_is_compulsory"),
+                                    nqf_level.getString("s_d_f_is_visible"),nqf_level.getString("s_d_f_is_compulsory"),qualification_saqa_id.getString("s_d_f_is_visible"),qualification_saqa_id.getString("s_d_f_is_compulsory"),
+                                    employer_sdl_number.getString("s_d_f_is_visible"),employer_sdl_number.getString("s_d_f_is_compulsory"),provider_sdl_number.getString("s_d_f_is_visible"),provider_sdl_number.getString("s_d_f_is_compulsory"),
+                                    socio_economic_status.getString("s_d_f_is_visible"),socio_economic_status.getString("s_d_f_is_compulsory"),wil_start_date.getString("s_d_f_is_visible"),wil_start_date.getString("s_d_f_is_compulsory"),
+                                    wil_end_date.getString("s_d_f_is_visible"),wil_end_date.getString("s_d_f_is_compulsory"),most_recent_registration_date.getString("s_d_f_is_visible"),most_recent_registration_date.getString("s_d_f_is_compulsory"),
+                                    enrolment_status.getString("s_d_f_is_visible"),enrolment_status.getString("s_d_f_is_compulsory"),project.getString("s_d_f_is_visible"),project.getString("s_d_f_is_compulsory"),
+                                    reference_number.getString("s_d_f_is_visible"),reference_number.getString("s_d_f_is_compulsory"),wil_type.getString("s_d_f_is_visible"),wil_type.getString("s_d_f_is_compulsory")));
+
+
+                            /*Step 5*/
                             JSONObject name_of_kin = dataM.getJSONObject(i).getJSONObject("name_of_kin");
                             JSONObject contact_of_kin = dataM.getJSONObject(i).getJSONObject("contact_of_kin");
                             JSONObject physically_disable = dataM.getJSONObject(i).getJSONObject("physically_disable");
@@ -324,15 +341,11 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                                     college.getString("s_d_f_is_visible"),college.getString("s_d_f_is_compulsory")));
                         }
 
-
-
-
-
                         showProgress(false, mContentView, mProgressView);
                     }
 
                     else if(Status.equals("2")) {
-                        // showProgress(false,mContentRView,mProgressRView);
+                        showProgress(false, mContentView, mProgressView);
                     }
                     else{
                         // showProgress(false,mContentRView,mProgressRView);

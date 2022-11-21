@@ -49,10 +49,26 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         }
         return result;
     }
+    public static boolean isValidNumber(String no) {
+        boolean result;
+        result = no.length() >= 5;
+        if (no.length() > 15) {
+            result = false;
+        }
+        return result;
+    }
     public static boolean isValidMobile(String mobile) {
         boolean result;
         result = mobile.length() >= 9;
-        if (mobile.length() > 12) {
+        if (mobile.length() > 14) {
+            result = false;
+        }
+        return result;
+    }
+    public static boolean isValidPhyCode(String code) {
+        boolean result;
+        result = code.length() >= 3;
+        if (code.length() > 15) {
             result = false;
         }
         return result;
@@ -75,7 +91,10 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
     }
     public static boolean isValidSregNo(int number) {
         boolean result;
-        result = number > 5;
+        result = number >= 5;
+        if (number > 15) {
+            result = false;
+        }
         return result;
     }
     public static boolean isValidSDLNo(String number) {
