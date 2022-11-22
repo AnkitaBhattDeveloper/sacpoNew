@@ -118,6 +118,7 @@ public class SVideoA extends BaseAPCPrivate {
         printLogs(LogTag,"initializeInputs","Title="+Title);
         TextView tv = (TextView)findViewById(R.id.message_head);
         tv.setText(Title);
+        tv.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         final VideoView vvd = (VideoView)findViewById(R.id.message_video);
         printLogs(LogTag,"initializeInputs","video url"+videoUrl);
         Uri videoUri = Uri.parse(videoUrl);

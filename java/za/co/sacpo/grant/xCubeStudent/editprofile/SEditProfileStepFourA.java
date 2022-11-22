@@ -988,7 +988,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
 
     private boolean validateSpinnerICQualification(Spinner spinner_internCategoryQualification) {
         printLogs(LogTag,"validateSpinnerICQualification","qualcategory_value : "+qualcategory_value);
-        if (qualcategory_value.isEmpty() || qualcategory_value.equals("0")) {
+        if (qualcategory_value.isEmpty() || qualcategory_value.equals("-1")) {
             String sTitle = "";
             String sMessage = getLabelFromDb("lbl_S105D_errorspinnericquali", R.string.lbl_S105D_errorspinnericquali);
             String sButtonLabelClose = "Close";

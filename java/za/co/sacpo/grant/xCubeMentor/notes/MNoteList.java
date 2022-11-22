@@ -163,7 +163,7 @@ public class MNoteList extends BaseAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnAddNote.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            btnAddNote.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            btnAddNote.setTextColor(getResources().getColor(getTextcolorResourceId("btn_textColor")));
 
         }
 

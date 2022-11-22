@@ -64,11 +64,10 @@
     android:orientation="horizontal">
     <LinearLayout
         android:id="@+id/step1"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_column="0"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:layout_row="0"
         android:background="@color/process_1_color"
         android:gravity="center" >
 
@@ -76,8 +75,6 @@
             android:id="@+id/Q1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="0"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:text="Step 1" />
@@ -85,11 +82,10 @@
 
     <LinearLayout
         android:id="@+id/step2"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_column="1"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:layout_row="0"
         android:background="@color/process_2_color"
         android:gravity="center"
         >
@@ -98,8 +94,6 @@
             android:id="@+id/A1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="0"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:text="Step 2" />
@@ -113,11 +107,10 @@
 
     <LinearLayout
         android:id="@+id/step3"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_column="0"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:layout_row="1"
         android:background="@color/process_3_color"
         android:gravity="center" >
 
@@ -131,20 +124,17 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/step4"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_column="1"
         android:background="@color/process_1_color"
-        android:layout_row="1"
         android:gravity="center"
+        android:layout_weight="1"
         android:layout_margin="5dp">
 
         <TextView
             android:id="@+id/A2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="0"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:text="Step 4" />
@@ -160,9 +150,7 @@
                             android:id="@+id/step5"
                             android:layout_width="160dp"
                             android:layout_height="60dp"
-                            android:layout_column="0"
                             android:layout_margin="5dp"
-                            android:layout_row="1"
                             android:background="@color/process_2_color"
                             android:gravity="center" >
 

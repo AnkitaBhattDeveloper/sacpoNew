@@ -179,7 +179,7 @@ BaseAPC baseAPC = new BaseAPC() {
                 holder.btnDownCF.setText(Labels);
                 holder.btnDownCF.setVisibility(View.VISIBLE);
                 holder.btnDownCF.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnDownCF.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnDownCF.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.lblDownCF.setVisibility(View.GONE);
 
 
@@ -193,7 +193,7 @@ BaseAPC baseAPC = new BaseAPC() {
                 holder.btnDownSignForm.setText(Labels);
                 holder.btnDownSignForm.setVisibility(View.VISIBLE);
                 holder.btnDownSignForm.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnDownSignForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnDownSignForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.lblDownloadSignedform.setVisibility(View.GONE);
 
             }

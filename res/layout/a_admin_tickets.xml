@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".grant.xCubeStudent.queries.SIncomingQueriesA">
+    tools:context=".xCubeStudent.queries.SIncomingQueriesA">
 
     <include layout="@layout/c_admin_tickets"
         android:id="@+id/include" />

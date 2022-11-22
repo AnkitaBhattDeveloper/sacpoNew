@@ -65,7 +65,7 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
     private Spinner inputSpinnerpostalurbanrural, inputSpinnerequity,inputSpinnerresidentstatus,
             inputSpinnerpostalcountry,inputSpinnerpostalcity,inputSpinnerpostalprovince,inputSpinnerpostalsuburb;
     AutoCompleteTextView txtpostalmunicipality,txtschoolemis;
-    String spin_postalcountry,spin_postalprovince,spin_postalcity,spin_postalsuburb,spin_equity="",
+    String spin_postalcountry="",spin_postalprovince="",spin_postalcity="",spin_postalsuburb="",spin_equity="",
             spin_residentstatus="",postalurbanrual_value="",postalcountry_value="",postalprovince_value="",
             postalcity_value="",postalsuburb_value="";
     public SpinnerObj[] CountryType;
@@ -1318,17 +1318,17 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                 cancel = true;
             }
         }
-        if(validPostalProvinceSP){
+        if(validPostalProvinceSP && spin_postalcountry.equals("1")){
             if (!validateSpinnerProvinceSP(inputSpinnerpostalprovince)) {
                 cancel = true;
             }
         }
-        if(validPostalCitySP){
+        if(validPostalCitySP && spin_postalcountry.equals("1")){
             if (!validateSpinnerPostalCitySP(inputSpinnerpostalcity)) {
                 cancel = true;
             }
         }
-        if(validPostalSuburbSP){
+        if(validPostalSuburbSP && spin_postalcountry.equals("1")){
             if (!validateSpinnerPostalSuburbSP(inputSpinnerpostalsuburb)) {
                 cancel = true;
             }
@@ -1368,17 +1368,17 @@ public class SEditProfileStepTwoBA extends BaseFormAPCPrivate {
                 cancel = true;
             }
         }
-        if(validPostalProvince){
+        if(validPostalProvince && !spin_postalcountry.equals("1")){
             if (!validatePostalProvince(inputetpostalprovince, inputLayoutetpostalprovince)) {
                 cancel = true;
             }
         }
-        if(validPostalCity){
+        if(validPostalCity && !spin_postalcountry.equals("1")){
             if (!validatePostalCity(inputetpostalcity, inputLayoutetpostalcity)) {
                 cancel = true;
             }
         }
-        if(validPostalSuburb){
+        if(validPostalSuburb && !spin_postalcountry.equals("1")){
             if (!validatePostalSuburb(inputetpostalsuburub, inputLayoutetpostalsuburub)) {
                 cancel = true;
             }

@@ -74,7 +74,21 @@ public abstract class BaseFormAPCPublic extends BaseAPCPublic {
         }
         return result;
     }
+    public boolean validateUsername(EditText mNameView, TextInputLayout inputLayoutName) {
+        String data = mNameView.getText().toString().trim();
+        setCustomError(inputLayoutName,null,mNameView);
+        Pattern regex = Pattern.compile("[$&+,:;=\\\\?#|/'<>^*()%!-]");
 
+        printLogs(LogTag,"validateName","DATA : "+data);
+        if (data.isEmpty() || regex.matcher(data).find() ) {
+            String sMessage = getLabelFromDb("error_A98_105", R.string.error_A98_105);
+            setCustomError(inputLayoutName,sMessage,mNameView);
+            return false;
+        } else {
+            setCustomErrorDisabled(inputLayoutName,mNameView);
+            return true;
+        }
+    }
     public boolean validateName(EditText mNameView, TextInputLayout inputLayoutName) {
         String data = mNameView.getText().toString().trim();
         setCustomError(inputLayoutName,null,mNameView);

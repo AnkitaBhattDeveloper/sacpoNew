@@ -243,9 +243,9 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             mLEAEmailButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            mLEAEmailButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-            mLEAContactButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-            mLEACallButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            mLEAEmailButton.setTextColor(getResources().getColor(getTextcolorResourceId("btn_textColor")));
+            mLEAContactButton.setTextColor(getResources().getColor(getTextcolorResourceId("btn_textColor")));
+            mLEACallButton.setTextColor(getResources().getColor(getTextcolorResourceId("btn_textColor")));
             mLEAContactButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
             mLEACallButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
         }

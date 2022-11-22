@@ -158,7 +158,7 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
             holder.btnAction2.setVisibility(View.VISIBLE);
             holder.btnAction2.setText("UPLOAD");
             holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
 
             holder.btnAction2.setOnClickListener(view -> {
@@ -213,7 +213,7 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
                 holder.btnAction1.setVisibility(View.VISIBLE);
                 holder.btnAction1.setText(aObjList.get(holder.getAdapterPosition()).aPrevious5);
                 holder.btnAction1.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction1.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction1.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
 
             } else {
@@ -227,14 +227,14 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
                 holder.btnAction2.setVisibility(View.VISIBLE);
                 holder.btnAction2.setText("UPLOAD");
                 holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
             } else {
                 holder.lblAction2.setVisibility(View.GONE);
                 holder.btnAction2.setText("REUPLOAD");
                 holder.btnAction2.setVisibility(View.VISIBLE);
                 holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
             }
             int aDownloadStatus = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).aIsDownload9);
@@ -243,7 +243,7 @@ public class DCenterAdapter extends RecyclerView.Adapter<DCenterAdapter.AttHolde
                 holder.btnAction3.setVisibility(View.VISIBLE);
                 holder.btnAction3.setText("DOWNLOAD");
                 holder.btnAction3.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
 
             } else {

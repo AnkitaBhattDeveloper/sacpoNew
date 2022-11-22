@@ -261,15 +261,15 @@ public class SLeavesAdapter extends RecyclerView.Adapter<SLeavesAdapter.LeavesHo
         holder.btnMotivation.setText(Labels);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             holder.btnMotivation.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnMotivation.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnMotivation.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             holder.btnSComments.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnSComments.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnSComments.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             holder.btnUploads.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnUploads.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnUploads.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             holder.btnEdit.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             holder.btnRemove.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnRemove.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnRemove.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
 
         }
 

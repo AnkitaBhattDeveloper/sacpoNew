@@ -898,7 +898,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                             SpinnerDay.setSelection(Integer.parseInt(ryt_date));
                         }
                         if(!popiActMonth.equals("")){
-                            SpinnerMonth.setSelection(Integer.parseInt(popiActMonth)-1);
+                            SpinnerMonth.setSelection(Integer.parseInt(popiActMonth));
                         }
                         String mYear = popiActYear; //the value you want the position for
                         ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
@@ -915,7 +915,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                             SpinnerwilstartDay.setSelection(Integer.parseInt(ryt_date));
                         }
                         if(!WILStartMonth.equals("")){
-                            SpinnerwilstartMonth.setSelection(Integer.parseInt(WILStartMonth)-1);
+                            SpinnerwilstartMonth.setSelection(Integer.parseInt(WILStartMonth));
                         }
                         String wilstartYear = WILStartYear; //the value you want the position for
                         ArrayAdapter wilstartmAdpt = (ArrayAdapter) SpinnerwilstartYear.getAdapter(); //cast to an ArrayAdapter
@@ -932,7 +932,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                             SpinnerwilendDay.setSelection(Integer.parseInt(ryt_date));
                         }
                         if(!WILEndMonth.equals("")){
-                            SpinnerwilendMonth.setSelection(Integer.parseInt(WILEndMonth)-1);
+                            SpinnerwilendMonth.setSelection(Integer.parseInt(WILEndMonth));
                         }
                         String wilEndYear = WILEndYear; //the value you want the position for
                         ArrayAdapter wilEndmAdpt = (ArrayAdapter) SpinnerwilendYear.getAdapter(); //cast to an ArrayAdapter
@@ -949,7 +949,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
                             SpinnermsregDay.setSelection(Integer.parseInt(ryt_date));
                         }
                         if(!MRRMonth.equals("")){
-                            SpinnermsregMonth.setSelection(Integer.parseInt(MRRMonth)-1);
+                            SpinnermsregMonth.setSelection(Integer.parseInt(MRRMonth));
                         }
                         String MRYear = MRRYear; //the value you want the position for
                         ArrayAdapter MRRmAdpt = (ArrayAdapter) SpinnermsregYear.getAdapter(); //cast to an ArrayAdapter
@@ -1633,7 +1633,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             return false;
         } else if(!isValidNumber(refno)){
             String sMessage = getLabelFromDb("error_invalid_refno", R.string.error_invalid_refno);
-            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            setCustomError(inputLayoutrefno, sMessage, inputrefno);
             return false;
 
         }else {
@@ -1682,7 +1682,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
             return false;
         }else if(!isValidNumber(empsdlno)){
             String sMessage = getLabelFromDb("error_invalid_empno", R.string.error_invalid_empno);
-            setCustomError(inputLayoutprovidersdlno, sMessage, inputprovidersdlno);
+            setCustomError(inputLayoutempsdlno, sMessage, inputempsdlno);
             return false;
 
         }else {
@@ -1873,26 +1873,26 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     @Override
     public void FormSubmit() {
 
-        final int month = Integer.parseInt(String.valueOf(spin_actstatusmonth)) +1;
+        final int month = Integer.parseInt(String.valueOf(spin_actstatusmonth));
         final int date = Integer.parseInt(String.valueOf(spin_actstatusdate));
         final int year = Integer.parseInt(String.valueOf(spin_actstatusyear));
 
         String actstatusdate = year+"-"+month+"-"+date;
 
 
-        final int wilstartmonth = Integer.parseInt(String.valueOf(spin_wilstartmonth)) +1;
+        final int wilstartmonth = Integer.parseInt(String.valueOf(spin_wilstartmonth));
         final int wilstartdate = Integer.parseInt(String.valueOf(spin_wilstartdate));
         final int wilstartyear = Integer.parseInt(String.valueOf(spin_wilstartyear));
 
         String wilstart_date = wilstartyear+"-"+wilstartmonth+"-"+wilstartdate;
 
-        final int wilendmonth = Integer.parseInt(String.valueOf(spin_wilendmonth)) +1;
+        final int wilendmonth = Integer.parseInt(String.valueOf(spin_wilendmonth));
         final int wilenddate = Integer.parseInt(String.valueOf(spin_wilenddate));
         final int wilendyear = Integer.parseInt(String.valueOf(spin_wilendyear));
 
         String wilend_date = wilendyear+"-"+wilendmonth+"-"+wilenddate;
 
-        final int msregmonth = Integer.parseInt(String.valueOf(spin_msregmonth)) +1;
+        final int msregmonth = Integer.parseInt(String.valueOf(spin_msregmonth));
         final int msregdate = Integer.parseInt(String.valueOf(spin_msregdate));
         final int msregyear = Integer.parseInt(String.valueOf(spin_msregyear));
 

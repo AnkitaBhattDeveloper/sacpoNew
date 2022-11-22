@@ -191,7 +191,7 @@ public class LoginA extends BaseFormAPCPublic {
     @Override
     protected void initializeLabels() {
         printLogs(LogTag, "initializeLabels", "init");
-        String Label = getLabelFromDb("l_A101_email", R.string.l_A101_email);
+        String Label = getLabelFromDb("l_A101_username", R.string.l_A101_username);
         TextView lblView =  findViewById(R.id.lblEmail);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
@@ -277,7 +277,7 @@ public class LoginA extends BaseFormAPCPublic {
     public void validateForm() {
         printLogs(LogTag, "validateForm", "init");
         boolean cancel = false;
-        if (!validateEmail(mEmailView, inputLayoutEmail)) {
+        if (!validateUsername(mEmailView, inputLayoutEmail)) {
             cancel = true;
         } else if (!validatePassword(mPasswordView, inputLayoutPassword)) {
             cancel = true;
@@ -740,7 +740,7 @@ public class LoginA extends BaseFormAPCPublic {
         public void afterTextChanged(Editable editable) {
             switch (EditView.getId()) {
                 case R.id.inputEmail:
-                    validateEmail(EditView, EditLayout);
+                    validateUsername(EditView, EditLayout);
                     break;
                 case R.id.inputPassword:
                     validatePassword(EditView, EditLayout);

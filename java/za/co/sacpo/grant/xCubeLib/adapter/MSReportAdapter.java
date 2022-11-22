@@ -181,9 +181,8 @@ public class MSReportAdapter extends RecyclerView.Adapter<MSReportAdapter.ViewHo
                 holder.txtAction.setBackgroundColor(BColor);
                 holder.btnAction.setVisibility(View.VISIBLE);
                 holder.btnAction.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-              holder.btnAction.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
-            }
-            else{
+              holder.btnAction.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
+            } else{
                 holder.LinearLayoutAction.setBackgroundColor(BColor);
                 holder.txtAction.setVisibility(View.VISIBLE);
                 holder.txtAction.setBackgroundColor(BColor);

@@ -163,7 +163,7 @@ BaseAPC baseAPC = new BaseAPC() {
             holder.lblAction.setVisibility(View.GONE);
             holder.btnActionEdit.setVisibility(View.VISIBLE);
             holder.btnActionEdit.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-            holder.btnActionEdit.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+            holder.btnActionEdit.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             holder.lblAction2.setVisibility(View.GONE);
             holder.btnActionRemove.setVisibility(View.VISIBLE);
             if((holder.getAdapterPosition()%2)==0){

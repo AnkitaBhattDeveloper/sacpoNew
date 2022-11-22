@@ -18,7 +18,8 @@
     <color name="sacpocolorPrimaryDark">#bfbfbf</color>
     <color name="sacpocolorAccent">#010101</color>
     <color name="sacpocolorAccent">#FCBB1F</color>-->
-
+    <color name="btn_textColor_1">#0D47A1</color>
+    <color name="btn_textColor_2">#ffffff</color>
     <color name="dashboard_textColor_1">#0D47A1</color>
     <color name="dashboard_textColor_2">#010101</color>
     <color name="drawer_item_textColor_1">#0D47A1</color>

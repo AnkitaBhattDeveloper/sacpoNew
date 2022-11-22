@@ -226,7 +226,7 @@ public class SNewClaimAdapter extends RecyclerView.Adapter<SNewClaimAdapter.Clai
                 holder.lblAction.setVisibility(View.GONE);
                 holder.btnAction.setVisibility(View.VISIBLE);
                 holder.btnAction.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
             }
             else{
                 holder.btnAction.setVisibility(View.GONE);
@@ -236,7 +236,7 @@ public class SNewClaimAdapter extends RecyclerView.Adapter<SNewClaimAdapter.Clai
             if(uStatus==1){
                 holder.btnAction2.setVisibility(View.VISIBLE);
                 holder.btnAction2.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction2.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.lblAction2.setVisibility(View.GONE);
             }
             else{
@@ -247,7 +247,7 @@ public class SNewClaimAdapter extends RecyclerView.Adapter<SNewClaimAdapter.Clai
             if(dsStatus==1){
                 holder.btnAction3.setVisibility(View.VISIBLE);
                 holder.btnAction3.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnAction3.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.lblAction3.setVisibility(View.GONE);
             }
             else{

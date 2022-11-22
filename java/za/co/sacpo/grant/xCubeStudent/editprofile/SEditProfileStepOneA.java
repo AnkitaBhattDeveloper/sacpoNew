@@ -66,48 +66,29 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private String KEY_NAME = "fname";
     private String KEY_SURNAME = "lname";
     private String KEY_PHONE = "mobile";
-    private String KEY_EMAIL = "email";
-    private String KEY_LEARNER_NO = "learner_no";
-    private String KEY_LEARNER_ID = "learner_id";
-    private String KEY_KIN_NAME = "kin_name";
-    private String KEY_KIN_CONTACT = "kin_con";
-    private String KEY_INTERN_UOT = "intern_uot";
-    private String KEY_INTERN_QUALIFICATION = "intern_quali";
     private String KEY_TAX_REF = "tax_ref";
-    private String KEY_STATUS_DISABILITY = "disability_key_status";
-    private String KEY_STATUS_DISABILITY_TYPE = "disability_type";
     private String KEY_STATUS_GENDER = "gender_key_status";
     private String KEY_STATUS_RACE = "race_id";
     private String KEY_STATUS_TITLE = "title";
-    private String KEY_STATUS_ENROLL = "enroll_year";
     private String KEY_STATUS_MONTH = "month";
     private String KEY_STATUS_YEAR = "year";
     private String KEY_STATUS_DATE = "date";
-
-    final ArrayList<ListarClientes> datalist = new ArrayList<>();
-    String rb_genderValue,Nationality,spin_race,spin_nationality,spin_title,spin_day,spin_month,spin_year,spin_disability;
-    public EditText inputFirstName, inputLastName, inputMobile,inputNational_id,inputsRegNo,inputalternative_id, inputEmail, inputLearnerNo, inputLearnerId, inputNameOfKin, inputContactOfKin, inputInternUTO, inputInternCategoryQualification, inputTaxRefNo;
+    String rb_genderValue,Nationality,spin_race,spin_nationality,spin_title,spin_day,spin_month,spin_year;
+    public EditText inputFirstName, inputLastName, inputMobile,inputNational_id,inputsRegNo,inputalternative_id, inputEmail, inputTaxRefNo;
     public View mProgressView, mContentView,heading;
-    public TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutMobile,inputLayoutNational_id, inputLayoutEmail, inputLayoutsRegNo, inputLayoutalternative_id,inputLayoutLearnerId, inputLayoutNameOfKin, inputLayoutContactOfKin, inputLayoutInternUTO, inputLayoutInternCategoryQualification, inputLayoutTaxRefNo;
+    public TextInputLayout inputLayoutFirstName, inputLayoutLastName, inputLayoutMobile,inputLayoutNational_id, inputLayoutEmail, inputLayoutsRegNo, inputLayoutalternative_id, inputLayoutTaxRefNo;
     public Button btnUpdate;
-    private Spinner inputSpinnerTitle, inputSpinnerRace, SpinnerDay, SpinnerMonth, SpinnerYear, inputSpinnerNationality, Spin_EnrollmentYear,spinner_InternCategoryQualification;
-    private LinearLayout ll_DisabilityType;
-    private RadioGroup RGPhysicalDisAbility, RgGender;
-    private RadioButton rb_disable_y, rb_disable_n, rb_male, rb_female;
+    private Spinner inputSpinnerTitle, inputSpinnerRace, SpinnerDay, SpinnerMonth, SpinnerYear, inputSpinnerNationality;
+    private RadioGroup  RgGender;
+    private RadioButton rb_male, rb_female;
     private TextView lblView;
-    ImageView headProfile;
-    private int disability_status;
     private int gender_status;
     String spin_date,spin_years;
-    String disability_key_status = "";
     String gender_key_status = "";
     String selected_enroll_year;
-    String race_value, title_value,enrollment_no,month_value;
-    int disability_value,qualcategory_value;
-    public SpinnerObj[] StuQualcatType ;
+    String race_value, title_value,month_value;
     public SpinnerObj[] NationalityType;
     SEditProfileStepOneA thisClass;
-    ArrayList<String> object;
     ArrayList<Step1DataVisibilityObj> Step1ArrayList = new ArrayList<>();
     LinearLayout ll_title,firstNameContainer,lastNameContainer,mobileNumberContainer,EmailContainer,RaceContainer,
             GenderContainer,DOBContainer,National_idContainer,sRegNoContainer,alternative_idContainer,NationalityContainer,
@@ -265,62 +246,62 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     protected void initializeLabels() {
         printLogs(LogTag, "initializeLabels", "init");
         String Label = getLabelFromDb("l_S105_profile_name", R.string.l_S105_profile_name);
-        lblView = (TextView) findViewById(R.id.lblFirstName);
+        lblView = findViewById(R.id.lblFirstName);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_S105_edit_profile_mobile", R.string.i_S105_edit_profile_mobile);
-        lblView = (TextView) findViewById(R.id.lblMobile);
+        lblView =  findViewById(R.id.lblMobile);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_S105_edit_profile_national_id", R.string.i_S105_edit_profile_national_id);
-        lblView = (TextView) findViewById(R.id.lblnational_id);
+        lblView =  findViewById(R.id.lblnational_id);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_S105_edit_profile_sRegNo", R.string.i_S105_edit_profile_sRegNo);
-        lblView = (TextView) findViewById(R.id.lblsRegNo);
+        lblView =  findViewById(R.id.lblsRegNo);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("i_S105_edit_profile_alternativeid", R.string.i_S105_edit_profile_alternativeid);
-        lblView = (TextView) findViewById(R.id.lblalternative_id);
+        lblView =  findViewById(R.id.lblalternative_id);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
         Label = getLabelFromDb("lbl_S105_sur_name", R.string.lbl_S105_sur_name);
-        lblView = (TextView) findViewById(R.id.lblLastName);
+        lblView =  findViewById(R.id.lblLastName);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_email", R.string.lbl_S105_email);
-        lblView = (TextView) findViewById(R.id.lblEmail);
+        lblView =  findViewById(R.id.lblEmail);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_title", R.string.lbl_S105_title);
-        lblView = (TextView) findViewById(R.id.lblTitle);
+        lblView =  findViewById(R.id.lblTitle);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_race", R.string.lbl_S105_race);
-        lblView = (TextView) findViewById(R.id.lblRace);
+        lblView =  findViewById(R.id.lblRace);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_nationality", R.string.lbl_S105_nationality);
-        lblView = (TextView) findViewById(R.id.lblNationality);
+        lblView =  findViewById(R.id.lblNationality);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_DOB", R.string.lbl_S105_DOB);
-        lblView = (TextView) findViewById(R.id.lblDob);
+        lblView =  findViewById(R.id.lblDob);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_Tax_ref_no", R.string.lbl_S105_Tax_ref_no);
-        lblView = (TextView) findViewById(R.id.lblTaxRefNo);
+        lblView =  findViewById(R.id.lblTaxRefNo);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
         Label = getLabelFromDb("lbl_S105_gender", R.string.lbl_S105_gender);
-        lblView = (TextView) findViewById(R.id.lblGender);
+        lblView =  findViewById(R.id.lblGender);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
@@ -328,7 +309,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         btnUpdate.setText(Label);
 
         Label = getLabelFromDb("b_S105_heading", R.string.b_S105_heading);
-        lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView =  findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
@@ -413,7 +394,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             }else{
                 alternative_idContainer.setVisibility(View.GONE);
             }
-            if(Step1ArrayList.get(i).getNationalId_is_v_1().equals("1")){
+            if(Step1ArrayList.get(i).getNationality_is_v_1().equals("1")){
                 NationalityContainer.setVisibility(View.VISIBLE);
             }else{
                 NationalityContainer.setVisibility(View.GONE);
@@ -507,7 +488,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
 
                 gender_status = RgGender.getCheckedRadioButtonId();
-                RadioButton rb = (RadioButton) findViewById(checkedId);
                 printLogs(LogTag, "initializeListeners", "gender_status : " + gender_status);
 
             }
@@ -613,7 +593,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         });
 
 
-        ArrayList<String> years = new ArrayList<String>();
+        ArrayList<String> years = new ArrayList<>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 1900; i <= thisYear; i++) {
             if(i == 1900){
@@ -623,8 +603,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         }
 
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
-        final Spinner SpinnerYear = (Spinner)findViewById(R.id.SpinnerYear);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
+        final Spinner SpinnerYear = findViewById(R.id.SpinnerYear);
         SpinnerYear.setAdapter(adapter3);
 
 
@@ -641,7 +621,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             }
         });
 
-        ArrayList<String> days = new ArrayList<String>();
+        ArrayList<String> days = new ArrayList<>();
         for (int i = 0; i <= 31; i++) {
             if(i == 0){
                 days.add("");
@@ -651,8 +631,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
         }
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, days);
-        Spinner SpinnerDay = (Spinner)findViewById(R.id.SpinnerDay);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, days);
+        Spinner SpinnerDay = findViewById(R.id.SpinnerDay);
         SpinnerDay.setAdapter(adapter4);
 
         SpinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -802,7 +782,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             String sMessage = getLabelFromDb("error_S105_emptyregno", R.string.error_S105_emptyregno);
             setCustomError(inputLayoutsRegNo, sMessage, inputsRegNo);
             return false;
-        }else if(!isValidSregNo(Integer.parseInt(sRegNo))){
+        }else if(!isValidNumber(sRegNo)){
             String sMessage = getLabelFromDb("error_invalid_regno", R.string.error_invalid_regno);
             setCustomError(inputLayoutsRegNo, sMessage, inputsRegNo);
             return false;
@@ -905,8 +885,6 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
     }
     private boolean validateSpinnerTitle(Spinner inputSpinnerTitle) {
-
-        String Title = inputSpinnerTitle.getSelectedItem().toString();
         printLogs(LogTag,"validateSpinnerTitle","title_value : "+title_value);
        // setCustomError(inputLayoutalternative_id, null, inputalternative_id);
         if (title_value.isEmpty() || title_value.equals("0")) {
@@ -1142,13 +1120,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                         //SpinnerDay, SpinnerMonth, SpinnerYear
                         //SET DOB Spinner data--PENDING..!!
                         if(!spin_day.equals("")){
-                            int dday = Integer.parseInt(spin_day);
-                            int new_day = dday-1;
-                            String ryt_date = String.valueOf(new_day);
+                            String ryt_date = String.valueOf(Integer.parseInt(spin_day));
                             SpinnerDay.setSelection(Integer.parseInt(ryt_date));
                         }
                         if(!spin_month.equals("")){
-                            SpinnerMonth.setSelection(Integer.parseInt(spin_month)-1);
+                            SpinnerMonth.setSelection(Integer.parseInt(spin_month));
                         }
                         String mYear = spin_years; //the value you want the position for
                         ArrayAdapter mAdpt = (ArrayAdapter) SpinnerYear.getAdapter(); //cast to an ArrayAdapter
@@ -1200,7 +1176,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         })  {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("Accept", "*/*");
                 return params;
             }
@@ -1241,23 +1217,12 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             gender_key_status = rb_female.getTag().toString();
         }
 
-        //    final int enroll_year = Integer.parseInt(String.valueOf(selected_enroll_year));
-
-
-        final int month = Integer.parseInt(String.valueOf(month_value)) +1;
+        final int month = Integer.parseInt(String.valueOf(month_value));
         final int date = Integer.parseInt(String.valueOf(spin_date));
         final int year = Integer.parseInt(String.valueOf(spin_year));
-        // final int qualCategoryType_value = qualcategory_value;
 
         printLogs(LogTag, "FormSubmit", "VALUE__DOB__" +"  "+date+"   "+month +"  "+year+"   "+selected_enroll_year+" titleValueee  " +title);
 
-/*       // final String email = inputEmail.getText().toString().trim();
-        final String learner_no = inputLearnerNo.getText().toString().trim();
-        final String learner_id = inputLearnerId.getText().toString().trim();
-        final String kin_name = inputNameOfKin.getText().toString().trim();
-        final String kin_con = inputContactOfKin.getText().toString().trim();
-        final String intern_uot = inputInternUTO.getText().toString().trim();
-        //final String intern_quali = inputInternCategoryQualification.getText().toString().trim();*/
         final String tax_ref = inputTaxRefNo.getText().toString().trim();
         final String name = inputFirstName.getText().toString().trim();
         final String mobile = inputMobile.getText().toString().trim();

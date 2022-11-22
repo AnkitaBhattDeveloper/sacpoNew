@@ -102,11 +102,6 @@ public abstract class BaseFormAPCPrivate extends BaseAPCPrivate {
         result = number.length() > 5;
         return result;
     }
-    public static boolean isValidNumber(int number) {
-        boolean result;
-        result = number > 0;
-        return result;
-    }
     public static boolean isValidName(String name) {
         boolean result;
         result = name.length() >= 3;

@@ -1,8 +1,5 @@
 package za.co.sacpo.grant.xCubeStudent.editprofile;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -10,10 +7,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -26,19 +24,15 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
-import za.co.sacpo.grant.xCubeLib.adapter.SpinAdapter;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
-import za.co.sacpo.grant.xCubeLib.dataObj.SpinnerObj;
 import za.co.sacpo.grant.xCubeLib.dataObj.Step1DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dataObj.Step2DataVisibilityObj;
 import za.co.sacpo.grant.xCubeLib.dataObj.Step3DataVisibilityObj;
@@ -61,7 +55,6 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
     ArrayList<Step3DataVisibilityObj> Step3ArrayList = new ArrayList<>();
     ArrayList<Step4DataVisibilityObj> Step4ArrayList = new ArrayList<>();
     ArrayList<Step5DataVisibilityObj> Step5ArrayList = new ArrayList<>();
-    ArrayList<String> object = new ArrayList<String>();
     JSONObject title,f_name,person_last_name,cell_phone_number,birth_date,
             email,race,tax_ref_number,national_id,ss_number,nationality,gender,alternative_id;
 
@@ -132,7 +125,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
         step1.setOnClickListener(view -> {
             Intent intent = new Intent(SEditProfileMainA.this, SEditProfileStepOneA.class);
             Bundle args = new Bundle();
-            args.putSerializable("Step1ArrayList",(Serializable)Step1ArrayList);
+            args.putSerializable("Step1ArrayList",Step1ArrayList);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
            // startActivity(new Intent(SEditProfileMainA.this,SEditProfileStepOneA.class));
@@ -140,28 +133,28 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
         step2.setOnClickListener(view -> {
             Intent intent = new Intent(SEditProfileMainA.this, SEditProfileStepTwoA.class);
             Bundle args = new Bundle();
-            args.putSerializable("Step2ArrayList",(Serializable)Step2ArrayList);
+            args.putSerializable("Step2ArrayList",Step2ArrayList);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
         });
         step3.setOnClickListener(view -> {
             Intent intent = new Intent(SEditProfileMainA.this, SEditProfileStepTwoBA.class);
             Bundle args = new Bundle();
-            args.putSerializable("Step3ArrayList",(Serializable)Step3ArrayList);
+            args.putSerializable("Step3ArrayList",Step3ArrayList);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
         });
         step4.setOnClickListener(view -> {
             Intent intent = new Intent(SEditProfileMainA.this, SEDitProfileStepThreeA.class);
             Bundle args = new Bundle();
-            args.putSerializable("Step4ArrayList",(Serializable)Step4ArrayList);
+            args.putSerializable("Step4ArrayList",Step4ArrayList);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
         });
         step5.setOnClickListener(view -> {
             Intent intent = new Intent(SEditProfileMainA.this, SEditProfileStepFourA.class);
             Bundle args = new Bundle();
-            args.putSerializable("Step5ArrayList",(Serializable)Step5ArrayList);
+            args.putSerializable("Step5ArrayList",Step5ArrayList);
             intent.putExtra("BUNDLE",args);
             startActivity(intent);
         });
@@ -175,10 +168,8 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
 
     @Override
     protected void initializeLabels() {
-
-
       String  Label = getLabelFromDb("h_505", R.string.h_505);
-        lblView = (TextView) findViewById(R.id.activity_heading);
+        lblView =  findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
@@ -229,7 +220,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                              nationality = dataM.getJSONObject(i).getJSONObject("nationality");
                              gender = dataM.getJSONObject(i).getJSONObject("gender");
                              alternative_id = dataM.getJSONObject(i).getJSONObject("alternative_id");
-                            /*Step 2*/
+                            /*Step 1*/
                             Step1ArrayList.add(new Step1DataVisibilityObj(title.getString("s_d_f_is_visible"),title.getString("s_d_f_is_compulsory"), f_name.getString("s_d_f_is_visible"),f_name.getString("s_d_f_is_compulsory"),
                                     person_last_name.getString("s_d_f_is_visible"),person_last_name.getString("s_d_f_is_compulsory"),cell_phone_number.getString("s_d_f_is_visible"),cell_phone_number.getString("s_d_f_is_compulsory"),
                                     email.getString("s_d_f_is_visible"),email.getString("s_d_f_is_compulsory"),race.getString("s_d_f_is_visible"),race.getString("s_d_f_is_compulsory"),
@@ -277,6 +268,9 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                             JSONObject postal_province = dataM.getJSONObject(i).getJSONObject("postal_province");
                             JSONObject postal_city = dataM.getJSONObject(i).getJSONObject("postal_city");
                             JSONObject postal_suburb = dataM.getJSONObject(i).getJSONObject("postal_suburb");
+                            JSONObject postal_other_province = dataM.getJSONObject(i).getJSONObject("postal_other_province");
+                            JSONObject postal_other_city = dataM.getJSONObject(i).getJSONObject("postal_other_city");
+                            JSONObject postal_other_suburb = dataM.getJSONObject(i).getJSONObject("postal_other_suburb");
                             JSONObject last_school_emis = dataM.getJSONObject(i).getJSONObject("last_school_emis");
                             JSONObject last_school_year = dataM.getJSONObject(i).getJSONObject("last_school_year");
                             JSONObject equity = dataM.getJSONObject(i).getJSONObject("equity");
@@ -287,7 +281,9 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                                     postal_address_line_2.getString("s_d_f_is_visible"),postal_address_line_2.getString("s_d_f_is_compulsory"),postal_address_line_3.getString("s_d_f_is_visible"),postal_address_line_3.getString("s_d_f_is_compulsory"),
                                     postal_municipality.getString("s_d_f_is_visible"),postal_municipality.getString("s_d_f_is_compulsory"),postal_urban_rural.getString("s_d_f_is_visible"),postal_urban_rural.getString("s_d_f_is_compulsory"),
                                     postal_country.getString("s_d_f_is_visible"),postal_country.getString("s_d_f_is_compulsory"),postal_province.getString("s_d_f_is_visible"),postal_province.getString("s_d_f_is_compulsory"),
-                                    postal_city.getString("s_d_f_is_visible"),postal_city.getString("s_d_f_is_compulsory"),postal_suburb.getString("s_d_f_is_visible"),postal_suburb.getString("s_d_f_is_compulsory"),"1","1","1","1","1","1",
+                                    postal_city.getString("s_d_f_is_visible"),postal_city.getString("s_d_f_is_compulsory"),postal_suburb.getString("s_d_f_is_visible"),postal_suburb.getString("s_d_f_is_compulsory"),
+                                    postal_other_province.getString("s_d_f_is_visible"),postal_other_province.getString("s_d_f_is_compulsory"),postal_other_city.getString("s_d_f_is_visible"),postal_other_city.getString("s_d_f_is_compulsory"),
+                                    postal_other_suburb.getString("s_d_f_is_visible"),postal_other_suburb.getString("s_d_f_is_compulsory"),
                                     last_school_emis.getString("s_d_f_is_visible"),last_school_emis.getString("s_d_f_is_compulsory"),last_school_year.getString("s_d_f_is_visible"),last_school_year.getString("s_d_f_is_compulsory"),
                                     equity.getString("s_d_f_is_visible"),equity.getString("s_d_f_is_compulsory"),citizen_resident_status.getString("s_d_f_is_visible"),citizen_resident_status.getString("s_d_f_is_compulsory")));
 

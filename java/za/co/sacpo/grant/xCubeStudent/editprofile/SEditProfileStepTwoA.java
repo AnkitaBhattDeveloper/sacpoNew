@@ -65,7 +65,7 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
     private Spinner inputSpinnerurbanrural, inputSpinnerhomelanguage, inputSpinnercountry,inputSpinnersuburb,
             inputSpinnerprovince,inputSpinnercity;
     AutoCompleteTextView txtmunicipality;
-    String spin_country,spin_province,spin_city,spin_suburb;
+    String spin_country="",spin_province="",spin_city="",spin_suburb="";
     String phyUrbanrual="",phyCountry="",phyProvince="",
             phyCity="",phySuburb="";
 
@@ -1258,17 +1258,17 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
                 cancel = true;
             }
         }
-        if(validPhyProvinceSP){
+        if(validPhyProvinceSP && spin_country.equals("1")){
             if (!validateSpinnerProvince(inputSpinnerprovince)) {
                 cancel = true;
             }
         }
-        if(validPhyCitySP){
+        if(validPhyCitySP && spin_country.equals("1")){
             if (!validateSpinnerCity(inputSpinnercity)) {
                 cancel = true;
             }
         }
-        if(validPhySuburbSP){
+        if(validPhySuburbSP && spin_country.equals("1")){
             if (!validateSpinnerSuburb(inputSpinnersuburb)) {
                 cancel = true;
             }
@@ -1302,15 +1302,15 @@ public class SEditProfileStepTwoA extends BaseFormAPCPrivate {
                 if (!validateMuni(txtmunicipality, inputLayoutmunicipality)) {
                     cancel = true;
                 }
-            } if(validPhyProvince){
+            } if(validPhyProvince && !spin_country.equals("1")){
                 if (!validateProvince(inputphyprovince, inputLayoutphyprovince)) {
                     cancel = true;
                 }
-            } if(validPhyCity){
+            } if(validPhyCity && !spin_country.equals("1")){
                 if (!validateCity(inputphycity, inputLayoutphycity)) {
                     cancel = true;
                 }
-            } if(validPhySuburb){
+            } if(validPhySuburb && !spin_country.equals("1")){
                 if (!validateSuburb(inputphysuburub, inputLayoutphysuburub)) {
                     cancel = true;
                 }

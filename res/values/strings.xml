@@ -820,6 +820,7 @@
     <string name="b_101_opt">OTP</string>
     <string name="b_A101_forgot_password">Forgot Password ?</string>
     <string name="l_A101_email">Email</string>
+    <string name="l_A101_username">Username</string>
 
 
     <string name="error_314_104">yyyy</string>
@@ -1803,7 +1804,8 @@
     <string name="error_S106_104">Error! This password is too short.</string>-->
     <string name="error_S106_105">Error! This password is too short.</string>
     <string name="error_S106_106">Error! This password is incorrect.</string>
-    <string name="error_101_101">Error! Your Email or Password is incorrect.</string>
+<!--    <string name="error_101_101">Error! Your Email or Password is incorrect.</string>-->
+    <string name="error_101_101">Error! Your Username or Password is incorrect.</string>
     <string name="error_S106_107">Error! Please enter correct Password.</string>
 
     <!--178 Menter Change Password-->

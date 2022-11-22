@@ -207,6 +207,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                     holder.lblDownloadAttendanceRegister.setVisibility(View.GONE);
                     holder.btnDownloadAttendanceRegister.setVisibility(View.VISIBLE);
                     holder.btnDownloadAttendanceRegister.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                    holder.btnDownloadAttendanceRegister.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                     holder.btnDownloadAttendanceRegister.setText("DOWNLOAD");
 
                 } else {
@@ -220,6 +221,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                     holder.lblDownloadSignedClaimForm.setVisibility(View.GONE);
                     holder.btnDownloadSignedClaimForm.setVisibility(View.VISIBLE);
                     holder.btnDownloadSignedClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                    holder.btnDownloadSignedClaimForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                     holder.btnDownloadSignedClaimForm.setText("DOWNLOAD");
 
                 } else {
@@ -233,6 +235,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                     holder.lblDownloadClaimForm.setVisibility(View.GONE);
                     holder.btnDownloadClaimForm.setVisibility(View.VISIBLE);
                     holder.btnDownloadClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                    holder.btnDownloadClaimForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                     holder.btnDownloadClaimForm.setText("DOWNLOAD");
 
                 } else {
@@ -246,6 +249,7 @@ public class MDCenterAdapter extends RecyclerView.Adapter<MDCenterAdapter.AttHol
                     holder.lblUploadClaimForm.setVisibility(View.GONE);
                     holder.btnUploadClaimForm.setVisibility(View.VISIBLE);
                     holder.btnUploadClaimForm.setBackground(baseActivityContext.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
+                    holder.btnUploadClaimForm.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                     holder.btnUploadClaimForm.setText("UPLOAD");
 
                 } else {

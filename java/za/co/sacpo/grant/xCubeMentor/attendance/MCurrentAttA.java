@@ -263,7 +263,7 @@ public class MCurrentAttA extends BaseAPCPrivate {
             spinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             btnAddRemark.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             mDateInputButton.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-            mDateInputButton.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+            mDateInputButton.setTextColor(getResources().getColor(getTextcolorResourceId("btn_textColor")));
 
         }
 
@@ -562,7 +562,7 @@ public class MCurrentAttA extends BaseAPCPrivate {
     public void validateInput() {
             String ErrorTitle = "";
             String ErrorMessage = "";
-            Boolean isError = true;
+            boolean isError = true;
 
             printLogs(LogTag,"validateInput","INPUTS : "+ this.selectedMonth +"---" + this.selectedYear);
             printLogs(LogTag,"validateInput","INPUTS : "+isSpinnerValid(this.selectedMonth));
