@@ -35,6 +35,10 @@ public class helpArrayAdapter implements helpArrayDAO {
         return data;
     }
 
+
+
+
+
     @Override
     public int update(helpArrays helpArrays) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
