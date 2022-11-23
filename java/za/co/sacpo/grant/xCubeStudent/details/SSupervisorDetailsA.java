@@ -28,11 +28,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.supervisorDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.supervisorDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
@@ -112,6 +117,25 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
             }
             callDataApi();
             initializeInputs();
+            printLogs(LogTag,"onCreate","exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+           // initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
         }
     }
@@ -225,6 +249,8 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        supervisorDetailsAdapter adapter = new supervisorDetailsAdapter(getApplicationContext());
+                        adapter.truncate();
                         JSONObject dataM = jsonObject.getJSONObject(KEY_DATA);
 
                         txtMentorName.setText(dataM.getString("name"));
@@ -238,6 +264,14 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
                         txtMentorOfficeNo.setText(mOfcNo);
                         txtHostName.setText(dataM.getString("employer"));
                         txtHostSDLNo.setText(dataM.getString("employer_sdl"));
+
+
+                        adapter.insert(new supervisorDetailsArray(dataM.getString("id"),
+                                dataM.getString("name"),dataM.getString("email"),
+                                dataM.getString("mobile"),dataM.getString("u_department"),
+                                dataM.getString("u_designation"),dataM.getString("ofc_no"),
+                                dataM.getString("employer"),dataM.getString("employer_sdl")));
+
 
                         mMentorOfficeCallButton.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -323,7 +357,60 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
 
 
     }
+    private void fetchOfflineData() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        supervisorDetailsAdapter adapter  =new supervisorDetailsAdapter(getApplicationContext());
+        List<supervisorDetailsArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
 
+            txtMentorName.setText(adapterAll.get(i).getName());
+            mEmail = adapterAll.get(i).getEmail();
+            mCell = adapterAll.get(i).getMobile();
+            mOfcNo = adapterAll.get(i).getOfc_no();
+            txtMentorEmail.setText(adapterAll.get(i).getEmail());
+            txtMentor_cellNo.setText(adapterAll.get(i).getMobile());
+            txtDepartment.setText(adapterAll.get(i).getU_department());
+            txtPosition.setText(adapterAll.get(i).getU_designation());
+            txtMentorOfficeNo.setText(adapterAll.get(i).getOfc_no());
+            txtHostName.setText(adapterAll.get(i).getEmployer());
+            txtHostSDLNo.setText(adapterAll.get(i).getEmployer_sdl());
+
+        }
+        mMentorOfficeCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri call = Uri.parse("tel:" + mOfcNo);
+                Intent surf = new Intent(Intent.ACTION_DIAL, call);
+                startActivity(surf);
+            }
+        });
+
+        mMentorCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri call = Uri.parse("tel:" + mCell);
+                Intent surf = new Intent(Intent.ACTION_DIAL, call);
+                startActivity(surf);
+            }
+        });
+
+        mMentorEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setData(Uri.parse("mailto:"));
+                intent.setType("plain/text");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { mEmail });
+                startActivity(Intent.createChooser(intent, "Send Email"));
+            }
+        });
+
+        showProgress(false,mContentView,mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

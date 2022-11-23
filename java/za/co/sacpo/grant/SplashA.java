@@ -74,6 +74,12 @@ public class SplashA extends Activity {
            getHelpArray();
         }
         else{
+
+            Intent intent = new Intent(SplashA.this, LoginA.class);
+            startActivity(intent);
+            finish();
+
+
             String sTitle="Error :"+ActivityId+"-101";
             String sMessage=sTitle+" >>> "+getApplicationContext().getString(R.string.error_A100_101);
             Toast.makeText(getApplicationContext(),sMessage, Toast.LENGTH_LONG).show();

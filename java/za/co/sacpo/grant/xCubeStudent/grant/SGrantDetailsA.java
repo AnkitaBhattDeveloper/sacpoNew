@@ -1,8 +1,11 @@
 package za.co.sacpo.grant.xCubeStudent.grant;
 
+import static android.view.View.GONE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
@@ -34,6 +38,11 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
+import za.co.sacpo.grant.xCubeLib.db.DashboardDataArray;
+import za.co.sacpo.grant.xCubeLib.db.DashboardDataArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.GrantDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.grantDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
@@ -125,6 +134,25 @@ public class SGrantDetailsA extends BaseAPCPrivate {
             }
             callDataApi();
             initializeInputs();
+            printLogs(LogTag,"onCreate","exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+           // initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
         }
     }
@@ -362,6 +390,9 @@ public class SGrantDetailsA extends BaseAPCPrivate {
                     outputJson = new JSONObject(String.valueOf(response));
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        GrantDetailsArrayAdapter adapter  = new GrantDetailsArrayAdapter(getApplicationContext());
+                        adapter.truncate();
+
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
                         String grantId = dataM.getString("grant_id");
                         int grantIdInt = Integer.parseInt(grantId);
@@ -384,6 +415,19 @@ public class SGrantDetailsA extends BaseAPCPrivate {
                             lea_id = dataM.getString("lem_manager_id");
                             seta_user_id = dataM.getString("seta_manager_id");
                             fId = dataM.getString("grant_admin_id");
+
+
+
+                            adapter.insert(new grantDetailsArray(dataM.getString("u_id"),dataM.getString("grant_id"),
+                                    dataM.getString("s_s_g_grant_start_date"),dataM.getString("s_s_g_grant_end_date"),
+                                    dataM.getString("grant_name"),dataM.getString("mentor_name"),
+                                    dataM.getString("mentor_id"),dataM.getString("lem_name"),
+                                    dataM.getString("lem_id"),dataM.getString("host_emp_name"),
+                                    dataM.getString("seta_id"),dataM.getString("seta_name"),
+                                    dataM.getString("seta_manager_id"),dataM.getString("seta_manager_name"),
+                                    dataM.getString("grant_admin_id"),dataM.getString("grant_admin"),
+                                    dataM.getString("grant_admin_email"),dataM.getString("grant_admin_cell"),
+                                    dataM.getString("seta_manager_email"),dataM.getString("seta_manager_cell")));
 
 
                             mLEAContactButton.setOnClickListener(new View.OnClickListener() {
@@ -452,7 +496,58 @@ public class SGrantDetailsA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData() {
 
+        GrantDetailsArrayAdapter adapter = new GrantDetailsArrayAdapter(getApplicationContext());
+        List<grantDetailsArray> adapterAll = adapter.getAll();
+
+        for (int i = 0; i < adapterAll.size(); i++) {
+            String grantId = adapterAll.get(i).getGrant_id();
+            int grantIdInt = Integer.parseInt(grantId);
+            if (grantIdInt > 0) {
+                txtGrantName.setText(adapterAll.get(i).getGrant_name());
+                txtSetaName.setText(adapterAll.get(i).getSeta_name());
+                txtSetaManagerName.setText(adapterAll.get(i).getSeta_manager_name());
+                txtLEAName.setText(adapterAll.get(i).getLem_name());
+                txtLEAManager.setText(adapterAll.get(i).getGrant_admin());
+                txtHostName.setText(adapterAll.get(i).getHost_emp_name());
+                txtHostSDLNo.setText("-");
+                txtMentorName.setText(adapterAll.get(i).getMentor_name());
+                txtGStartDate.setText(adapterAll.get(i).getS_s_g_grant_start_date());
+                txtGEndDate.setText(adapterAll.get(i).getS_s_g_grant_end_date());
+                txtGrantAdminEmail.setText(adapterAll.get(i).getGrant_admin_email());
+                txtMentorEmail.setText("-");
+                txtMentor_cellNo.setText("-");
+                txtGrantAdmin_cellNo.setText(adapterAll.get(i).getGrant_admin_cell());
+                mentor_id = adapterAll.get(i).getMentor_id();
+                lea_id = adapterAll.get(i).getLem_id();
+                seta_user_id = adapterAll.get(i).getSeta_manager_id();
+                fId = adapterAll.get(i).getGrant_admin_id();
+
+
+                mLEAContactButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        activeUri = new Bundle();
+                        String mentor_id = grantSessionObj.getGrantMentorId();
+                        String mentor_name = grantSessionObj.getGrantMentorName();
+                        activeUri.putString("fId", mentor_id);
+                        activeUri.putString("fIsGroup", "0");
+                        activeUri.putString("fName", mentor_name);
+                        activeUri.putString("fImage", "");
+                        activeUri.putString("fId", fId);
+                        Intent intent = new Intent(SGrantDetailsA.this, SChatA.class);
+                        activeUri.putString("user_id", mentor_id);
+                        printLogs(LogTag, "mMentorContactButton", "Mentor USER ID " + mentor_id);
+                        intent.putExtras(activeUri);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+            }
+        }
+        showProgress(false, mContentView, mProgressView);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

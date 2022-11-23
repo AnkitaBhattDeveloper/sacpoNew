@@ -39,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.lang.reflect.Field;
@@ -106,13 +107,14 @@ public abstract class BaseAPC extends AppCompatActivity {
                 InternetDialog.removeInternetDialog();
             }
             else{
-                String sTitle = getString(R.string.dialog_no_internet);
+                Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
+               /* String sTitle = getString(R.string.dialog_no_internet);
                 String sMessage = getString(R.string.dialog_no_inter_message);
                 String sButtonLabel3g = getString(R.string.dialog_enable_internet);
                 String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
                 String buttonLabelTryAgain= getString(R.string.dialog_try_again);
                 InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
-            }
+           */ }
             while (InternetDialog.isNetDialogShowing) {
                 return;
             }

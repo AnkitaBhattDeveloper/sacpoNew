@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -42,6 +43,8 @@ import za.co.sacpo.grant.xCubeLib.ListarClientes;
 import za.co.sacpo.grant.xCubeLib.adapter.SpinnerAdapter;
 import za.co.sacpo.grant.xCubeLib.db.DbHelper;
 import za.co.sacpo.grant.xCubeLib.db.DbSchema;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
@@ -131,8 +134,68 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
             fetchBankname();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             showProgress(false,mContentView,mProgressView);
+        }else {
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            internetChangeBroadCast();
+            fetchVersionData();
+            verifyVersion();
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            fetchOfflineData();
+            //fetchBankname();
+            printLogs(LogTag,"bootStrapInit","exitConnected");
+            showProgress(false,mContentView,mProgressView);
         }
     }
+
+    private void fetchOfflineData() {
+
+        printLogs(LogTag, "fetchOfflineData", "init");
+        bankDetailsArrayAdapter adapter  =new bankDetailsArrayAdapter(getApplicationContext());
+        List<bankDetailsArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+
+            String id = adapterAll.get(i).getId();
+            String bank_name = adapterAll.get(i).getBank_name();
+            String initial_name = adapterAll.get(i).getInitial_name();
+            String account_no = adapterAll.get(i).getAccount_no();
+            String branch_code = adapterAll.get(i).getBranch_code();
+            String b_d_status = adapterAll.get(i).getB_d_status();
+            String b_d_surname = adapterAll.get(i).getB_d_surname();
+            String account_type = adapterAll.get(i).getAccount_type();
+            String u_b_id = adapterAll.get(i).getU_b_id();
+            String b_d_a_type = adapterAll.get(i).getB_d_a_type();
+            String b_d_u_branch_id = adapterAll.get(i).getB_d_u_branch_id();
+
+
+            et_initial_name.setText(initial_name);
+            et_surname.setText(b_d_surname);
+
+            et_account_number.setText(account_no);
+
+            selectedBank = u_b_id;
+            selectedBranch = b_d_u_branch_id;
+            selectedAccount = b_d_a_type;
+            spinner_account_type.setSelection(Integer.parseInt(selectedAccount));
+        }
+        showProgress(false, mContentView, mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+    }
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");

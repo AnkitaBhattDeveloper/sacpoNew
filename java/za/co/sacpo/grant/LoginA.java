@@ -138,6 +138,10 @@ public class LoginA extends BaseFormAPCPublic {
             initializeInputs();
             showProgress(false, mContentView, mProgressView);
             printLogs(LogTag, "onCreate", "exitConnected");
+        }else{
+            Intent intent = new Intent(LoginA.this, SDashboardDA.class);
+            startActivity(intent);
+            finish();
         }
     }
 

@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,6 +36,8 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseFormAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
@@ -90,8 +93,34 @@ public class SBankDA extends BaseFormAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            //   initDrawer();
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+           // initializeInputs();
+            printLogs(LogTag, "onCreate", "exitConnected");
         }
     }
+
+
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");
@@ -242,7 +271,18 @@ public class SBankDA extends BaseFormAPCPrivate {
                     outputJson = new JSONObject(String.valueOf(response));
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        bankDetailsArrayAdapter adapter = new bankDetailsArrayAdapter(getApplicationContext());
+                        adapter.truncate();
+
+
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
+                        adapter.insert(new bankDetailsArray(dataM.getString("id"),
+                                dataM.getString("bank_name"),dataM.getString("initial_name"),
+                                dataM.getString("account_no"),dataM.getString("branch_code"),
+                                dataM.getString("b_d_status"),dataM.getString("b_d_surname"),
+                                dataM.getString("account_type"),dataM.getString("u_b_id"),
+                                dataM.getString("b_d_a_type"),dataM.getString("b_d_u_branch_id")));
+
                         Account_type = dataM.getString("b_d_a_type");
                         Account_typeInt = Integer.parseInt(Account_type);
                         BranchCode = dataM.getString("b_d_u_branch_id");
@@ -259,6 +299,9 @@ public class SBankDA extends BaseFormAPCPrivate {
                         }
                        String Label = getLabelFromDb("lbl_S121_mEditBankDetailsButton", R.string.lbl_S121_mEditBankDetailsButton);
                         mEditBankDetailsButton.setText(Label);
+
+
+
                         showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentView, mProgressView);
@@ -304,6 +347,50 @@ public class SBankDA extends BaseFormAPCPrivate {
         queue.add(jsonObjectRequest);
 
     }
+
+    private void fetchOfflineData() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        bankDetailsArrayAdapter adapter  =new bankDetailsArrayAdapter(getApplicationContext());
+        List<bankDetailsArray> adapterAll = adapter.getAll();
+        String Label = getLabelFromDb("lbl_S121_mEditBankDetailsButton", R.string.lbl_S121_mEditBankDetailsButton);
+        mEditBankDetailsButton.setText(Label);
+        printLogs(LogTag, "adapterAll", ""+adapterAll);
+        for (int i = 0; i < adapterAll.size(); i++) {
+
+            String id = adapterAll.get(i).getId();
+            String bank_name = adapterAll.get(i).getBank_name();
+            String initial_name = adapterAll.get(i).getInitial_name();
+            String account_no = adapterAll.get(i).getAccount_no();
+            String branch_code = adapterAll.get(i).getBranch_code();
+            String b_d_status = adapterAll.get(i).getB_d_status();
+            String b_d_surname = adapterAll.get(i).getB_d_surname();
+            String account_type = adapterAll.get(i).getAccount_type();
+            String u_b_id = adapterAll.get(i).getU_b_id();
+            String b_d_a_type = adapterAll.get(i).getB_d_a_type();
+            String b_d_u_branch_id = adapterAll.get(i).getB_d_u_branch_id();
+
+            Account_type = b_d_a_type;
+            Account_typeInt = Integer.parseInt(Account_type);
+            BranchCode = b_d_u_branch_id;
+            BranchCodeInt = Integer.parseInt(BranchCode);
+            bank_id = id;
+            bank_idInt = Integer.parseInt(bank_id);
+            txtBankName.setText(bank_name);
+            txtInitialName.setText(initial_name);
+            txtSurname.setText(b_d_surname);
+            txtAccountType.setText(account_type);
+            txtAccNumb.setText(account_no);
+            txtBranchCode.setText(branch_code);
+
+        }
+        showProgress(false, mContentView, mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+
+    }
+
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(SBankDA.this, SDashboardDA.class);

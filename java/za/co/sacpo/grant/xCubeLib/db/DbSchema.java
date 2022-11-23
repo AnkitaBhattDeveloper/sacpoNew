@@ -69,6 +69,86 @@ public class DbSchema {
     public static final String DROP_TABLE_DASHBOARD_DATA= "DROP TABLE IF EXISTS "+TABLE_DASHBOARD_DATA;
     public static final String EMPTY_TABLE_DASHBOARD_DATA= "TRUNCATE TABLE IF EXISTS "+TABLE_DASHBOARD_DATA;
 
+/*table bank details*/
+public static final String TABLE_BANK_DETAILS="tbl_bank_details";
+    public static final String COLUMN_ID = "id", COLUMN_BANKNAME="bank_name",COLUMN_INITIAL_NAME="initial_name",
+            COLUMN_ACCOUNT_NO="account_no",COLUMN_BRANCHCODE="branch_code",COLUMN_B_D_STATUS="b_d_status",COLUMN_B_D_SURNAME = "b_d_surname",
+            COLUMN_ACCOUNT_TYPE="account_type",COLUMN_U_B_ID="u_b_id",COLUMN_B_D_A_TYPE="b_d_a_type",COLUMN_BRANCHID = "b_d_u_branch_id";
+
+    public static final String CREATE_TABLE_BANK_DETAILS="CREATE TABLE "+TABLE_BANK_DETAILS+"( "+COLUMN_ID+" INTEGER, "+
+            COLUMN_BANKNAME+" VARCHAR(50) , "+COLUMN_INITIAL_NAME+" VARCHAR(50) , "+COLUMN_ACCOUNT_NO+" VARCHAR(20), "+
+            COLUMN_BRANCHCODE+" VARCHAR(20), "+COLUMN_B_D_STATUS+" VARCHAR(20), "+COLUMN_B_D_SURNAME+" VARCHAR(20), "
+            +COLUMN_ACCOUNT_TYPE+" VARCHAR(50), "+COLUMN_U_B_ID+" VARCHAR(20), "+COLUMN_B_D_A_TYPE+" VARCHAR(50), "+
+            COLUMN_BRANCHID+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_BANK_DETAILS= "DROP TABLE IF EXISTS "+TABLE_BANK_DETAILS;
+    public static final String EMPTY_TABLE_BANK_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_BANK_DETAILS;
+
+    /*table grant details(ManageBy)*/
+    public static final String TABLE_GRANT_DETAILS="tbl_grant_details";
+    public static final String
+            COLUMN_UID = "u_id",
+            COLUMN_GRANTID="grant_id",
+            COLUMN_GRANT_SDATE="s_s_g_grant_start_date",
+            COLUMN_GRANT_EDATE="s_s_g_grant_end_date",
+            COLUMN_GRANT_NAME="grant_name",
+            COLUMN_MENTOR_NAME="mentor_name",
+            COLUMN_MENTORID = "mentor_id",
+            COLUMN_LEM_NAME="lem_name",
+            COLUMN_LEM_ID="lem_id",
+            COLUMN_HOST_EMP_NAME="host_emp_name",
+            COLUMN_SETA_ID = "seta_id",
+            COLUMN_SETA_NAME = "seta_name",
+            COLUMN_SETA_MANAGER_ID = "seta_manager_id",
+            COLUMN_SETAMANAGER_NAME = "seta_manager_name",
+            COLUMN_ADMIN_ID = "grant_admin_id",
+            COLUMN_GRANT_ADMIN_NAME = "grant_admin",
+            COLUMN_GRANTADMIN_EMAIL = "grant_admin_email",
+            COLUMN_GRANTADMIN_CELL = "grant_admin_cell",
+            COLUMN_SETAMANAGER_EMAIL = "seta_manager_email",
+            COLUMN_SETAMANAGER_CELL = "seta_manager_cell";
+
+    public static final String CREATE_TABLE_GRANT_DETAILS="CREATE TABLE "+TABLE_GRANT_DETAILS+"( "+COLUMN_UID+" INTEGER, "+
+            COLUMN_GRANTID+" VARCHAR(50) , "+COLUMN_GRANT_SDATE+" VARCHAR(50) , "+COLUMN_GRANT_EDATE+" VARCHAR(20), "+
+            COLUMN_GRANT_NAME+" VARCHAR(20), "+COLUMN_MENTOR_NAME+" VARCHAR(20), "+COLUMN_MENTORID+" VARCHAR(20), "+COLUMN_LEM_NAME+" VARCHAR(20), "
+            +COLUMN_LEM_ID+" VARCHAR(50), "+COLUMN_HOST_EMP_NAME+" VARCHAR(20), "+COLUMN_SETA_ID+" VARCHAR(50), "+
+            COLUMN_SETA_NAME+" VARCHAR(50), "+COLUMN_SETA_MANAGER_ID+" VARCHAR(50), "+COLUMN_SETAMANAGER_NAME+" VARCHAR(50), "+
+            COLUMN_ADMIN_ID+" VARCHAR(50), "+COLUMN_GRANT_ADMIN_NAME+" VARCHAR(50), "+COLUMN_GRANTADMIN_EMAIL+" VARCHAR(50), "+
+            COLUMN_GRANTADMIN_CELL+" VARCHAR(50), "+COLUMN_SETAMANAGER_EMAIL+" VARCHAR(50), "+
+            COLUMN_SETAMANAGER_CELL+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_GRANT_DETAILS= "DROP TABLE IF EXISTS "+TABLE_GRANT_DETAILS;
+    public static final String EMPTY_TABLE_GRANT_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_GRANT_DETAILS;
+
+    /*table Supervisor details*/
+    public static final String TABLE_SUPERVISOR_DETAILS="tbl_supervisor_details";
+    public static final String
+            COLUMN_M_ID             ="id",
+            COLUMN_M_NAME           ="name",
+            COLUMN_M_EMAIL          ="email",
+            COLUMN_M_MOBILE         ="mobile",
+            COLUMN_M_U_DEPARTMENT   ="u_department",
+            COLUMN_M_U_DESIGNATION  ="u_designation",
+            COLUMN_OFC_NO           ="ofc_no",
+            COLUMN_EMPLOYER_NAME    ="employer",
+            COLUMN_EMPLOYER_SDL     ="employer_sdl";
+
+    public static final String CREATE_TABLE_SUPERVISOR_DETAILS="CREATE TABLE "+TABLE_SUPERVISOR_DETAILS+"( "+COLUMN_M_ID+" INTEGER, "+
+            COLUMN_M_NAME+" VARCHAR(50) , "+COLUMN_M_EMAIL+" VARCHAR(50) , "+COLUMN_M_MOBILE+" VARCHAR(20), "+
+            COLUMN_M_U_DEPARTMENT+" VARCHAR(20), "+COLUMN_M_U_DESIGNATION+" VARCHAR(20), "+COLUMN_OFC_NO+" VARCHAR(20), "
+            +COLUMN_EMPLOYER_NAME+" VARCHAR(50), "+ COLUMN_EMPLOYER_SDL+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_SUPERVISOR_DETAILS= "DROP TABLE IF EXISTS "+TABLE_SUPERVISOR_DETAILS;
+    public static final String EMPTY_TABLE_SUPERVISOR_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_SUPERVISOR_DETAILS;
+
+
 
 
 }
+
+
+
+

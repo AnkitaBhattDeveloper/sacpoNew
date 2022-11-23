@@ -31,6 +31,9 @@ import android.util.Log;
             db.execSQL(DbSchema.CREATE_TABLE_HELP_ARRAYS);
             db.execSQL(DbSchema.CREATE_TABLE_STUDENTS);
             db.execSQL(DbSchema.CREATE_TABLE_WORKX);
+            db.execSQL(DbSchema.CREATE_TABLE_DASHBOARD_DATA);
+            db.execSQL(DbSchema.CREATE_TABLE_BANK_DETAILS);
+            db.execSQL(DbSchema.CREATE_TABLE_GRANT_DETAILS);
             //db.close();
         }
 
@@ -41,6 +44,9 @@ import android.util.Log;
             db.execSQL(DbSchema.DROP_TABLE_HELP_ARRAYS);
             db.execSQL(DbSchema.DROP_TABLE_STUDENTS);
             db.execSQL(DbSchema.DROP_TABLE_WORKX);
+            db.execSQL(DbSchema.DROP_TABLE_DASHBOARD_DATA);
+            db.execSQL(DbSchema.DROP_TABLE_BANK_DETAILS);
+            db.execSQL(DbSchema.DROP_TABLE_GRANT_DETAILS);
             onCreate(db);
         }
         public void truncateTable(String TABLE_NAME){
@@ -66,6 +72,23 @@ import android.util.Log;
                     db.execSQL(DbSchema.DROP_TABLE_WORKX);
                     db.execSQL(DbSchema.CREATE_TABLE_WORKX);
                     break;
+                case DbSchema.TABLE_DASHBOARD_DATA:
+                    db.execSQL(DbSchema.DROP_TABLE_DASHBOARD_DATA);
+                    db.execSQL(DbSchema.CREATE_TABLE_DASHBOARD_DATA);
+                    break;
+                case DbSchema.TABLE_BANK_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_BANK_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_BANK_DETAILS);
+                    break;
+                    case DbSchema.TABLE_GRANT_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_GRANT_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_GRANT_DETAILS);
+                    break;
+                case DbSchema.TABLE_SUPERVISOR_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_SUPERVISOR_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_SUPERVISOR_DETAILS);
+                    break;
+
             }
         }
         public Cursor getAllData(String TABLE_NAME) {

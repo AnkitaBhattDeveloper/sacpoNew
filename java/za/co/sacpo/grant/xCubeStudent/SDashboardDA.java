@@ -16,6 +16,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,6 +46,8 @@ import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.StudentBaseDrawerA;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
+import za.co.sacpo.grant.xCubeLib.db.DashboardDataArray;
+import za.co.sacpo.grant.xCubeLib.db.DashboardDataArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
@@ -84,6 +87,8 @@ public class SDashboardDA extends StudentBaseDrawerA {
     NestedScrollView c_dashboard;
     String[] permissionsStorage = {Manifest.permission.READ_EXTERNAL_STORAGE};
     int requestExternalStorage = 1;
+    TextView tv_net;
+    ImageView iv_net;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
@@ -136,10 +141,42 @@ public class SDashboardDA extends StudentBaseDrawerA {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
+            tv_net.setText("Online");
+            iv_net.setImageResource(R.drawable.interview_accept_btn);
             initializeInputs();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
+        }else{
+            validateLogin(baseApcContext, activityIn);
+            setLayoutXml();
+            setAppLogo();
+            callFooter(baseApcContext, activityIn, ActivityId);
+            initMenusCustom(ActivityId, baseApcContext, activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            callDataApi();
+            initDrawer();
+            initializeViews();
+            showProgress(true, mContentView, mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            tv_net.setText("Offline");
+            iv_net.setImageResource(R.drawable.interview_reject_btn);
+            //initializeInputs();
+            studentSessionObj = new OlumsStudentSession(baseApcContext);
+            fetchOfflineData();
+            showProgress(false, mContentView, mProgressView);
+            printLogs(LogTag, "bootStrapInit", "exitConnected");
+            Toast.makeText(this, "not connected....", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     @Override
     protected void internetChangeBroadCast() {
@@ -235,6 +272,8 @@ public class SDashboardDA extends StudentBaseDrawerA {
         lbl_head_process_6_1=findViewById(R.id.lbl_head_process_6_1);
         tv_training_prog=findViewById(R.id.tv_training_prog);
         lbl_head_process_7_1=findViewById(R.id.lbl_head_process_7_1);
+        tv_net=findViewById(R.id.tv_net);
+        iv_net=findViewById(R.id.iv_net);
         printLogs(LogTag, "initializeViews", "exit");
 
     }
@@ -544,8 +583,12 @@ public class SDashboardDA extends StudentBaseDrawerA {
                 JSONObject jsonObject= new JSONObject(String.valueOf(response));
                 printLogs(LogTag, "fetchData", "response : " + response);
                 String Status = jsonObject.getString(KEY_STATUS);
+
                 if (Status.equals("1")) {
+                    DashboardDataArrayAdapter adapter = new DashboardDataArrayAdapter(getApplicationContext());
+                    adapter.truncate();
                     JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
+
                     for (int i = 0; i < dataM.length(); i++) {
                         JSONObject rec = dataM.getJSONObject(i);
                         String lName = rec.getString("learner_name");
@@ -567,6 +610,18 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         String is_workstation_set = rec.getString("workstation_btn");
                         String is_training_program_set = rec.getString("training_program_status");
                         String trainingProgram = rec.getString("training_program");
+
+
+                        DashboardDataArray dataArray = new DashboardDataArray(rec.getString("s_s_g_student_id"),
+                                rec.getString("grant_id"),lName,lStatus,lStartDate,lEndDate,bankName,
+                                bankName,setaName,managedBy,employerName,supervisorName,
+                                rec.getString("attStatus"),rec.getString("s_s_g_is_edit_attendance"),attendance_status,
+                                rec.getString("show_attendance_color"),attendance_btn_lbl,rec.getString("view_attendance_link"),
+                                rec.getString("pastmonthCount"),claim_status,rec.getString("claim_color"),
+                                past_claim_btn,is_workstation_set,workstation,reportCompleted,reportDue,trainingProgram,
+                                is_training_program_set);
+
+                        adapter.insert(dataArray);
                         if(bankName.equals("") || bankName.equals("null")){
                             String Label = getLabelFromDb("b_S103_add_bank", R.string.b_S103_add_bank);
                             btn_view_bank_details.setText(Label);
@@ -697,6 +752,110 @@ public class SDashboardDA extends StudentBaseDrawerA {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void fetchOfflineData() {
+
+        DashboardDataArrayAdapter adapter = new DashboardDataArrayAdapter(getApplicationContext());
+        DashboardDataArray dataArray = adapter.getById(userSessionObj.getUserId());
+        String bankName = dataArray.bankName;
+         String past_claim_btn = dataArray.past_claim_btn;
+         String claim_status = dataArray.current_claim_status;
+         String reportDue = dataArray.reportOverDue_count;
+         String attendance_status = dataArray.show_attendance_link;
+         String is_workstation_set = dataArray.workstation_btn;
+        String workstation = dataArray.deptName;
+         String is_training_program_set = dataArray.training_program_status;
+         String trainingProgram = dataArray.training_program;
+
+        if(bankName.equals("") || bankName.equals("null")){
+            String Label = getLabelFromDb("b_S103_add_bank", R.string.b_S103_add_bank);
+            btn_view_bank_details.setText(Label);
+        }
+
+
+        i_l_name.setText(dataArray.getLearner_name());
+        i_l_status.setText(dataArray.getLearner_status());
+        i_s_date.setText(dataArray.getStartDate());
+        i_e_date.setText(dataArray.getEnd_Date());
+        i_bank_details.setText(dataArray.getBankName());
+        i_seta_name.setText(dataArray.getSeta_ame());
+        i_managed_by.setText(dataArray.getManagedBy());
+        i_employer.setText(dataArray.getEmployer_name());
+        i_supervisor.setText(dataArray.getSupervisor_name());
+        tv_btn_view_reports.setText(dataArray.completed_report_count);
+        tv_btn_view_workstation.setText(workstation);
+        btn_sign_in_out.setText(dataArray.atendance_status);
+        btn_edit_attendance.setText(dataArray.atendance_status);
+        tv_sign_done.setText(dataArray.atendance_status);
+        if(Integer.parseInt(attendance_status)==1) {
+            btn_sign_in_out.setVisibility(View.VISIBLE);
+            btn_edit_attendance.setVisibility(GONE);
+            tv_sign_done.setVisibility(GONE);
+        }
+        else if(Integer.parseInt(attendance_status)==2) {
+            btn_sign_in_out.setVisibility(View.VISIBLE);
+            btn_edit_attendance.setVisibility(GONE);
+            tv_sign_done.setVisibility(GONE);
+        }
+        else if(Integer.parseInt(attendance_status)==4) {
+            btn_sign_in_out.setVisibility(GONE);
+            btn_edit_attendance.setVisibility(View.VISIBLE);
+            tv_sign_done.setVisibility(GONE);
+        }
+        else{
+            btn_sign_in_out.setVisibility(GONE);
+            btn_edit_attendance.setVisibility(GONE);
+            tv_sign_done.setVisibility(View.VISIBLE);
+        }
+        btn_submit_claim.setText(claim_status);
+        if(Integer.parseInt(past_claim_btn)==1){
+            btn_submit_claim.setBackgroundResource(getDrwabaleResourceId("themed_button_action"));
+            is_claim_submitted = 1;
+        }
+        else{
+            btn_submit_claim.setBackgroundResource(R.drawable.themed_small_button_action_r);
+            is_claim_submitted = 0;
+        }
+        if(Integer.parseInt(reportDue)>0){
+            is_report_due = 1;
+            btn_reports_due.setText(reportDue);
+            tv_reports_done.setVisibility(GONE);
+            btn_reports_due.setVisibility(View.VISIBLE);
+        }
+        else{
+            is_report_due = 0;
+            tv_reports_done.setVisibility(View.VISIBLE);
+            btn_reports_due.setVisibility(GONE);
+            btn_reports_due.setText(" - ");
+        }
+        printLogs(LogTag, "fetchData", "RESPONSE : " + is_workstation_set+"===="+Integer.parseInt(is_workstation_set));
+        if(Integer.parseInt(is_workstation_set)==1){
+            is_workstation_assigned = 1;
+            tv_btn_view_workstation.setBackgroundResource(R.drawable.theme_view_underline_small_p1);
+        }
+        else{
+            c_tv_btn_view_workstation.setBackground(getDrawable(R.drawable.themed_small_button_action_r));
+            c_tv_btn_view_workstation.setPadding(0,15,0,15);
+            tv_btn_view_workstation.setTextColor(Color.WHITE);
+        }
+        tv_training_prog.setText("PENDING");
+        if(Integer.parseInt(is_training_program_set)==1){
+            is_training_program_assigned = 1;
+            training_program_url = trainingProgram;
+            tv_training_prog.setText("VIEW AND DOWNLOADS");
+            tv_training_prog.setBackgroundResource(R.drawable.theme_view_underline_small_p1);
+        }
+        else{
+            c_data_process_6.setBackground(getDrawable(R.drawable.themed_small_button_action_r));
+            tv_training_prog.setTextColor(Color.WHITE);
+        }
+        initializeDynamicListeners();
+
+
+    }
+
+
     @Override
     public void onBackPressed() {
         printLogs(LogTag, "onBackPressed", "SDashboardA");
