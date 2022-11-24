@@ -52,7 +52,7 @@
                 android:padding="15dp"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="13sp" />
+                android:textSize="5sp" />
 
             <VideoView
                 android:layout_width="400dp"

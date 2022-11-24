@@ -135,7 +135,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
-        }else{
+        }/*else{
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
             initMenusCustom(ActivityId,baseApcContext,activityIn);
@@ -154,7 +154,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
             fetchOfflineData();
            // initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
-        }
+        }*/
     }
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");

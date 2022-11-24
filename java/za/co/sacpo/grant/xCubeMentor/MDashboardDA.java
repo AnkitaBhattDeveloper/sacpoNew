@@ -153,7 +153,7 @@ public class MDashboardDA extends MentorBaseDrawerA{
         lblView.setText(Label);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
-            c_m_dashboard.setBackground(getDrawable(getDrwabaleResourceId("all_back")));
+            c_m_dashboard.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_back")));
         }
 
     }

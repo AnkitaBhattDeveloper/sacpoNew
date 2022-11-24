@@ -791,7 +791,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
                         showProgress(false,mContentView,mProgressView);
                         String sTitle=getLabelFromDb("m_110_title",R.string.m_110_title);
                         String sMessage1=getLabelFromDb("m_110_message_1",R.string.m_110_message_1);
-                        String sMessage2=getLabelFromDb("m_110_message_2",R.string.m_110_message_2);
+                        String sMessage2=getLabelFromDb("m_110_message_2_"+URLHelper.PORTAL_ID,getStringResourceId("m_110_message_2_")+URLHelper.PORTAL_ID);
                         String sMessage =sMessage1+"   ["+REF+"]   "+sMessage2;
                         String sButtonLabelClose="Close";
                         ErrorDialog.showSuccessDialogSContactSupportPrivateA(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose,thisClass);
@@ -879,7 +879,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
                         showProgress(false,mContentView,mProgressView);
                         String sTitle=getLabelFromDb("m_703_title",R.string.m_703_title);
                         String sMessage1=getLabelFromDb("m_703_message_1",R.string.m_703_message_1);
-                        String sMessage2=getLabelFromDb("m_703_message_2",R.string.m_703_message_2);
+                        String sMessage2=getLabelFromDb("m_703_message_2_"+URLHelper.PORTAL_ID,getStringResourceId("m_703_message_2_")+URLHelper.PORTAL_ID);
                         String sMessage =sMessage1+"   ["+REF+"]   "+sMessage2;
                         String sButtonLabelClose="Close";
                         ErrorDialog.showSuccessSContactSupport(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose,thisClass);

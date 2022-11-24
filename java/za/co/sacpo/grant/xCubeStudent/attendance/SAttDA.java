@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SAttObj;
+import za.co.sacpo.grant.xCubeLib.db.attDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.attDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.attListArray;
+import za.co.sacpo.grant.xCubeLib.db.attListDetailsAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
@@ -110,8 +115,31 @@ public class SAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData(selectedYear,selectedMonth);
             showProgress(false,mContentView,mProgressView);
-        }
+        }/*else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData(selectedYear,selectedMonth);
+            showProgress(false,mContentView,mProgressView);
+        }*/
     }
+
+
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");
@@ -251,6 +279,9 @@ public class SAttDA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "RESPONSE : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        attListDetailsAdapter adapter  =new attListDetailsAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<attListArray> attArrayList = new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -266,10 +297,18 @@ public class SAttDA extends BaseAPCPrivate {
                             String aStatusShort10 = rec.getString("attendance_status");
                             String aViewComments11 = rec.getString("distance_from_workstation");//to view Comments _
                             String aMonth_year12 = rec.getString("date");//For _Month And Date
+
+
+
+                            attArrayList.add(new attListArray(String.valueOf(aId2),aLiDate3,aDay9,aLiTime4,aLoTime6,aTimeSpent7,
+                                    aStatus8,aViewComments11));
+
                             LLAttendanceContainer.setVisibility(View.VISIBLE);
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,aLiDate3,aLiTime4,aLoDate5,aLoTime6,aTimeSpent7,aStatus8,aDay9,aStatusShort10,aViewComments11,aMonth_year12));
-                            showList();
+
                         }
+                        adapter.insert(attArrayList);
+                        showList();
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -321,7 +360,36 @@ public class SAttDA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData(int selectedYear, int selectedMonth) {
 
+        printLogs(LogTag, "fetchOfflineData", "init");
+        attListDetailsAdapter adapter  =new attListDetailsAdapter(getApplicationContext());
+        List<attListArray> adapterAll = adapter.getAll();
+        printLogs(LogTag, "fetchOfflineData", "init"+adapterAll);
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getS_a_id());
+            String aLiDate3 = adapterAll.get(i).getDate();
+            String aLiTime4 = adapterAll.get(i).getSign_in_time();
+            String aLoDate5 = date_input;
+            String aLoTime6 = adapterAll.get(i).getSign_out_time();
+            String aTimeSpent7 =adapterAll.get(i).getHours_worked();
+            String aStatus8 = adapterAll.get(i).getAttendance_status();
+            String aDay9 = adapterAll.get(i).getDay();
+            String aStatusShort10 = adapterAll.get(i).getAttendance_status();
+            String aViewComments11 = adapterAll.get(i).getDistance_from_workstation();//to view Comments _
+            String aMonth_year12 = adapterAll.get(i).getDay();//For _Month And Date
+
+            LLAttendanceContainer.setVisibility(View.VISIBLE);
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,aLiDate3,aLiTime4,aLoDate5,aLoTime6,aTimeSpent7,aStatus8,aDay9,aStatusShort10,aViewComments11,aMonth_year12));
+
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
 
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");

@@ -82,7 +82,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected Bundle inBundle;
     protected Bundle outBundle;
     protected OlumsUserSession userSessionObj;
-    protected Boolean isLive = false;//Logs Show If False
+    protected Boolean isLive = true;//Logs Show If False
     protected int[] ITEM_DRAWABLES = { R.mipmap.ic_launcher_video_cam,R.mipmap.ic_launcher_help_cam};
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);
     protected abstract void initializeViews();
@@ -107,14 +107,14 @@ public abstract class BaseAPC extends AppCompatActivity {
                 InternetDialog.removeInternetDialog();
             }
             else{
-                Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
-               /* String sTitle = getString(R.string.dialog_no_internet);
+            //    Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
+                String sTitle = getString(R.string.dialog_no_internet);
                 String sMessage = getString(R.string.dialog_no_inter_message);
                 String sButtonLabel3g = getString(R.string.dialog_enable_internet);
                 String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
                 String buttonLabelTryAgain= getString(R.string.dialog_try_again);
                 InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
-           */ }
+            }
             while (InternetDialog.isNetDialogShowing) {
                 return;
             }
@@ -553,7 +553,7 @@ public abstract class BaseAPC extends AppCompatActivity {
 
     public void showInfo(View V,String ActivityId){
         mPopupWindow.setContentView(getLayoutInflater().inflate(R.layout.popup_window, null, false));
-        String infoString = "<![CDATA[<html><body style='font-size:13px;width:100%;'><table width='100%'>";
+        String infoString = "<![CDATA[<html><table width='100%'>";
         infoString += "<tr><td>VERSION</td><td>"+versionName+"</td></tr>";
         infoString += "<tr><td>OS VERSION</td><td>"+System.getProperty("os.version")+"</td></tr>";
         infoString += "<tr><td>OS SUB VERSION</td><td>"+android.os.Build.VERSION.INCREMENTAL +"</td></tr>";
@@ -590,7 +590,7 @@ public abstract class BaseAPC extends AppCompatActivity {
         wv_information = mPopupWindow.getContentView().findViewById(R.id.wv_information);
         final WebSettings webSettingsF = wv_information.getSettings();
         Resources res = getResources();
-        float fontSize = res.getDimension(R.dimen.tinyTextSize);
+        float fontSize = res.getDimension(R.dimen.tiniestTextSize);
         webSettingsF.setDefaultFontSize((int)fontSize);
         wv_information.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         wv_information.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);

@@ -110,6 +110,28 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
             initializeInputs();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            printLogs(LogTag,"bootStrapInit","exitConnected");
+            showProgress(false,mContentView,mProgressView);
         }
     }
     @Override

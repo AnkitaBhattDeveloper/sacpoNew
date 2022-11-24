@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SCurrentAttObj;
+import za.co.sacpo.grant.xCubeLib.db.attListArray;
+import za.co.sacpo.grant.xCubeLib.db.attListDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.populateAttListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.populateAttListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
@@ -93,7 +98,27 @@ public class SCurrentAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
-        }
+        }/*else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
+            showProgress(false,mContentView,mProgressView);
+        }*/
     }
     @Override
     protected void internetChangeBroadCast(){
@@ -227,6 +252,9 @@ public class SCurrentAttDA extends BaseAPCPrivate {
                 printLogs(LogTag, "fetchData", "response : " + response);
                 String Status = jsonObject.getString(KEY_STATUS);
                 if (Status.equals("1")) {
+                    populateAttListAdapter adapter = new populateAttListAdapter(getApplicationContext());
+                    adapter.truncate();
+                    ArrayList<populateAttListArray> attArrayList = new ArrayList<>();
                     JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                     for (int i = 0; i < dataM.length(); i++) {
                         int pos = i + 1;
@@ -244,9 +272,17 @@ public class SCurrentAttDA extends BaseAPCPrivate {
                         String aSignOutColor12 = rec.getString("logout_color");
                         String aCommentVal13 = rec.getString("s_a_learner_comment");
                         rDataObj.addItem(rDataObj.createItem(pos, aId2, aDate3, aDay4, aSignIn5, aSignOut6, aHoursWorked7, aAttendanceStatus8, aDistanceFromWorkstation9, aCommentLink10, aSignInColor11, aSignOutColor12, aCommentVal13));
-                        SCurrentAttDA.this.showList();
+
+                        attArrayList.add(new populateAttListArray(String.valueOf(aId2),rec.getString("sudent_id"),
+                                aDate3,aDay4,aSignInColor11,aSignOutColor12,aSignIn5,aSignOut6,
+                                aHoursWorked7,aAttendanceStatus8,aDistanceFromWorkstation9,aCommentLink10,aCommentVal13));
+
+
+
                     }
-                    SCurrentAttDA.this.showProgress(false, mContentRView, mProgressRView);
+                    adapter.insert(attArrayList);
+                    showList();
+                    showProgress(false, mContentRView, mProgressRView);
                 } else if (Status.equals("2")) {
                     SCurrentAttDA.this.showProgress(false, mContentRView, mProgressRView);
                 } else {
@@ -287,7 +323,39 @@ public class SCurrentAttDA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData() {
 
+        printLogs(LogTag, "fetchOfflineData", "init");
+        populateAttListAdapter adapter  =new populateAttListAdapter(getApplicationContext());
+        List<populateAttListArray> adapterAll = adapter.getAll();
+        printLogs(LogTag, "fetchOfflineData", "init"+adapterAll);
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i + 1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getS_a_id());
+            String aDate3 = adapterAll.get(i).getDate();
+            String aDay4 = adapterAll.get(i).getDay();
+            String aSignIn5 = adapterAll.get(i).getLogin_time();
+            String aSignOut6 = adapterAll.get(i).getLogout_time();
+            String aHoursWorked7 = adapterAll.get(i).getHours_worked();
+            String aAttendanceStatus8 = adapterAll.get(i).getAttendance_status();
+            String aDistanceFromWorkstation9 = adapterAll.get(i).getDistance_from_workstation();
+            String aCommentLink10 = adapterAll.get(i).getView_comment_link();
+            String aSignInColor11 = adapterAll.get(i).getLogin_color();
+            String aSignOutColor12 = adapterAll.get(i).getLogout_color();
+            String aCommentVal13 = adapterAll.get(i).getS_a_learner_comment();
+
+
+            rDataObj.addItem(rDataObj.createItem(pos, aId2, aDate3, aDay4, aSignIn5, aSignOut6, aHoursWorked7, aAttendanceStatus8, aDistanceFromWorkstation9, aCommentLink10, aSignInColor11, aSignOutColor12, aCommentVal13));
+
+
+
+        }
+        showList();
+        showProgress(false, mContentRView, mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
 
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");

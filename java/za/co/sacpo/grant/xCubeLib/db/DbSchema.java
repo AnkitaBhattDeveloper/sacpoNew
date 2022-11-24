@@ -41,7 +41,7 @@ public class DbSchema {
     public static final String EMPTY_TABLE_HELP_ARRAYS= "TRUNCATE TABLE IF EXISTS "+TABLE_HELP_ARRAYS;
 
 
-/*table dashboard*/
+    /*table dashboard*/
     public static final String TABLE_DASHBOARD_DATA="tbl_dashboard_data";
     public static final String COLUMN_STUDENT_ID = "s_s_g_student_id", COLUMN_GRANT_ID="grant_id",COLUMN_LEARNER_NAME="learner_name",
             COLUMN_LEARNER_STATUS="learner_status",COLUMN_START_DATE="startDate",COLUMN_END_DATE="end_Date",COLUMN_BANK_NAME = "bankName",
@@ -69,8 +69,8 @@ public class DbSchema {
     public static final String DROP_TABLE_DASHBOARD_DATA= "DROP TABLE IF EXISTS "+TABLE_DASHBOARD_DATA;
     public static final String EMPTY_TABLE_DASHBOARD_DATA= "TRUNCATE TABLE IF EXISTS "+TABLE_DASHBOARD_DATA;
 
-/*table bank details*/
-public static final String TABLE_BANK_DETAILS="tbl_bank_details";
+    /*table bank details*/
+    public static final String TABLE_BANK_DETAILS="tbl_bank_details";
     public static final String COLUMN_ID = "id", COLUMN_BANKNAME="bank_name",COLUMN_INITIAL_NAME="initial_name",
             COLUMN_ACCOUNT_NO="account_no",COLUMN_BRANCHCODE="branch_code",COLUMN_B_D_STATUS="b_d_status",COLUMN_B_D_SURNAME = "b_d_surname",
             COLUMN_ACCOUNT_TYPE="account_type",COLUMN_U_B_ID="u_b_id",COLUMN_B_D_A_TYPE="b_d_a_type",COLUMN_BRANCHID = "b_d_u_branch_id";
@@ -143,6 +143,132 @@ public static final String TABLE_BANK_DETAILS="tbl_bank_details";
 
     public static final String DROP_TABLE_SUPERVISOR_DETAILS= "DROP TABLE IF EXISTS "+TABLE_SUPERVISOR_DETAILS;
     public static final String EMPTY_TABLE_SUPERVISOR_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_SUPERVISOR_DETAILS;
+
+    /*table Att Stats details*/
+    public static final String TABLE_ATTSTATS_DETAILS="tbl_attstats_details";
+    public static final String
+            /*COLUMN_GRANT_ID             ="grant_id"*/
+            COLUMN_ST_ID                ="student_id",
+            COLUMN_MONTH                ="month",
+            COLUMN_YEAR                 ="year",
+            COLUMN_DATE                 ="date",
+            COLUMN_ATT_DAYS             ="attendance_days",
+            COLUMN_ANUAL_LEAVE          ="annual_leave",
+            COLUMN_SICK_LEAVE           ="sick_leave",
+            COLUMN_O_PAID_LEAVE         ="other_paid_leave",
+            COLUMN_UNPAID_LEAVE         ="unpaid_leave",
+            COLUMN_SUPERVISOR_COMMENT   ="supervisor_comment",
+            COLUMN_DWNLD_ATTENDANCE     ="download_attendance",
+            COLUMN_DWNLD_ATT_LINK       ="download_attendance_link",
+            COLUMN_SUPERVISOR_APPROVAL  ="supervisor_approval",
+            COLUMN_SUPERVISOR_COMMENT_LINK ="supervisor_comment_link";
+
+    public static final String CREATE_TABLE_ATTSTATS_DETAILS="CREATE TABLE "+TABLE_ATTSTATS_DETAILS+"( "+COLUMN_GRANT_ID+" INTEGER, "+
+            COLUMN_ST_ID+" VARCHAR(50) , "+COLUMN_MONTH+" VARCHAR(50) , "+COLUMN_YEAR+" VARCHAR(20), "+
+            COLUMN_DATE+" VARCHAR(20), "+COLUMN_ATT_DAYS+" VARCHAR(20), "+COLUMN_ANUAL_LEAVE+" VARCHAR(20), "
+            +COLUMN_SICK_LEAVE+" VARCHAR(50), "+COLUMN_O_PAID_LEAVE+" VARCHAR(50), "+
+            COLUMN_UNPAID_LEAVE+" VARCHAR(50), "+COLUMN_SUPERVISOR_COMMENT+" VARCHAR(50), "+
+            COLUMN_DWNLD_ATTENDANCE+" VARCHAR(50), "+COLUMN_DWNLD_ATT_LINK+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_APPROVAL+" VARCHAR(50), "+COLUMN_SUPERVISOR_COMMENT_LINK+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_ATTSTATS_DETAILS= "DROP TABLE IF EXISTS "+TABLE_ATTSTATS_DETAILS;
+    public static final String EMPTY_TABLE_ATTSTATS_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_ATTSTATS_DETAILS;
+
+    /*table attendance list details*/
+    public static final String TABLE_ATTLIST_DETAILS="tbl_attlist_details";
+    public static final String
+
+            COLUMN_S_A_ID               ="s_a_id",
+    /*COLUMN_DATE                ="date",*/
+    COLUMN_DAY                  ="day",
+            COLUMN_SIGNIN_TIME          ="sign_in_time",
+            COLUMN_SIGNOUT_TIME         ="sign_out_time",
+            COLUMN_HRS_WORKED           ="hours_worked",
+            COLUMN_ATTE_STATUS          ="attendance_status",
+            COLUMN_DISTANCE_WORKSTATION ="distance_from_workstation";
+
+
+    public static final String CREATE_TABLE_ATTLIST_DETAILS="CREATE TABLE "+TABLE_ATTLIST_DETAILS+"( "+COLUMN_S_A_ID+" INTEGER, "+
+            COLUMN_DATE+" VARCHAR(50) , "+COLUMN_DAY+" VARCHAR(50) , "+COLUMN_SIGNIN_TIME+" VARCHAR(50), "+
+            COLUMN_SIGNOUT_TIME+" VARCHAR(50), "+COLUMN_HRS_WORKED+" VARCHAR(50), "+
+            COLUMN_ATTE_STATUS+" VARCHAR(50), "+COLUMN_DISTANCE_WORKSTATION+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_ATTLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_ATTLIST_DETAILS;
+    public static final String EMPTY_TABLE_ATTLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_ATTLIST_DETAILS;
+
+    /*table populate attendance list details*/
+    public static final String TABLE_POPULATE_ATTLIST_DETAILS="tbl_populate_attlist_details";
+    public static final String
+
+            // COLUMN_S_A_ID                 ="s_a_id",
+            COLUMN_SUDENT_ID                ="sudent_id",
+    //COLUMN_DATE                   ="date",
+    //COLUMN_DAY                    ="day",
+    COLUMN_LOGIN_COLOR              ="login_color",
+            COLUMN_LOGOUT_COLOR             ="logout_color",
+            COLUMN_LOGIN_TIME               ="login_time",
+            COLUMN_LOGOUT_TIME              ="logout_time",
+    // COLUMN_HRS_WORKED             ="hours_worked",
+    //COLUMN_ATTE_STATUS            ="attendance_status",
+    // COLUMN_DISTANCE_WORKSTATION   ="distance_from_workstation",
+    COLUMN_VIEW_COMMENT_LINK        ="view_comment_link",
+            COLUMN_S_LEARNER_COMMENT        ="s_a_learner_comment";
+
+
+    public static final String CREATE_TABLE_POPULATE_ATTLIST_DETAILS="CREATE TABLE "+TABLE_POPULATE_ATTLIST_DETAILS+"( "+COLUMN_S_A_ID+" INTEGER, "+
+            COLUMN_SUDENT_ID+" VARCHAR(50) , "+COLUMN_DATE+" VARCHAR(50) , "+COLUMN_DAY+" VARCHAR(50) , "
+            +COLUMN_LOGIN_COLOR+" VARCHAR(50), "+COLUMN_LOGOUT_COLOR+" VARCHAR(50), "+
+            COLUMN_LOGIN_TIME+" VARCHAR(50), "+COLUMN_LOGOUT_TIME+" VARCHAR(50), "+
+            COLUMN_HRS_WORKED+" VARCHAR(50), "+COLUMN_ATTE_STATUS+" VARCHAR(50), "+
+            COLUMN_DISTANCE_WORKSTATION+" VARCHAR(50), "+COLUMN_VIEW_COMMENT_LINK+" VARCHAR(50), "+
+            COLUMN_S_LEARNER_COMMENT+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_POPULATE_ATTLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_POPULATE_ATTLIST_DETAILS;
+    public static final String EMPTY_TABLE_POPULATE_ATTLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_POPULATE_ATTLIST_DETAILS;
+
+    /*table Existing leave list details*/
+    public static final String TABLE_EXISTING_LEAVELIST_DETAILS="tbl_existing_leavelist_details";
+    public static final String
+
+         // COLUMN_S_A_ID                   ="s_a_id",
+            COLUMN_ATT_ID                   ="att_ids",
+        //  COLUMN_MONTH                    ="month",
+            COLUMN_FROM_DATE                ="from_date",
+            COLUMN_TO_DATE                  ="to_date",
+            COLUMN_ANNUAL_LEAVE             ="annual_leave",
+        //  COLUMN_SICK_LEAVE               ="sick_leave",
+        //  COLUMN_O_PAID_LEAVE             ="other_paid_leave",
+         // COLUMN_UNPAID_LEAVE             ="unpaid_leave",
+            COLUMN_MOTIVATION               ="motivation",
+            COLUMN_SA_REASON                ="sa_reason",
+            COLUMN_S_APPROVAL_STATUS        ="supervisor_approval_status",
+            COLUMN_MOTIVATION_BTN           ="motivation_btn",
+            COLUMN_REASON_BTN               ="reason_btn",
+            COLUMN_UPLOADS                  ="uploads",
+            COLUMN_IS_UPLOAD                ="is_upload",
+            COLUMN_SHOW_EDIT_LINK           ="show_edit_link",
+            COLUMN_SHOW_REMOVE_LINK         ="show_remove_link";
+
+
+    public static final String CREATE_TABLE_EXISTING_LEAVELIST_DETAILS="CREATE TABLE "+TABLE_EXISTING_LEAVELIST_DETAILS+"( "+COLUMN_S_A_ID+" INTEGER, "+
+            COLUMN_ATT_ID+" VARCHAR(50) , "+COLUMN_MONTH+" VARCHAR(50) , "+COLUMN_FROM_DATE+" VARCHAR(50) , "
+            +COLUMN_TO_DATE+" VARCHAR(50), "+COLUMN_ANNUAL_LEAVE+" VARCHAR(50), "+
+            COLUMN_SICK_LEAVE+" VARCHAR(50), "+COLUMN_O_PAID_LEAVE+" VARCHAR(50), "+
+            COLUMN_UNPAID_LEAVE+" VARCHAR(50), "+COLUMN_MOTIVATION+" VARCHAR(50), "+
+            COLUMN_SA_REASON+" VARCHAR(50), "+COLUMN_S_APPROVAL_STATUS+" VARCHAR(50), "+
+            COLUMN_MOTIVATION_BTN+" VARCHAR(50), "+COLUMN_REASON_BTN+" VARCHAR(50), "+
+            COLUMN_UPLOADS+" VARCHAR(50), "+COLUMN_IS_UPLOAD+" VARCHAR(50), "+
+            COLUMN_SHOW_EDIT_LINK+" VARCHAR(50), "+
+            COLUMN_SHOW_REMOVE_LINK+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_EXISTING_LEAVELIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_EXISTING_LEAVELIST_DETAILS;
+    public static final String EMPTY_TABLE_EXISTING_LEAVELIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_EXISTING_LEAVELIST_DETAILS;
+
+
 
 
 

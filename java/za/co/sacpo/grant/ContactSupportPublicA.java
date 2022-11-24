@@ -320,7 +320,7 @@ public class ContactSupportPublicA extends BaseFormAPCPublic {
                         String sTitleA=getLabelFromDb("m_A98_title",R.string.m_A98_title);
                         String sTitle = sTitleA+"   ["+REF+"]   ";
                         String sMessage1=getLabelFromDb("m_A98_message_1",R.string.m_A98_message_1);
-                        String sMessage2=getLabelFromDb("m_A98_message_2",R.string.m_A98_message_2);
+                        String sMessage2=getLabelFromDb("m_A98_message_2_"+URLHelper.PORTAL_ID,getStringResourceId("m_A98_message_2_")+URLHelper.PORTAL_ID);
                         String sMessage =sMessage1+sMessage2;
                         String sButtonLabelClose="Close";
                         ErrorDialog.showSuccessDialogContactSupportPublicA(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose,thisClass);

@@ -34,6 +34,10 @@ import android.util.Log;
             db.execSQL(DbSchema.CREATE_TABLE_DASHBOARD_DATA);
             db.execSQL(DbSchema.CREATE_TABLE_BANK_DETAILS);
             db.execSQL(DbSchema.CREATE_TABLE_GRANT_DETAILS);
+            db.execSQL(DbSchema.CREATE_TABLE_ATTSTATS_DETAILS);
+            db.execSQL(DbSchema.CREATE_TABLE_ATTLIST_DETAILS);
+            db.execSQL(DbSchema.CREATE_TABLE_POPULATE_ATTLIST_DETAILS);
+            db.execSQL(DbSchema.CREATE_TABLE_EXISTING_LEAVELIST_DETAILS);
             //db.close();
         }
 
@@ -47,6 +51,9 @@ import android.util.Log;
             db.execSQL(DbSchema.DROP_TABLE_DASHBOARD_DATA);
             db.execSQL(DbSchema.DROP_TABLE_BANK_DETAILS);
             db.execSQL(DbSchema.DROP_TABLE_GRANT_DETAILS);
+            db.execSQL(DbSchema.DROP_TABLE_ATTSTATS_DETAILS);
+            db.execSQL(DbSchema.DROP_TABLE_POPULATE_ATTLIST_DETAILS);
+            db.execSQL(DbSchema.DROP_TABLE_EXISTING_LEAVELIST_DETAILS);
             onCreate(db);
         }
         public void truncateTable(String TABLE_NAME){
@@ -88,6 +95,23 @@ import android.util.Log;
                     db.execSQL(DbSchema.DROP_TABLE_SUPERVISOR_DETAILS);
                     db.execSQL(DbSchema.CREATE_TABLE_SUPERVISOR_DETAILS);
                     break;
+                case DbSchema.TABLE_ATTSTATS_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_ATTSTATS_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_ATTSTATS_DETAILS);
+                    break;
+                case DbSchema.TABLE_ATTLIST_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_ATTLIST_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_ATTLIST_DETAILS);
+                    break;
+                    case DbSchema.TABLE_POPULATE_ATTLIST_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_POPULATE_ATTLIST_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_POPULATE_ATTLIST_DETAILS);
+                    break;
+                  case DbSchema.TABLE_EXISTING_LEAVELIST_DETAILS:
+                    db.execSQL(DbSchema.DROP_TABLE_EXISTING_LEAVELIST_DETAILS);
+                    db.execSQL(DbSchema.CREATE_TABLE_EXISTING_LEAVELIST_DETAILS);
+                    break;
+
 
             }
         }

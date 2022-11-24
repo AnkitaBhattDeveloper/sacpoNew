@@ -93,7 +93,7 @@ public class SBankDA extends BaseFormAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
-        }else{
+        }/*else{
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -116,7 +116,7 @@ public class SBankDA extends BaseFormAPCPrivate {
             fetchOfflineData();
            // initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
-        }
+        }*/
     }
 
 

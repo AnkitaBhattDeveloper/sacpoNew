@@ -723,7 +723,8 @@
     <string name="tt_322_Message">Topic of your query should be minimum 30 Characters.</string>
 
     <string name="m_322_message_1">Your query has been posted successfully to ADMIN, Please note your reference number  </string>
-    <string name="m_322_message_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_322_message_2_1"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_322_message_2_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n SACPO SUPPORT TEAM</string>
 
     <string name="error_322_104">Error! Topic is not valid.</string>
     <string name="error_322_105">Error! Email is not valid.</string>
@@ -743,7 +744,8 @@
     <string name="tt_110_Message">Topic of your query should be minimum 30 Characters.</string>
 
     <string name="m_110_message_1">Your query is posted successfully to ADMIN, Please note your reference number  </string>
-    <string name="m_110_message_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_110_message_2_1"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_110_message_2_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n SACPO SUPPORT TEAM</string>
 
 
     <string name="error_110_104">Error! Topic is not valid.</string>
@@ -774,7 +776,8 @@
 
     <string name="m_A98_message_1">QUERY SUCCESSFULLY SENT \n\n We will be responding to your query within 24 Hours.
   </string>
-    <string name="m_A98_message_2"> \n\n With kind regards from the \n\n OLUMS SUPPORT TEAM \n </string>
+    <string name="m_A98_message_2_1"> \n\n With kind regards from the \n\n OLUMS SUPPORT TEAM \n </string>
+    <string name="m_A98_message_2_2"> \n\n With kind regards from the \n\n SACPO SUPPORT TEAM \n </string>
 
 
     <string name="error_A98_104">Error! Name is not valid.</string>
@@ -820,7 +823,7 @@
     <string name="b_101_opt">OTP</string>
     <string name="b_A101_forgot_password">Forgot Password ?</string>
     <string name="l_A101_email">Email</string>
-    <string name="l_A101_username">Username</string>
+    <string name="l_A101_username">ID for Students / EMail for supervisors</string>
 
 
     <string name="error_314_104">yyyy</string>
@@ -2917,7 +2920,8 @@ Ham followed now</string>
     <string name="tt_703_Message">Topic of your message should be minimum 30 Characters.</string>
     <string name="m_703_101">BURSARY IS REMOVED SUCCESSFULLY FROM SAVED BURSARIES.</string>
     <string name="m_703_message_1">Your message is posted successfully to ADMIN, Please note your reference number  </string>
-    <string name="m_703_message_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_703_message_2_1"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n OLUMS SUPPORT TEAM</string>
+    <string name="m_703_message_2_2"> for further communication. We will update you on your concern as soon as possible. An email with the reference number is forwarded to you. We will update you on your email. \n\n Thanks \n SACPO SUPPORT TEAM</string>
 
     <string name="error_703_104">Error! Topic is not valid.</string>
     <string name="error_703_105">Error! Email is not valid.</string>

@@ -42,7 +42,6 @@ public class URLHelper {
       public static final String TOKEN_TO_SERVER_KEY = "server_token";
       public static final String REF_S_107_SAVE = "/punch-in-api";
       public static final String REF_S_108_SAVE = "/punch-out-api";
-      public static final String S_REF_105_1 = "/student-details-api";
       public static final String S_REF_105_A = "/stu-details-api-one";
       public static final String S_REF_105_B = "/stu-details-api-two";
       public static final String S_REF_105_C = "/stu-details-api-three";
@@ -68,11 +67,9 @@ public class URLHelper {
       public static final String TICKET_URL_STU_PRIVATE = "/contact-us-with-login-stu-api";
       public static final String FORGOT_URL = "/forgot-password-api";
       public static final String M_STUDENT_REPORT_DETAILS = "/student-report-details-for-mentor-api";
-      public static final String S_REF_105_2 = "/enrollment-years-dropdown-api";
       public static final String S_REF_220_2 = "/claim-attendance-list-api";
       public static final String S_REF_125_2 = "/leave-details-api";
       public static final String S_REF_175_2 = "/add-weekly-report-api";
-    public static final String S_REF_105_3 = "/edit-user-details-api";
     public static final String S_REF_M167 = "/edit-mentor-profile-api";
     public static final String S_REF_122_3 = "/edit-bank-detail-for-learner-api";
     public static final String REF_S_106 = "/learner-attendance-comment-api";
@@ -111,8 +108,7 @@ public class URLHelper {
     public static final String FINANCIAL_YEARS_105C = "/financial-year-api";
     public static final String OFOCODES_105C = "/ofo-api";
     public static final String INSTITUTION_105D = "/institution-api";
-    public static final String UNIVERSITY_105D = "/university-api";
-    public static final String COLLEGE_105D = "/college-api";
+
 
 
       /*Api's for mentor*/
@@ -311,8 +307,11 @@ public class URLHelper {
 
     public static final String R_REF_142_2 = "/message/type/sendMessageToGroup";
     //public static final String TICKET_DETAILS_URL = "/user/type/ticketDetails";
-
-
+    public static final String S_REF_105_1 = "/student-details-api";
+    public static final String UNIVERSITY_105D = "/university-api";
+    public static final String COLLEGE_105D = "/college-api";
+    public static final String S_REF_105_2 = "/enrollment-years-dropdown-api";
+    public static final String S_REF_105_3 = "/edit-user-details-api";
       public static final String REF_S_105 = "/user/type/REF_S_193";//for SALARY MANAGER
       public static final String S_REF_223_1 = "/student/type/fosdata";//for SALARY MANAGER
 

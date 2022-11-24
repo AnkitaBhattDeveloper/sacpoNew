@@ -41,6 +41,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SDAttObj;
+import za.co.sacpo.grant.xCubeLib.db.attDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.attDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
@@ -103,7 +107,27 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
-        }
+        }/*else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
+            showProgress(false,mContentView,mProgressView);
+        }*/
     }
     @Override
     protected void internetChangeBroadCast(){
@@ -248,6 +272,8 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
                     printLogs(LogTag, "getGrantDetails", "RESPONSE : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        attDetailsArrayAdapter adapter = new attDetailsArrayAdapter(getApplicationContext());
+                        adapter.truncate();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i + 1;
@@ -265,10 +291,15 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
                             String aDownloadReg12 = rec.getString("download_attendance");
                             String aDownloadLink13 = rec.getString("download_attendance_link");
                             String aCommentLink14 = rec.getString("supervisor_comment_link");
-                            /*aCommentLink14="1";
-                            aDownloadLink13="1";
-                            aDownloadReg12="/SAMPLE_TRANING_PROGRAM.pdf";
-                            aSupervisorComment11="SAMPLE_TRANING_PROGRAM";*/
+
+
+                            adapter.insert(new attDetailsArray(rec.getString("grant_id"),
+                                    rec.getString("student_id"),Month,Year,String.valueOf(aId2),Count,aALeaveCount6,aSLeaveCount7,
+                                    aOPaidLeaveCount8,aUPaidLeaveCount9,aSupervisorComment11,aDownloadReg12,aDownloadLink13,
+                                    aSupervisorStatus10,aCommentLink14));
+
+
+
                             rDataObj.addItem(rDataObj.createItem(pos, aId2, Month, Year, Count,aALeaveCount6, aSLeaveCount7, aOPaidLeaveCount8, aUPaidLeaveCount9, aSupervisorStatus10, aSupervisorComment11, aDownloadReg12,aDownloadLink13,aCommentLink14));
                             showList();
                         }
@@ -321,7 +352,35 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        attDetailsArrayAdapter adapter  =new attDetailsArrayAdapter(getApplicationContext());
+        List<attDetailsArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i + 1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getDate());
+            String Month = adapterAll.get(i).getMonth();
+            String Year = adapterAll.get(i).getYear();
+            String Count = adapterAll.get(i).getAttendance_days();
+            String aALeaveCount6 = adapterAll.get(i).getAnnual_leave();
+            String aSLeaveCount7 = adapterAll.get(i).getSick_leave();
+            String aOPaidLeaveCount8 = adapterAll.get(i).getOther_paid_leave();
+            String aUPaidLeaveCount9 = adapterAll.get(i).getUnpaid_leave();
+            String aSupervisorStatus10 = adapterAll.get(i).getSupervisor_approval();
+            String aSupervisorComment11 = adapterAll.get(i).getSupervisor_comment();
+            String aDownloadReg12 = adapterAll.get(i).getDownload_attendance();
+            String aDownloadLink13 = adapterAll.get(i).getDownload_attendance_link();
+            String aCommentLink14 = adapterAll.get(i).getSupervisor_comment_link();
 
+            rDataObj.addItem(rDataObj.createItem(pos, aId2, Month, Year, Count,aALeaveCount6, aSLeaveCount7, aOPaidLeaveCount8, aUPaidLeaveCount9, aSupervisorStatus10, aSupervisorComment11, aDownloadReg12,aDownloadLink13,aCommentLink14));
+            showList();
+        }
+        showProgress(false, mContentView, mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+
+    }
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");
         String tHeader3 = getLabelFromDb("t_head_S109_month",R.string.t_head_S109_month);
