@@ -6,9 +6,12 @@ package za.co.sacpo.grant.xCubeLib.component;
 public class URLHelper {
 
       public static final int PORTAL_ID = 2;
+      /*for LIVE*/
+      public static final String DOMAIN_BASE_URL = "https://grant.sacpo.co.za";
+      public static final String DOMAIN_URL = "https://grant.sacpo.co.za";
       /*for GRANT*/
-      public static final String DOMAIN_BASE_URL = "http://grant.setaportal.co.za";
-      public static final String DOMAIN_URL = "http://grant.setaportal.co.za";
+      //public static final String DOMAIN_BASE_URL = "http://grant.setaportal.co.za";
+      //public static final String DOMAIN_URL = "http://grant.setaportal.co.za";
       /*FOR OTS*/
       // public static final String DOMAIN_BASE_URL = "http://ots.setaportal.co.za/api";
       //// public static final String DOMAIN_URL = "http://ots.setaportal.co.za";
