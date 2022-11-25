@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SLeavesObj;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListArray;
+import za.co.sacpo.grant.xCubeLib.db.populateAttListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.populateAttListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeLib.spinners.SpinnerSet;
@@ -109,6 +114,29 @@ public class SLeavesDA extends BaseAPCPrivate {
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false,mContentView,mProgressView);
         }
     }
@@ -226,6 +254,9 @@ public class SLeavesDA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "RESPONSE : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        existingLeaveListAdapter adapter = new existingLeaveListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<existingLeaveListArray> ArrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -250,8 +281,17 @@ public class SLeavesDA extends BaseAPCPrivate {
                             String aLeRemoveBtn17 = rec.getString("show_remove_link");
                             String aLeSComment18 = rec.getString("sa_reason");
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,aLeMonth3, aLeFromDate4,aLeToDate5, aLeAnnual6, aLeSick7,aLeOPaid8,aLeUnPaid9,aLeSaStatus10, aLeMotivation11,aLeIsSupervisorComm12,aLeIsDocument13,aLeIsDocumentPath14,aLeMotivationBtn15,aLeEditBtn16,aLeRemoveBtn17,aLeSComment18));
-                            showList();
+
+                            ArrayList.add(new existingLeaveListArray(String.valueOf(aId2),rec.getString("att_ids"),
+                                    aLeMonth3,aLeFromDate4,aLeToDate5,aLeAnnual6,aLeSick7,aLeOPaid8,
+                                    aLeUnPaid9,aLeMotivation11,aLeSComment18,aLeSaStatus10,aLeMotivationBtn15,
+                                    aLeIsSupervisorComm12,aLeIsDocumentPath14,aLeIsDocument13,aLeEditBtn16,
+                                    aLeRemoveBtn17));
+
+
                         }
+                        adapter.insert(ArrayList);
+                        showList();
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -300,6 +340,47 @@ public class SLeavesDA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
+    private void fetchOfflineData() {
+
+        printLogs(LogTag, "fetchOfflineData", "init");
+        existingLeaveListAdapter adapter  =new existingLeaveListAdapter(getApplicationContext());
+        List<existingLeaveListArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getS_a_id());
+            String aLeMonth3 = adapterAll.get(i).getMonth();
+            String aLeFromDate4 = adapterAll.get(i).getFrom_date();
+            String aLeToDate5 = adapterAll.get(i).getTo_date();
+            String aLeAnnual6 = adapterAll.get(i).getAnnual_leave();
+            String aLeSick7 = adapterAll.get(i).getSick_leave();
+
+            String aLeOPaid8 = adapterAll.get(i).getOther_paid_leave();
+            String aLeUnPaid9 = adapterAll.get(i).getUnpaid_leave();
+            String aLeSaStatus10 = adapterAll.get(i).getSupervisor_approval_status();
+            String aLeMotivation11 = adapterAll.get(i).getMotivation();
+            String aLeIsSupervisorComm12 = adapterAll.get(i).getReason_btn();
+            String aLeIsDocument13 = adapterAll.get(i).getIs_upload();
+            String aLeIsDocumentPath14 = adapterAll.get(i).getUploads();
+
+            String aLeMotivationBtn15 = adapterAll.get(i).getMotivation_btn();
+            String aLeEditBtn16 = adapterAll.get(i).getShow_edit_link();
+            String aLeRemoveBtn17 = adapterAll.get(i).getShow_remove_link();
+            String aLeSComment18 = adapterAll.get(i).getSa_reason();
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,aLeMonth3, aLeFromDate4,aLeToDate5, aLeAnnual6, aLeSick7,aLeOPaid8,aLeUnPaid9,aLeSaStatus10, aLeMotivation11,aLeIsSupervisorComm12,aLeIsDocument13,aLeIsDocumentPath14,aLeMotivationBtn15,aLeEditBtn16,aLeRemoveBtn17,aLeSComment18));
+
+
+
+
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
+
+
     public void validateInput(){
         printLogs(LogTag,"validateInput","init");
 

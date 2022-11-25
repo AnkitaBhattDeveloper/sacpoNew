@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SFeedbackObj;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListArray;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeLib.spinners.SpinnerSetAdapter;
@@ -102,6 +107,28 @@ public class SFeedbackDA extends BaseAPCPrivate {
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false, mContentView, mProgressView);
+        }else{
+            printLogs(LogTag, "bootStrapInit", "initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext, activityIn, ActivityId);
+            initMenusCustom(ActivityId, baseApcContext, activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initBackBtn();
+            initializeViews();
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
         }
     }
@@ -211,6 +238,9 @@ public class SFeedbackDA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        sWeeklyReportListAdapter adapter = new sWeeklyReportListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<sWeeklyReportListArray> ArrayList = new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i + 1;
@@ -226,8 +256,14 @@ public class SFeedbackDA extends BaseAPCPrivate {
 
 
                             rDataObj.addItem(rDataObj.createItem(pos, aId2,ReportNo3,ReportTitle4,Month5,Year6,SupervisorStatus7,SupervisorStatusId8,EditBtn9));
-                            showList();
+
+                            ArrayList.add(new sWeeklyReportListArray(String.valueOf(aId2),ReportTitle4,Month5,Year6,
+                                    rec.getString("month_year"),rec.getString("grant_id"),SupervisorStatus7,
+                                    EditBtn9,SupervisorStatusId8,ReportNo3));
+
                         }
+                        adapter.insert(ArrayList);
+                        showList();
                        showProgress(false, mContentRView, mProgressRView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentRView, mProgressRView);
@@ -277,7 +313,30 @@ public class SFeedbackDA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
+    private void fetchOfflineData() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        sWeeklyReportListAdapter adapter  =new sWeeklyReportListAdapter(getApplicationContext());
+        List<sWeeklyReportListArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i + 1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getS_w_r_id());
+            String Month5 = adapterAll.get(i).getMonth();
+            String ReportTitle4= adapterAll.get(i).getTitle();
+            String Year6= adapterAll.get(i).getYear();
+            String SupervisorStatus7= adapterAll.get(i).getSupervisor_status();
+            String SupervisorStatusId8= adapterAll.get(i).getSupervisor_status_id();
+            String ReportNo3= adapterAll.get(i).getReport_no();
+            String EditBtn9= adapterAll.get(i).getEdit_btn();
 
+            rDataObj.addItem(rDataObj.createItem(pos, aId2,ReportNo3,ReportTitle4,Month5,Year6,SupervisorStatus7,SupervisorStatusId8,EditBtn9));
+
+        }
+        showList();
+        showProgress(false, mContentRView, mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
 
     public void callHeaderBuilder() {
         printLogs(LogTag, "callHeaderBuilder", "init");

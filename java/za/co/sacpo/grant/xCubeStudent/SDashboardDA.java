@@ -141,11 +141,11 @@ public class SDashboardDA extends StudentBaseDrawerA {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-          //  tv_net.setText("Online");
-          //  iv_net.setImageResource(R.drawable.interview_accept_btn);
+            tv_net.setText("Online");
+            iv_net.setImageResource(R.drawable.interview_accept_btn);
             initializeInputs();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-        }/*else{
+        }else{
             validateLogin(baseApcContext, activityIn);
             setLayoutXml();
             setAppLogo();
@@ -172,8 +172,8 @@ public class SDashboardDA extends StudentBaseDrawerA {
             fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-            Toast.makeText(this, "not connected....", Toast.LENGTH_SHORT).show();
-        }*/
+            //Toast.makeText(this, "not connected....", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

@@ -82,8 +82,9 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected Bundle inBundle;
     protected Bundle outBundle;
     protected OlumsUserSession userSessionObj;
-    protected Boolean isLive = true;//Logs Show If False
-    protected int[] ITEM_DRAWABLES = { R.mipmap.ic_launcher_video_cam,R.mipmap.ic_launcher_help_cam};
+    protected Boolean isLive = false;//Logs Show If False
+    protected Boolean isOnline = false;//Logs Show If False
+
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);
     protected abstract void initializeViews();
     protected abstract void initializeListeners();
@@ -107,14 +108,19 @@ public abstract class BaseAPC extends AppCompatActivity {
                 InternetDialog.removeInternetDialog();
             }
             else{
-            //    Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
-                String sTitle = getString(R.string.dialog_no_internet);
-                String sMessage = getString(R.string.dialog_no_inter_message);
-                String sButtonLabel3g = getString(R.string.dialog_enable_internet);
-                String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
-                String buttonLabelTryAgain= getString(R.string.dialog_try_again);
-                InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
-            }
+                if(isOnline){
+                    String sTitle = getString(R.string.dialog_no_internet);
+                    String sMessage = getString(R.string.dialog_no_inter_message);
+                    String sButtonLabel3g = getString(R.string.dialog_enable_internet);
+                    String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
+                    String buttonLabelTryAgain= getString(R.string.dialog_try_again);
+                    InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
+
+                }else{
+                        Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
+
+                }
+                       }
             while (InternetDialog.isNetDialogShowing) {
                 return;
             }

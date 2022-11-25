@@ -71,7 +71,7 @@ tools:showIn="@layout/a_mdisapprove_leave">
                 android:layout_marginTop="@dimen/GiantDp"
                 android:adjustViewBounds="false"
                 android:elevation="0dp"
-                app:srcCompat="@drawable/p_logo" />
+                  />
             <LinearLayout
                 android:id="@+id/MStudentidContainer"
                 android:layout_width="match_parent"

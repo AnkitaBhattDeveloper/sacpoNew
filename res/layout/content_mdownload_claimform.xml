@@ -70,7 +70,7 @@ tools:showIn="@layout/a_mdownload_claim_form">
                 android:layout_marginTop="@dimen/GiantDp"
                 android:adjustViewBounds="false"
                 android:elevation="0dp"
-                app:srcCompat="@drawable/p_logo" />
+                  />
             <LinearLayout
                 android:id="@+id/MStudentidContainer"
                 android:layout_width="match_parent"

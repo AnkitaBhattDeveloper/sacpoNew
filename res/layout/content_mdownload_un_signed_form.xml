@@ -67,7 +67,7 @@
                       android:layout_marginTop="@dimen/GiantDp"
                       android:adjustViewBounds="false"
                       android:elevation="0dp"
-                      app:srcCompat="@drawable/p_logo" />
+                        />
 
   -->
 

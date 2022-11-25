@@ -28,7 +28,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import za.co.sacpo.grant.AppUpdatedA;
@@ -36,6 +38,10 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportDetails;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -54,7 +60,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
     // Button mbtn_attendance,mbtn_leave,mbtn_stipendClaim;
     String grant_id, mentor_id, seta_user_id, lea_id, generator,is_upload_attendance,student_id;
     Bundle activeUri;
-    String report_id,date_input;
+    String report_id="",date_input;
     private LinearLayout llSupervisorComment;
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
@@ -145,6 +151,24 @@ public class SReportDetailsA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext, activityIn, ActivityId);
+            initMenusCustom(ActivityId, baseApcContext, activityIn);
+            printLogs(LogTag, "bootStrapInit", "initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true, mContentView, mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+            printLogs(LogTag, "onCreate", "exitConnected");
         }
     }
 
@@ -157,7 +181,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
     @Override
     protected void setLayoutXml() {
         printLogs(LogTag, "setLayoutXml", "a_s_report_details");
-         setContentView(R.layout.a_s_report_details);
+        setContentView(R.layout.a_s_report_details);
     }
 
     @Override
@@ -280,6 +304,9 @@ public class SReportDetailsA extends BaseAPCPrivate {
                     printLogs(LogTag, "getGrantDetails", "RESPONSE : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        sWeeklyReportDetailsAdapter adapter = new sWeeklyReportDetailsAdapter(getApplicationContext());
+                        //adapter.truncate();
+                        ArrayList<sWeeklyReportDetails> arrayList = new ArrayList<>();
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
                         activity_heading.setText(dataM.getString("number"));
                         txtMonthYear.setText(dataM.getString("date"));
@@ -294,6 +321,36 @@ public class SReportDetailsA extends BaseAPCPrivate {
                         String srwcomment = dataM.getString("c_u_r_report_writing");
                         String comment = dataM.getString("c_u_r_comment");
                         int sAcommented = 0;
+
+
+                        arrayList.add(new sWeeklyReportDetails(dataM.getString("s_w_r_id"),
+                                dataM.getString("s_w_r_student_id"),dataM.getString("student_name"),
+                                dataM.getString("title"),dataM.getString("training"),
+                                dataM.getString("day"),dataM.getString("feedback"),
+                                dataM.getString("learning_experices"),dataM.getString("number")
+                                ,dataM.getString("month_year"),dataM.getString("report_add_date"),
+                                dataM.getString("date"),dataM.getString("is_supervisor_commented"),
+                                dataM.getString("c_u_r_comment"),dataM.getString("c_u_r_training_progress"),
+                                dataM.getString("c_u_r_report_writing"),dataM.getString("supervisor_status")));
+                        adapter.insert(arrayList);
+                       /* sWeeklyReportDetails sWeeklyReportDetails = new sWeeklyReportDetails(dataM.getString("s_w_r_id"),
+                                dataM.getString("s_w_r_student_id"),dataM.getString("student_name"),
+                                dataM.getString("title"),dataM.getString("training"),
+                                dataM.getString("day"),dataM.getString("feedback"),
+                                dataM.getString("learning_experices"),dataM.getString("number")
+                                ,dataM.getString("month_year"),dataM.getString("report_add_date"),
+                                dataM.getString("date"),dataM.getString("is_supervisor_commented"),
+                                dataM.getString("c_u_r_comment"),dataM.getString("c_u_r_training_progress"),
+                                dataM.getString("c_u_r_report_writing"),dataM.getString("supervisor_status"));
+                        sWeeklyReportDetails byId = adapter.getById(Integer.parseInt(report_id));
+                        if(byId.getS_w_r_id().equals(report_id)){
+                            adapter.update(sWeeklyReportDetails);
+                        }else{
+                            adapter.insert(arrayList);
+                        }*/
+
+
+
                         try {
                             sAcommented = Integer.parseInt(dataM.getString("is_supervisor_commented"));
                         } catch (JSONException e) {
@@ -363,19 +420,59 @@ public class SReportDetailsA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
 
     }
+    private void fetchOfflineData() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        sWeeklyReportDetailsAdapter adapter  =new sWeeklyReportDetailsAdapter(getApplicationContext());
+        List<sWeeklyReportDetails> adapterAll = adapter.getAll();
+        printLogs(LogTag, "fetchOfflineData", "init"+adapterAll);
+        sWeeklyReportDetails reportDetails = adapter.getById(Integer.parseInt(report_id));
 
+
+        activity_heading.setText(reportDetails.getNumber());
+        txtMonthYear.setText(reportDetails.getDate());
+        txtReportTitle.setText(reportDetails.getTitle());
+        String feedback = reportDetails.getFeedback();
+        tv_Feedback.setText(Html.fromHtml(feedback).toString());
+        String training = reportDetails.getTraining();
+        tv_AboutLearnerTraining.setText(Html.fromHtml(training).toString());
+        String experience = reportDetails.getLearning_experices();
+        tv_Experience.setText(Html.fromHtml(experience).toString());
+        String stpcomment = reportDetails.getC_u_r_training_progress();
+        String srwcomment = reportDetails.getC_u_r_report_writing();
+        String comment = reportDetails.getC_u_r_comment();
+        int sAcommented = 0;
+
+        sAcommented = Integer.parseInt(reportDetails.getIs_supervisor_commented());
+        if (sAcommented == 1) {
+            if (!comment.equalsIgnoreCase("")) {
+                txtComment.setText(comment);
+            } else {
+                txtComment.setVisibility(View.GONE);
+                lblComment.setVisibility(View.GONE);
+            }
+            txtReportWriting.setText(stpcomment);
+            txtTrainingProgress.setText(srwcomment);
+        } else {
+            llSupervisorComment.setVisibility(View.GONE);
+        }
+
+        showProgress(false, mContentView, mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         printLogs(LogTag, "onOptionsItemSelected", "init");
         if (item.getItemId() == android.R.id.home) {
-                Bundle inputUri = new Bundle();
-                Intent intent = new Intent(SReportDetailsA.this, SFeedbackDA.class);
-                printLogs(LogTag, "onOptionsItemSelected", "SFeedbackDA");
-                intent.putExtras(inputUri);
-                startActivity(intent);
-                finish();
+            Bundle inputUri = new Bundle();
+            Intent intent = new Intent(SReportDetailsA.this, SFeedbackDA.class);
+            printLogs(LogTag, "onOptionsItemSelected", "SFeedbackDA");
+            intent.putExtras(inputUri);
+            startActivity(intent);
+            finish();
 
         }
         return true;

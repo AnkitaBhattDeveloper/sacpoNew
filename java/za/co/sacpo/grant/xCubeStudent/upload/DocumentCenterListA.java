@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.DCenterObj;
+import za.co.sacpo.grant.xCubeLib.db.docCenterListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.docCenterListArray;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
@@ -89,6 +94,26 @@ public class DocumentCenterListA extends BaseAPCPrivate {
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false,mContentView,mProgressView);
         }
     }
@@ -190,6 +215,9 @@ public class DocumentCenterListA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        docCenterListAdapter adapter = new docCenterListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<docCenterListArray> ArrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -209,8 +237,19 @@ public class DocumentCenterListA extends BaseAPCPrivate {
                             String aDownload10 = rec.getString("download_document_link");
                             //String aIsDownload9 = "1";
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,aName3,aDay4,aPrevious5,aIsPrevious6,aIsUpload7,aUploadType8,aIsDownload9,aDownload10));
-                            showList();
+
+                            ArrayList.add(new docCenterListArray(String.valueOf(aId2),rec.getString("student_id"),
+                                    rec.getString("grant_id"),rec.getString("previous_document"),
+                                    aIsPrevious6,aName3,rec.getString("d_c_doc_status"),rec.getString("d_c_doc_type"),
+                                    aUploadType8,aDownload10,aIsDownload9,aIsUpload7));
+
+
+
                         }
+
+                        adapter.insert(ArrayList);
+                        showList();
+
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -259,7 +298,36 @@ public class DocumentCenterListA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData() {
 
+        printLogs(LogTag, "fetchOfflineData", "init");
+        docCenterListAdapter adapter  =new docCenterListAdapter(getApplicationContext());
+        List<docCenterListArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getId());
+            String aName3 = adapterAll.get(i).getName_of_document();
+            String aDay4 ="";
+            String aPrevious5 = "";
+             //String aPrevious5 = adapterAll.get(i).getPrevious_document();
+            //  String aIsPrevious6 = "";
+            String aIsPrevious6 = adapterAll.get(i).getPrevious_document_btn();
+            //String aIsPrevious6="1";
+            String aIsUpload7 = adapterAll.get(i).getUpload_document_link();
+            String aUploadType8 = adapterAll.get(i).getUpload_document_type();
+            //String aUploadType8 ="3";
+            String aIsDownload9 = adapterAll.get(i).getDownload_document_btn();
+            String aDownload10 = adapterAll.get(i).getDownload_document_link();
+            //String aIsDownload9 = "1";
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,aName3,aDay4,aPrevious5,aIsPrevious6,aIsUpload7,aUploadType8,aIsDownload9,aDownload10));
+        }
+        showList();
+
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
 
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");

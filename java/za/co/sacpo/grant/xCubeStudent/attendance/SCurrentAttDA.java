@@ -98,7 +98,7 @@ public class SCurrentAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
-        }/*else{
+        }else{
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -118,7 +118,7 @@ public class SCurrentAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchOfflineData();
             showProgress(false,mContentView,mProgressView);
-        }*/
+        }
     }
     @Override
     protected void internetChangeBroadCast(){

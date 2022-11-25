@@ -269,6 +269,139 @@ public class DbSchema {
     public static final String EMPTY_TABLE_EXISTING_LEAVELIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_EXISTING_LEAVELIST_DETAILS;
 
 
+    /*table Past Claim list details*/
+    public static final String TABLE_PAST_CLAIMLIST_DETAILS="tbl_past_claimlist_details";
+    public static final String
+
+            COLUMN_S_M_S_ID                     ="s_m_s_id",
+            COLUMN_S_M_S_STIPEND                ="s_m_s_stipend",
+            COLUMN_S_M_S_STIPEND_MONTH          ="s_m_s_stipend_month",
+          //COLUMN_YEAR                         ="year",
+          //COLUMN_MONTH                        ="month",
+            COLUMN_DATE_OF_CLAIM                ="date_of_claim",
+            COLUMN_CLAIMED_AMOUNT               ="claimed_ammount",
+            COLUMN_SUPERVISOR_STATUS            ="supervisor_status",
+            COLUMN_SUPERVISOR_STATUS_COLOR      ="supervisor_status_color",
+            COLUMN_GADMIN_STATUS                ="grant_admin_status",
+            COLUMN_GADMIN_STATUS_COLOR          ="grant_admin_status_color",
+            COLUMN_DWNLD_UNSIGNED_CLAIM_FORM_BTN="download_unsigned_claim_form_btn",
+            COLUMN_DWNLD_UNSIGNED_CLAIM_FORM    ="download_unsigned_claim_form",
+            COLUMN_UPLOAD_SIGNED_CLAIM_FORM_BTN ="upload_signed_claim_form_btn",
+            COLUMN_DWNLD_SIGNED_CLAIM_FORM      ="download_signed_claim_form",
+            COLUMN_DWNLD_SIGNED_CLAIM_FORM_BTN  ="download_sign_claim_form_btn";
+
+
+    public static final String CREATE_TABLE_PAST_CLAIMLIST_DETAILS="CREATE TABLE "+TABLE_PAST_CLAIMLIST_DETAILS+"( "+COLUMN_S_M_S_ID+" INTEGER, "+
+            COLUMN_S_M_S_STIPEND+" VARCHAR(50) , "+COLUMN_S_M_S_STIPEND_MONTH+" VARCHAR(50) , "+COLUMN_YEAR+" VARCHAR(50) , "
+            +COLUMN_MONTH+" VARCHAR(50), "+COLUMN_DATE_OF_CLAIM+" VARCHAR(50), "+
+            COLUMN_CLAIMED_AMOUNT+" VARCHAR(50), "+COLUMN_SUPERVISOR_STATUS+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_STATUS_COLOR+" VARCHAR(50), "+COLUMN_GADMIN_STATUS+" VARCHAR(50), "+
+            COLUMN_GADMIN_STATUS_COLOR+" VARCHAR(50), "+COLUMN_DWNLD_UNSIGNED_CLAIM_FORM_BTN+" VARCHAR(50), "+
+            COLUMN_DWNLD_UNSIGNED_CLAIM_FORM+" VARCHAR(50), "+COLUMN_UPLOAD_SIGNED_CLAIM_FORM_BTN+" VARCHAR(50), "+
+            COLUMN_DWNLD_SIGNED_CLAIM_FORM+" VARCHAR(50), "+
+            COLUMN_DWNLD_SIGNED_CLAIM_FORM_BTN+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_PAST_CLAIMLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_PAST_CLAIMLIST_DETAILS;
+    public static final String EMPTY_TABLE_PAST_CLAIMLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_PAST_CLAIMLIST_DETAILS;
+
+    /*table Document center list details*/
+    public static final String TABLE_DOC_CENTERLIST_DETAILS="tbl_doc_centerlist_details";
+    public static final String
+
+          //COLUMN_ID             ="id",
+          //COLUMN_ST_ID          ="student_id",
+         // COLUMN_GRANTID        ="grant_id",
+            COLUMN_PREVIOUS_DOC     ="previous_document",
+            COLUMN_PREVIOUS_DOC_BTN ="previous_document_btn",
+            COLUMN_NAME_OF_DOC      ="name_of_document",
+            COLUMN_D_C_DOC_STATUS   ="d_c_doc_status",
+            COLUMN_D_C_DOC_TYPE     ="d_c_doc_type",
+            COLUMN_UPLOAD_DOC_TYPE  ="upload_document_type",
+            COLUMN_DWNLD_DOC_LINK   ="download_document_link",
+            COLUMN_DWNLD_DOC_BTN    ="download_document_btn",
+            COLUMN_UPLOAD_DOC_LINK  ="upload_document_link";
+
+
+
+    public static final String CREATE_TABLE_DOC_CENTERLIST_DETAILS="CREATE TABLE "+TABLE_DOC_CENTERLIST_DETAILS+"( "+COLUMN_ID+" INTEGER, "+
+            COLUMN_ST_ID+" VARCHAR(50) , "+COLUMN_GRANTID+" VARCHAR(50) , "+COLUMN_PREVIOUS_DOC+" VARCHAR(50) , "
+            +COLUMN_PREVIOUS_DOC_BTN+" VARCHAR(50), "+COLUMN_NAME_OF_DOC+" VARCHAR(50), "+
+            COLUMN_D_C_DOC_STATUS+" VARCHAR(50), "+COLUMN_D_C_DOC_TYPE+" VARCHAR(50), "+
+            COLUMN_UPLOAD_DOC_TYPE+" VARCHAR(50), "+COLUMN_DWNLD_DOC_LINK+" VARCHAR(50), "+
+            COLUMN_DWNLD_DOC_BTN+" VARCHAR(50), "+
+            COLUMN_UPLOAD_DOC_LINK+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_DOC_CENTERLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_DOC_CENTERLIST_DETAILS;
+    public static final String EMPTY_TABLE_DOC_CENTERLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_DOC_CENTERLIST_DETAILS;
+
+    /*table Document center list details*/
+    public static final String TABLE_ST_WEEKLY_REPORTLIST_DETAILS="tbl_st_weekly_reportlist_details";
+    public static final String
+
+            COLUMN_S_W_R_ID                 ="s_w_r_id",
+            COLUMN_REPORT_TITLE             ="title",
+          //  COLUMN_MONTH                  ="month",
+          //  COLUMN_YEAR                   ="year",
+            COLUMN_MONTH_YEAR               ="month_year",
+          //  COLUMN_GRANT_ID               ="grant_id",
+         // COLUMN_SUPERVISOR_STATUS        ="supervisor_status",
+            COLUMN_EDIT_BTN                 ="edit_btn",
+            COLUMN_SUPERVISOR_STATUS_ID     ="supervisor_status_id",
+            COLUMN_REPORT_NO                ="report_no";
+
+
+
+    public static final String CREATE_TABLE_ST_WEEKLY_REPORTLIST_DETAILS="CREATE TABLE "+TABLE_ST_WEEKLY_REPORTLIST_DETAILS+"( "+COLUMN_S_W_R_ID+" INTEGER, "+
+            COLUMN_REPORT_TITLE+" VARCHAR(50) , "+COLUMN_MONTH+" VARCHAR(50) , "+COLUMN_YEAR+" VARCHAR(50) , "
+            +COLUMN_MONTH_YEAR+" VARCHAR(50), "+COLUMN_GRANT_ID+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_STATUS+" VARCHAR(50), "+COLUMN_EDIT_BTN+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_STATUS_ID+" VARCHAR(50), "+
+            COLUMN_REPORT_NO+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_ST_WEEKLY_REPORTLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_ST_WEEKLY_REPORTLIST_DETAILS;
+    public static final String EMPTY_TABLE_ST_WEEKLY_REPORTLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_ST_WEEKLY_REPORTLIST_DETAILS;
+
+
+    /*table Weekly Report details*/
+    public static final String TABLE_ST_WEEKLY_REPORT_DETAILS="tbl_st_weekly_report_details";
+    public static final String
+
+          //COLUMN_S_W_R_ID                     ="s_w_r_id",
+            COLUMN_S_W_R_ST_ID                  ="s_w_r_student_id",
+            COLUMN_STU_NAME                     ="student_name",
+            COLUMN_TITLE                        ="title",
+            COLUMN_TRAINING                     ="training",
+        //  COLUMN_DAY                          ="day",
+            COLUMN_FEEDBACK                     ="feedback",
+            COLUMN_LEARNING_EXP                 ="learning_experices",
+            COLUMN_NUMBER                       ="number",
+         // COLUMN_MONTH_YEAR                   ="month_year",
+            COLUMN_REPORT_ADD_DATE              ="report_add_date",
+        //  COLUMN_DATE                         ="date",
+            COLUMN_IS_SUPERVISOR_COMMENTED      ="is_supervisor_commented",
+            COLUMN_C_U_R_COMMENT                ="c_u_r_comment",
+            COLUMN_C_U_R_TRAINING_PROGRESS      ="c_u_r_training_progress",
+            COLUMN_C_U_R_REPORT_WRITING         ="c_u_r_report_writing";
+         // COLUMN_SUPERVISOR_STATUS            ="supervisor_status";
+
+
+
+    public static final String CREATE_TABLE_ST_WEEKLY_REPORT_DETAILS="CREATE TABLE "+TABLE_ST_WEEKLY_REPORT_DETAILS+"( "+COLUMN_S_W_R_ID+" INTEGER, "+
+            COLUMN_S_W_R_ST_ID+" VARCHAR(50) , "+COLUMN_STU_NAME+" VARCHAR(50) , "+COLUMN_TITLE+" VARCHAR(50) , "
+            +COLUMN_TRAINING+" VARCHAR(50), "+COLUMN_DAY+" VARCHAR(50), "+
+            COLUMN_FEEDBACK+" VARCHAR(50), "+COLUMN_LEARNING_EXP+" VARCHAR(50), "+
+            COLUMN_NUMBER+" VARCHAR(50), "+COLUMN_MONTH_YEAR+" VARCHAR(50), "+
+            COLUMN_REPORT_ADD_DATE+" VARCHAR(50), "+COLUMN_DATE+" VARCHAR(50), "+
+            COLUMN_IS_SUPERVISOR_COMMENTED+" VARCHAR(50), "+COLUMN_C_U_R_COMMENT+" VARCHAR(50), "+
+            COLUMN_C_U_R_TRAINING_PROGRESS+" VARCHAR(50), "+COLUMN_C_U_R_REPORT_WRITING+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_STATUS+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_ST_WEEKLY_REPORT_DETAILS= "DROP TABLE IF EXISTS "+TABLE_ST_WEEKLY_REPORT_DETAILS;
+    public static final String EMPTY_TABLE_ST_WEEKLY_REPORT_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_ST_WEEKLY_REPORT_DETAILS;
 
 
 

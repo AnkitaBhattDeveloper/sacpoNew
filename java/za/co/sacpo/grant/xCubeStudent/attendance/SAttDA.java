@@ -115,7 +115,7 @@ public class SAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData(selectedYear,selectedMonth);
             showProgress(false,mContentView,mProgressView);
-        }/*else{
+        }else{
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -135,7 +135,7 @@ public class SAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchOfflineData(selectedYear,selectedMonth);
             showProgress(false,mContentView,mProgressView);
-        }*/
+        }
     }
 
 
