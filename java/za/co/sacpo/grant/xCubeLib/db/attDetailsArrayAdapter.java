@@ -21,30 +21,33 @@ public class attDetailsArrayAdapter implements attDetailsDAO {
 
 
     @Override
-    public long insert(attDetailsArray dataArrays) {
-
+    public long insert(List<attDetailsArray> dataArrays) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DbSchema.COLUMN_GRANT_ID,dataArrays.getGrant_id());
-        contentValues.put(DbSchema.COLUMN_ST_ID              ,dataArrays.getStudent_id());
-        contentValues.put(DbSchema.COLUMN_MONTH              ,dataArrays.getMonth());
-        contentValues.put(DbSchema.COLUMN_YEAR               ,dataArrays.getYear());
-        contentValues.put(DbSchema.COLUMN_DATE               ,dataArrays.getDate());
-        contentValues.put(DbSchema.COLUMN_ATT_DAYS           ,dataArrays.getAttendance_days());
-        contentValues.put(DbSchema.COLUMN_ANUAL_LEAVE        ,dataArrays.getAnnual_leave());
-        contentValues.put(DbSchema.COLUMN_SICK_LEAVE         ,dataArrays.getSick_leave());
-        contentValues.put(DbSchema.COLUMN_O_PAID_LEAVE       ,dataArrays.getOther_paid_leave());
-        contentValues.put(DbSchema.COLUMN_UNPAID_LEAVE       ,dataArrays.getUnpaid_leave());
-        contentValues.put(DbSchema.COLUMN_SUPERVISOR_COMMENT ,dataArrays.getSupervisor_comment());
-        contentValues.put(DbSchema.COLUMN_DWNLD_ATTENDANCE   ,dataArrays.getDownload_attendance());
-        contentValues.put(DbSchema.COLUMN_DWNLD_ATT_LINK     ,dataArrays.getDownload_attendance_link());
-        contentValues.put(DbSchema.COLUMN_SUPERVISOR_APPROVAL,dataArrays.getSupervisor_approval());
-        contentValues.put(DbSchema.COLUMN_SUPERVISOR_COMMENT_LINK,dataArrays.getSupervisor_comment_link());
+        for (int i = 0; i <dataArrays.size() ; i++) {
 
-        long data =  db.insert(DbSchema.TABLE_ATTSTATS_DETAILS, null, contentValues);
-                //db.close();
-                return data;
+            db.execSQL("INSERT INTO " + DbSchema.TABLE_ATTSTATS_DETAILS +
+                    " Values('"+dataArrays.get(i).getGrant_id()+"'," +
+                    "'"+dataArrays.get(i).getStudent_id()+"',"+
+                    "'"+dataArrays.get(i).getMonth()+"',"+
+                    "'"+dataArrays.get(i).getYear()+"',"+
+                    "'"+dataArrays.get(i).getDate()+"',"+
+                    "'"+dataArrays.get(i).getAttendance_days()+"',"+
+                    "'"+dataArrays.get(i).getAnnual_leave()+"',"+
+                    "'"+dataArrays.get(i).getSick_leave()+"',"+
+                    "'"+dataArrays.get(i).getOther_paid_leave()+"',"+
+                    "'"+dataArrays.get(i).getUnpaid_leave()+"',"+
+                    "'"+dataArrays.get(i).getSupervisor_comment()+"',"+
+                    "'"+dataArrays.get(i).getDownload_attendance()+"',"+
+                    "'"+dataArrays.get(i).getDownload_attendance_link()+"',"+
+                    "'"+dataArrays.get(i).getSupervisor_approval()+"',"+
+                    "'"+dataArrays.get(i).getSupervisor_comment_link()+"');");
+
+        }
+
+        return 1;
+
     }
+
 
     @Override
     public int update(attDetailsArray dataArrays) {
@@ -170,30 +173,30 @@ public class attDetailsArrayAdapter implements attDetailsDAO {
         Cursor cursors = db.query(DbSchema.TABLE_ATTSTATS_DETAILS, columns, null, null, null, null, null);
 
         try {
-            if (cursors.moveToNext()) {
-                String grant_id                = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_GRANT_ID           ));
-                String student_id                = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ST_ID              ));
-                String month                     = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_MONTH              ));
-                String year                   = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_YEAR               ));
-                String date                      = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DATE               ));
-                String attendance_days           = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ATT_DAYS           ));
-                String annual_leave              = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ANUAL_LEAVE        ));
-                String sick_leave                = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SICK_LEAVE         ));
-                String other_paid_leave          = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_O_PAID_LEAVE       ));
-                String unpaid_leave              = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_UNPAID_LEAVE       ));
-                String supervisor_comment        = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_COMMENT ));
-                String download_attendance       = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_ATTENDANCE   ));
-                String download_attendance_link    = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_ATT_LINK     ));
-                String supervisor_approval       = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_APPROVAL));
-                String supervisor_comment_link    = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_COMMENT_LINK));
+            if (cursors.moveToFirst()) {
+                do {
+                    String grant_id = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_GRANT_ID));
+                    String student_id = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ST_ID));
+                    String month = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_MONTH));
+                    String year = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_YEAR));
+                    String date = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DATE));
+                    String attendance_days = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ATT_DAYS));
+                    String annual_leave = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_ANUAL_LEAVE));
+                    String sick_leave = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SICK_LEAVE));
+                    String other_paid_leave = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_O_PAID_LEAVE));
+                    String unpaid_leave = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_UNPAID_LEAVE));
+                    String supervisor_comment = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_COMMENT));
+                    String download_attendance = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_ATTENDANCE));
+                    String download_attendance_link = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_ATT_LINK));
+                    String supervisor_approval = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_APPROVAL));
+                    String supervisor_comment_link = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_SUPERVISOR_COMMENT_LINK));
 
 
+                    attDetailsArray dataArray = new attDetailsArray(grant_id, student_id, month, year, date, attendance_days, annual_leave, sick_leave, other_paid_leave,
+                            unpaid_leave, supervisor_comment, download_attendance, download_attendance_link, supervisor_approval, supervisor_comment_link);
 
-
-                attDetailsArray dataArray = new attDetailsArray(grant_id, student_id,  month, year, date,attendance_days, annual_leave, sick_leave, other_paid_leave,
-                        unpaid_leave, supervisor_comment,download_attendance,download_attendance_link,supervisor_approval, supervisor_comment_link);
-
-                dataArrayList.add(dataArray);
+                    dataArrayList.add(dataArray);
+                } while (cursors.moveToNext());
             }
         }
         finally {

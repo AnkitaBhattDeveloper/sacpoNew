@@ -16,13 +16,16 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -36,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -71,13 +75,14 @@ public class SAddFeedbackA extends BaseAPCPrivate {
     public Button btnSubmitLv;
     public LinearLayout LLFormContainer, LLInformationContainer, LLInputContainer;
     String generator, date_input, month_year, grant_id;
-    private Spinner SpinnerMonthYear;
+    private Spinner SpinnerMonthYear,startdateSP,startSpinnerMonth,endSpinnerMonth,endSpinnerYear,
+            endSpinnerDay,startSpinnerYear;
     Spinner inputSpinnerLeaveType;
     private TextView lblView;
     final ArrayList<ListarClientes> datalist = new ArrayList<>();
-    Button btn_addMoreReport;
+    Button btn_guide;
     SAddFeedbackA thisClass;
-    private String selected_month_id,student_id;
+    private String selected_month_id,student_id,spin_startday,spin_startmonth,spin_startyear,spin_endday,spin_endmonth,spin_endyear;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
@@ -183,6 +188,13 @@ public class SAddFeedbackA extends BaseAPCPrivate {
         inputLayoutFeedback = (TextInputLayout) findViewById(R.id.inputLayoutFeedback);
         inputLayoutExperience = (TextInputLayout) findViewById(R.id.inputLayoutExperience);
         btnSubmitLv = (Button) findViewById(R.id.btn_submitLeave);
+        startdateSP = findViewById(R.id.startdateSP);
+        startSpinnerMonth = findViewById(R.id.startSpinnerMonth);
+        startSpinnerYear = findViewById(R.id.startSpinnerYear);
+        endSpinnerYear = findViewById(R.id.endSpinnerYear);
+        endSpinnerMonth = findViewById(R.id.endSpinnerMonth);
+        endSpinnerDay = findViewById(R.id.endSpinnerDay);
+        btn_guide = findViewById(R.id.btn_guide);
         printLogs(LogTag, "initializeViews", "exit");
     }
 
@@ -210,11 +222,20 @@ public class SAddFeedbackA extends BaseAPCPrivate {
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
+        Label = getLabelFromDb("h_reportsdate", R.string.h_reportsdate);
+        lblView = (TextView) findViewById(R.id.lblstartdate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
+        Label = getLabelFromDb("h_reportenddate", R.string.h_reportenddate);
+        lblView = (TextView) findViewById(R.id.lblenddate);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+
         Label = getLabelFromDb("l_S175_experence", R.string.l_S175_experence);
         lblView = (TextView) findViewById(R.id.lblExperience);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-
         Label = getLabelFromDb("h_S175", R.string.h_S175);
         lblView = (TextView) findViewById(R.id.activity_heading);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
@@ -223,16 +244,24 @@ public class SAddFeedbackA extends BaseAPCPrivate {
 
         Label = getLabelFromDb("b_apply_feedback", R.string.b_apply_feedback);
         btnSubmitLv.setText(Label);
-
+        Label = getLabelFromDb("l_S175_guidebtn", R.string.l_S175_guidebtn);
+        btn_guide.setText(Label);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
+            btn_guide.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
            inputDepartment.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
            inputTraining.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
            inputFeedback.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
            inputExperience.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             SpinnerMonthYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            startdateSP.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            startSpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            startSpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            endSpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            endSpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            endSpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
 
         }
 
@@ -281,6 +310,149 @@ public class SAddFeedbackA extends BaseAPCPrivate {
                 printLogs(LogTag, "btnSubmitLv", "MONTH_YEAR_btnSubmitLv_IDDD : " + selected_month_id);
             }
         });
+
+
+        /*start date spinners*/
+
+        ArrayList<String> years = new ArrayList<>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 1900; i <= thisYear; i++) {
+            if(i == 1900){
+                years.add("");
+            }
+            years.add(Integer.toString(i));
+        }
+
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
+        final Spinner startSpinnerYear = findViewById(R.id.startSpinnerYear);
+        startSpinnerYear.setAdapter(adapter3);
+
+
+        startSpinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // spin_year = parent.getItemAtPosition(position).toString();
+                spin_startyear = parent.getItemAtPosition(startSpinnerYear.getSelectedItemPosition()).toString();
+                printLogs(LogTag, "initializeListeners", "spin_startyear" + spin_startyear);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayList<String> days = new ArrayList<>();
+        for (int i = 0; i <= 31; i++) {
+            if(i == 0){
+                days.add("");
+            }else{
+                days.add(Integer.toString(i));
+            }
+
+        }
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, days);
+        Spinner startdateSP = findViewById(R.id.startdateSP);
+        startdateSP.setAdapter(adapter4);
+
+        startdateSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spin_startday = parent.getItemAtPosition(position).toString();
+                printLogs(LogTag, "initializeListeners", "spin_startday" + spin_startday);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        startSpinnerMonth.setAdapter(adapter6);
+        adapter6.notifyDataSetChanged();
+
+
+        startSpinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                spin_startmonth = String.valueOf(parent.getSelectedItemId());
+                printLogs(LogTag, "initializeListeners", "spin_startmonth" + spin_startmonth);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+        /*end date spinners*/
+
+        ArrayAdapter<String> adapterendSpinnerDay = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, days);
+        Spinner endSpinnerDay = findViewById(R.id.endSpinnerDay);
+        endSpinnerDay.setAdapter(adapterendSpinnerDay);
+
+        endSpinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spin_endday = parent.getItemAtPosition(position).toString();
+                printLogs(LogTag, "initializeListeners", "spin_endday" + spin_endday);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        final ArrayAdapter<CharSequence> adapterendSpinnerMonth = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        endSpinnerMonth.setAdapter(adapterendSpinnerMonth);
+        adapter6.notifyDataSetChanged();
+
+
+        endSpinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                spin_endmonth = String.valueOf(parent.getSelectedItemId());
+                printLogs(LogTag, "initializeListeners", "spin_endmonth" + spin_endmonth);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        ArrayAdapter<String> adapterendSpinnerYear = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
+        final Spinner endSpinnerYear = findViewById(R.id.endSpinnerYear);
+        endSpinnerYear.setAdapter(adapterendSpinnerYear);
+
+
+        endSpinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // spin_year = parent.getItemAtPosition(position).toString();
+                spin_endyear = parent.getItemAtPosition(endSpinnerYear.getSelectedItemPosition()).toString();
+                printLogs(LogTag, "initializeListeners", "spin_endyear" + spin_endyear);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
     }
 

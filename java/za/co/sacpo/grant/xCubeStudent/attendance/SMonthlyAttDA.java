@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -274,6 +275,7 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
                     if (Status.equals("1")) {
                         attDetailsArrayAdapter adapter = new attDetailsArrayAdapter(getApplicationContext());
                         adapter.truncate();
+                        ArrayList<attDetailsArray> arrayList=new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i + 1;
@@ -293,16 +295,20 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
                             String aCommentLink14 = rec.getString("supervisor_comment_link");
 
 
-                            adapter.insert(new attDetailsArray(rec.getString("grant_id"),
+
+                            arrayList.add(new attDetailsArray(rec.getString("grant_id"),
                                     rec.getString("student_id"),Month,Year,String.valueOf(aId2),Count,aALeaveCount6,aSLeaveCount7,
                                     aOPaidLeaveCount8,aUPaidLeaveCount9,aSupervisorComment11,aDownloadReg12,aDownloadLink13,
                                     aSupervisorStatus10,aCommentLink14));
 
 
 
+
                             rDataObj.addItem(rDataObj.createItem(pos, aId2, Month, Year, Count,aALeaveCount6, aSLeaveCount7, aOPaidLeaveCount8, aUPaidLeaveCount9, aSupervisorStatus10, aSupervisorComment11, aDownloadReg12,aDownloadLink13,aCommentLink14));
-                            showList();
+
                         }
+                        adapter.insert(arrayList);
+                        showList();
                         showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentView, mProgressView);
@@ -373,8 +379,9 @@ public class SMonthlyAttDA extends BaseAPCPrivate {
             String aCommentLink14 = adapterAll.get(i).getSupervisor_comment_link();
 
             rDataObj.addItem(rDataObj.createItem(pos, aId2, Month, Year, Count,aALeaveCount6, aSLeaveCount7, aOPaidLeaveCount8, aUPaidLeaveCount9, aSupervisorStatus10, aSupervisorComment11, aDownloadReg12,aDownloadLink13,aCommentLink14));
-            showList();
+
         }
+        showList();
         showProgress(false, mContentView, mProgressView);
         printLogs(LogTag, "fetchOfflineData", "exit");
 

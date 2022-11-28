@@ -887,6 +887,14 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onResume() {
         super.onResume();
+        boolean isConnected = isNetworkConnected(this.getApplicationContext());
+        if(isConnected){
+            tv_net.setText("Online");
+            iv_net.setImageResource(R.drawable.interview_accept_btn);
+        }else{
+            tv_net.setText("Offline");
+            iv_net.setImageResource(R.drawable.interview_reject_btn);
+        }
         registerBroadcastIC();
     }
 
@@ -899,6 +907,14 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onStart() {
         super.onStart();
+        boolean isConnected = isNetworkConnected(this.getApplicationContext());
+        if(isConnected){
+            tv_net.setText("Online");
+            iv_net.setImageResource(R.drawable.interview_accept_btn);
+        }else{
+            tv_net.setText("Offline");
+            iv_net.setImageResource(R.drawable.interview_reject_btn);
+        }
         registerBroadcastIC();
     }
 

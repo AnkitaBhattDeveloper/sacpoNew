@@ -87,17 +87,12 @@ public class SReportDetailsA extends BaseAPCPrivate {
 
         printLogs(LogTag, "onCreate", "DATE_INPUT_RESULT"  + result);
         printLogs(LogTag, "onCreate", "student_id_GET__"  + student_id);
-
         printLogs(LogTag, "onCreate", "REPORT_ID__" + report_id);
         printLogs(LogTag, "onCreate", "grant_id__" + grant_id);
-
         printLogs(LogTag, "onCreate", "DDDDDDDDDD_INPUT" + date_input);
-
         printLogs(LogTag, "onCreate", "GENERATOR ID " + generator);
         printLogs(LogTag, "onCreate", "is_upload_attendance " + is_upload_attendance);
-
         bootStrapInit();
-
         internetChangeBroadCast();
         fetchVersionData();
         verifyVersion();
@@ -305,7 +300,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
                         sWeeklyReportDetailsAdapter adapter = new sWeeklyReportDetailsAdapter(getApplicationContext());
-                        //adapter.truncate();
+                       // adapter.truncate();
                         ArrayList<sWeeklyReportDetails> arrayList = new ArrayList<>();
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
                         activity_heading.setText(dataM.getString("number"));
@@ -333,7 +328,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
                                 dataM.getString("c_u_r_comment"),dataM.getString("c_u_r_training_progress"),
                                 dataM.getString("c_u_r_report_writing"),dataM.getString("supervisor_status")));
                         adapter.insert(arrayList);
-                       /* sWeeklyReportDetails sWeeklyReportDetails = new sWeeklyReportDetails(dataM.getString("s_w_r_id"),
+                        sWeeklyReportDetails sWeeklyReportDetails = new sWeeklyReportDetails(dataM.getString("s_w_r_id"),
                                 dataM.getString("s_w_r_student_id"),dataM.getString("student_name"),
                                 dataM.getString("title"),dataM.getString("training"),
                                 dataM.getString("day"),dataM.getString("feedback"),
@@ -343,11 +338,15 @@ public class SReportDetailsA extends BaseAPCPrivate {
                                 dataM.getString("c_u_r_comment"),dataM.getString("c_u_r_training_progress"),
                                 dataM.getString("c_u_r_report_writing"),dataM.getString("supervisor_status"));
                         sWeeklyReportDetails byId = adapter.getById(Integer.parseInt(report_id));
-                        if(byId.getS_w_r_id().equals(report_id)){
-                            adapter.update(sWeeklyReportDetails);
-                        }else{
+                        printLogs(LogTag, "getGrantDetails", "report_id : " + report_id);
+                        printLogs(LogTag, "getGrantDetails", "byId : " + byId);
+
+                        if(!byId.getS_w_r_id().equals(report_id)){
                             adapter.insert(arrayList);
-                        }*/
+                        }else{
+                            adapter.update(sWeeklyReportDetails);
+
+                        }
 
 
 

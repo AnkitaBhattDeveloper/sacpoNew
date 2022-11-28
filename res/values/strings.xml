@@ -4050,13 +4050,20 @@ SETA GRANT Administrators and Supervisors have access to view the notes of the S
     <string name="l_S175_week_ending">MONTH</string>
     <string name="l_S175_end_date">End Date</string>
     <string name="l_S175_leave_type">Leave Type</string>
+    <string name="l_S175_guidebtn">GUIDE TO REPORT WRTING</string>
+    <string name="l_S175_attachbtn">ATTACH</string>
     <string name="l_S175_department">REPORT TITLE</string>
-    <string name="l_S175_training">WHAT I LIKED ABOUT MY TRAINING</string>
-    <string name="l_S175_feedback">WHAT I WOULD LIKE TO SEE CHANGED</string>
+   <!-- <string name="l_S175_training">WHAT I LIKED ABOUT MY TRAINING</string>-->
+    <string name="l_S175_training">DESCRIBE THE PROCEDURES FOLLOWED IN COMPLETING EACH OF THE ACTIVITIES</string>
+    <!--<string name="l_S175_feedback">WHAT I WOULD LIKE TO SEE CHANGED</string>-->
+    <string name="l_S175_feedback">REFLECTIVE PRACTICES</string>
     <string name="l_S175_reports">REPORTS</string>
-    <string name="l_S175_experence">MY LEARNING EXPERIENCES</string>
+   <!-- <string name="l_S175_experence">MY LEARNING EXPERIENCES</string>-->
+    <string name="l_S175_experence">LIST OF LEARNING / TRAINING ACTIVITIES COVERED IN THE REPORTING PERIOD</string>
 
 
+    <string name="h_reportsdate">Report Start Date</string>
+    <string name="h_reportenddate">Report End Date</string>
     <string name="h_184"> EDIT  PROGRESS REPORT</string>
     <string name="l_184_start_date"> Month</string>
     <string name="l_184_end_date">End Date</string>
