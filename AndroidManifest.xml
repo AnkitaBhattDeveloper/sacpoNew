@@ -558,6 +558,7 @@
         <activity
             android:name=".xCubeStudent.bank.SBankDA"
             android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity

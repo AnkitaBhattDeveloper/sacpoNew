@@ -4,6 +4,7 @@ package za.co.sacpo.grant.xCubeLib.baseFramework;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -76,8 +77,29 @@ public abstract class BaseAPCPrivate extends BaseAPC {
     private FMData mFMDataTask = null;
     private AlertsData mAlertDataTask = null;
     protected String userToken;
+    final Handler handler = new Handler();
+    final int delay = 1000; // 1000 milliseconds == 1 second
 
     protected abstract void bootStrapInit();
+
+
+    public void checkInternetConnection(){
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                ImageView iv_connection = findViewById(R.id.iv_connection);
+                if (cm.getActiveNetworkInfo() != null) {
+                    iv_connection.setImageResource(R.drawable.interview_accept_btn);
+                }
+                else {
+                    iv_connection.setImageResource(R.drawable.interview_reject_btn);
+                }
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+    }
+
+
 
     public void validateLogin(Context baseApcContext, AppCompatActivity activityIn) {
         userSessionObj = new OlumsUserSession(baseApcContext);

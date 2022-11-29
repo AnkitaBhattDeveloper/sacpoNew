@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,9 +47,11 @@ import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.StudentBaseDrawerA;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
+import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.db.DashboardDataArray;
 import za.co.sacpo.grant.xCubeLib.db.DashboardDataArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
+import za.co.sacpo.grant.xCubeLib.dialogs.InternetDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.attendance.SCurrentAttDA;
@@ -82,14 +85,14 @@ public class SDashboardDA extends StudentBaseDrawerA {
     private String training_program_url="";
     boolean doubleBackToExitPressedOnce = false;
     private static final int REQUEST_LOCATION = 1;
-    private static final int REQUEST_READ_EXTERNAL_STORAGE = 2;
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 3;
     NestedScrollView c_dashboard;
     String[] permissionsStorage = {Manifest.permission.READ_EXTERNAL_STORAGE};
     int requestExternalStorage = 1;
     TextView tv_net;
     ImageView iv_net;
-
+    final Handler handler = new Handler();
+    final int delay = 1000; // 1000 milliseconds == 1 second
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
         CAId = cTAId;
@@ -113,16 +116,30 @@ public class SDashboardDA extends StudentBaseDrawerA {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
         bootStrapInit();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                if (cm.getActiveNetworkInfo() != null) {
+                     tv_net.setText("Online");
+                     iv_net.setImageResource(R.drawable.interview_accept_btn);
+                }
+                else {
+                       tv_net.setText("Offline");
+                      iv_net.setImageResource(R.drawable.interview_reject_btn);
+                }
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void bootStrapInit() {
-        boolean isConnected = isNetworkConnected(this.getApplicationContext());
+        boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
+        validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
            // setAppTheme();
-            validateLogin(baseApcContext, activityIn);
             setLayoutXml();
             setAppLogo();
             callFooter(baseApcContext, activityIn, ActivityId);
@@ -141,12 +158,10 @@ public class SDashboardDA extends StudentBaseDrawerA {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            tv_net.setText("Online");
-            iv_net.setImageResource(R.drawable.interview_accept_btn);
+
             initializeInputs();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }else{
-            validateLogin(baseApcContext, activityIn);
             setLayoutXml();
             setAppLogo();
             callFooter(baseApcContext, activityIn, ActivityId);
@@ -165,14 +180,12 @@ public class SDashboardDA extends StudentBaseDrawerA {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-            tv_net.setText("Offline");
-            iv_net.setImageResource(R.drawable.interview_reject_btn);
+
             //initializeInputs();
             studentSessionObj = new OlumsStudentSession(baseApcContext);
             fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
             printLogs(LogTag, "bootStrapInit", "exitConnected");
-            //Toast.makeText(this, "not connected....", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -887,14 +900,6 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onResume() {
         super.onResume();
-        boolean isConnected = isNetworkConnected(this.getApplicationContext());
-        if(isConnected){
-            tv_net.setText("Online");
-            iv_net.setImageResource(R.drawable.interview_accept_btn);
-        }else{
-            tv_net.setText("Offline");
-            iv_net.setImageResource(R.drawable.interview_reject_btn);
-        }
         registerBroadcastIC();
     }
 
@@ -907,14 +912,6 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onStart() {
         super.onStart();
-        boolean isConnected = isNetworkConnected(this.getApplicationContext());
-        if(isConnected){
-            tv_net.setText("Online");
-            iv_net.setImageResource(R.drawable.interview_accept_btn);
-        }else{
-            tv_net.setText("Offline");
-            iv_net.setImageResource(R.drawable.interview_reject_btn);
-        }
         registerBroadcastIC();
     }
 

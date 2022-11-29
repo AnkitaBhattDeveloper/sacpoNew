@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -83,7 +84,8 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected Bundle outBundle;
     protected OlumsUserSession userSessionObj;
     protected Boolean isLive = false;//Logs Show If False
-    protected Boolean isOnline = false;//Logs Show If False
+    protected Boolean isOnline = false;
+
 
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);
     protected abstract void initializeViews();
@@ -117,7 +119,7 @@ public abstract class BaseAPC extends AppCompatActivity {
                     InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
 
                 }else{
-                        Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(pContext, "Running in Offline Mode...", Toast.LENGTH_SHORT).show();
 
                 }
                        }
@@ -126,6 +128,7 @@ public abstract class BaseAPC extends AppCompatActivity {
             }
         }
     };
+
     public void registerBroadcastIC(){
         try {
             printLogs(LogTag, "registerBroadcast", "init");

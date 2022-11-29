@@ -2,13 +2,19 @@ package za.co.sacpo.grant.xCubeStudent.bank;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -29,7 +35,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import za.co.sacpo.grant.AppUpdatedA;
 import za.co.sacpo.grant.R;
@@ -52,6 +57,8 @@ public class SBankDA extends BaseFormAPCPrivate {
     public String generator;
     String bank_id,Account_type,BranchCode;
     int bank_idInt,Account_typeInt,BranchCodeInt;
+    ImageView iv_back,iv_connection;
+
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId) {
         baseApcContext = cnt;
@@ -66,6 +73,7 @@ public class SBankDA extends BaseFormAPCPrivate {
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag, "onCreate", "init");
         bootStrapInit();
+
     }
     @Override
     protected void bootStrapInit() {
@@ -133,7 +141,16 @@ public class SBankDA extends BaseFormAPCPrivate {
     }
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        iv_back.setOnClickListener(view -> {
+            Intent intent = new Intent(SBankDA.this, SDashboardDA.class);
+            printLogs(LogTag,"onOptionsItemSelected","sDashboard");
+            startActivity(intent);
+            finish();
+        });
+       //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+      /*  ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setLogo(R.drawable.interview_reject_btn);*/
     }
     @Override
     protected void verifyVersion(){
@@ -174,6 +191,8 @@ public class SBankDA extends BaseFormAPCPrivate {
         lblInitialName = (TextView) findViewById(R.id.lblInitialName);
         txtInitialName = (TextView) findViewById(R.id.txtInitialName);
         heading = findViewById(R.id.heading);
+        iv_back = findViewById(R.id.iv_back);
+        iv_connection = findViewById(R.id.iv_connection);
         printLogs(LogTag,"initializeViews","exit");
     }
     @Override
@@ -398,14 +417,14 @@ public class SBankDA extends BaseFormAPCPrivate {
         startActivity(intent);
         finish();
     }
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(SBankDA.this, SDashboardDA.class);
         printLogs(LogTag,"onOptionsItemSelected","sDashboard");
         startActivity(intent);
         finish();
         return true;
-    }
+    }*/
     @Override
     protected void onPause() {
         super.onPause();
@@ -414,6 +433,7 @@ public class SBankDA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -424,6 +444,7 @@ public class SBankDA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
