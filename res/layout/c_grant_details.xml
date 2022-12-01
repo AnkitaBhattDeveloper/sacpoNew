@@ -1,527 +1,538 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<include layout="@layout/internet_connectivity_layout"/>
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/biggestDp"
-        android:layout_marginTop="@dimen/biggestDp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
     <LinearLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/progress_bar"
-        android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:layout_margin="@dimen/SmallerDp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:layout_constraintBottom_toBottomOf="parent">
 
 
-
-        <ScrollView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/SmallerDp">
+
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/txtGrantName"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="HEADING"
-                    android:padding="@dimen/ExtraSmallDp"
-                    android:textSize="@dimen/BigTextSize"
-                    android:textStyle="bold"
-                    />
-                  <View
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtGrantName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/ExtraSmallDp"
+                        android:text="HEADING"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/BigTextSize"
+                        android:textStyle="bold" />
+
+                    <View
                         android:id="@+id/heading"
-                        android:layout_marginLeft="@dimen/ExtraGiantDp"
-                        android:layout_marginRight="@dimen/ExtraGiantDp"
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@drawable/heading_1"
-                        />
+                        android:layout_marginLeft="@dimen/ExtraGiantDp"
+                        android:layout_marginRight="@dimen/ExtraGiantDp"
+                        android:background="@drawable/heading_1" />
 
 
-                <LinearLayout
-                    android:id="@+id/body_container"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
                     <LinearLayout
-                        android:id="@+id/detail_container"
+                        android:id="@+id/body_container"
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/lblSetaName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true" />
-
-                        <TextView
-                            android:id="@+id/txtSetaName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_value"
-                            android:textColor="@color/txt_small_value"/>
-
-                        <TextView
-                            android:id="@+id/lblSetaManagerName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true"/>
-
-                        <TextView
-                            android:id="@+id/txtSetaManagerName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_value"
-                            android:textColor="@color/txt_small_value" />
-
-
-
-
-                        <TextView
-                            android:id="@+id/lblLEAName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true"/>
-
-                        <TextView
-                            android:id="@+id/txtLEAName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_value"
-                            android:textColor="@color/txt_small_value" />
-                    
-                        
-
-                        <TextView
-                            android:id="@+id/lblLEAManager"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:weightSum="1"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
+                            android:id="@+id/detail_container"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txtLEAManager"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/lblSetaName"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
                                 android:textColor="@color/txt_small_heading"
-                                android:text="" />
-
-                            <Button
-                                style="?android:textAppearanceSmall"
-                                android:id="@+id/mLEAContactButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/lblGrantAdmin_cellNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true" />
-                        <LinearLayout
-                            android:weightSum="1"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txtGrantAdmin_cellNo"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/txtSetaName"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value" />
+
+                            <TextView
+                                android:id="@+id/lblSetaManagerName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
                                 android:textColor="@color/txt_small_heading"
-                                android:text="" />
-
-                            <Button
-                                style="?android:textAppearanceSmall"
-                                android:id="@+id/mLEACallButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/lblGrantAdminEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true" />
-                        <LinearLayout
-                            android:weightSum="1"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txtGrantAdminEmail"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/txtSetaManagerName"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value" />
+
+
+                            <TextView
+                                android:id="@+id/lblLEAName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
                                 android:textColor="@color/txt_small_heading"
-                                android:text="" />
-
-                            <Button
-                                style="?android:textAppearanceSmall"
-                                android:id="@+id/mLEAEmailButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="" />
-                        </LinearLayout>
-
-
-                        <TextView
-                            android:id="@+id/lblHostName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            android:textAllCaps="true" />
-
-                        <TextView
-                            android:id="@+id/txtHostName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:visibility="gone"
-                            android:background="@color/back_small_value"
-                            android:textColor="@color/txt_small_value" />
-                   
-                        <TextView
-                            android:id="@+id/lblHostSDLNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            android:textAllCaps="true" />
-
-                        <TextView
-                            android:id="@+id/txtHostSDLNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:visibility="gone"
-                            android:background="@color/back_small_value"
-                            android:textColor="@color/txt_small_value" />
-                   
-
-                        <TextView
-                            android:id="@+id/lblMentorName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:visibility="gone"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true"/>
-
-
-
-
-                        <LinearLayout
-                            android:weightSum="1"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txtMentorName"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/txtLEAName"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
-                                android:text="" />
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value" />
 
-                            <Button
-                                android:id="@+id/mMentorContactButton"
-                                style="?android:textAppearanceSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="" />
-                        </LinearLayout>
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/lblMentor_cellNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true" />
-                        <LinearLayout
-                            android:visibility="gone"
-                            android:weightSum="1"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/txtMentor_cellNo"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/lblLEAManager"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
-                                android:text="" />
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold" />
 
-                            <Button
-                                style="?android:textAppearanceSmall"
-                                android:id="@+id/mMentorCallButton"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="" />
-                        </LinearLayout>
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:weightSum="1">
 
+                                <TextView
+                                    android:id="@+id/txtLEAManager"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text=""
+                                    android:textColor="@color/txt_small_heading" />
 
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/lblMentorEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:background="@color/back_small_heading"
-                            android:textColor="@color/txt_small_heading"
-                            android:textStyle="bold"
-                            android:textAllCaps="true" />
-                        <LinearLayout
-                            android:visibility="gone"
-                            android:weightSum="1"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/small"
-                            android:layout_margin="@dimen/ExtraSmallerDp"
-                            android:textColor="@color/txt_small_value"
-                            android:background="@color/back_small_value"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/mLEAContactButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/txtMentorEmail"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/lblGrantAdmin_cellNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtGrantAdmin_cellNo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text=""
+                                    android:textColor="@color/txt_small_heading" />
+
+                                <Button
+                                    android:id="@+id/mLEACallButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/lblGrantAdminEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtGrantAdminEmail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text=""
+                                    android:textColor="@color/txt_small_heading" />
+
+                                <Button
+                                    android:id="@+id/mLEAEmailButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:id="@+id/lblHostName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/txtHostName"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="0.8"
-                                android:text="" />
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:visibility="gone" />
 
-                            <Button
-                                style="?android:textAppearanceSmall"
-                                android:id="@+id/mMentorEmailButton"
-                                android:layout_width="wrap_content"
+                            <TextView
+                                android:id="@+id/lblHostSDLNo"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight=".2"
-                                android:background="@drawable/themed_small_button_1"
-                                android:minHeight="@dimen/btnHeightSmaller"
-                                android:minWidth="@dimen/btnWidthSmaller"
-                                android:textColor="@color/row_button_color"
-                                android:textSize="12sp"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
                                 android:textStyle="bold"
-                                android:text="" />
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/txtHostSDLNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:visibility="gone" />
+
+
+                            <TextView
+                                android:id="@+id/lblMentorName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:visibility="gone"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtMentorName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text="" />
+
+                                <Button
+                                    android:id="@+id/mMentorContactButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/lblMentor_cellNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:visibility="gone"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtMentor_cellNo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text="" />
+
+                                <Button
+                                    android:id="@+id/mMentorCallButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:id="@+id/lblMentorEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_heading"
+                                android:padding="@dimen/small"
+                                android:textAllCaps="true"
+                                android:textColor="@color/txt_small_heading"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/ExtraSmallerDp"
+                                android:background="@color/back_small_value"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/small"
+                                android:textColor="@color/txt_small_value"
+                                android:visibility="gone"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txtMentorEmail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:text="" />
+
+                                <Button
+                                    android:id="@+id/mMentorEmailButton"
+                                    style="?android:textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_weight=".2"
+                                    android:background="@drawable/themed_small_button_1"
+                                    android:minWidth="@dimen/btnWidthSmaller"
+                                    android:minHeight="@dimen/btnHeightSmaller"
+                                    android:text=""
+                                    android:textColor="@color/row_button_color"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/lblGStartDate"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/small"
-                        android:layout_margin="@dimen/ExtraSmallerDp"
-                        android:background="@color/back_small_heading"
-                        android:textColor="@color/txt_small_heading"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"/>
-                    <TextView
-                        android:id="@+id/txtGStartDate"
-                        android:layout_margin="@dimen/ExtraSmallerDp"
-                        android:text=""
-                        android:padding="@dimen/small"
-                        android:textColor="@color/txt_small_heading"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblGStartDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtGStartDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:padding="@dimen/small"
+                            android:text=""
+                            android:textColor="@color/txt_small_heading" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/lblGEndDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/small"
-                    android:layout_margin="@dimen/ExtraSmallerDp"
-                    android:background="@color/back_small_heading"
-                    android:textColor="@color/txt_small_heading"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"/>
-                <TextView
-                    android:id="@+id/txtGEndDate"
-                        android:layout_margin="@dimen/ExtraSmallerDp"
-                        android:text=""
-                    android:padding="@dimen/small"
-                    android:textColor="@color/txt_small_heading"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblGEndDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:background="@color/back_small_heading"
+                            android:padding="@dimen/small"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_small_heading"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtGEndDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/ExtraSmallerDp"
+                            android:padding="@dimen/small"
+                            android:text=""
+                            android:textColor="@color/txt_small_heading" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ButtonContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
-            </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/margin_ten"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ButtonContainer">
+                        android:layout_marginTop="@dimen/margin_ten"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
+            </ScrollView>
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

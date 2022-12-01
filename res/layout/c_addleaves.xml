@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeStudent.leaves.SAddLeavesA"
+    tools:context=".xCubeStudent.leaves.SAddLeavesA"
     tools:showIn="@layout/a_add_leaves">
 
     <ScrollView
@@ -17,14 +17,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/SmallerDp"
-                android:background="@drawable/myaccount_border"
-                android:padding="@dimen/SmallerDp" >
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp"
+            android:orientation="vertical">
+<include layout="@layout/internet_connectivity_layout"/>
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -304,7 +302,6 @@ tools:ignore="MissingPrefix"
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </RelativeLayout>
 
         </LinearLayout>
 

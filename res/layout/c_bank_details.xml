@@ -10,7 +10,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".xCubeStudent.bank.SBankDA"
     tools:showIn="@layout/a_bank_details">
-
+    <include layout="@layout/internet_connectivity_layout"
+        android:id="@+id/include2"/>
          <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:id="@+id/content_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_bar"
+            android:layout_below="@+id/include2"
             android:orientation="vertical">
 
             <TextView

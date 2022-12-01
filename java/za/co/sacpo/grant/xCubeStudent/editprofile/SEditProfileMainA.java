@@ -217,8 +217,8 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                              tax_ref_number = dataM.getJSONObject(i).getJSONObject("tax_ref_number");
                            national_id = dataM.getJSONObject(i).getJSONObject("national_id");
                             ss_number = dataM.getJSONObject(i).getJSONObject("ss_number");
+                            gender = dataM.getJSONObject(i).getJSONObject("gender");
                              nationality = dataM.getJSONObject(i).getJSONObject("nationality");
-                             gender = dataM.getJSONObject(i).getJSONObject("gender");
                              alternative_id = dataM.getJSONObject(i).getJSONObject("alternative_id");
                             /*Step 1*/
                             Step1ArrayList.add(new Step1DataVisibilityObj(title.getString("s_d_f_is_visible"),title.getString("s_d_f_is_compulsory"), f_name.getString("s_d_f_is_visible"),f_name.getString("s_d_f_is_compulsory"),
@@ -334,7 +334,9 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
                                     contact_of_kin.getString("s_d_f_is_visible"),contact_of_kin.getString("s_d_f_is_compulsory"),physically_disable.getString("s_d_f_is_visible"),physically_disable.getString("s_d_f_is_compulsory"),
                                     select_disability_type.getString("s_d_f_is_visible"),select_disability_type.getString("s_d_f_is_compulsory"),intern_category_qualification.getString("s_d_f_is_visible"),intern_category_qualification.getString("s_d_f_is_compulsory"),
                                     institution.getString("s_d_f_is_visible"),institution.getString("s_d_f_is_compulsory"),university.getString("s_d_f_is_visible"),university.getString("s_d_f_is_compulsory"),
-                                    college.getString("s_d_f_is_visible"),college.getString("s_d_f_is_compulsory")));
+                                    college.getString("s_d_f_is_visible"),college.getString("s_d_f_is_compulsory"),
+                                    alternative_id.getString("s_d_f_is_visible"),alternative_id.getString("s_d_f_is_compulsory"),
+                                    nationality.getString("s_d_f_is_visible"),nationality.getString("s_d_f_is_compulsory")));
                         }
 
                         showProgress(false, mContentView, mProgressView);
@@ -464,6 +466,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -476,6 +479,7 @@ public class SEditProfileMainA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

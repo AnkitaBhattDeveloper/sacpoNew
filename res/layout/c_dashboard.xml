@@ -21,6 +21,9 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:paddingBottom="@dimen/SmallerDp">
 
+                <include layout="@layout/internet_connectivity_layout"
+                    android:id="@+id/include"/>
+
                 <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="match_parent"
@@ -28,56 +31,14 @@
                     android:layout_marginTop="300dp"
                     android:visibility="visible" />
 
-
-
-
-
                 <LinearLayout
                     android:id="@+id/content_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/include"
                     android:orientation="vertical"
                     android:visibility="visible"
                     android:layout_alignParentBottom="true">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_netinfo"
-                        android:layout_margin="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        android:visibility="visible"
-                        app:cardCornerRadius="5dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_net"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                />
-
-                            <ImageView
-                                android:id="@+id/iv_net"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginLeft="20dp"
-                                />
-
-
-
-                        </LinearLayout>
-
-
-
-                    </androidx.cardview.widget.CardView>
 
 
                     <LinearLayout

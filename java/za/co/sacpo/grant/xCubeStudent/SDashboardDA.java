@@ -89,10 +89,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
     NestedScrollView c_dashboard;
     String[] permissionsStorage = {Manifest.permission.READ_EXTERNAL_STORAGE};
     int requestExternalStorage = 1;
-    TextView tv_net;
-    ImageView iv_net;
-    final Handler handler = new Handler();
-    final int delay = 1000; // 1000 milliseconds == 1 second
+
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cTAId) {
         baseApcContext = cnt;
         CAId = cTAId;
@@ -116,20 +113,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE);
         bootStrapInit();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-                if (cm.getActiveNetworkInfo() != null) {
-                     tv_net.setText("Online");
-                     iv_net.setImageResource(R.drawable.interview_accept_btn);
-                }
-                else {
-                       tv_net.setText("Offline");
-                      iv_net.setImageResource(R.drawable.interview_reject_btn);
-                }
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -285,8 +269,6 @@ public class SDashboardDA extends StudentBaseDrawerA {
         lbl_head_process_6_1=findViewById(R.id.lbl_head_process_6_1);
         tv_training_prog=findViewById(R.id.tv_training_prog);
         lbl_head_process_7_1=findViewById(R.id.lbl_head_process_7_1);
-        tv_net=findViewById(R.id.tv_net);
-        iv_net=findViewById(R.id.iv_net);
         printLogs(LogTag, "initializeViews", "exit");
 
     }
@@ -900,6 +882,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -912,6 +895,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

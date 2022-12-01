@@ -487,6 +487,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -499,6 +500,7 @@ public class SReportDetailsA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

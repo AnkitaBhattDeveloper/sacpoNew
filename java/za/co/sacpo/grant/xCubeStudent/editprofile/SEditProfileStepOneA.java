@@ -62,7 +62,6 @@ import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
 public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private String ActivityId = "S105A";
-
     private String KEY_NAME = "fname";
     private String KEY_SURNAME = "lname";
     private String KEY_PHONE = "mobile";
@@ -85,16 +84,23 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     private int gender_status;
     String spin_date,spin_years;
     String gender_key_status = "";
-    String selected_enroll_year;
+    String selected_enroll_year,institution_value,spin_college="",spin_university="",university_value="",college_value="";
     String race_value, title_value,month_value;
     public SpinnerObj[] NationalityType;
+    public SpinnerObj[] UniversityType;
+    public SpinnerObj[] CollegeType;
+    LinearLayout ll_university,ll_college;
     SEditProfileStepOneA thisClass;
+    Spinner inputSpinnerinstitution;
+    Spinner inputSpinneruniversity;
+    Spinner inputSpinnercollege;
     ArrayList<Step1DataVisibilityObj> Step1ArrayList = new ArrayList<>();
     LinearLayout ll_title,firstNameContainer,lastNameContainer,mobileNumberContainer,EmailContainer,RaceContainer,
             GenderContainer,DOBContainer,National_idContainer,sRegNoContainer,alternative_idContainer,NationalityContainer,
-            TaxRefNoContainer;
+            TaxRefNoContainer,institution;
     boolean validTitle,validFName,validLName,validMob,validEmail,validRace,validGender,validDob,validNationalId,
-            validSRegNo,validAlterId,validNationality,validRefNo;
+            validSRegNo,validAlterId,validNationality,validRefNo,validInst,
+            validUniversity,validCollege;
 
 
 
@@ -194,7 +200,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         inputMobile = findViewById(R.id.inputMobile);
         inputNational_id = findViewById(R.id.inputNational_id);
         inputsRegNo = findViewById(R.id.inputsRegNo);
-        inputalternative_id = findViewById(R.id.inputalternative_id);
+        //inputalternative_id = findViewById(R.id.inputalternative_id);
         inputFirstName = findViewById(R.id.inputFirstName);
         inputLastName = findViewById(R.id.inputLastName);
         inputEmail = findViewById(R.id.inputEmail);
@@ -205,7 +211,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         inputLayoutMobile = findViewById(R.id.inputLayoutMobile);
         inputLayoutNational_id = findViewById(R.id.inputLayoutNational_id);
         inputLayoutsRegNo = findViewById(R.id.inputLayoutsRegNo);
-        inputLayoutalternative_id = findViewById(R.id.inputLayoutalternative_id);
+       // inputLayoutalternative_id = findViewById(R.id.inputLayoutalternative_id);
         inputLayoutEmail = findViewById(R.id.inputLayoutEmail);
         inputLayoutLastName = findViewById(R.id.inputLayoutLastName);
         inputLayoutTaxRefNo = findViewById(R.id.inputLayoutTaxRefNo);
@@ -221,11 +227,15 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         SpinnerDay = findViewById(R.id.SpinnerDay);
         SpinnerMonth = findViewById(R.id.SpinnerMonth);
         SpinnerYear = findViewById(R.id.SpinnerYear);
-        inputSpinnerNationality = findViewById(R.id.inputSpinnerNationality);
+        //inputSpinnerNationality = findViewById(R.id.inputSpinnerNationality);
         rb_male = findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
-
-
+        institution = findViewById(R.id.institution);
+        inputSpinnerinstitution = findViewById(R.id.inputSpinnerinstitution);
+        inputSpinneruniversity = findViewById(R.id.inputSpinneruniversity);
+        inputSpinnercollege = findViewById(R.id.inputSpinnercollege);
+        ll_university = findViewById(R.id.ll_university);
+        ll_college = findViewById(R.id.ll_college);
         ll_title                = findViewById(R.id.ll_title);
         firstNameContainer      = findViewById(R.id.firstNameContainer);
         lastNameContainer       = findViewById(R.id.lastNameContainer);
@@ -236,8 +246,8 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         DOBContainer            = findViewById(R.id.DOBContainer);
         National_idContainer    = findViewById(R.id.National_idContainer);
         sRegNoContainer         = findViewById(R.id.sRegNoContainer);
-        alternative_idContainer = findViewById(R.id.alternative_idContainer);
-        NationalityContainer    = findViewById(R.id.NationalityContainer);
+       // alternative_idContainer = findViewById(R.id.alternative_idContainer);
+       // NationalityContainer    = findViewById(R.id.NationalityContainer);
         TaxRefNoContainer     = findViewById(R.id.TaxRefNoContainer);
 
     }
@@ -261,10 +271,10 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         lblView =  findViewById(R.id.lblsRegNo);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-        Label = getLabelFromDb("i_S105_edit_profile_alternativeid", R.string.i_S105_edit_profile_alternativeid);
+       /* Label = getLabelFromDb("i_S105_edit_profile_alternativeid", R.string.i_S105_edit_profile_alternativeid);
         lblView =  findViewById(R.id.lblalternative_id);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
+        lblView.setText(Label);*/
         Label = getLabelFromDb("lbl_S105_sur_name", R.string.lbl_S105_sur_name);
         lblView =  findViewById(R.id.lblLastName);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
@@ -285,10 +295,10 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
 
-        Label = getLabelFromDb("lbl_S105_nationality", R.string.lbl_S105_nationality);
+      /*  Label = getLabelFromDb("lbl_S105_nationality", R.string.lbl_S105_nationality);
         lblView =  findViewById(R.id.lblNationality);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
+        lblView.setText(Label);*/
 
         Label = getLabelFromDb("lbl_S105_DOB", R.string.lbl_S105_DOB);
         lblView =  findViewById(R.id.lblDob);
@@ -304,7 +314,18 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         lblView =  findViewById(R.id.lblGender);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-
+        Label = getLabelFromDb("lbl_S105D_institution", R.string.lbl_S105D_institution);
+        lblView = (TextView) findViewById(R.id.lblinstitution);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+        Label = getLabelFromDb("lbl_S105D_university", R.string.lbl_S105D_university);
+        lblView = (TextView) findViewById(R.id.lbluniversity);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+        Label = getLabelFromDb("lbl_S105D_college", R.string.lbl_S105D_college);
+        lblView = (TextView) findViewById(R.id.lblcollege);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
 
@@ -320,17 +341,20 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             inputMobile.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputNational_id.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputsRegNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-            inputalternative_id.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+           // inputalternative_id.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputFirstName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputLastName.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputEmail.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputTaxRefNo.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnerRace.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+           // inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerDay.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerMonth.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             SpinnerYear.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnerinstitution.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinneruniversity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputSpinnercollege.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
 
 
         }
@@ -389,7 +413,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             }else{
                 sRegNoContainer.setVisibility(View.GONE);
             }
-            if(Step1ArrayList.get(i).getAlterID_is_v_1().equals("1")){
+         /*   if(Step1ArrayList.get(i).getAlterID_is_v_1().equals("1")){
                 alternative_idContainer.setVisibility(View.VISIBLE);
             }else{
                 alternative_idContainer.setVisibility(View.GONE);
@@ -398,7 +422,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                 NationalityContainer.setVisibility(View.VISIBLE);
             }else{
                 NationalityContainer.setVisibility(View.GONE);
-            }
+            }*/
             if(Step1ArrayList.get(i).getTaxRef_is_v_1().equals("1")){
                 TaxRefNoContainer.setVisibility(View.VISIBLE);
             }else{
@@ -528,7 +552,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
             }
         });
-        final ArrayAdapter<CharSequence> nationalityadapter = ArrayAdapter.createFromResource(this, R.array.race, android.R.layout.simple_spinner_item);
+        /*final ArrayAdapter<CharSequence> nationalityadapter = ArrayAdapter.createFromResource(this, R.array.race, android.R.layout.simple_spinner_item);
         nationalityadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerNationality.setAdapter(nationalityadapter);
         nationalityadapter.notifyDataSetChanged();
@@ -548,7 +572,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
 
         final ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.month_type, android.R.layout.simple_spinner_item);
@@ -645,71 +669,276 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
             }
         });
+        /*institution spinner*/
+        ArrayAdapter<CharSequence> institutionadapter = ArrayAdapter.createFromResource(this, R.array.institution_type, android.R.layout.simple_spinner_item);
+        institutionadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputSpinnerinstitution.setAdapter(institutionadapter);
+        institutionadapter.notifyDataSetChanged();
 
+        inputSpinnerinstitution.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                institution_value = String.valueOf(parent.getSelectedItemId());
+                if (institution_value.equals("1")) {
+                    fetchUniversity(institution_value);
+                    ll_college.setVisibility(View.GONE);
+                    ll_university.setVisibility(View.VISIBLE);
+                }else if(institution_value.equals("2")){
+                    fetchColleges(institution_value);
+                    ll_college.setVisibility(View.VISIBLE);
+                    ll_university.setVisibility(View.GONE);
+                } else{
+                    ll_college.setVisibility(View.GONE);
+                    ll_university.setVisibility(View.GONE);
+                }
+                printLogs(LogTag, "initializeListeners", "institution_value" + institution_value);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+    private void fetchColleges(String institution_value) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.INSTITUTION_105D;
+        FINAL_URL=FINAL_URL+"?token="+token+"&inst_type="+institution_value;
+        printLogs(LogTag,"fetchColleges","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchColleges", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        CollegeType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            CollegeType[i] = new SpinnerObj();
+                            CollegeType[i].setId(jsonObject.getString("inst_id"));
+                            CollegeType[i].setName(jsonObject.getString("inst_name"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_item, CollegeType);
+                        inputSpinnercollege.setAdapter(adapter);
+                        if(!college_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnercollege, college_value);
+                            inputSpinnercollege.setSelection(spinnerPosition);
+                        }
+                        inputSpinnercollege.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_college = adapter.getItem(i).getId();
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void fetchUniversity(String institution_value) {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.INSTITUTION_105D;
+        FINAL_URL=FINAL_URL+"?token="+token+"&inst_type="+institution_value;
+        printLogs(LogTag,"fetchUniversity","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchUniversity", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        UniversityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            UniversityType[i] = new SpinnerObj();
+                            UniversityType[i].setId(jsonObject.getString("inst_id"));
+                            UniversityType[i].setName(jsonObject.getString("inst_name"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepOneA.this, android.R.layout.simple_spinner_item, UniversityType);
+                        inputSpinneruniversity.setAdapter(adapter);
+                        if(!university_value.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinneruniversity, university_value);
+                            inputSpinneruniversity.setSelection(spinnerPosition);
+                        }
+                        inputSpinneruniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_university = adapter.getItem(i).getId();
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
     }
 
 
 
     public void validateForm() {
         boolean cancel = false;
-        if(validRace){
+        //if(validRace){
             if (!validateSpinnerRace(inputSpinnerRace)) {
                 cancel = true;
             }
-        }
-        if(validDob){
+     //   }
+      //  if(validDob){
             if (!validateSpinnerDob(spin_date,month_value,spin_year)) {
                 cancel = true;
             }
-        }
-        if(validNationality){
+     //   }
+      /*  if(validNationality){
             if (!validateSpinnerNationality(inputSpinnerNationality)) {
                 cancel = true;
             }
-        }
-        if(validTitle){
+        }*/
+       // if(validTitle){
             if (!validateSpinnerTitle(inputSpinnerTitle)) {
                 cancel = true;
             }
-        } if(validFName){
+       // } if(validFName){
             if (!validateFirstName(inputFirstName, inputLayoutFirstName)) {
                 cancel = true;
             }
-        } if(validLName){
+      //  } if(validLName){
             if (!validateLastName(inputLastName, inputLayoutLastName)) {
                 cancel = true;
             }
-        } if(validMob){
+      //  } if(validMob){
             if (!validateNumber(inputMobile, inputLayoutMobile)) {
                 cancel = true;
             }
-        } if(validEmail){
+      //  } if(validEmail){
              if (!validateEmail(inputEmail, inputLayoutEmail)) {
                 cancel = true;
             }
-        } if(validNationalId){
+       // } if(validNationalId){
              if (!validateNationalId(inputNational_id, inputLayoutNational_id)) {
                 cancel = true;
             }
-        } if(validSRegNo){
+        //} if(validSRegNo){
             if (!validateRegNo(inputsRegNo, inputLayoutsRegNo)) {
                 cancel = true;
             }
-        } if(validAlterId){
-            if (!validateAlterId(inputalternative_id, inputLayoutalternative_id)) {
-                cancel = true;
-            }
-        } if(validRefNo){
+       // }/* if(validAlterId){
+          //  if (!validateAlterId(inputalternative_id, inputLayoutalternative_id)) {
+         //       cancel = true;
+          //  }
+        //} */
+        // if(validRefNo){
           if (!validateTaxRefNo(inputTaxRefNo, inputLayoutTaxRefNo)) {
                 cancel = true;
             }
-        }
-        if(validGender){
+     //   }
+       // if(validGender){
             if (!validateGender(RgGender)) {
                 cancel = true;
             }
-        }
+      //  }
         if (cancel) {
             return;
         } else {
@@ -1103,8 +1332,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                             inputNational_id.setText(dataM.getString("s_id_no"));
                             inputsRegNo.setText(dataM.getString("s_s_no"));
                             inputTaxRefNo.setText(dataM.getString("s_s_tax_ref_no"));
-                            inputalternative_id.setText(dataM.getString("s_c_o_alternative_id"));
+                           // inputalternative_id.setText(dataM.getString("s_c_o_alternative_id"));
 
+                            institution_value =  dataM.getString("s_s_g_student_institution_type");
+                            university_value =  dataM.getString("s_s_g_student_institution");
+                            college_value =  dataM.getString("s_s_g_student_institution");
 
                             rb_genderValue =  dataM.getString("gender");
                             spin_day =  dataM.getString("day");
@@ -1112,11 +1344,21 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
                             spin_years =  dataM.getString("year");
                             spin_race =  dataM.getString("race");
                             spin_title =  dataM.getString("u_title");
-                            Nationality =  dataM.getString("s_nationality");
+                          //  Nationality =  dataM.getString("s_nationality");
 
 
                         }
-                        fetchNationality();
+                         if(!college_value.equals("")){
+                            inputSpinnercollege.setSelection(Integer.parseInt(college_value));
+                        }
+
+                        if(!institution_value.equals("")){
+                            inputSpinnerinstitution.setSelection(Integer.parseInt(institution_value));
+                        }
+                        if(!university_value.equals("")){
+                            inputSpinneruniversity.setSelection(Integer.parseInt(university_value));
+                        }
+                        //fetchNationality();
                         //SpinnerDay, SpinnerMonth, SpinnerYear
                         //SET DOB Spinner data--PENDING..!!
                         if(!spin_day.equals("")){
@@ -1228,7 +1470,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
         final String mobile = inputMobile.getText().toString().trim();
         final String national_id = inputNational_id.getText().toString().trim();
         final String sRegNo = inputsRegNo.getText().toString().trim();
-        final String alternativeId = inputalternative_id.getText().toString().trim();
+       // final String alternativeId = inputalternative_id.getText().toString().trim();
         final String sur_name = inputLastName.getText().toString().trim();
         final String email = inputEmail.getText().toString().trim();
 
@@ -1244,8 +1486,11 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
             jsonBody.put(KEY_SURNAME, sur_name);
             jsonBody.put("national_id", national_id);
             jsonBody.put("sRegNo", sRegNo);
-            jsonBody.put("alternative_id", alternativeId);
-            jsonBody.put("nationality", spin_nationality);
+           // jsonBody.put("alternative_id", alternativeId);
+          //  jsonBody.put("nationality", spin_nationality);
+            jsonBody.put("institution", institution_value);
+            jsonBody.put("university", spin_university);
+            jsonBody.put("college", spin_college);
             jsonBody.put("email", email);
             jsonBody.put(KEY_TAX_REF, tax_ref);
             jsonBody.put(KEY_STATUS_GENDER, gender_key_status);
@@ -1339,6 +1584,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -1351,6 +1597,7 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

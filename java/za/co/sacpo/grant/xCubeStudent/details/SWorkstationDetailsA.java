@@ -418,6 +418,7 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -428,6 +429,7 @@ public class SWorkstationDetailsA extends BaseAPCPrivate implements OnMapReadyCa
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

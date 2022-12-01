@@ -560,6 +560,7 @@ public void downloadPDF(Context context, String downloadurl, LinearLayout ll_dow
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -570,6 +571,7 @@ public void downloadPDF(Context context, String downloadurl, LinearLayout ll_dow
     @Override
     protected void onStart() {
         super.onStart();
+       checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

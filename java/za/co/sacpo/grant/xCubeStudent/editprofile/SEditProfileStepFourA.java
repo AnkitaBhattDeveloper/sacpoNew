@@ -56,26 +56,29 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     private TextView lblView;
     SEditProfileStepFourA thisClass;
     public Button btnUpdate;
-    EditText inputNameOfKin,inputContactOfKin;
+    EditText inputNameOfKin,inputContactOfKin,inputalternative_id;
     Spinner inputDisabilityType;
     Spinner inputSpinnerinstitution;
-    Spinner inputSpinneruniversity;
+    Spinner inputSpinneruniversity,inputSpinnerNationality;
     Spinner inputSpinnercollege,spinner_InternCategoryQualification;
     String institution_value,qualcategory_value,is_disablity,spin_college="",spin_university="",
-            disability_key_status="",spin_disability,university_value,college_value;
+            disability_key_status="",spin_disability,university_value,college_value,Nationality="",
+            spin_nationality="";
     int disability_status,disability_value;
     public SpinnerObj[] StuQualcatType;
     public SpinnerObj[] UniversityType;
     public SpinnerObj[] CollegeType;
+    public SpinnerObj[] NationalityType;
     LinearLayout ll_university,ll_college,ll_DisabilityType;
     RadioGroup RGPhysicalDisAbility;
     RadioButton rb_disable_y,rb_disable_n;
     ArrayList<Step5DataVisibilityObj> Step5ArrayList = new ArrayList<>();
-    LinearLayout NameOfKin,ContactOfKin,PhysicalDisability,InternCategoryQualification,institution;
+    LinearLayout NameOfKin,ContactOfKin,PhysicalDisability,InternCategoryQualification,institution,
+            alternative_idContainer,NationalityContainer;
     boolean spinnerdisability;
     boolean validKinName,validkinContact,validphyDisable,validDisabilitytype,validICQualification,validInst,
-    validUniversity,validCollege;
-    TextInputLayout inputLayoutNameOfKin,inputLayoutContactOfKin;
+    validUniversity,validCollege,validAlterId,validNationality;
+    TextInputLayout inputLayoutNameOfKin,inputLayoutContactOfKin,inputLayoutalternative_id;
 
     @Override
     protected void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt, String cAId) {
@@ -147,17 +150,18 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
 
                             inputNameOfKin.setText(dataM.getString("s_k_name"));
                             inputContactOfKin.setText(dataM.getString("s_k_home_tel"));
-
-                            institution_value =  dataM.getString("s_s_g_student_institution_type");
-                            university_value =  dataM.getString("s_s_g_student_institution");
-                            college_value =  dataM.getString("s_s_g_student_institution");
+                            inputalternative_id.setText(dataM.getString("s_c_o_alternative_id"));
+                           // institution_value =  dataM.getString("s_s_g_student_institution_type");
+                         //   university_value =  dataM.getString("s_s_g_student_institution");
+                          //  college_value =  dataM.getString("s_s_g_student_institution");
                             qualcategory_value  =  dataM.getString("s_s_g_learner_qual_category");
                             is_disablity =  dataM.getString("s_is_physical_disable");
                             spin_disability =  dataM.getString("s_physical_disable_type");
-
+                            Nationality =  dataM.getString("s_nationality");
                         }
                         fetchQualCategoryType();
-                        if(!college_value.equals("")){
+                        fetchNationality();
+                       /* if(!college_value.equals("")){
                             inputSpinnercollege.setSelection(Integer.parseInt(college_value));
                         }
 
@@ -166,7 +170,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                         }
                         if(!university_value.equals("")){
                             inputSpinneruniversity.setSelection(Integer.parseInt(university_value));
-                        }
+                        }*/
                         if(!qualcategory_value.equals("")){
                             spinner_InternCategoryQualification.setSelection(Integer.parseInt(qualcategory_value));
                         }
@@ -427,11 +431,11 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         inputContactOfKin = findViewById(R.id.inputContactOfKin);
         inputDisabilityType = findViewById(R.id.inputDisabilityType);
         spinner_InternCategoryQualification = findViewById(R.id.spinner_InternCategoryQualification);
-        inputSpinnerinstitution = findViewById(R.id.inputSpinnerinstitution);
-        inputSpinneruniversity = findViewById(R.id.inputSpinneruniversity);
-        inputSpinnercollege = findViewById(R.id.inputSpinnercollege);
-        ll_university = findViewById(R.id.ll_university);
-        ll_college = findViewById(R.id.ll_college);
+    //    inputSpinnerinstitution = findViewById(R.id.inputSpinnerinstitution);
+     //   inputSpinneruniversity = findViewById(R.id.inputSpinneruniversity);
+     //   inputSpinnercollege = findViewById(R.id.inputSpinnercollege);
+      //  ll_university = findViewById(R.id.ll_university);
+      //  ll_college = findViewById(R.id.ll_college);
         ll_DisabilityType = findViewById(R.id.ll_DisabilityType);
         RGPhysicalDisAbility = findViewById(R.id.RGPhysicalDisAbility);
         rb_disable_y = findViewById(R.id.rb_disable_y);
@@ -443,7 +447,13 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         inputLayoutContactOfKin = findViewById(R.id.inputLayoutContactOfKin);
         PhysicalDisability = findViewById(R.id.PhysicalDisability);
         InternCategoryQualification = findViewById(R.id.InternCategoryQualification);
-        institution = findViewById(R.id.institution);
+      //  institution = findViewById(R.id.institution);
+
+        inputalternative_id = findViewById(R.id.inputalternative_id);
+        inputLayoutalternative_id = findViewById(R.id.inputLayoutalternative_id);
+        inputSpinnerNationality = findViewById(R.id.inputSpinnerNationality);
+        alternative_idContainer = findViewById(R.id.alternative_idContainer);
+        NationalityContainer    = findViewById(R.id.NationalityContainer);
     }
 
     @Override
@@ -483,7 +493,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
 
 
         /*institution spinner*/
-        ArrayAdapter<CharSequence> institutionadapter = ArrayAdapter.createFromResource(this, R.array.institution_type, android.R.layout.simple_spinner_item);
+      /*  ArrayAdapter<CharSequence> institutionadapter = ArrayAdapter.createFromResource(this, R.array.institution_type, android.R.layout.simple_spinner_item);
         institutionadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputSpinnerinstitution.setAdapter(institutionadapter);
         institutionadapter.notifyDataSetChanged();
@@ -513,7 +523,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
         /*SpinnerDisabilityType*/
         final ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(this, R.array.disability_type, android.R.layout.simple_spinner_item);
         adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -543,32 +553,43 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     protected void initializeInputs() {
 
         for (int i = 0; i <Step5ArrayList.size() ; i++) {
-            if(Step5ArrayList.get(i).getKinName_is_v_5().equals("1")){
+            if (Step5ArrayList.get(i).getKinName_is_v_5().equals("1")) {
                 NameOfKin.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 NameOfKin.setVisibility(View.GONE);
             }
-            if(Step5ArrayList.get(i).getKinContact_is_v_5().equals("1")){
+            if (Step5ArrayList.get(i).getKinContact_is_v_5().equals("1")) {
                 ContactOfKin.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 ContactOfKin.setVisibility(View.GONE);
             }
-            if(Step5ArrayList.get(i).getPhyDisable_is_v_5().equals("1")){
+            if (Step5ArrayList.get(i).getPhyDisable_is_v_5().equals("1")) {
                 PhysicalDisability.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 PhysicalDisability.setVisibility(View.GONE);
             }
-            if(Step5ArrayList.get(i).getDisablityType_is_v_5().equals("1")){
+            if (Step5ArrayList.get(i).getDisablityType_is_v_5().equals("1")) {
                 ll_DisabilityType.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 ll_DisabilityType.setVisibility(View.GONE);
             }
-            if(Step5ArrayList.get(i).getICQuali_is_v_5().equals("1")){
+            if (Step5ArrayList.get(i).getICQuali_is_v_5().equals("1")) {
                 InternCategoryQualification.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 InternCategoryQualification.setVisibility(View.GONE);
             }
-            if(Step5ArrayList.get(i).getInsti_is_v_5().equals("1")){
+             if(Step5ArrayList.get(i).getAlterId_is_v_5().equals("1")){
+                alternative_idContainer.setVisibility(View.VISIBLE);
+            }else{
+                alternative_idContainer.setVisibility(View.GONE);
+            }
+            if(Step5ArrayList.get(i).getNationality_is_v_5().equals("1")){
+                NationalityContainer.setVisibility(View.VISIBLE);
+            }else{
+                NationalityContainer.setVisibility(View.GONE);
+            }
+
+           /* if(Step5ArrayList.get(i).getInsti_is_v_5().equals("1")){
                 institution.setVisibility(View.VISIBLE);
             }else{
                 institution.setVisibility(View.GONE);
@@ -582,51 +603,58 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                 ll_college.setVisibility(View.VISIBLE);
             }else{
                 ll_college.setVisibility(View.GONE);
-            }
+            }*/
             //==================required========================================
-            if(Step5ArrayList.get(i).getKinName_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getKinName_is_r_5().equals("1")) {
                 validKinName = true;
-            }else{
+            } else {
                 validKinName = false;
             }
-            if(Step5ArrayList.get(i).getKinContact_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getKinContact_is_r_5().equals("1")) {
                 validkinContact = true;
-            }else{
+            } else {
                 validkinContact = false;
             }
-            if(Step5ArrayList.get(i).getPhyDisable_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getPhyDisable_is_r_5().equals("1")) {
                 validphyDisable = true;
-            }else{
+            } else {
                 validphyDisable = false;
             }
-            if(Step5ArrayList.get(i).getDisablityType_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getDisablityType_is_r_5().equals("1")) {
                 validDisabilitytype = true;
-            }else{
+            } else {
                 validDisabilitytype = false;
             }
-            if(Step5ArrayList.get(i).getICQuali_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getICQuali_is_r_5().equals("1")) {
                 validICQualification = true;
-            }else{
+            } else {
                 validICQualification = false;
             }
-            if(Step5ArrayList.get(i).getInsti_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getInsti_is_r_5().equals("1")) {
                 validInst = true;
-            }else{
+            } else {
                 validInst = false;
             }
-            if(Step5ArrayList.get(i).getUni_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getUni_is_r_5().equals("1")) {
                 validUniversity = true;
-            }else{
+            } else {
                 validUniversity = false;
             }
-            if(Step5ArrayList.get(i).getCollege_is_r_5().equals("1")){
+            if (Step5ArrayList.get(i).getCollege_is_r_5().equals("1")) {
                 validCollege = true;
-            }else{
+            } else {
                 validCollege = false;
             }
-
-
-
+            if(Step5ArrayList.get(i).getAlterId_is_r_5().equals("1")){
+                validAlterId = true;
+            }else{
+                validAlterId = false;
+            }
+            if(Step5ArrayList.get(i).getNationality_is_r_5().equals("1")){
+                validNationality = true;
+            }else{
+                validNationality = false;
+            }
 
 
         }
@@ -660,7 +688,15 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         lblView = (TextView) findViewById(R.id.lblInternCategoryQualification);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
-        Label = getLabelFromDb("lbl_S105D_institution", R.string.lbl_S105D_institution);
+        Label = getLabelFromDb("lbl_S105_nationality", R.string.lbl_S105_nationality);
+        lblView =  findViewById(R.id.lblNationality);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+        Label = getLabelFromDb("i_S105_edit_profile_alternativeid", R.string.i_S105_edit_profile_alternativeid);
+        lblView =  findViewById(R.id.lblalternative_id);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+        lblView.setText(Label);
+        /*Label = getLabelFromDb("lbl_S105D_institution", R.string.lbl_S105D_institution);
         lblView = (TextView) findViewById(R.id.lblinstitution);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
@@ -671,7 +707,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         Label = getLabelFromDb("lbl_S105D_college", R.string.lbl_S105D_college);
         lblView = (TextView) findViewById(R.id.lblcollege);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-        lblView.setText(Label);
+        lblView.setText(Label);*/
 
         Label = getLabelFromDb("b_S105_save", R.string.b_S105_save);
         btnUpdate.setText(Label);
@@ -689,12 +725,13 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             inputContactOfKin.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
             inputDisabilityType.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             spinner_InternCategoryQualification.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            inputSpinnerinstitution.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            inputSpinneruniversity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
-            inputSpinnercollege.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputalternative_id.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputSpinnerNationality.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+
+            //            inputSpinnerinstitution.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+           // inputSpinneruniversity.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+           // inputSpinnercollege.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
         }
-
-
     }
 
     @Override
@@ -830,6 +867,95 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         printLogs(LogTag, "initBackBtn", "init");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    private void fetchNationality() {
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.NATIONALITY_105A;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        printLogs(LogTag,"fetchNationalitySpinner","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchNationalitySpinner", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        NationalityType = new SpinnerObj[dataM.length()];
+                        for (int i = 0; i <dataM.length() ; i++) {
+                            JSONObject jsonObject = dataM.getJSONObject(i);
+                            NationalityType[i] = new SpinnerObj();
+                            NationalityType[i].setId(jsonObject.getString("nationality_id"));
+                            NationalityType[i].setName(jsonObject.getString("nationality_type"));
+
+                        }
+                        SpinAdapter adapter = new SpinAdapter(SEditProfileStepFourA.this, android.R.layout.simple_spinner_item, NationalityType);
+                        inputSpinnerNationality.setAdapter(adapter);
+                        if(!Nationality.equals("")){
+                            int spinnerPosition = getSelectedPoostion(inputSpinnerNationality, Nationality);
+                            inputSpinnerNationality.setSelection(spinnerPosition);
+                        }
+                        inputSpinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                spin_nationality = adapter.getItem(i).getId();
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                    else if(Status.equals("2")) {
+                        // showProgress(false,mContentRView,mProgressRView);
+                    }
+                    else{
+                        // showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //showProgress(false,mContentRView,mProgressRView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        printLogs(LogTag, "fetchData", "VolleyError : " + error);
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
     public void customRedirector() {
         Intent intent = new Intent(SEditProfileStepFourA.this, SEditProfileMainA.class);
         printLogs(LogTag, "onOptionsItemSelected", "SEditProfileStepTwoA");
@@ -892,6 +1018,16 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
                 cancel = true;
             }
         }
+        if(validNationality) {
+            if (!validateSpinnerNationality(inputSpinnerNationality)) {
+                cancel = true;
+            }
+        }
+        if(validAlterId){
+            if (!validateAlterId(inputalternative_id, inputLayoutalternative_id)) {
+                cancel = true;
+            }
+        }
         if (cancel) {
             return;
         } else {
@@ -900,6 +1036,40 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
         }
         printLogs(LogTag, "validateForm", "exit");
     }
+
+    private boolean validateSpinnerNationality(Spinner inputSpinnerNationality) {
+        printLogs(LogTag,"validateSpinnerRace","race_value : "+spin_nationality);
+        if (spin_nationality.isEmpty() || spin_nationality.equals("0")) {
+            String sTitle = "";
+            String sMessage = getLabelFromDb("lbl_S105D_errorspnation", R.string.lbl_S105D_errorspnation);
+            String sButtonLabelClose = "Close";
+            ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+    private boolean validateAlterId(EditText inputalternative_id, TextInputLayout inputLayoutalternative_id) {
+        String alternative_id = inputalternative_id.getText().toString().trim();
+        setCustomError(inputLayoutalternative_id, null, inputalternative_id);
+        if (alternative_id.isEmpty()) {
+            String sMessage = getLabelFromDb("error_S105_emptyalterid", R.string.error_S105_emptyalterid);
+            setCustomError(inputLayoutalternative_id, sMessage, inputalternative_id);
+            return false;
+        }else if(!isValidNumber(alternative_id)){
+            String sMessage = getLabelFromDb("error_invalid_alterid", R.string.error_invalid_alterid);
+            setCustomError(inputLayoutalternative_id, sMessage, inputalternative_id);
+            return false;
+
+        }else {
+            setCustomErrorDisabled(inputLayoutalternative_id, inputalternative_id);
+            return true;
+        }
+
+    }
+
+
     private boolean validatePhyDisable(RadioGroup RGPhysicalDisAbility) {
         String PhysicalDisAbility = String.valueOf(RGPhysicalDisAbility.getCheckedRadioButtonId());
         if (PhysicalDisAbility.isEmpty() ) {
@@ -1018,6 +1188,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     public void FormSubmit() {
         final String NameOfKin = inputNameOfKin.getText().toString().trim();
         final String ContactOfKin = inputContactOfKin.getText().toString().trim();
+        final String alternativeId = inputalternative_id.getText().toString().trim();
         if(rb_disable_y.isChecked()){
             disability_key_status = rb_disable_y.getTag().toString();
         }else if(rb_disable_n.isChecked()){
@@ -1036,9 +1207,11 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
             jsonBody.put("is_physically_disable", disability_key_status);
             jsonBody.put("disability_type", disability_type);
             jsonBody.put("intern_cat_quali", qualcategory_value);
-            jsonBody.put("institution", institution_value);
-            jsonBody.put("university", spin_university);
-            jsonBody.put("college", spin_college);
+            jsonBody.put("alternative_id", alternativeId);
+              jsonBody.put("nationality", spin_nationality);
+//            jsonBody.put("institution", institution_value);
+//            jsonBody.put("university", spin_university);
+//            jsonBody.put("college", spin_college);
 
 
             printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
@@ -1109,6 +1282,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -1121,6 +1295,7 @@ public class SEditProfileStepFourA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

@@ -266,6 +266,7 @@ public class MChatListA extends MentorBaseDrawerA{
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -276,6 +277,7 @@ public class MChatListA extends MentorBaseDrawerA{
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

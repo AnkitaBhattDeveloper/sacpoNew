@@ -169,6 +169,7 @@ public class SQueriesGroupA extends StudentBaseDrawerA {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -179,6 +180,7 @@ public class SQueriesGroupA extends StudentBaseDrawerA {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -106,7 +106,7 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             printLogs(LogTag,"bootStrapInit","initConnected");
             initializeViews();
-           initBackBtn();
+            initBackBtn();
             showProgress(true,mContentView,mProgressView);
             initializeLabels();
             initializeListeners();
@@ -440,6 +440,7 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -450,6 +451,7 @@ public class SSupervisorDetailsA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

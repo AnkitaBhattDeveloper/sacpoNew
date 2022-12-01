@@ -585,6 +585,8 @@ public class SAddFeedbackA extends BaseAPCPrivate {
                 jsonBody.put(KEY_MONTH_YEAR, selected_month_id);
                 jsonBody.put(KEY_FEEDBACK, feedback);
                 jsonBody.put(KEY_EXPERIENC, experience);
+                jsonBody.put("r_start_date", spin_startday);
+                jsonBody.put("r_end_date", spin_endday);
                 printLogs(LogTag,"FormSubmit","jsonBody "+jsonBody);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -925,6 +927,7 @@ public class SAddFeedbackA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -937,6 +940,7 @@ public class SAddFeedbackA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

@@ -19,13 +19,11 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/ExtraSmallDp">
+<include layout="@layout/internet_connectivity_layout"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/myaccount_border"
-                android:padding="@dimen/ExtraSmallDp">
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -101,7 +99,6 @@
                 </LinearLayout>
 
 
-            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

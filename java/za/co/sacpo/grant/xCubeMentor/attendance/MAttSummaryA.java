@@ -574,6 +574,7 @@ public class MAttSummaryA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -586,6 +587,7 @@ public class MAttSummaryA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

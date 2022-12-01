@@ -193,7 +193,7 @@ public class pastClaimListAdapter implements pastClaimListDAO{
                     String upload_signed_claim_form_btn                   = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_UPLOAD_SIGNED_CLAIM_FORM_BTN ));
                     String download_signed_claim_form                     = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_SIGNED_CLAIM_FORM      ));
                     String download_sign_claim_form_btn                   = cursors.getString(cursors.getColumnIndex(DbSchema.COLUMN_DWNLD_SIGNED_CLAIM_FORM_BTN  ));
- dataArray = new pastClaimListArray(s_m_s_id,s_m_s_stipend,s_m_s_stipend_month,year,
+        dataArray = new pastClaimListArray(s_m_s_id,s_m_s_stipend,s_m_s_stipend_month,year,
          month, date_of_claim,
          claimed_ammount,supervisor_status,supervisor_status_color,grant_admin_status,grant_admin_status_color,
          download_unsigned_claim_form_btn,download_unsigned_claim_form,upload_signed_claim_form_btn,

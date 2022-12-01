@@ -422,6 +422,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -432,6 +433,7 @@ public class MGrantDetailsA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -127,7 +127,7 @@ public class MNoteListAdapter extends RecyclerView.Adapter<MNoteListAdapter.Serv
         holder.txtDescription.setText(aObjList.get(holder.getAdapterPosition()).description3);
         holder.txtAddDate.setText(aObjList.get(holder.getAdapterPosition()).add_date4);
         holder.txtAddDate.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
-        holder.txtnote10.setText(aObjList.get(holder.getAdapterPosition()).note_10);
+        holder.txtnote10.setText(aObjList.get(holder.getAdapterPosition()).note_11);
         holder.txtnote10.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
 
 

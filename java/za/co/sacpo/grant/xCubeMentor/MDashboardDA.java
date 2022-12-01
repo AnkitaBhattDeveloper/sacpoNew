@@ -27,6 +27,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.MentorBaseDrawerA;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MStuListObj;
+import za.co.sacpo.grant.xCubeLib.db.MentorDashboardAdapter;
+import za.co.sacpo.grant.xCubeLib.db.MentorDashboardArray;
+import za.co.sacpo.grant.xCubeLib.db.pastClaimListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.pastClaimListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -94,6 +100,29 @@ public class MDashboardDA extends MentorBaseDrawerA{
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initDrawer();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false,mContentView,mProgressView);
         }
     }
@@ -200,12 +229,15 @@ public class MDashboardDA extends MentorBaseDrawerA{
                 printLogs(LogTag, "fetchData", "response : " + response);
                 String Status = outputJson.getString(KEY_STATUS);
                 if(Status.equals("1")){
+                    MentorDashboardAdapter adapter = new MentorDashboardAdapter(getApplicationContext());
+                    adapter.truncate();
+                    ArrayList<MentorDashboardArray> arraylist = new ArrayList<>();
                     JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                     for (int i = 0; i < dataM.length(); i++) {
                         int pos = i+1;
                         JSONObject rec = dataM.getJSONObject(i);
                         int aId2 = Integer.parseInt(rec.getString("learner_id"));
-                        String notes3 = rec.getString("total_leave_taken");
+                        String notes3 = rec.getString("notes");
                         String lname4 = rec.getString("learner_name");
                         String lstatus5 = rec.getString("learner_status");
                         String sdate6 = rec.getString("start_date");
@@ -225,15 +257,28 @@ public class MDashboardDA extends MentorBaseDrawerA{
                         String tp20 = rec.getString("trainging_doc");
                         String doc21 = "VIEW";
                         String grantid22 = rec.getString("grant_id");
-                        String alertcount23 = rec.getString("leave_pending_approval");
+                        String alertcount23 = rec.getString("alert_count");
                         String isSPending24 = rec.getString("current_stipend_pending_approval");
                         String isWorkxPending25 = rec.getString("workstations_status");
                         String isWorkXassingPending26 = rec.getString("workstations_status");
                         String isRpending27 = rec.getString("supervisor_comments_pending");
                         String isTpPending28 = rec.getString("training_program_upload");
                         rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28));
-                        showList();
+
+                        arraylist.add(new MentorDashboardArray(String.valueOf(aId2),grantid22,lname4,
+                                lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,
+                                pstipend13,rec.getString("show_approved_claim_link"),stpending14,
+                                workx15,rec.getString("show_workstation_link"),workasl16,
+                                isWorkxPending25,rec.getString("show_edit_workstations_link"),
+                                rec.getString("linked_student_id"),reports18,rpending19,isTpPending28,
+                                tp20,alertcount23,notes3));
+
+
+
+
                     }
+                    adapter.insert(arraylist);
+                    showList();
                     showProgress(false,mContentRView,mProgressRView);
                 }
                 else if(Status.equals("2")) {
@@ -287,6 +332,52 @@ public class MDashboardDA extends MentorBaseDrawerA{
         requestQueue.add(jsonObjectRequest);
     }
 
+    void fetchOfflineData(){
+        printLogs(LogTag, "fetchOfflineData", "init");
+        MentorDashboardAdapter adapter  =new MentorDashboardAdapter(getApplicationContext());
+        List<MentorDashboardArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getLearner_id());
+            String notes3 = adapterAll.get(i).getNotes();
+            String lname4 = adapterAll.get(i).getLearner_name();
+            String lstatus5 = adapterAll.get(i).getLearner_status();
+            String sdate6 = adapterAll.get(i).getStart_date();
+            String edate6 = adapterAll.get(i).getEnd_date();
+            String seta7 = adapterAll.get(i).getSeta_name();
+            String le8 = adapterAll.get(i).getManaged_by();
+            String patt9 = adapterAll.get(i).getPast_attendance_register();
+            String catt10 = adapterAll.get(i).getEdit_current_attendance();
+            String leave11 = adapterAll.get(i).getTotal_leave_taken();
+            String lpending12 = adapterAll.get(i).getLeave_pending_approval();
+            String pstipend13 = adapterAll.get(i).getPast_stipend_claim();
+            String stpending14 = adapterAll.get(i).getCurrent_stipend_pending_approval();
+            String workx15 = adapterAll.get(i).getRegistered_workstation();
+            String workasl16 = adapterAll.get(i).getAssigned_workstation();;
+            String reports18 = adapterAll.get(i).getMonthly_reports_completed();
+            String rpending19 = adapterAll.get(i).getSupervisor_comments_pending();
+            String tp20 = adapterAll.get(i).getTrainging_doc();
+            String doc21 = "VIEW";
+            String grantid22 = adapterAll.get(i).getGrant_id();
+            String alertcount23 = adapterAll.get(i).getAlert_count();
+            String isSPending24 = adapterAll.get(i).getCurrent_stipend_pending_approval();
+            String isWorkxPending25 = adapterAll.get(i).getWorkstations_status();
+            String isWorkXassingPending26 = adapterAll.get(i).getWorkstations_status();
+            String isRpending27 = adapterAll.get(i).getSupervisor_comments_pending();
+            String isTpPending28 = adapterAll.get(i).getTraining_program_upload();
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28));
+
+
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
+
+
+
     public void callHeaderBuilder(){
         rDataObj.addItem(rDataObj.createItem(0,0,"","","","","","","","","","","","","","","","","","","","","","","","","",""));
     }
@@ -315,6 +406,7 @@ public class MDashboardDA extends MentorBaseDrawerA{
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -325,6 +417,7 @@ public class MDashboardDA extends MentorBaseDrawerA{
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

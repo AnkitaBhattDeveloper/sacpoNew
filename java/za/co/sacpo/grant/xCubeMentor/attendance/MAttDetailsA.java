@@ -510,6 +510,7 @@ public class MAttDetailsA extends BaseAPCPrivate  implements OnMapReadyCallback 
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -520,6 +521,7 @@ public class MAttDetailsA extends BaseAPCPrivate  implements OnMapReadyCallback 
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

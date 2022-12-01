@@ -19,13 +19,14 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/SmallerDp"
             android:background="@drawable/myaccount_border"
-            android:padding="@dimen/SmallerDp">
-
+            android:padding="@dimen/SmallerDp"
+            android:orientation="vertical">
+            <include layout="@layout/internet_connectivity_layout"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
@@ -62,8 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
                         android:background="@drawable/heading_1"
-                        />roid:background="@drawable/heading_1"
-                    />
+                        />
 
                 <LinearLayout
                     android:id="@+id/ll_topic"
@@ -295,7 +295,7 @@
 
 
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

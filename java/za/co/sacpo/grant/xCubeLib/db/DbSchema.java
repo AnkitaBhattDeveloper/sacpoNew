@@ -233,16 +233,16 @@ public class DbSchema {
     public static final String TABLE_EXISTING_LEAVELIST_DETAILS="tbl_existing_leavelist_details";
     public static final String
 
-         // COLUMN_S_A_ID                   ="s_a_id",
+            // COLUMN_S_A_ID                   ="s_a_id",
             COLUMN_ATT_ID                   ="att_ids",
-        //  COLUMN_MONTH                    ="month",
-            COLUMN_FROM_DATE                ="from_date",
+    //  COLUMN_MONTH                    ="month",
+    COLUMN_FROM_DATE                ="from_date",
             COLUMN_TO_DATE                  ="to_date",
             COLUMN_ANNUAL_LEAVE             ="annual_leave",
-        //  COLUMN_SICK_LEAVE               ="sick_leave",
-        //  COLUMN_O_PAID_LEAVE             ="other_paid_leave",
-         // COLUMN_UNPAID_LEAVE             ="unpaid_leave",
-            COLUMN_MOTIVATION               ="motivation",
+    //  COLUMN_SICK_LEAVE               ="sick_leave",
+    //  COLUMN_O_PAID_LEAVE             ="other_paid_leave",
+    // COLUMN_UNPAID_LEAVE             ="unpaid_leave",
+    COLUMN_MOTIVATION               ="motivation",
             COLUMN_SA_REASON                ="sa_reason",
             COLUMN_S_APPROVAL_STATUS        ="supervisor_approval_status",
             COLUMN_MOTIVATION_BTN           ="motivation_btn",
@@ -276,9 +276,9 @@ public class DbSchema {
             COLUMN_S_M_S_ID                     ="s_m_s_id",
             COLUMN_S_M_S_STIPEND                ="s_m_s_stipend",
             COLUMN_S_M_S_STIPEND_MONTH          ="s_m_s_stipend_month",
-          //COLUMN_YEAR                         ="year",
-          //COLUMN_MONTH                        ="month",
-            COLUMN_DATE_OF_CLAIM                ="date_of_claim",
+    //COLUMN_YEAR                         ="year",
+    //COLUMN_MONTH                        ="month",
+    COLUMN_DATE_OF_CLAIM                ="date_of_claim",
             COLUMN_CLAIMED_AMOUNT               ="claimed_ammount",
             COLUMN_SUPERVISOR_STATUS            ="supervisor_status",
             COLUMN_SUPERVISOR_STATUS_COLOR      ="supervisor_status_color",
@@ -309,9 +309,9 @@ public class DbSchema {
     public static final String TABLE_DOC_CENTERLIST_DETAILS="tbl_doc_centerlist_details";
     public static final String
 
-          //COLUMN_ID             ="id",
-          //COLUMN_ST_ID          ="student_id",
-         // COLUMN_GRANTID        ="grant_id",
+            //COLUMN_ID             ="id",
+            //COLUMN_ST_ID          ="student_id",
+            // COLUMN_GRANTID        ="grant_id",
             COLUMN_PREVIOUS_DOC     ="previous_document",
             COLUMN_PREVIOUS_DOC_BTN ="previous_document_btn",
             COLUMN_NAME_OF_DOC      ="name_of_document",
@@ -342,12 +342,12 @@ public class DbSchema {
 
             COLUMN_S_W_R_ID                 ="s_w_r_id",
             COLUMN_REPORT_TITLE             ="title",
-          //  COLUMN_MONTH                  ="month",
-          //  COLUMN_YEAR                   ="year",
-            COLUMN_MONTH_YEAR               ="month_year",
-          //  COLUMN_GRANT_ID               ="grant_id",
-         // COLUMN_SUPERVISOR_STATUS        ="supervisor_status",
-            COLUMN_EDIT_BTN                 ="edit_btn",
+    //  COLUMN_MONTH                  ="month",
+    //  COLUMN_YEAR                   ="year",
+    COLUMN_MONTH_YEAR               ="month_year",
+    //  COLUMN_GRANT_ID               ="grant_id",
+    // COLUMN_SUPERVISOR_STATUS        ="supervisor_status",
+    COLUMN_EDIT_BTN                 ="edit_btn",
             COLUMN_SUPERVISOR_STATUS_ID     ="supervisor_status_id",
             COLUMN_REPORT_NO                ="report_no";
 
@@ -369,23 +369,23 @@ public class DbSchema {
     public static final String TABLE_ST_WEEKLY_REPORT_DETAILS="tbl_st_weekly_report_details";
     public static final String
 
-          //COLUMN_S_W_R_ID                     ="s_w_r_id",
+            //COLUMN_S_W_R_ID                     ="s_w_r_id",
             COLUMN_S_W_R_ST_ID                  ="s_w_r_student_id",
             COLUMN_STU_NAME                     ="student_name",
             COLUMN_TITLE                        ="title",
             COLUMN_TRAINING                     ="training",
-        //  COLUMN_DAY                          ="day",
-            COLUMN_FEEDBACK                     ="feedback",
+    //  COLUMN_DAY                          ="day",
+    COLUMN_FEEDBACK                     ="feedback",
             COLUMN_LEARNING_EXP                 ="learning_experices",
             COLUMN_NUMBER                       ="number",
-         // COLUMN_MONTH_YEAR                   ="month_year",
-            COLUMN_REPORT_ADD_DATE              ="report_add_date",
-        //  COLUMN_DATE                         ="date",
-            COLUMN_IS_SUPERVISOR_COMMENTED      ="is_supervisor_commented",
+    // COLUMN_MONTH_YEAR                   ="month_year",
+    COLUMN_REPORT_ADD_DATE              ="report_add_date",
+    //  COLUMN_DATE                         ="date",
+    COLUMN_IS_SUPERVISOR_COMMENTED      ="is_supervisor_commented",
             COLUMN_C_U_R_COMMENT                ="c_u_r_comment",
             COLUMN_C_U_R_TRAINING_PROGRESS      ="c_u_r_training_progress",
             COLUMN_C_U_R_REPORT_WRITING         ="c_u_r_report_writing";
-         // COLUMN_SUPERVISOR_STATUS            ="supervisor_status";
+    // COLUMN_SUPERVISOR_STATUS            ="supervisor_status";
 
 
 
@@ -405,6 +405,132 @@ public class DbSchema {
 
 
 
+    /*==================================Mentor Data==========================*/
+
+    /*table Mentor Dashboard details*/
+    public static final String TABLE_MENTOR_DASHBOARD_DETAILS="tbl_mentor_dashboard_details";
+    public static final String
+    COLUMN_LEARNER_ID                            ="learner_id",
+  //COLUMN_GRANT_ID                              ="grant_id",
+  //COLUMN_LEARNER_NAME                          ="learner_name",
+  //COLUMN_LEARNER_STATUS                        ="learner_status",
+    COLUMN_STARTDATE                             ="start_date",
+  //COLUMN_END_DATE                              ="end_date",
+  //COLUMN_SETA_NAME                             ="seta_name",
+    COLUMN_MANAGED_BY                            ="managed_by",
+    COLUMN_PAST_ATT_REGISTER                     ="past_attendance_register",
+    COLUMN_EDIT_CURRENT_ATT                      ="edit_current_attendance",
+    COLUMN_TOTAL_LEAVE_TAKEN                     ="total_leave_taken",
+    COLUMN_LEAVE_PENDING_APPROVAL                ="leave_pending_approval",
+    COLUMN_PAST_STIPEND_CLAIM                    ="past_stipend_claim",
+    COLUMN_APPROVED_CLAIM_LINK                   ="show_approved_claim_link",
+    COLUMN_CURRENT_STIPEND_PENDING_APPROVAL      ="current_stipend_pending_approval",
+    COLUMN_REGISTERED_WORKSTATION                ="registered_workstation",
+    COLUMN_SHOW_WORKSTATION_LINK                 ="show_workstation_link",
+    COLUMN_ASSIGNED_WORKSTATION                  ="assigned_workstation",
+    COLUMN_WORKSTATION_STATUS                    ="workstations_status",
+    COLUMN_SHOW_EDIT_WORKSTATION_LINK            ="show_edit_workstations_link",
+    COLUMN_LINKED_STUDENT_ID                     ="linked_student_id",
+    COLUMN_MONTHLY_REPORTS_COMPLETED             ="monthly_reports_completed",
+    COLUMN_SUPERVISOR_COMMENTS_PENDING           ="supervisor_comments_pending",
+    COLUMN_TRAINING_PROGRAM_UPLOAD               ="training_program_upload",
+    COLUMN_TRAINING_DOC                          ="trainging_doc",
+    COLUMN_ALERT_COUNT                           ="alert_count",
+    COLUMN_NOTES                                 ="notes";
+
+
+
+    public static final String CREATE_TABLE_MENTOR_DASHBOARD_DETAILS="CREATE TABLE "+TABLE_MENTOR_DASHBOARD_DETAILS+"( "+COLUMN_LEARNER_ID+" INTEGER, "+
+            COLUMN_GRANT_ID+" VARCHAR(50) , "+COLUMN_LEARNER_NAME+" VARCHAR(50) , "+COLUMN_LEARNER_STATUS+" VARCHAR(50) , "
+            +COLUMN_STARTDATE+" VARCHAR(50), "+COLUMN_END_DATE+" VARCHAR(50), "+
+            COLUMN_SETA_NAME+" VARCHAR(50), "+COLUMN_MANAGED_BY+" VARCHAR(50), "+
+            COLUMN_PAST_ATT_REGISTER+" VARCHAR(50), "+COLUMN_EDIT_CURRENT_ATT+" VARCHAR(50), "+
+            COLUMN_TOTAL_LEAVE_TAKEN+" VARCHAR(50), "+COLUMN_LEAVE_PENDING_APPROVAL+" VARCHAR(50), "+
+            COLUMN_PAST_STIPEND_CLAIM+" VARCHAR(50), "+COLUMN_APPROVED_CLAIM_LINK+" VARCHAR(50), "+
+            COLUMN_CURRENT_STIPEND_PENDING_APPROVAL+" VARCHAR(50), "+COLUMN_REGISTERED_WORKSTATION+" VARCHAR(50), "+
+            COLUMN_SHOW_WORKSTATION_LINK+" VARCHAR(50), "+COLUMN_ASSIGNED_WORKSTATION+" VARCHAR(50), "+
+            COLUMN_WORKSTATION_STATUS+" VARCHAR(50), "+COLUMN_SHOW_EDIT_WORKSTATION_LINK+" VARCHAR(50), "+
+            COLUMN_LINKED_STUDENT_ID+" VARCHAR(50), "+COLUMN_MONTHLY_REPORTS_COMPLETED+" VARCHAR(50), "+
+            COLUMN_SUPERVISOR_COMMENTS_PENDING+" VARCHAR(50), "+COLUMN_TRAINING_PROGRAM_UPLOAD+" VARCHAR(50), "+
+            COLUMN_TRAINING_DOC+" VARCHAR(50), "+COLUMN_ALERT_COUNT+" VARCHAR(50), "+
+            COLUMN_NOTES+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_DASHBOARD_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_DASHBOARD_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_DASHBOARD_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_DASHBOARD_DETAILS;
+
+
+    /*table Mentor notes list details*/
+    public static final String TABLE_MENTOR_NOTESLIST_DETAILS="tbl_mentor_notelist_details";
+    public static final String
+            COLUMN_N_ID             ="n_id",
+            COLUMN_NUSER_ID         ="n_user_id",
+            COLUMN_N_DESCRIPTION    ="n_description",
+            COLUMN_N_STATUS         ="n_status",
+            COLUMN_N_ADDDATE        ="n_add_date",
+            COLUMN_N_ADD_BY         ="n_add_by",
+            COLUMN_N_DURATION       ="n_duration",
+            COLUMN_N_CATEGORY       ="n_category",
+            COLUMN_N_NOTE_TYPE_ID   ="n_note_type_id",
+          //COLUMN_GRANT_ID         ="grant_id",
+            COLUMN_NOTE_FOR         ="note_for",
+            COLUMN_U_P_CELL_NO      ="u_p_cell_no",
+            COLUMN_NOTE_FROM        ="note_from",
+            COLUMN_ADD_BY_CELL_NO   ="add_by_cell_no",
+            COLUMN_ADD_BY_U_ID      ="add_by_u_id",
+            COLUMN_N_CATEGORY_ID    ="n_category_id",
+            COLUMN_N_CATEGORY_NAME  ="n_category_name";
+
+
+
+    public static final String CREATE_TABLE_MENTOR_NOTESLIST_DETAILS="CREATE TABLE "+TABLE_MENTOR_NOTESLIST_DETAILS+"( "+
+            COLUMN_N_ID+" INTEGER, "+COLUMN_NUSER_ID+" VARCHAR(50) , "+
+            COLUMN_N_DESCRIPTION+" VARCHAR(50) , "+COLUMN_N_STATUS+" VARCHAR(50) , "
+            +COLUMN_N_ADDDATE+" VARCHAR(50), "+COLUMN_N_ADD_BY+" VARCHAR(50), "+
+            COLUMN_N_DURATION+" VARCHAR(50), "+COLUMN_N_CATEGORY+" VARCHAR(50), "+
+            COLUMN_N_NOTE_TYPE_ID+" VARCHAR(50), "+COLUMN_GRANT_ID+" VARCHAR(50), "+
+            COLUMN_NOTE_FOR+" VARCHAR(50), "+COLUMN_U_P_CELL_NO+" VARCHAR(50), "+
+            COLUMN_NOTE_FROM+" VARCHAR(50), "+COLUMN_ADD_BY_CELL_NO+" VARCHAR(50), "+
+            COLUMN_ADD_BY_U_ID+" VARCHAR(50), "+COLUMN_N_CATEGORY_ID+" VARCHAR(50), "+
+            COLUMN_N_CATEGORY_NAME+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_NOTESLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_NOTESLIST_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_NOTESLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_NOTESLIST_DETAILS;
+
+
+    /*table Mentor learner details*/
+    public static final String TABLE_MENTOR_LEARNER_DETAILS="tbl_mentor_learner_details";
+    public static final String
+             COLUMN_U_ID                    ="u_id",
+             COLUMN_S_ID_NO                 ="s_id_no",
+             COLUMN_STUDENT_NAME            ="student_name",
+             COLUMN_U_EMAIL                 ="u_email",
+             COLUMN_GENDER                  ="gender_name",
+             COLUMN_SSG_GRANT_START_DATE    ="s_s_g_grant_start_date",
+             COLUMN_SSG_GRANT_END_DATE      ="s_s_g_grant_end_date",
+          // COLUMN_MENTOR_NAME             ="mentor_name",
+          // COLUMN_HOST_EMP_NAME           ="host_emp_name",
+             COLUMN_GRANT_ADMIN             ="grant_admin",
+             COLUMN_WORKSTATION             ="workstation";
+          // COLUMN_SETA_NAME               ="seta_name",
+          // COLUMN_LEM_NAME                ="lem_name";
+
+
+
+
+    public static final String CREATE_TABLE_MENTOR_LEARNER_DETAILS="CREATE TABLE "+TABLE_MENTOR_LEARNER_DETAILS+"( "+
+            COLUMN_U_ID+" INTEGER, "+COLUMN_S_ID_NO+" VARCHAR(50) , "+
+            COLUMN_STUDENT_NAME+" VARCHAR(50) , "+COLUMN_U_EMAIL+" VARCHAR(50) , "
+            +COLUMN_GENDER+" VARCHAR(50), "+COLUMN_SSG_GRANT_START_DATE+" VARCHAR(50), "+
+            COLUMN_SSG_GRANT_END_DATE+" VARCHAR(50), "+COLUMN_MENTOR_NAME+" VARCHAR(50), "+
+            COLUMN_HOST_EMP_NAME+" VARCHAR(50), "+COLUMN_GRANT_ADMIN+" VARCHAR(50), "+
+            COLUMN_WORKSTATION+" VARCHAR(50), "+COLUMN_SETA_NAME+" VARCHAR(50), "+
+            COLUMN_LEM_NAME+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_LEARNER_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_LEARNER_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_DETAILS;
 
 }
 

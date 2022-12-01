@@ -181,6 +181,18 @@ public class MCurrentAttAdapter extends RecyclerView.Adapter<MCurrentAttAdapter.
         int BColor;
         if(holder.getAdapterPosition()==0){
             BColor = res.getColor(R.color.row_head_1);
+            BColor = res.getColor(baseAPC.getTextcolorResourceId("row_head"));
+            holder.lblLoginDate.setBackgroundColor(BColor);
+            holder.lblDay.setBackgroundColor(BColor);
+            holder.lblEditAttendance.setBackgroundColor(BColor);
+            holder.lblSignInTime.setBackgroundColor(BColor);
+            holder.lblSignOutTime.setBackgroundColor(BColor);
+            holder.lblHoursWorked.setBackgroundColor(BColor);
+            holder.lblDistanceFrmWorkstation.setBackgroundColor(BColor);
+            holder.lblLearnerComment.setBackgroundColor(BColor);
+
+
+
             holder.lblLoginDate.setTypeface(holder.lblLoginDate.getTypeface(), Typeface.BOLD);
             holder.lblDay.setTypeface(holder.lblDay.getTypeface(), Typeface.BOLD);
             holder.lblEditAttendance.setTypeface(holder.lblEditAttendance.getTypeface(), Typeface.BOLD);

@@ -84,7 +84,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected Bundle outBundle;
     protected OlumsUserSession userSessionObj;
     protected Boolean isLive = false;//Logs Show If False
-    protected Boolean isOnline = false;
+    protected Boolean isOnline = false;  //show connectivity layout if false
 
 
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);

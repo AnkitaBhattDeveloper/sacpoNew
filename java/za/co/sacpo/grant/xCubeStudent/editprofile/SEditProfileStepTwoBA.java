@@ -1740,6 +1740,7 @@ private boolean validatePostalAdd2(EditText inputpostaladdress2, TextInputLayout
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -1752,6 +1753,7 @@ private boolean validatePostalAdd2(EditText inputpostaladdress2, TextInputLayout
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

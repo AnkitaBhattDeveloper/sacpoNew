@@ -941,6 +941,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         mGoogleApiClient.connect();
         registerBroadcastIC();
     }
@@ -958,6 +959,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
         mGoogleApiClient.connect();
     }

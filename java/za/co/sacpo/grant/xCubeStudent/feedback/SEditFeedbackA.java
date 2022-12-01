@@ -915,6 +915,7 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -925,6 +926,7 @@ public class SEditFeedbackA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

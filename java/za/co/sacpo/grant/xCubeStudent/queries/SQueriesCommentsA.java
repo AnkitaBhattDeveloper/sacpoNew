@@ -649,6 +649,7 @@ recyclerViewQ.setNestedScrollingEnabled(false);
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -659,6 +660,7 @@ recyclerViewQ.setNestedScrollingEnabled(false);
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

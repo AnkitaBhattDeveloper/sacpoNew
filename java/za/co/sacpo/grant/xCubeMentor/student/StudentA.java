@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -38,6 +39,10 @@ import za.co.sacpo.grant.AppUpdatedA;
 
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
+import za.co.sacpo.grant.xCubeLib.db.GrantDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.grantDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
@@ -45,7 +50,9 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
 import za.co.sacpo.grant.xCubeStudent.attendance.SAttDA;
 
+import za.co.sacpo.grant.xCubeStudent.grant.SGrantDetailsA;
 import za.co.sacpo.grant.xCubeStudent.leaves.SLeavesDA;
+import za.co.sacpo.grant.xCubeStudent.messages.SChatA;
 import za.co.sacpo.grant.xCubeStudent.stipends.SStipendsDA;
 
 
@@ -132,8 +139,29 @@ public class StudentA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext, activityIn, ActivityId);
+            initMenusCustom(ActivityId, baseApcContext, activityIn);
+            printLogs(LogTag, "bootStrapInit", "initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true, mContentView, mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+            //initializeInputs();
+            printLogs(LogTag, "onCreate", "exitConnected");
         }
     }
+
+
 
     private void initBackBtn() {
         printLogs(LogTag, "initBackBtn", "init");
@@ -330,6 +358,9 @@ public class StudentA extends BaseAPCPrivate {
                     printLogs(LogTag, "getGrantDetails", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        mLearnerDetailsAdapter adapter = new mLearnerDetailsAdapter(getApplicationContext());
+                        adapter.truncate();
+
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
 
                         /*TODO:Create new Function fetch data to add one more api for Grant Details -Pending...!!!*/
@@ -347,6 +378,16 @@ public class StudentA extends BaseAPCPrivate {
                         txtSetaName.setText(dataM.getString("seta_name"));
                         txtLeadEmployer.setText(dataM.getString("lem_name"));
 
+                        mLearnerDetailsArray array  =new mLearnerDetailsArray(dataM.getString("u_id"),
+                                dataM.getString("s_id_no"),dataM.getString("student_name"),
+                                dataM.getString("u_email"),dataM.getString("gender_name"),
+                                dataM.getString("s_s_g_grant_start_date"),
+                                dataM.getString("s_s_g_grant_end_date"),
+                                dataM.getString("mentor_name"),dataM.getString("host_emp_name"),
+                                dataM.getString("grant_admin"),
+                                dataM.getString("workstation"),dataM.getString("seta_name"),
+                                dataM.getString("lem_name"));
+adapter.insert(array);
                         showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
                         showProgress(false, mContentView, mProgressView);
@@ -395,7 +436,31 @@ public class StudentA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
 
     }
+    private void fetchOfflineData() {
 
+        mLearnerDetailsAdapter adapter = new mLearnerDetailsAdapter(getApplicationContext());
+        List<mLearnerDetailsArray> adapterAll = adapter.getAll();
+
+        for (int i = 0; i < adapterAll.size(); i++) {
+
+                txtStudentID.setText(adapterAll.get(i).getS_id_no());
+                txtStudentName.setText(adapterAll.get(i).getStudent_name());
+                txtEmail.setText(adapterAll.get(i).getU_email());
+                txtGenderName.setText(adapterAll.get(i).getGender_name());
+                txtStartDate.setText(adapterAll.get(i).getS_s_g_grant_start_date());
+                txtEndDate.setText(adapterAll.get(i).getS_s_g_grant_end_date());
+                txtMentorName.setText(adapterAll.get(i).getMentor_name());
+                txtHostEmployer.setText(adapterAll.get(i).getHost_emp_name());
+                txtGrantAdmin.setText(adapterAll.get(i).getGrant_admin());
+                txtWorkStation.setText(adapterAll.get(i).getWorkstation());
+                txtSetaName.setText(adapterAll.get(i).getSeta_name());
+                txtLeadEmployer.setText(adapterAll.get(i).getLem_name());
+
+        }
+        showProgress(false, mContentView, mProgressView);
+
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -425,6 +490,7 @@ public class StudentA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -437,6 +503,7 @@ public class StudentA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

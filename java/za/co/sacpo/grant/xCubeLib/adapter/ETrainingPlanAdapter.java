@@ -179,7 +179,7 @@ public class ETrainingPlanAdapter  extends RecyclerView.Adapter<ETrainingPlanAda
                     holder.btnAction1.setVisibility(View.VISIBLE);
                     holder.btnAction1.setText("EDIT");
                     holder.btnAction1.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                    holder.btnAction1.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                    holder.btnAction1.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 } else {
                     holder.lblAction1.setVisibility(View.VISIBLE);
                     holder.lblAction1.setText("-");

@@ -12,13 +12,14 @@
     tools:showIn="@layout/c_add_feedback">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/SmallerDp"
         android:background="@drawable/myaccount_border"
-        android:padding="@dimen/SmallerDp" >
-
+        android:padding="@dimen/SmallerDp"
+        android:orientation="vertical">
+<include layout="@layout/internet_connectivity_layout"/>
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
@@ -540,6 +541,6 @@
 
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -7,6 +7,9 @@
     android:fitsSystemWindows="true"
     tools:context=".xCubeStudent.grant.SGrantDetailsA">
 
+
+
+
     <include layout="@layout/c_grant_details"
         android:id="@+id/include" />
 

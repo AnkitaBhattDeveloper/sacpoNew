@@ -1001,6 +1001,7 @@ public class SignOutA extends BaseFormAPCPrivate implements GoogleApiClient.Conn
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         mGoogleApiClient.connect();
         registerBroadcastIC();
     }
@@ -1017,6 +1018,7 @@ public class SignOutA extends BaseFormAPCPrivate implements GoogleApiClient.Conn
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
         mGoogleApiClient.connect();
     }

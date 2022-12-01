@@ -264,7 +264,10 @@ public class SEditLeaveA extends BaseFormAPCPrivate {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
             btnSubmitLv.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
-            }
+            inputSpinnerLeaveType.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
+            inputLeaveReasons.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+            inputLeaveInDays.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
+        }
 
 
     }
@@ -709,6 +712,7 @@ public class SEditLeaveA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -719,6 +723,7 @@ public class SEditLeaveA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

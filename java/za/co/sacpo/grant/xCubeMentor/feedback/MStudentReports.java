@@ -328,6 +328,7 @@ public class MStudentReports extends BaseAPCPrivate{
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
