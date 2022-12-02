@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -36,6 +37,10 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerDetailsArray;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerGrantDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerGrantDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
@@ -110,7 +115,6 @@ public class MGrantDetailsA extends BaseAPCPrivate {
         if(isConnected) {
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
-
             initMenusCustom(ActivityId,baseApcContext,activityIn);
             printLogs(LogTag,"bootStrapInit","initConnected");
             initializeViews();
@@ -126,8 +130,30 @@ public class MGrantDetailsA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            fetchOfflineData();
+            //initializeInputs();
+            printLogs(LogTag,"onCreate","exitConnected");
         }
     }
+
+
+
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -328,6 +354,9 @@ public class MGrantDetailsA extends BaseAPCPrivate {
                     printLogs(LogTag, "getGrantDetails", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        mLearnerGrantDetailsAdapter adapter = new mLearnerGrantDetailsAdapter(getApplicationContext());
+                        adapter.truncate();
+                        mLearnerGrantDetailsArray array = null;
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
                         printLogs(LogTag,"getGrantDetails","INSIDE JSON : "+response);
 
@@ -345,6 +374,17 @@ public class MGrantDetailsA extends BaseAPCPrivate {
                         mentor_id =dataM.getString("mentor_id");
                         lea_id =dataM.getString("lem_manager_id");
                         seta_user_id = dataM.getString("seta_manager_id");
+
+                        array = new mLearnerGrantDetailsArray(dataM.getString("u_id"),
+                                dataM.getString("s_id_no"),dataM.getString("grant_id"),
+                                dataM.getString("seta_name"),dataM.getString("seta_manager_name"),
+                                dataM.getString("seta_manager_id"),dataM.getString("lem_name"),
+                                dataM.getString("lem_id"),dataM.getString("host_emp_name"),
+                                dataM.getString("grant_admin"),dataM.getString("grant_admin_id"),
+                                dataM.getString("grant_admin_email"),dataM.getString("grant_admin_cell"),
+                                dataM.getString("host_emp_sdl"),dataM.getString("s_s_g_grant_start_date"),
+                                dataM.getString("s_s_g_grant_end_date"),dataM.getString("mentor_id"));
+adapter.insert(array);
                         // showProgress(false,mContentView,mProgressView);
 
                         showProgress(false,mContentView,mProgressView);
@@ -400,6 +440,34 @@ public class MGrantDetailsA extends BaseAPCPrivate {
 
 
     }
+
+    private void fetchOfflineData() {
+        mLearnerGrantDetailsAdapter adapter = new mLearnerGrantDetailsAdapter(getApplicationContext());
+        List<mLearnerGrantDetailsArray> adapterAll = adapter.getAll();
+
+        for (int i = 0; i < adapterAll.size(); i++) {
+            fId = adapterAll.get(i).getGrant_admin_id();
+            txtSetaName.setText(adapterAll.get(i).getSeta_name());
+            txtSetaManagerName.setText(adapterAll.get(i).getSeta_manager_name());
+            txtLEAName.setText(adapterAll.get(i).getLem_name());
+            txtLEAManager.setText(adapterAll.get(i).getGrant_admin());
+            txtHostName.setText(adapterAll.get(i).getHost_emp_name());
+            txtHostSDLNo.setText(adapterAll.get(i).getHost_emp_sdl());
+            txtGStartDate.setText(adapterAll.get(i).getS_s_g_grant_start_date());
+            txtGEndDate.setText(adapterAll.get(i).getS_s_g_grant_end_date());
+            txtGrantAdminEmail.setText(adapterAll.get(i).getGrant_admin_email());
+            txtGrantAdmin_cellNo.setText(adapterAll.get(i).getGrant_admin_cell());
+            mentor_id =adapterAll.get(i).getMentor_id();
+            lea_id =adapterAll.get(i).getLem_id();
+            seta_user_id = adapterAll.get(i).getSeta_manager_id();
+        }
+        showProgress(false, mContentView, mProgressView);
+
+
+    }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

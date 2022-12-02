@@ -273,9 +273,6 @@ public class MDashboardDA extends MentorBaseDrawerA{
                                 rec.getString("linked_student_id"),reports18,rpending19,isTpPending28,
                                 tp20,alertcount23,notes3));
 
-
-
-
                     }
                     adapter.insert(arraylist);
                     showList();

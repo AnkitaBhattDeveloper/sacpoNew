@@ -17,16 +17,23 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-        <LinearLayout
+    <include layout="@layout/internet_connectivity_layout"/>
+
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/SmallerDp"
             android:background="@drawable/myaccount_border"
             android:padding="@dimen/SmallerDp"
             android:orientation="vertical">
-            <include layout="@layout/internet_connectivity_layout"/>
-            <ProgressBar
+             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +160,8 @@
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
+</LinearLayout>
     </ScrollView>
 </RelativeLayout>
 

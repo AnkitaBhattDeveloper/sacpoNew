@@ -532,6 +532,50 @@ public class DbSchema {
     public static final String DROP_TABLE_MENTOR_LEARNER_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_DETAILS;
     public static final String EMPTY_TABLE_MENTOR_LEARNER_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_DETAILS;
 
+    /*table Mentor learner Grant details*/
+    public static final String TABLE_MENTOR_LEARNER_GRANT_DETAILS="tbl_mentor_learner_grant_details";
+    public static final String
+         //   COLUMN_U_ID                   ="u_id",
+          //  COLUMN_S_ID_NO                ="s_id_no",
+          //  COLUMN_GRANT_ID               ="grant_id",
+           // COLUMN_SETA_NAME              ="seta_name",
+              COLUMN_SETA_MANAGER_NAME      ="seta_manager_name",
+          //  COLUMN_SETA_MANAGER_ID        ="seta_manager_id",
+       //     COLUMN_LEM_NAME               ="lem_name",
+    //        COLUMN_LEM_ID                 ="lem_id",
+           // COLUMN_HOST_EMP_NAME          ="host_emp_name",
+       //     COLUMN_GRANT_ADMIN            ="grant_admin",
+              COLUMN_GRANT_ADMIN_ID         ="grant_admin_id",
+              COLUMN_GRANT_ADMIN_EMAIL      ="grant_admin_email",
+              COLUMN_GRANT_ADMIN_CELL       ="grant_admin_cell",
+              COLUMN_HOST_EMP_SDL           ="host_emp_sdl",
+           // COLUMN_SSG_GRANT_START_DATE   ="s_s_g_grant_start_date";
+           // COLUMN_SSG_GRANT_END_DATE     ="s_s_g_grant_end_date";
+              COLUMN_MENTOR_ID              ="mentor_id";
+
+
+
+
+    public static final String CREATE_TABLE_MENTOR_LEARNER_GRANT_DETAILS="CREATE TABLE "+TABLE_MENTOR_LEARNER_GRANT_DETAILS+"( "+
+            COLUMN_U_ID+" INTEGER, "+COLUMN_S_ID_NO+" VARCHAR(50) , "+
+            COLUMN_GRANT_ID+" VARCHAR(50) , "+COLUMN_SETA_NAME+" VARCHAR(50) , "
+            +COLUMN_SETA_MANAGER_NAME+" VARCHAR(50), "+COLUMN_SETA_MANAGER_ID+" VARCHAR(50), "+
+            COLUMN_LEM_NAME+" VARCHAR(50), "+COLUMN_LEM_ID+" VARCHAR(50), "+
+            COLUMN_HOST_EMP_NAME+" VARCHAR(50), "+COLUMN_GRANT_ADMIN+" VARCHAR(50), "+
+            COLUMN_GRANT_ADMIN_ID+" VARCHAR(50), "+COLUMN_GRANT_ADMIN_EMAIL+" VARCHAR(50), "+
+            COLUMN_GRANT_ADMIN_CELL+" VARCHAR(50), "+COLUMN_HOST_EMP_SDL+" VARCHAR(50), "+
+            COLUMN_SSG_GRANT_START_DATE+" VARCHAR(50), "+  COLUMN_MENTOR_ID+" VARCHAR(50), "+
+            COLUMN_SSG_GRANT_END_DATE+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_GRANT_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_LEARNER_GRANT_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_GRANT_DETAILS;
+
+
+
+
+
+
 }
 
 

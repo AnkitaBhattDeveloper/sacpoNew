@@ -158,10 +158,8 @@ public class MPastClaimA extends BaseAPCPrivate {
 
     @Override
     protected void setLayoutXml()
-
     {
         printLogs(LogTag,"setLayoutXml","a_mclaim");
-
         setContentView(R.layout.a_mclaim);
     }
 

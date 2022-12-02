@@ -45,6 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_DASHBOARD_DETAILS);
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_NOTESLIST_DETAILS);
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
         //db.close();
     }
 
@@ -68,6 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_DASHBOARD_DETAILS);
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_NOTESLIST_DETAILS);
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
         onCreate(db);
     }
     public void truncateTable(String TABLE_NAME){
@@ -152,6 +154,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 case DbSchema.TABLE_MENTOR_LEARNER_DETAILS:
                 db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_DETAILS);
                 db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_DETAILS);
+                break;
+                case DbSchema.TABLE_MENTOR_LEARNER_GRANT_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
                 break;
         }
     }
