@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,12 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MAttSummaryObj;
+import za.co.sacpo.grant.xCubeLib.db.mAttListByMonthArray;
+import za.co.sacpo.grant.xCubeLib.db.mAttListbyMonthAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mPastAttendanceAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mPastAttendanceArray;
+import za.co.sacpo.grant.xCubeLib.db.mShowDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mShowDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 
@@ -60,6 +67,9 @@ public class MAttMonthlyA extends BaseAPCPrivate {
     public MAttSummaryObj rDataObj = new MAttSummaryObj();
     private List<MAttSummaryObj.Item> rDataObjList = null;
     private MAttMonthlyA thisClass;
+   TextView tv_leadEmpName , tv_setaName , tv_GrantName , tv_GrantNo , tv_LName , tv_LEmail ,tv_LId , tv_LTele ,
+            tv_GAName , tv_GAEmail , tv_GATele , tv_AnnualL , tv_PaidL , tv_UnpaidL , tv_SickL ;
+    LinearLayout LL_GD, LL_LD,LL_LT,LL_GAD;
 
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId) {
         baseApcContext = cnt;
@@ -105,7 +115,7 @@ public class MAttMonthlyA extends BaseAPCPrivate {
     @Override
     protected void bootStrapInit() {
         boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
-        validateLogin(baseApcContext,activityIn);
+        //validateLogin(baseApcContext,activityIn);
         if(isConnected) {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
@@ -136,8 +146,42 @@ public class MAttMonthlyA extends BaseAPCPrivate {
             }*/
 
             showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            // initDrawer();
+
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+          //  initializeInputs();
+            fetchOfflineData(date_input, selectedStudent);
+            getAllOfflineDetails();
+            callHeaderBuilder();
+
+           /* if(student_id!=null) {
+                fetchData(selectedYear, selectedMonth, selectedStatus, selectedStudent);
+            }*/
+
+            showProgress(false,mContentView,mProgressView);
         }
     }
+
+
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");
@@ -187,162 +231,6 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         g_heading2  = findViewById(R.id.g_heading2);
         g_heading3  = findViewById(R.id.g_heading3);
         lblAttendance = (TextView) findViewById(R.id.lblAttendance);
-
-        rDataObjList = rDataObj.getITEMS();
-        recyclerViewQ = (RecyclerView) findViewById(R.id.rVMViewAtt);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerViewQ.setLayoutManager(linearLayoutManager);
-
-        setupRecyclerView(recyclerViewQ);
-        printLogs(LogTag,"initializeViews","exit");
-
-        lblAttendance.setText(m_student_name);
-        lblAttendance.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-    }
-    @SuppressLint("SetTextI18n")
-    @Override
-    protected void initializeLabels(){
-        String Label = getLabelFromDb("h_195",R.string.h_195);
-        lblView = (TextView)findViewById(R.id.activity_heading);
-        lblView.setText(Label+" - "+month+"/"+year);
-        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
-            heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            heading4.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            l_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            l_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            l_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            lt_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            lt_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            lt_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            g_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            g_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-            g_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
-        }
-    }
-    @Override
-    protected void initializeInputs() {
-        printLogs(LogTag,"initializeInputs","init");
-        fetchData(date_input, selectedStudent);
-    }
-
-    @Override
-    protected void initializeListeners() {
-        printLogs(LogTag,"initializeListeners","init");
-    }
-
-    public void callDataApi(){
-        printLogs(LogTag,"callDataApi","init");
-        userToken = userSessionObj.getToken();
-        if(!TextUtils.isEmpty(userToken)) {
-            printLogs(LogTag,"callDataApi","Token Update");
-            syncUserData(baseApcContext, activityIn);
-            syncMentorData(baseApcContext, activityIn);
-            syncAlerts(baseApcContext, activityIn,ActivityId);
-        }
-    }
-
-
-    public void fetchData(String date_input, int student){
-        showProgress(true,mContentRView,mProgressRView);
-        String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_M_406;
-        FINAL_URL=FINAL_URL+"?token="+token+"&learner_id="+student+"&date="+date_input;
-        printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
-            @SuppressLint("SetTextI18n")
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject outputJson= new JSONObject(String.valueOf(response));
-                    printLogs(LogTag, "fetchData", "response : " + response);
-                    String Status = outputJson.getString(KEY_STATUS);
-                    if(Status.equals("1")){
-                        //
-                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
-                        for (int i = 0; i < dataM.length(); i++) {
-
-                            int pos = i+1;
-                            printLogs(LogTag,"fetchData","dataM : "+dataM.length());
-                            JSONObject rec = dataM.getJSONObject(i);
-                            int aId2 = Integer.parseInt(rec.getString("s_a_id"));
-                            String mAsDate3 = rec.getString("date");
-                            String mday4 = rec.getString("day");
-                            String mTime5 = rec.getString("time_spent");
-                            String mLoginTime7 = rec.getString("login_time");
-                            String lblLogoutTime6= rec.getString("logout_time");
-                            String mcord_diff8 = rec.getString("out_of_range");
-                            String attt_id9 = rec.getString("s_a_id");
-                            String approval_status10 = rec.getString("attendance_status");
-                            String remark11 = rec.getString("learner_comment_btn");
-                            rDataObj.addItem(rDataObj.createItem(pos,aId2,mAsDate3,mday4,mTime5,lblLogoutTime6,mLoginTime7,mcord_diff8,attt_id9,approval_status10,remark11));
-                         //   showList();
-                            //printLogs(LogTag,"fetchData","datshowListaM : "+response);
-                        }
-                        //int lastPost =  dataM.length();
-                        //callFooterRow(lastPost);
-                        showList();
-                        showProgress(false,mContentRView,mProgressRView);
-                    }
-
-                    else if(Status.equals("2")) {
-                        showProgress(false,mContentRView,mProgressRView);
-                    }
-
-                    else{
-
-                        showProgress(false,mContentRView,mProgressRView);
-                        String sTitle="Error :"+ActivityId+"-102";
-                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                        String sButtonLabelClose="Close";
-                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    showProgress(false,mContentRView,mProgressRView);
-                    showProgress(false,mContentView,mProgressView);
-                    String sTitle="Error :"+ActivityId+"-103";
-                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                    String sButtonLabelClose="Close";
-                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        showProgress(false,mContentRView,mProgressRView);
-                        showProgress(false,mContentView,mProgressView);
-                        String sTitle="Error :"+ActivityId+"-104";
-                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
-                        String sButtonLabelClose="Close";
-                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
-
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Accept", "*/*");
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(jsonObjectRequest);
-    }
-
-    public void getAllDetails() {
-        final TextView tv_leadEmpName , tv_setaName , tv_GrantName , tv_GrantNo , tv_LName , tv_LEmail ,tv_LId , tv_LTele ,
-                tv_GAName , tv_GAEmail , tv_GATele , tv_AnnualL , tv_PaidL , tv_UnpaidL , tv_SickL ;
-        final LinearLayout LL_GD, LL_LD,LL_LT,LL_GAD;
         LL_GD = findViewById(R.id.LL_GD);
         LL_LD = findViewById(R.id.LL_LD);
         LL_LT = findViewById(R.id.LL_LT);
@@ -368,8 +256,25 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         tv_PaidL = findViewById(R.id.txtTotalPaidLeave);
         tv_UnpaidL = findViewById(R.id.txtTotalUnPaidLeave);
         tv_SickL = findViewById(R.id.txtTotalSickLeave);
+        rDataObjList = rDataObj.getITEMS();
+        recyclerViewQ = (RecyclerView) findViewById(R.id.rVMViewAtt);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerViewQ.setLayoutManager(linearLayoutManager);
+        recyclerViewQ.setNestedScrollingEnabled(false);
+        setupRecyclerView(recyclerViewQ);
+        printLogs(LogTag,"initializeViews","exit");
 
-        String Label = getLabelFromDb("lblLeadEmpName",R.string.lblLeadEmpName);
+        lblAttendance.setText(m_student_name);
+        lblAttendance.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+    }
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void initializeLabels(){
+        String Label = getLabelFromDb("h_195",R.string.h_195);
+        lblView = (TextView)findViewById(R.id.activity_heading);
+        lblView.setText(Label+" - "+month+"/"+year);
+        lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
+         Label = getLabelFromDb("lblLeadEmpName",R.string.lblLeadEmpName);
         lblView = (TextView)findViewById(R.id.lblLeadEmpName);
         lblView.setText(Label);
         Label = getLabelFromDb("lblSetaName",R.string.lblSetaName);
@@ -437,6 +342,172 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         lblView = (TextView)findViewById(R.id.h_totalLeaves);
         lblView.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         lblView.setText(Label);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            heading.setBackground(getDrawable(getDrwabaleResourceId("heading")));
+            heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            heading4.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            l_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            lt_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading1.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading2.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+            g_heading3.setBackgroundColor(getColor(getTextcolorResourceId("dashboard_textColor")));
+        }
+    }
+    @Override
+    protected void initializeInputs() {
+        printLogs(LogTag,"initializeInputs","init");
+        fetchData(date_input, selectedStudent);
+    }
+
+    @Override
+    protected void initializeListeners() {
+        printLogs(LogTag,"initializeListeners","init");
+    }
+
+    public void callDataApi(){
+        printLogs(LogTag,"callDataApi","init");
+        userToken = userSessionObj.getToken();
+        if(!TextUtils.isEmpty(userToken)) {
+            printLogs(LogTag,"callDataApi","Token Update");
+            syncUserData(baseApcContext, activityIn);
+            syncMentorData(baseApcContext, activityIn);
+            syncAlerts(baseApcContext, activityIn,ActivityId);
+        }
+    }
+
+
+    public void fetchData(String date_input, int student){
+        showProgress(true,mContentRView,mProgressRView);
+        String token = userSessionObj.getToken();
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_M_406;
+        FINAL_URL=FINAL_URL+"?token="+token+"&learner_id="+student+"&date="+date_input;
+        printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
+            @SuppressLint("SetTextI18n")
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    printLogs(LogTag, "fetchData", "response : " + response);
+                    String Status = outputJson.getString(KEY_STATUS);
+                    if(Status.equals("1")){
+
+                        mAttListbyMonthAdapter adapter = new mAttListbyMonthAdapter(getApplicationContext());
+                       // adapter.truncate();
+
+                        ArrayList<mAttListByMonthArray> arrayList = new ArrayList<>();
+                        mAttListByMonthArray mAttListByMonthArray = null;
+                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
+                        for (int i = 0; i < dataM.length(); i++) {
+                            int pos = i+1;
+                            printLogs(LogTag,"fetchData","dataM : "+dataM.length());
+                            JSONObject rec = dataM.getJSONObject(i);
+                            int aId2 = Integer.parseInt(rec.getString("s_a_id"));
+                            String mAsDate3 = rec.getString("date");
+                            String mday4 = rec.getString("day");
+                            String mTime5 = rec.getString("time_spent");
+                            String mLoginTime7 = rec.getString("login_time");
+                            String lblLogoutTime6= rec.getString("logout_time");
+                            String mcord_diff8 = rec.getString("out_of_range");
+                            String attt_id9 = rec.getString("s_a_id");
+                            String approval_status10 = rec.getString("attendance_status");
+                            String remark11 = rec.getString("learner_comment_btn");
+                            rDataObj.addItem(rDataObj.createItem(pos,aId2,mAsDate3,mday4,mTime5,lblLogoutTime6,mLoginTime7,mcord_diff8,attt_id9,approval_status10,remark11));
+
+
+                            mAttListByMonthArray = new mAttListByMonthArray(rec.getString("s_a_id"),
+                                    mAsDate3,mday4,
+                                    mLoginTime7,lblLogoutTime6,
+                                    mTime5,rec.getString("overtime_hour"),
+                                    remark11,approval_status10,
+                                    mcord_diff8,date_input);
+
+                            arrayList.add(mAttListByMonthArray);
+
+
+//printLogs(LogTag,"fetchData","adapter.getById(date_input).getDate_input() : "+adapter.getById(date_input));
+                            List<mAttListByMonthArray> adapterAll = adapter.getById("'"+date_input+"'");
+                            for (int j = 0; j < adapterAll.size(); j++) {
+                                if(adapterAll.get(j).getDate_input().equals(date_input)){
+                                    adapter.update(mAttListByMonthArray);
+                                }else{
+                                    adapter.insert(arrayList);
+                                }
+                            }
+
+
+
+
+                             //  showList();
+                            //printLogs(LogTag,"fetchData","datshowListaM : "+response);
+                        }
+
+                        //int lastPost =  dataM.length();
+                        //callFooterRow(lastPost);
+                        showList();
+                        showProgress(false,mContentRView,mProgressRView);
+                    }
+
+                    else if(Status.equals("2")) {
+                        showProgress(false,mContentRView,mProgressRView);
+                    }
+
+                    else{
+
+                        showProgress(false,mContentRView,mProgressRView);
+                        String sTitle="Error :"+ActivityId+"-102";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    showProgress(false,mContentRView,mProgressRView);
+                    showProgress(false,mContentView,mProgressView);
+                    String sTitle="Error :"+ActivityId+"-103";
+                    String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                    String sButtonLabelClose="Close";
+                    ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        showProgress(false,mContentRView,mProgressRView);
+                        showProgress(false,mContentView,mProgressView);
+                        String sTitle="Error :"+ActivityId+"-104";
+                        String sMessage=getLabelFromDb("error_try_again",R.string.error_try_again);
+                        String sButtonLabelClose="Close";
+                        ErrorDialog.showErrorDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabelClose);
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "*/*");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getAllDetails() {
+
+
+
 
         String token = userSessionObj.getToken();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.GET_ALL_DETAILS_URL;
@@ -518,6 +589,68 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
+    private void getAllOfflineDetails() {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        mShowDetailsAdapter adapter  =new mShowDetailsAdapter(getApplicationContext());
+        List<mShowDetailsArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            tv_leadEmpName.setText(adapterAll.get(i).getLead_emp());
+            tv_setaName.setText(adapterAll.get(i).getSetaName());
+            tv_GrantName.setText(adapterAll.get(i).getGrantName());
+            tv_GrantNo.setText(adapterAll.get(i).getG_d_grant_number());
+            tv_GAName.setText(adapterAll.get(i).getLeadManager());
+            tv_GAEmail.setText(adapterAll.get(i).getLeadManagerEmail());
+            tv_GATele.setText(adapterAll.get(i).getLeadManagerContact());
+            tv_AnnualL.setText(adapterAll.get(i).getAnnual_leave());
+            tv_SickL.setText(adapterAll.get(i).getSick_leave());
+            tv_PaidL.setText(adapterAll.get(i).getOther_paid_leave());
+            tv_UnpaidL.setText(adapterAll.get(i).getUnpaid_leave());
+            tv_LName.setText(adapterAll.get(i).getStudName());
+            tv_LId.setText(adapterAll.get(i).getS_id_no());
+            tv_LEmail.setText(adapterAll.get(i).getStu_email());
+            tv_LTele.setText(adapterAll.get(i).getStu_cell());
+
+        }
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
+
+    private void fetchOfflineData(String date_input, int selectedStudent) {
+        printLogs(LogTag, "fetchOfflineData", "init");
+        mAttListbyMonthAdapter adapter  =new mAttListbyMonthAdapter(getApplicationContext());
+        List<mAttListByMonthArray> adapterAll = adapter.getById("'"+date_input+"'");
+        List<mAttListByMonthArray> adapterAll1 = adapter.getAll();
+        printLogs(LogTag, "fetchOfflineData", "date_input "+date_input);
+        printLogs(LogTag, "fetchOfflineData", "adapterAll1 "+adapterAll1);
+        printLogs(LogTag, "fetchOfflineData", "adapterAll1size "+adapterAll1.size());
+        printLogs(LogTag, "fetchOfflineData", "adapterAll "+adapterAll);
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getS_a_id());
+            String mAsDate3 = adapterAll.get(i).getDate();
+            String mday4 = adapterAll.get(i).getDay();
+            String mTime5 = adapterAll.get(i).getTime_spent();
+            String mLoginTime7 = adapterAll.get(i).getLogin_time();
+            String lblLogoutTime6= adapterAll.get(i).getLogout_time();
+            String mcord_diff8 = adapterAll.get(i).getOut_of_range();
+            String attt_id9 = adapterAll.get(i).getS_a_id();
+            String approval_status10 = adapterAll.get(i).getAttendance_status();
+            String remark11 =adapterAll.get(i).getLearner_comment_btn();
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,mAsDate3,mday4,mTime5,lblLogoutTime6,mLoginTime7,mcord_diff8,attt_id9,approval_status10,remark11));
+            //   showList();
+            //printLogs(LogTag,"fetchData","datshowListaM : "+response);
+        }
+        //int lastPost =  dataM.length();
+        //callFooterRow(lastPost);
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+    }
+
+
+
         public void callHeaderBuilder(){
         String tHeader3 = getLabelFromDb("t_head_195_date",R.string.t_head_195_date);
         String tHeader4 = getLabelFromDb("t_head_l_195_day",R.string.t_head_l_195_day);
@@ -549,7 +682,6 @@ public class MAttMonthlyA extends BaseAPCPrivate {
         List<MAttSummaryObj.Item> FormData = rDataObj.getITEMS();
         MAttSummaryAdapter adapter = new MAttSummaryAdapter(FormData,baseApcContext,activityIn,this);
         recyclerViewQ.setAdapter(adapter);
-        recyclerViewQ.setNestedScrollingEnabled(false);
         showProgress(false,mContentRView,mProgressRView);
         showProgress(false,mContentView,mProgressView);
     }

@@ -118,7 +118,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
                 }else{
 
                     ll_netinfo.setVisibility(View.GONE);
-                  //  cv_netinfo.setVisibility(View.GONE);
+                    //  cv_netinfo.setVisibility(View.GONE);
                 }
             }
         }, delay);

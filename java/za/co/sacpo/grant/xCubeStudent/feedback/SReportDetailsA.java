@@ -345,7 +345,6 @@ public class SReportDetailsA extends BaseAPCPrivate {
                             adapter.insert(arrayList);
                         }else{
                             adapter.update(sWeeklyReportDetails);
-
                         }
 
 

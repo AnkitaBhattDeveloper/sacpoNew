@@ -571,8 +571,240 @@ public class DbSchema {
     public static final String DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_GRANT_DETAILS;
     public static final String EMPTY_TABLE_MENTOR_LEARNER_GRANT_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_LEARNER_GRANT_DETAILS;
 
+    /*table Mentor show details*/
+    public static final String TABLE_MENTOR_SHOW_DETAILS="tbl_mentor_show_details";
+    public static final String
+               COLUMN_LEAD_EMP                  ="lead_emp",
+               COLUMN_SETAN_AME                 ="setaName",
+               COLUMN_GRANTNAME                 ="grantName",
+               COLUMN_GRANT_NUMBER              ="g_d_grant_number",
+               COLUMN_LEAD_MANAGER              ="leadManager",
+               COLUMN_LEAD_MANAGER_EMAIL        ="leadManagerEmail",
+               COLUMN_LEAD_MANAGER_CONTACT      ="leadManagerContact",
+            // COLUMN_ANNUAL_LEAVE              ="annual_leave",
+     //        COLUMN_SICK_LEAVE                ="sick_leave",
+               COLUMN_OTHER_PAID_LEAVE          ="other_paid_leave",
+    //         COLUMN_UNPAID_LEAVE              ="unpaid_leave",
+               COLUMN_STUDNAME                  ="studName",
+               COLUMN_SID_NO                    ="s_id_no",
+               COLUMN_STU_EMAIL                 ="stu_email",
+               COLUMN_STU_CELL                  ="stu_cell";
 
 
+
+
+
+    public static final String CREATE_TABLE_MENTOR_SHOW_DETAILS="CREATE TABLE "+TABLE_MENTOR_SHOW_DETAILS+"( "+
+            COLUMN_SID_NO+" INTEGER, "+COLUMN_STU_EMAIL+" VARCHAR(50) , "+
+            COLUMN_STU_CELL+" VARCHAR(50) , "+COLUMN_STUDNAME+" VARCHAR(50) , "
+            +COLUMN_UNPAID_LEAVE+" VARCHAR(50), "+COLUMN_OTHER_PAID_LEAVE+" VARCHAR(50), "+
+            COLUMN_SICK_LEAVE+" VARCHAR(50), "+COLUMN_ANNUAL_LEAVE+" VARCHAR(50), "+
+            COLUMN_LEAD_MANAGER_CONTACT+" VARCHAR(50), "+COLUMN_LEAD_MANAGER_EMAIL+" VARCHAR(50), "+
+            COLUMN_LEAD_MANAGER+" VARCHAR(50), "+COLUMN_GRANT_NUMBER+" VARCHAR(50), "+
+            COLUMN_GRANTNAME+" VARCHAR(50), "+COLUMN_SETAN_AME+" VARCHAR(50), "+
+            COLUMN_LEAD_EMP+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_SHOW_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_SHOW_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_SHOW_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_SHOW_DETAILS;
+
+
+    /*table Mentor past attendance details*/
+    public static final String TABLE_MENTOR_PAST_ATTENDANCE_DETAILS="tbl_mentor_past_attendance_details";
+    public static final String
+       //   COLUMN_GRANT_ID                  ="grant_id",
+            COLUMN_STUDENTID                 ="student_id",
+      //    COLUMN_MONTH                     ="month",
+      //    COLUMN_YEAR                      ="year",
+            COLUMN_DAYS_WORKED               ="days_worked",
+            COLUMN_LEAVE                     ="leave",
+    //      COLUMN_ANNUAL_LEAVE              ="annual_leave",
+    //      COLUMN_SICK_LEAVE                ="sick_leave",
+    //      COLUMN_OTHER_PAID_LEAVE          ="other_paid_leave",
+    //      COLUMN_UNPAID_LEAVE              ="unpaid_leave",
+            COLUMN_SNO                       ="sno",
+            COLUMN_YEAR_MONTH                ="year_month";
+
+
+    public static final String CREATE_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS="CREATE TABLE "+TABLE_MENTOR_PAST_ATTENDANCE_DETAILS+"( "+
+            COLUMN_SNO+" INTEGER, "+COLUMN_YEAR_MONTH+" VARCHAR(50) , "+
+            COLUMN_LEAVE+" VARCHAR(50) , "+COLUMN_DAYS_WORKED+" VARCHAR(50) , "
+            +COLUMN_UNPAID_LEAVE+" VARCHAR(50), "+COLUMN_OTHER_PAID_LEAVE+" VARCHAR(50), "+
+            COLUMN_SICK_LEAVE+" VARCHAR(50), "+COLUMN_ANNUAL_LEAVE+" VARCHAR(50), "+
+            COLUMN_YEAR+" VARCHAR(50), "+COLUMN_MONTH+" VARCHAR(50), "+
+            COLUMN_STUDENTID+" VARCHAR(50), "+
+            COLUMN_GRANT_ID+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_PAST_ATTENDANCE_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_PAST_ATTENDANCE_DETAILS;
+
+    /*table Mentor attendance list by month details*/
+    public static final String TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS="tbl_mentor_attlist_bymonth_details";
+    public static final String
+               COLUMN_SA_ID                  ="s_a_id",
+           //  COLUMN_DATE                   ="date",
+       //      COLUMN_DAY                    ="day",
+     //        COLUMN_LOGIN_TIME             ="login_time",
+ //            COLUMN_LOGOUT_TIME            ="logout_time",
+               COLUMN_TIME_SPENT             ="time_spent",
+               COLUMN_OVERTIME_HOUR          ="overtime_hour",
+               COLUMN_LEARNER_COMMENT_BTN    ="learner_comment_btn",
+               COLUMN_ATTENDANCESTATUS       ="attendance_status",
+               COLUMN_OUT_OF_RANGE           ="out_of_range",
+               COLUMN_DATE_INPUT           ="date_input";
+
+    public static final String CREATE_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS="CREATE TABLE "+TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS+"( "+
+            COLUMN_SA_ID+" INTEGER, "+COLUMN_DATE+" VARCHAR(50) , "+
+            COLUMN_DAY+" VARCHAR(50) , "+COLUMN_LOGIN_TIME+" VARCHAR(50) , "
+            +COLUMN_LOGOUT_TIME+" VARCHAR(50), "+COLUMN_TIME_SPENT+" VARCHAR(50), "+
+            COLUMN_OVERTIME_HOUR+" VARCHAR(50), "+COLUMN_LEARNER_COMMENT_BTN+" VARCHAR(50), "+
+            COLUMN_ATTENDANCESTATUS+" VARCHAR(50), "+COLUMN_OUT_OF_RANGE+" VARCHAR(50), "+
+            COLUMN_DATE_INPUT+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS= "DROP TABLE IF EXISTS "+TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS;
+    public static final String EMPTY_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS;
+
+    /*table Mentor approved claim list details*/
+    public static final String TABLE_M_APPROVED_CLAIMLIST_DETAILS="tbl_mentor_approved_claimlist_details";
+    public static final String
+                COLUMN_STIPEND_MONTH                    ="s_m_s_stipend_month",
+                COLUMN_MONTH_NAME                       ="month_name",
+                COLUMN_STIPEND_YEAR                     ="s_m_s_stipend_year",
+                COLUMN_STIPEND_ID                       ="s_m_s_id",
+                COLUMN_STIPEND_AMOUNT                   ="stipend_amount",
+                COLUMN_STIPEND_APPROVED                 ="approve_stipend",
+                COLUMN_OUTOF_RANGE_SIGNIN_COUNTS        ="out_of_range_sign_in_counts",
+                COLUMN_OUTOF_RANGE_LINK                 ="out_of_range_link",
+        //      COLUMN_DAYS_WORKED                      ="days_worked",
+       //       COLUMN_LEAVE                            ="leave",
+                COLUMN_DWNLD_CLAIM_FORM_LINK            ="download_claim_form_link",
+                COLUMN_SHOW_CLAIM_FORM_LINK             ="show_claim_form_link",
+                COLUMN_DWNLD_SIGNED_CLAIMFORM_LINK      ="download_signed_claim_form_link",
+                COLUMN_SHOW_SIGNED_CLAIMFORM_LINK       ="show_signed_claim_form_link";
+
+    public static final String CREATE_TABLE_M_APPROVED_CLAIMLIST_DETAILS="CREATE TABLE "+TABLE_M_APPROVED_CLAIMLIST_DETAILS+"( "+
+            COLUMN_STIPEND_ID+" INTEGER, "+COLUMN_STIPEND_YEAR+" VARCHAR(50) , "+
+            COLUMN_MONTH_NAME+" VARCHAR(50) , "+COLUMN_STIPEND_MONTH+" VARCHAR(50) , "
+            +COLUMN_STIPEND_AMOUNT+" VARCHAR(50), "+COLUMN_STIPEND_APPROVED+" VARCHAR(50), "+
+            COLUMN_OUTOF_RANGE_SIGNIN_COUNTS+" VARCHAR(50), "+COLUMN_OUTOF_RANGE_LINK+" VARCHAR(50), "+
+            COLUMN_DAYS_WORKED+" VARCHAR(50), "+COLUMN_LEAVE+" VARCHAR(50), "+
+            COLUMN_DWNLD_CLAIM_FORM_LINK+" VARCHAR(50), "+COLUMN_SHOW_CLAIM_FORM_LINK+" VARCHAR(50), "+
+            COLUMN_DWNLD_SIGNED_CLAIMFORM_LINK+" VARCHAR(50), "+
+            COLUMN_SHOW_SIGNED_CLAIMFORM_LINK+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_APPROVED_CLAIMLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_APPROVED_CLAIMLIST_DETAILS;
+    public static final String EMPTY_TABLE_M_APPROVED_CLAIMLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_APPROVED_CLAIMLIST_DETAILS;
+
+    /*table Mentor pending claim list details*/
+    public static final String TABLE_M_PENDING_CLAIMLIST_DETAILS="tbl_mentor_pending_claimlist_details";
+    public static final String
+      //      COLUMN_STIPEND_MONTH                    ="s_m_s_stipend_month",
+      //      COLUMN_MONTH_NAME                       ="month_name",
+      //      COLUMN_STIPEND_YEAR                     ="s_m_s_stipend_year",
+      //      COLUMN_STIPEND_ID                       ="s_m_s_id",
+      //      COLUMN_STIPEND_AMOUNT                   ="stipend_amount",
+      //      COLUMN_LEARNER_NAME                     ="learner_name",
+              COLUMN_APPROVE_STIPEND_LINK             ="approve_stipend_link";
+
+    public static final String CREATE_TABLE_M_PENDING_CLAIMLIST_DETAILS="CREATE TABLE "+TABLE_M_PENDING_CLAIMLIST_DETAILS+"( "+
+            COLUMN_STIPEND_ID+" INTEGER, "+COLUMN_STIPEND_YEAR+" VARCHAR(50) , "+
+            COLUMN_MONTH_NAME+" VARCHAR(50) , "+COLUMN_STIPEND_MONTH+" VARCHAR(50) , "
+            +COLUMN_STIPEND_AMOUNT+" VARCHAR(50), "+COLUMN_LEARNER_NAME+" VARCHAR(50), "+
+            COLUMN_APPROVE_STIPEND_LINK+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_PENDING_CLAIMLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_PENDING_CLAIMLIST_DETAILS;
+    public static final String EMPTY_TABLE_M_PENDING_CLAIMLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_PENDING_CLAIMLIST_DETAILS;
+
+    /*table Mentor workstation list details*/
+    public static final String TABLE_M_WORKSTATION_LIST_DETAILS="tbl_mentor_workstation_list_details";
+    public static final String
+            COLUMN_EGL_ID                    ="e_g_l_id",
+            COLUMN_EMP_NAME                  ="employerName",
+            COLUMN_EGL_DEPT_NAME             ="e_g_l_department_name",
+            COLUMN_EGL_STUDENT_COUNT         ="e_g_l_student_count",
+            COLUMN_EGL_LATITUDE              ="e_g_l_latitude",
+            COLUMN_EGL_LOBGITUDE             ="e_g_l_longitude";
+
+    public static final String CREATE_TABLE_M_WORKSTATION_LIST_DETAILS="CREATE TABLE "+TABLE_M_WORKSTATION_LIST_DETAILS+"( "+
+            COLUMN_EGL_ID+" INTEGER, "+COLUMN_EMP_NAME+" VARCHAR(50) , "+
+            COLUMN_EGL_DEPT_NAME+" VARCHAR(50) , "+COLUMN_EGL_STUDENT_COUNT+" VARCHAR(50) , "
+            +COLUMN_EGL_LATITUDE+" VARCHAR(50), "+
+            COLUMN_EGL_LOBGITUDE+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_WORKSTATION_LIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_WORKSTATION_LIST_DETAILS;
+    public static final String EMPTY_TABLE_M_WORKSTATION_LIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_APPROVED_CLAIMLIST_DETAILS;
+
+    /*table Mentor Learner Progress Report List details*/
+    public static final String TABLE_M_LEARNER_REPORTLIST_DETAILS="tbl_mentor_learner_reportlist_details";
+    public static final String
+                    COLUMN_SWR_ID                   ="s_w_r_id",
+                //  COLUMN_TITLE                    ="title",
+              //    COLUMN_YEAR                     ="year",
+              //    COLUMN_SUPERVISOR_STATUS        ="supervisor_status",
+             //     COLUMN_NUMBER                   ="number",
+                    COLUMN_SHOW_APPROVE_LINK        ="show_approve_link";
+           //       COLUMN_MONTH                    ="month";
+
+    public static final String CREATE_TABLE_M_LEARNER_REPORTLIST_DETAILS="CREATE TABLE "+TABLE_M_LEARNER_REPORTLIST_DETAILS+"( "+
+            COLUMN_SWR_ID+" INTEGER, "+COLUMN_TITLE+" VARCHAR(50) , "+
+            COLUMN_YEAR+" VARCHAR(50) , "+COLUMN_SUPERVISOR_STATUS+" VARCHAR(50) , "
+            +COLUMN_NUMBER+" VARCHAR(50), "+COLUMN_SHOW_APPROVE_LINK+" VARCHAR(50), "+
+            COLUMN_MONTH+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_LEARNER_REPORTLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_LEARNER_REPORTLIST_DETAILS;
+    public static final String EMPTY_TABLE_M_LEARNER_REPORTLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_LEARNER_REPORTLIST_DETAILS;
+
+    /*table Mentor Document center list details*/
+    public static final String TABLE_M_DOC_CENTERLIST_DETAILS="tbl_mentor_doc_centerlist_details";
+    public static final String
+            COLUMN_STIPENDID                           ="stipend_id",
+        //  COLUMN_YEAR                                ="year",
+            COLUMN_MONTHNAME                           ="monthName",
+            COLUMN_DWNLD_ATT_REGISTER                  ="download_att_register",
+            COLUMN_IS_DWNLD_ATT_REGISTER               ="is_download_att_register",
+      //    COLUMN_DWNLD_UNSIGNED_CLAIM_FORM           ="download_unsigned_claim_form",
+            COLUMN_IS_DWNLD_UNSIGNED_CLAIM_FORM        ="is_download_unsigned_claim_form",
+            COLUMN_UPLOAD_SIGNED_CLAIM_FORM            ="upload_signed_claim_form",
+      //    COLUMN_DWNLD_SIGNED_CLAIM_FORM             ="download_signed_claim_form",
+            COLUMN_IS_DWNLD_SIGNED_CLAIM_FORM          ="is_download_signed_claim_form";
+      //    COLUMN_MONTH                               ="month";
+
+    public static final String CREATE_TABLE_M_DOC_CENTERLIST_DETAILS="CREATE TABLE "+TABLE_M_DOC_CENTERLIST_DETAILS+"( "+
+            COLUMN_STIPENDID+" INTEGER, "+COLUMN_YEAR+" VARCHAR(50) , "+
+            COLUMN_MONTHNAME+" VARCHAR(50) , "+COLUMN_DWNLD_ATT_REGISTER+" VARCHAR(50) , "
+            +COLUMN_IS_DWNLD_ATT_REGISTER+" VARCHAR(50), "+COLUMN_DWNLD_UNSIGNED_CLAIM_FORM+" VARCHAR(50), "+
+            COLUMN_IS_DWNLD_UNSIGNED_CLAIM_FORM+" VARCHAR(50), "+COLUMN_UPLOAD_SIGNED_CLAIM_FORM+" VARCHAR(50), "+
+            COLUMN_DWNLD_SIGNED_CLAIM_FORM+" VARCHAR(50), "+COLUMN_IS_DWNLD_SIGNED_CLAIM_FORM+" VARCHAR(50), "+
+            COLUMN_MONTH+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_DOC_CENTERLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_DOC_CENTERLIST_DETAILS;
+    public static final String EMPTY_TABLE_M_DOC_CENTERLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_DOC_CENTERLIST_DETAILS;
+
+    /*table Mentor Learner Alert List details*/
+    public static final String TABLE_M_LEARNER_ALERTLIST_DETAILS="tbl_mentor_learner_alertlist_details";
+    public static final String
+       //       COLUMN_ID                       ="id",
+                COLUMN_SUBJECT                  ="subject",
+      //        COLUMN_DATE                     ="date",
+                COLUMN_DETAIL_LINK              ="detail_link";
+       //       COLUMN_STUDENTID                ="student_id",
+
+
+    public static final String CREATE_TABLE_M_LEARNER_ALERTLIST_DETAILS="CREATE TABLE "+TABLE_M_LEARNER_ALERTLIST_DETAILS+"( "+
+            COLUMN_STUDENTID+" INTEGER, "+COLUMN_DETAIL_LINK+" VARCHAR(50) , "+
+            COLUMN_DATE+" VARCHAR(50) , "+COLUMN_SUBJECT+" VARCHAR(50) , "+
+            COLUMN_ID+" VARCHAR(50)); ";
+
+
+    public static final String DROP_TABLE_M_LEARNER_ALERTLIST_DETAILS= "DROP TABLE IF EXISTS "+TABLE_M_LEARNER_ALERTLIST_DETAILS;
+    public static final String EMPTY_TABLE_M_LEARNER_ALERTLIST_DETAILS= "TRUNCATE TABLE IF EXISTS "+TABLE_M_LEARNER_ALERTLIST_DETAILS;
 
 
 

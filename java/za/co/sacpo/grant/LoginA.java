@@ -62,6 +62,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -139,9 +141,24 @@ public class LoginA extends BaseFormAPCPublic {
             showProgress(false, mContentView, mProgressView);
             printLogs(LogTag, "onCreate", "exitConnected");
         }else{
-            Intent intent = new Intent(LoginA.this, SDashboardDA.class);
-            startActivity(intent);
-            finish();
+            if(userSessionObj != null){
+                if (userSessionObj.getUserType().equals("2")) {
+                    Intent intent = new Intent(LoginA.this, SDashboardDA.class);
+                    startActivity(intent);
+                    finish();
+                }else if (userSessionObj.getUserType().equals("5")) {
+                    Intent intentM = new Intent(baseApcContext,MDashboardDA.class);
+                    startActivity(intentM);
+                    activityIn.finish();
+                }else{
+                    Toast.makeText(baseApcContext, "Please Login First...", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(baseApcContext, "Please Check Your Internet Connection...", Toast.LENGTH_SHORT).show();
+
+            }
+
+
         }
     }
 

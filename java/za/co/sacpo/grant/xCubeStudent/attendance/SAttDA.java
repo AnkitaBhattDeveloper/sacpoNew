@@ -280,7 +280,7 @@ public class SAttDA extends BaseAPCPrivate {
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
                         attListDetailsAdapter adapter  =new attListDetailsAdapter(getApplicationContext());
-                        adapter.truncate();
+                        //adapter.truncate();
                         ArrayList<attListArray> attArrayList = new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {

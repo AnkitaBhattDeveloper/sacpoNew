@@ -46,6 +46,15 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_NOTESLIST_DETAILS);
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_DETAILS);
         db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_MENTOR_SHOW_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_APPROVED_CLAIMLIST_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_PENDING_CLAIMLIST_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_WORKSTATION_LIST_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_LEARNER_REPORTLIST_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_DOC_CENTERLIST_DETAILS);
+        db.execSQL(DbSchema.CREATE_TABLE_M_LEARNER_ALERTLIST_DETAILS);
         //db.close();
     }
 
@@ -70,6 +79,15 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_NOTESLIST_DETAILS);
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_DETAILS);
         db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_MENTOR_SHOW_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_APPROVED_CLAIMLIST_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_PENDING_CLAIMLIST_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_WORKSTATION_LIST_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_LEARNER_REPORTLIST_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_DOC_CENTERLIST_DETAILS);
+        db.execSQL(DbSchema.DROP_TABLE_M_LEARNER_ALERTLIST_DETAILS);
         onCreate(db);
     }
     public void truncateTable(String TABLE_NAME){
@@ -158,6 +176,42 @@ public class DbHelper extends SQLiteOpenHelper {
                 case DbSchema.TABLE_MENTOR_LEARNER_GRANT_DETAILS:
                 db.execSQL(DbSchema.DROP_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
                 db.execSQL(DbSchema.CREATE_TABLE_MENTOR_LEARNER_GRANT_DETAILS);
+                break;
+                case DbSchema.TABLE_MENTOR_SHOW_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_MENTOR_SHOW_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_MENTOR_SHOW_DETAILS);
+                break;
+                case DbSchema.TABLE_MENTOR_PAST_ATTENDANCE_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_MENTOR_PAST_ATTENDANCE_DETAILS);
+                break;
+                case DbSchema.TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_MENTOR_ATTLIST_BYMONTH_DETAILS);
+                break;
+                case DbSchema.TABLE_M_APPROVED_CLAIMLIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_APPROVED_CLAIMLIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_APPROVED_CLAIMLIST_DETAILS);
+                break;
+                case DbSchema.TABLE_M_PENDING_CLAIMLIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_PENDING_CLAIMLIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_PENDING_CLAIMLIST_DETAILS);
+                break;
+                case DbSchema.TABLE_M_WORKSTATION_LIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_WORKSTATION_LIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_WORKSTATION_LIST_DETAILS);
+                break;
+                case DbSchema.TABLE_M_LEARNER_REPORTLIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_LEARNER_REPORTLIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_LEARNER_REPORTLIST_DETAILS);
+                break;
+                case DbSchema.TABLE_M_DOC_CENTERLIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_DOC_CENTERLIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_DOC_CENTERLIST_DETAILS);
+                break;
+                case DbSchema.TABLE_M_LEARNER_ALERTLIST_DETAILS:
+                db.execSQL(DbSchema.DROP_TABLE_M_LEARNER_ALERTLIST_DETAILS);
+                db.execSQL(DbSchema.CREATE_TABLE_M_LEARNER_ALERTLIST_DETAILS);
                 break;
         }
     }

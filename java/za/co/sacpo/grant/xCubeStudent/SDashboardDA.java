@@ -142,7 +142,6 @@ public class SDashboardDA extends StudentBaseDrawerA {
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-
             initializeInputs();
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }else{

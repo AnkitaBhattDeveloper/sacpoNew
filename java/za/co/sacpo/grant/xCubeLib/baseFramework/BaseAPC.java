@@ -24,6 +24,8 @@ import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -37,6 +39,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -85,7 +88,8 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected OlumsUserSession userSessionObj;
     protected Boolean isLive = false;//Logs Show If False
     protected Boolean isOnline = false;  //show connectivity layout if false
-
+    final Handler handler = new Handler();
+    final int delay = 500; // 1000 milliseconds == 1 second
 
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);
     protected abstract void initializeViews();
@@ -108,6 +112,7 @@ public abstract class BaseAPC extends AppCompatActivity {
             ConnectivityManager cm = (ConnectivityManager) pContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             if (cm.getActiveNetworkInfo() != null) {
                 InternetDialog.removeInternetDialog();
+
             }
             else{
                 if(isOnline){
@@ -128,6 +133,90 @@ public abstract class BaseAPC extends AppCompatActivity {
             }
         }
     };
+
+   /* public void checkInternetConnection(){
+
+
+        Log.d("checkInternetConnection","==========="+IChangeReceiver.getResultCode());
+        BroadcastReceiver IChangeReceiver = new BroadcastReceiver() {
+            public void onReceive(Context pContext, Intent pIntent) {
+                LinearLayout ll_netinfo = findViewById(R.id.ll_netinfo);
+                TextView tv_net = findViewById(R.id.tv_net);
+                ImageView iv_net = findViewById(R.id.iv_net);
+
+
+                ConnectivityManager cm = (ConnectivityManager) pContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                if (cm.getActiveNetworkInfo() != null) {
+                    if(!(ll_netinfo == null)){
+                        ll_netinfo.setVisibility(View.VISIBLE);
+                            tv_net.setText("Online");
+                            iv_net.setImageResource(R.drawable.interview_accept_btn);
+                        }else{
+                        String sTitle = getString(R.string.dialog_no_internet);
+                        String sMessage = getString(R.string.dialog_no_inter_message);
+                        String sButtonLabel3g = getString(R.string.dialog_enable_internet);
+                        String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
+                        String buttonLabelTryAgain= getString(R.string.dialog_try_again);
+                        InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
+
+                    }
+                } else{
+                    if(!(ll_netinfo == null)){
+                        ll_netinfo.setVisibility(View.VISIBLE);
+                        tv_net.setText("Offline");
+                        iv_net.setImageResource(R.drawable.interview_reject_btn);
+                    }else{
+                        String sTitle = getString(R.string.dialog_no_internet);
+                        String sMessage = getString(R.string.dialog_no_inter_message);
+                        String sButtonLabel3g = getString(R.string.dialog_enable_internet);
+                        String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
+                        String buttonLabelTryAgain= getString(R.string.dialog_try_again);
+                        InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
+
+                    }
+                }
+            }
+        };
+       *//*
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                LinearLayout ll_netinfo = findViewById(R.id.ll_netinfo);
+                if (isOnline == false) {
+                    if(!(ll_netinfo == null)){
+                        ll_netinfo.setVisibility(View.VISIBLE);
+                        // cv_netinfo.setVisibility(View.VISIBLE);
+                        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        TextView tv_net = findViewById(R.id.tv_net);
+                        ImageView iv_net = findViewById(R.id.iv_net);
+                        if (cm.getActiveNetworkInfo() != null) {
+                            tv_net.setText("Online");
+                            iv_net.setImageResource(R.drawable.interview_accept_btn);
+                        } else {
+                            tv_net.setText("Offline");
+                            iv_net.setImageResource(R.drawable.interview_reject_btn);
+                        }
+                        handler.postDelayed(this, delay);
+                    }else{
+                        String sTitle = getString(R.string.dialog_no_internet);
+                        String sMessage = getString(R.string.dialog_no_inter_message);
+                        String sButtonLabel3g = getString(R.string.dialog_enable_internet);
+                        String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
+                        String buttonLabelTryAgain= getString(R.string.dialog_try_again);
+                        InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
+
+                    }
+
+                }else{
+
+                    ll_netinfo.setVisibility(View.GONE);
+                    //  cv_netinfo.setVisibility(View.GONE);
+                }
+            }
+        }, delay);
+*//*
+    }*/
+
+
 
     public void registerBroadcastIC(){
         try {

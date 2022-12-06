@@ -115,7 +115,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
             fetchTrainingPlan();
             showProgress(false,mContentView,mProgressView);
         }
-        showProgress(false,mContentView,mProgressView);
+        //showProgress(false,mContentView,mProgressView);
         printLogs(LogTag,"bootStrapInit","exitConnected");
 
     }

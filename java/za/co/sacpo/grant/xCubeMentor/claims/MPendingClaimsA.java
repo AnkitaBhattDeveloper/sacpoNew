@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MPendingClaimObj;
+import za.co.sacpo.grant.xCubeLib.db.mPendingClaimListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mPendingClaimListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
@@ -116,6 +119,29 @@ public class MPendingClaimsA extends BaseAPCPrivate {
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false, mContentView, mProgressView);
+        }else{
+            printLogs(LogTag, "bootStrapInit", "initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext, activityIn, ActivityId);
+            initMenusCustom(ActivityId, baseApcContext, activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initBackBtn();
+            initializeViews();
+            showProgress(true, mContentView, mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
         }
     }
@@ -217,6 +243,10 @@ public class MPendingClaimsA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        mPendingClaimListAdapter adapter = new mPendingClaimListAdapter(getApplicationContext());
+                        adapter.truncate();
+
+                        ArrayList<mPendingClaimListArray> arrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i + 1;
@@ -230,7 +260,13 @@ public class MPendingClaimsA extends BaseAPCPrivate {
                             String PcApproval8 = rec.getString("approve_stipend_link");
 
                             rDataObj.addItem(rDataObj.createItem(pos, aId2, month_year3, PcYear4, PcMonth5, PcAmount6, PcLearnerName7,PcApproval8));
+
+                            arrayList.add(new mPendingClaimListArray(month_year3,PcMonth5,PcYear4,
+                                   aId2,PcAmount6,PcLearnerName7, PcApproval8));
+
+
                         }
+                        adapter.insert(arrayList);
                         showList();
                         showProgress(false,mContentRView,mProgressRView);
                     } else if (Status.equals("2")) {
@@ -278,6 +314,25 @@ public class MPendingClaimsA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
+    private void fetchOfflineData(){
+        mPendingClaimListAdapter adapter = new mPendingClaimListAdapter(getApplicationContext());
+        List<mPendingClaimListArray> all = adapter.getAll();
+        for (int i = 0; i < all.size(); i++) {
+            int pos = i + 1;
+            String aId2 = all.get(i).getS_m_s_id();
+            String month_year3 = all.get(i).getS_m_s_stipend_month();
+            String PcYear4 = all.get(i).getS_m_s_stipend_year();
+            String PcMonth5 = all.get(i).getMonth_name();
+            String PcAmount6 = all.get(i).getStipend_amount();
+            String PcLearnerName7 = all.get(i).getLearner_name();
+            String PcApproval8 = all.get(i).getApprove_stipend_link();
+
+            rDataObj.addItem(rDataObj.createItem(pos, aId2, month_year3, PcYear4, PcMonth5, PcAmount6, PcLearnerName7,PcApproval8));
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+
+    }
 
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {

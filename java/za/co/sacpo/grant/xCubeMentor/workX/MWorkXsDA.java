@@ -36,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,8 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.adapter.MWorkXAdapter;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.dataObj.MWorkXObj;
+import za.co.sacpo.grant.xCubeLib.db.mWorkstationListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mWorkstationListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
@@ -106,8 +109,34 @@ public class MWorkXsDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
+            showProgress(false,mContentView,mProgressView);
         }
     }
+
+
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");
@@ -247,6 +276,9 @@ public class MWorkXsDA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        mWorkstationListAdapter adapter = new mWorkstationListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<mWorkstationListArray> arrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -260,8 +292,15 @@ public class MWorkXsDA extends BaseAPCPrivate {
                             String mWbtnEdit8 = "";
                             String mWbtnRemove9 = "";
                             rDataObj.addItem(rDataObj.createItem(pos,aId2, mWEmpName3,mWName4, mWStuent5,mWLatitude6,mWLongitude7,mWbtnEdit8,mWbtnRemove9));
-                            showList();
+
+                           arrayList.add(new mWorkstationListArray(String.valueOf(aId2),mWEmpName3,mWName4,mWStuent5,mWLatitude6,
+                                   mWLongitude7));
+
+
                         }
+                        adapter.insert(arrayList);
+                        showList();
+
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -307,6 +346,31 @@ public class MWorkXsDA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
+    private void fetchOfflineData() {
+
+    mWorkstationListAdapter adapter = new mWorkstationListAdapter(getApplicationContext());
+        List<mWorkstationListArray> all = adapter.getAll();
+        for (int i = 0; i < all.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(all.get(i).getE_g_l_id());
+            String mWEmpName3 = all.get(i).getEmployerName();
+            String mWName4 = all.get(i).getE_g_l_department_name();
+            String mWStuent5 = all.get(i).getE_g_l_student_count();
+            String mWLatitude6 = all.get(i).getE_g_l_latitude();
+            String mWLongitude7 = all.get(i).getE_g_l_longitude();
+            String mWbtnEdit8 = "";
+            String mWbtnRemove9 = "";
+            rDataObj.addItem(rDataObj.createItem(pos,aId2, mWEmpName3,mWName4, mWStuent5,mWLatitude6,mWLongitude7,mWbtnEdit8,mWbtnRemove9));
+        }
+        showList();
+
+        showProgress(false,mContentRView,mProgressRView);
+
+    }
+
+
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new MWorkXAdapter(rDataObjList, baseApcContext, activityIn));
     }
