@@ -531,7 +531,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         final CharSequence[] items = { "Choose from Gallery","Upload PDF", "Cancel"};
         final PackageManager pm = getApplicationContext().getPackageManager();
         final AlertDialog.Builder builder = new AlertDialog.Builder(SContactSupportPrivateA.this);
-        builder.setTitle("Add Photo!");
+    //    builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -1032,6 +1032,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -1042,6 +1043,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

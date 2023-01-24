@@ -62,10 +62,10 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     public SpinnerObj[] OFOCodeType;
     ArrayList<String> AreaCode_list = new ArrayList<>();
     ArrayList<String> OFOCode_list = new ArrayList<>();
-    String ssareacode_value,popiactstatus_value,sponsorship_value,economic_value,enrollment_value
+    String ssareacode_value="",popiactstatus_value,sponsorship_value,economic_value,enrollment_value
             ,wiltype_value,spin_actstatusdate,spin_actstatusmonth,spin_actstatusyear,spin_wilstartdate,spin_wilstartmonth,spin_wilstartyear,
             spin_wilenddate,spin_wilendmonth,spin_wilendyear,spin_msregdate,spin_msregmonth,spin_msregyear,
-            spin_nqf,spin_financialyear,txtofocode_value;
+            spin_nqf,spin_financialyear,txtofocode_value="";
     Spinner inputSpinneractstatus,SpinnerDay,SpinnerMonth,SpinnerYear,inputSpinnersponsorship,
             inputSpinnerfinancialyear,inputSpinnernqflevel,inputSpinnereconomicstatus,SpinnerwilstartDay,
             SpinnerwilstartMonth,SpinnerwilstartYear,SpinnerwilendDay,SpinnerwilendMonth,SpinnerwilendYear,
@@ -2030,6 +2030,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -2042,6 +2043,7 @@ public class SEDitProfileStepThreeA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

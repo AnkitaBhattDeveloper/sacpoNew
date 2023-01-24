@@ -71,7 +71,7 @@
                     android:adjustViewBounds="false"
                     android:elevation="0dp"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/p_logo" />
+                      />
 
                 <LinearLayout
                     android:visibility="gone"

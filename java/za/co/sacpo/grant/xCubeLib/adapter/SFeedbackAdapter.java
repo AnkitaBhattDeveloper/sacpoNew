@@ -238,7 +238,7 @@ public class SFeedbackAdapter extends RecyclerView.Adapter<SFeedbackAdapter.Leav
             int edit_button = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).EditBtn9);
             if(edit_button==1) {
                 holder.btnActionEdit.setVisibility(View.VISIBLE);
-                holder.btnActionEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnActionEdit.setTextColor(baseActivityContext.getResources().getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.btnActionEdit.setBackground(baseActivityContext.getResources().getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
                 holder.lblActionEdit.setVisibility(View.GONE);
             }

@@ -847,6 +847,7 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 
@@ -859,6 +860,7 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

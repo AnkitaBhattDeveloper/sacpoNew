@@ -28,7 +28,7 @@ tools:context=".xCubeMentor.MDashboardDA">
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
-                android:background="@drawable/p_logo" />
+                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

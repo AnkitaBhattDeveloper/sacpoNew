@@ -94,6 +94,24 @@ public class SLMotivationA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag,"initializeInputs","exitConnected");
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            initializeViews();
+            initBackBtn();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            printLogs(LogTag,"initializeInputs","exitConnected");
         }
     }
     private void initBackBtn(){
@@ -177,6 +195,7 @@ public class SLMotivationA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -187,6 +206,7 @@ public class SLMotivationA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

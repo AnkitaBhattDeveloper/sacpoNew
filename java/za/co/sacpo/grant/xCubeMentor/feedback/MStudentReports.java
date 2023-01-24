@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SReportsObj;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerProgressReportListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mLearnerProgressReportListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
@@ -103,8 +106,34 @@ public class MStudentReports extends BaseAPCPrivate{
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            fetchVersionData();
+            initBackBtn();
+            verifyVersion();
+            internetChangeBroadCast();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
+            showProgress(false,mContentView,mProgressView);
         }
     }
+
+
+
     @Override
     protected void internetChangeBroadCast(){
         printLogs(LogTag,"internetChangeBroadCast","init");
@@ -218,6 +247,12 @@ public class MStudentReports extends BaseAPCPrivate{
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+
+                        mLearnerProgressReportListAdapter adapter = new mLearnerProgressReportListAdapter(getApplicationContext());
+                        adapter.truncate();
+
+                        ArrayList<mLearnerProgressReportListArray> arrayList = new ArrayList<>();
+
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -231,8 +266,15 @@ public class MStudentReports extends BaseAPCPrivate{
                             String misSupervisorApproved7 = rec.getString("show_approve_link");
                             String month8 = rec.getString("month");
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,msfReportTitle3,msfYear4,msupervisorStatus5,mReportN6,misSupervisorApproved7,month8));
-                            showList();
+
+                            arrayList.add(new mLearnerProgressReportListArray(String.valueOf(aId2),msfReportTitle3,
+                                    msfYear4,msupervisorStatus5,mReportN6,misSupervisorApproved7,month8));
+
+
+
                         }
+adapter.insert(arrayList);
+                        showList();
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -280,6 +322,29 @@ public class MStudentReports extends BaseAPCPrivate{
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
+    private void fetchOfflineData() {
+
+    mLearnerProgressReportListAdapter adapter = new mLearnerProgressReportListAdapter(getApplicationContext());
+        List<mLearnerProgressReportListArray> all = adapter.getAll();
+        for (int i = 0; i <all.size() ; i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(all.get(i).getS_w_r_id());
+            String msfReportTitle3 =all.get(i).getTitle();
+            String msfYear4 =all.get(i).getYear();
+            String msupervisorStatus5 =all.get(i).getSupervisor_status();
+            String mReportN6 = all.get(i).getNumber();
+            String misSupervisorApproved7 = all.get(i).getShow_approve_link();
+            String month8 = all.get(i).getMonth();
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,msfReportTitle3,msfYear4,msupervisorStatus5,mReportN6,misSupervisorApproved7,month8));
+
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+
+    }
+
+
     public void callHeaderBuilder(){
         String tHeader3 = getLabelFromDb("t_head_336_learner_name",R.string.t_head_336_learner_name);
         String tHeader4 = getLabelFromDb("t_head_336_year",R.string.t_head_336_year);
@@ -328,6 +393,7 @@ public class MStudentReports extends BaseAPCPrivate{
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-    tools:context=".grant.xCubeStudent.claims.SPastClaimDA">
+    tools:context=".xCubeStudent.claims.SPastClaimDA">
 <include
     layout="@layout/container_c_past_claim"
     android:layout_width="match_parent"

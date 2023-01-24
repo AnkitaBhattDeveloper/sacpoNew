@@ -144,37 +144,23 @@ public class MPendingClaimAdapter extends RecyclerView.Adapter<MPendingClaimAdap
             holder.lblApprovedStipend.setVisibility(View.VISIBLE);
             holder.btnApprovedStipend.setVisibility(View.GONE);
 
-
-
         }
         else{
-
-
-
             if((holder.getAdapterPosition()%2)==0){
                 BColor=res.getColor(R.color.row_even);
             }
             else{
                 BColor=res.getColor(R.color.row_odd);
             }
-
-
-
-
             if (aObjList.get(holder.getAdapterPosition()).PcApproval8.equals("1")){
-
                 Labels =this.getLabelFromDb("l_btn_pending_claim",R.string.l_btn_pending_claim);
                 holder.btnApprovedStipend.setText(Labels);
                 holder.btnApprovedStipend.setBackground(res.getDrawable(baseAPC.getDrwabaleResourceId("themed_small_button")));
-                holder.btnApprovedStipend.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("dashboard_textColor")));
+                holder.btnApprovedStipend.setTextColor(res.getColor(baseAPC.getTextcolorResourceId("btn_textColor")));
                 holder.btnApprovedStipend.setTypeface(holder.btnApprovedStipend.getTypeface(), Typeface.BOLD);
                 holder.btnApprovedStipend.setVisibility(View.VISIBLE);
                 holder.lblApprovedStipend.setVisibility(View.GONE);
-
-
-
             }else{
-
                 Labels =this.getLabelFromDb("l_btn_approved_stipend",R.string.l_btn_approved_stipend);
                 holder.lblApprovedStipend.setText(Labels);
                 holder.lblApprovedStipend.setVisibility(View.VISIBLE);

@@ -31,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MClaimObj;
+import za.co.sacpo.grant.xCubeLib.db.mApprovedClaimListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mApprovedClaimListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
@@ -50,7 +53,6 @@ public class MPastClaimA extends BaseAPCPrivate {
 
     public String ActivityId = "M412";
     public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
-
     public Button mDateInputButton;
     private TextView lblView,mIClaimTTText, lblClaim;
     private RecyclerView recyclerViewQ;
@@ -117,11 +119,33 @@ public class MPastClaimA extends BaseAPCPrivate {
             if(TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
-
             callDataApi();
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            showProgress(false,mContentView,mProgressView);
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            printLogs(LogTag,"callFooter","URL : "+student_id);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            fetchVersionData();
+            verifyVersion();
+            internetChangeBroadCast();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             showProgress(false,mContentView,mProgressView);
         }
     }
@@ -158,10 +182,8 @@ public class MPastClaimA extends BaseAPCPrivate {
 
     @Override
     protected void setLayoutXml()
-
     {
         printLogs(LogTag,"setLayoutXml","a_mclaim");
-
         setContentView(R.layout.a_mclaim);
     }
 
@@ -251,7 +273,6 @@ public class MPastClaimA extends BaseAPCPrivate {
         showProgress(true,mContentRView,mProgressRView);
       //  String grantId = studentSessionObj.getGrantId();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_M_412;
-
         FINAL_URL=FINAL_URL+"?token="+token +"&learner_id="+student_id;
         printLogs(LogTag,"fetchData","URL : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
@@ -264,6 +285,10 @@ public class MPastClaimA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
+
+                        mApprovedClaimListAdapter adapter = new mApprovedClaimListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<mApprovedClaimListArray> arrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -283,9 +308,16 @@ public class MPastClaimA extends BaseAPCPrivate {
 
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,claMonthVal3,claYear4,claMonth5,claAmount6,claOutRange7,claDaysWorked8,claLeave9,claDCFLink10,clasDCFLinkStatus11,claSDCFLink12,claSDCFLinkStatus13));
 
-                            showList();
+                            arrayList.add(new mApprovedClaimListArray(claMonthVal3,claMonth5,claYear4,
+                                    aId2,claAmount6,rec.getString("approve_stipend"),claOutRange7,
+                                    rec.getString("out_of_range_link"),claDaysWorked8,claLeave9,claDCFLink10,
+                                    clasDCFLinkStatus11,claSDCFLink12,claSDCFLinkStatus13));
+
+
 
                         }
+                        adapter.insert(arrayList);
+                        showList();
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -337,6 +369,36 @@ public class MPastClaimA extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
     }
 
+
+    private void fetchOfflineData(){
+
+        mApprovedClaimListAdapter adapter = new mApprovedClaimListAdapter(getApplicationContext());
+        ArrayList<mApprovedClaimListArray> arrayList = new ArrayList<>();
+        List<mApprovedClaimListArray> adapterAll = adapter.getAll();
+
+        for (int i = 0; i <adapterAll.size() ; i++) {
+            int pos = i+1;
+            String aId2 = adapterAll.get(i).getS_m_s_id();
+            String claMonthVal3= adapterAll.get(i).getS_m_s_stipend_month();
+            String claYear4= adapterAll.get(i).getS_m_s_stipend_year();
+            String claMonth5= adapterAll.get(i).getMonth_name();
+            String claAmount6= adapterAll.get(i).getStipend_amount();
+            String claOutRange7= adapterAll.get(i).getOut_of_range_sign_in_counts();
+            String claDaysWorked8= adapterAll.get(i).getDays_worked();
+            String claLeave9= adapterAll.get(i).getLeave();
+            String claDCFLink10= adapterAll.get(i).getDownload_claim_form_link();
+            String clasDCFLinkStatus11= adapterAll.get(i).getShow_claim_form_link();
+            String claSDCFLink12= adapterAll.get(i).getDownload_signed_claim_form_link();
+            String claSDCFLinkStatus13= adapterAll.get(i).getShow_signed_claim_form_link();
+
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,claMonthVal3,claYear4,claMonth5,claAmount6,claOutRange7,claDaysWorked8,claLeave9,claDCFLink10,clasDCFLinkStatus11,claSDCFLink12,claSDCFLinkStatus13));
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+    }
+
+
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new MClaimAdapter(rDataObjList,baseApcContext,activityIn,this));
     }
@@ -381,6 +443,7 @@ public class MPastClaimA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -392,6 +455,7 @@ public class MPastClaimA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
 

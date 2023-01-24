@@ -859,7 +859,7 @@ public class MChatA extends BaseFormAPCPrivate {
         final CharSequence[] items = { "Choose from Gallery","Upload PDF", "Cancel"};
         final PackageManager pm = getApplicationContext().getPackageManager();
         final AlertDialog.Builder builder = new AlertDialog.Builder(MChatA.this);
-        builder.setTitle("Add Photo!");
+        //builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

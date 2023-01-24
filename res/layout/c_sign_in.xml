@@ -16,14 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/activity_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/SmallerDp"
-            android:background="@drawable/myaccount_border"
-            android:padding="@dimen/SmallerDp">
-
+            android:orientation="vertical"
+            >
+<include layout="@layout/internet_connectivity_layout"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
@@ -37,6 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/progress_bar"
+                android:layout_margin="@dimen/SmallerDp"
+                android:background="@drawable/myaccount_border"
+                android:padding="@dimen/SmallerDp"
                 android:orientation="vertical">
 
 
@@ -501,6 +503,6 @@
                     android:layout_height="400dp"
                     tools:context=".grant.xCubeStudent.attendance.SignInA" />
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

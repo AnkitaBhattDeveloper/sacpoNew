@@ -70,7 +70,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:elevation="0dp"
-                    app:srcCompat="@drawable/p_logo" />-->
+                      />-->
 <include layout="@layout/logo_impl"/>
 
                 <LinearLayout

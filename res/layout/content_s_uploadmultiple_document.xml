@@ -16,7 +16,8 @@
             android:layout_margin="@dimen/bigDp"
             android:background="@drawable/myaccount_border"
             android:padding="@dimen/bigDp">
-
+<include layout="@layout/internet_connectivity_layout"
+    android:id="@+id/include2"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:id="@+id/content_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/progress_bar"
+                android:layout_below="@+id/include2"
                 android:orientation="vertical">
 
                 <TextView

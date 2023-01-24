@@ -8,9 +8,14 @@ public class Step5DataVisibilityObj implements Serializable {
 
     String kinName_is_v_5,kinName_is_r_5,kinContact_is_v_5,kinContact_is_r_5,phyDisable_is_v_5,phyDisable_is_r_5,
             DisablityType_is_v_5,DisablityType_is_r_5,ICQuali_is_v_5,ICQuali_is_r_5,insti_is_v_5,insti_is_r_5,
-            Uni_is_v_5,Uni_is_r_5,College_is_v_5,College_is_r_5;
+            Uni_is_v_5,Uni_is_r_5,College_is_v_5,College_is_r_5,alterId_is_v_5,alterId_is_r_5,
+            nationality_is_v_5,nationality_is_r_5;
 
-    public Step5DataVisibilityObj(String kinName_is_v_5, String kinName_is_r_5, String kinContact_is_v_5, String kinContact_is_r_5, String phyDisable_is_v_5, String phyDisable_is_r_5, String disablityType_is_v_5, String disablityType_is_r_5, String ICQuali_is_v_5, String ICQuali_is_r_5, String insti_is_v_5, String insti_is_r_5, String uni_is_v_5, String uni_is_r_5, String college_is_v_5, String college_is_r_5) {
+    public Step5DataVisibilityObj(String kinName_is_v_5, String kinName_is_r_5, String kinContact_is_v_5,
+                        String kinContact_is_r_5, String phyDisable_is_v_5, String phyDisable_is_r_5,
+     String disablityType_is_v_5, String disablityType_is_r_5, String ICQuali_is_v_5, String ICQuali_is_r_5,
+     String insti_is_v_5, String insti_is_r_5, String uni_is_v_5, String uni_is_r_5, String college_is_v_5,
+     String college_is_r_5,String alterId_is_v_5,String alterId_is_r_5,String nationality_is_v_5,String nationality_is_r_5) {
         this.kinName_is_v_5 = kinName_is_v_5;
         this.kinName_is_r_5 = kinName_is_r_5;
         this.kinContact_is_v_5 = kinContact_is_v_5;
@@ -27,6 +32,42 @@ public class Step5DataVisibilityObj implements Serializable {
         Uni_is_r_5 = uni_is_r_5;
         College_is_v_5 = college_is_v_5;
         College_is_r_5 = college_is_r_5;
+        alterId_is_v_5 = alterId_is_v_5;
+        alterId_is_r_5 = alterId_is_r_5;
+        nationality_is_v_5 = nationality_is_v_5;
+        nationality_is_r_5 = nationality_is_r_5;
+    }
+
+    public String getAlterId_is_v_5() {
+        return alterId_is_v_5;
+    }
+
+    public void setAlterId_is_v_5(String alterId_is_v_5) {
+        this.alterId_is_v_5 = alterId_is_v_5;
+    }
+
+    public String getAlterId_is_r_5() {
+        return alterId_is_r_5;
+    }
+
+    public void setAlterId_is_r_5(String alterId_is_r_5) {
+        this.alterId_is_r_5 = alterId_is_r_5;
+    }
+
+    public String getNationality_is_v_5() {
+        return nationality_is_v_5;
+    }
+
+    public void setNationality_is_v_5(String nationality_is_v_5) {
+        this.nationality_is_v_5 = nationality_is_v_5;
+    }
+
+    public String getNationality_is_r_5() {
+        return nationality_is_r_5;
+    }
+
+    public void setNationality_is_r_5(String nationality_is_r_5) {
+        this.nationality_is_r_5 = nationality_is_r_5;
     }
 
     public String getKinName_is_v_5() {

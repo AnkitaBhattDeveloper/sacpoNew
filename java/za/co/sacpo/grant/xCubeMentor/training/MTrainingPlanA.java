@@ -115,7 +115,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
             fetchTrainingPlan();
             showProgress(false,mContentView,mProgressView);
         }
-        showProgress(false,mContentView,mProgressView);
+        //showProgress(false,mContentView,mProgressView);
         printLogs(LogTag,"bootStrapInit","exitConnected");
 
     }
@@ -618,6 +618,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -628,6 +629,7 @@ public class MTrainingPlanA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

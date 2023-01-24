@@ -2,13 +2,19 @@ package za.co.sacpo.grant.xCubeStudent.bank;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -53,6 +59,8 @@ public class SBankDA extends BaseFormAPCPrivate {
     String bank_id,Account_type,BranchCode;
     int bank_idInt,Account_typeInt,BranchCodeInt;
 
+
+
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId) {
         baseApcContext = cnt;
         CAId=cTAId;
@@ -66,6 +74,7 @@ public class SBankDA extends BaseFormAPCPrivate {
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(),ActivityId);
         printLogs(LogTag, "onCreate", "init");
         bootStrapInit();
+
     }
     @Override
     protected void bootStrapInit() {
@@ -93,7 +102,7 @@ public class SBankDA extends BaseFormAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
-        }/*else{
+        }else{
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -116,7 +125,7 @@ public class SBankDA extends BaseFormAPCPrivate {
             fetchOfflineData();
            // initializeInputs();
             printLogs(LogTag, "onCreate", "exitConnected");
-        }*/
+        }
     }
 
 
@@ -134,6 +143,7 @@ public class SBankDA extends BaseFormAPCPrivate {
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
     }
     @Override
     protected void verifyVersion(){
@@ -414,6 +424,7 @@ public class SBankDA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -424,6 +435,7 @@ public class SBankDA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

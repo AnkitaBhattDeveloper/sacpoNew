@@ -38,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.SNewClaimObj;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListArray;
+import za.co.sacpo.grant.xCubeLib.db.pastClaimListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.pastClaimListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
@@ -130,6 +135,28 @@ public class SPastClaimDA extends BaseAPCPrivate {
             initializeInputs();
             callHeaderBuilder();
             fetchData();
+            //showProgress(false,mContentView,mProgressView);
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            internetChangeBroadCast();
+            fetchVersionData();
+            verifyVersion();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
             //showProgress(false,mContentView,mProgressView);
         }
     }
@@ -328,6 +355,9 @@ public class SPastClaimDA extends BaseAPCPrivate {
                         printLogs(LogTag, "fetchData", "response : " + response);
                         String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
+                        pastClaimListAdapter adapter = new pastClaimListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<pastClaimListArray> ArrayList = new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -350,8 +380,17 @@ public class SPastClaimDA extends BaseAPCPrivate {
                             String isUSCF15 = rec.getString("upload_signed_claim_form_btn");
 
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,claimYear3,claimMonth4,date5,claimAmount6,supervisorStatus7,grantAdminStatus8,isPendingSupervisorStatus9,isPendingGrantAdminStatus10,downloadUSCF11,isDownloadUSCF12,isDownloadSCF13,downloadSCF14,isUSCF15));
-                            showList();
+
+                           ArrayList.add(new pastClaimListArray(aId2,rec.getString("s_m_s_id"),
+                                   rec.getString("s_m_s_id"),claimYear3,claimMonth4,date5,
+                                   claimAmount6,supervisorStatus7,isPendingSupervisorStatus9,grantAdminStatus8,
+                                   isPendingGrantAdminStatus10,isDownloadUSCF12,downloadUSCF11,isUSCF15,
+                                   downloadSCF14,isDownloadSCF13));
+
+
                         }
+                        adapter.insert(ArrayList);
+                        showList();
                         showProgress(false,mContentView,mProgressView);
                        }
                     else if(Status.equals("2")) {
@@ -403,6 +442,42 @@ public class SPastClaimDA extends BaseAPCPrivate {
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             requestQueue.add(jsonObjectRequest);
     }
+
+
+    void fetchOfflineData(){
+        printLogs(LogTag, "fetchOfflineData", "init");
+        pastClaimListAdapter adapter  =new pastClaimListAdapter(getApplicationContext());
+        List<pastClaimListArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i+1;
+
+            String aId2 = adapterAll.get(i).getS_m_s_id();
+            String claimYear3 = adapterAll.get(i).getYear();
+            String claimMonth4 = adapterAll.get(i).getMonth();
+            String date5 = adapterAll.get(i).getDate_of_claim();
+            String claimAmount6 = adapterAll.get(i).getClaimed_ammount();
+            String supervisorStatus7 = adapterAll.get(i).getSupervisor_status();
+            String grantAdminStatus8 = adapterAll.get(i).getGrant_admin_status();
+            String isPendingSupervisorStatus9 = adapterAll.get(i).getSupervisor_status_color();
+            String isPendingGrantAdminStatus10 = adapterAll.get(i).getGrant_admin_status_color();
+            String downloadUSCF11 = adapterAll.get(i).getDownload_unsigned_claim_form();
+            String isDownloadUSCF12 = adapterAll.get(i).getDownload_unsigned_claim_form_btn();
+            String isDownloadSCF13 = adapterAll.get(i).getDownload_sign_claim_form_btn();
+            String downloadSCF14 = adapterAll.get(i).getDownload_signed_claim_form();
+            String isUSCF15 = adapterAll.get(i).getUpload_signed_claim_form_btn();
+
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,claimYear3,claimMonth4,date5,claimAmount6,supervisorStatus7,grantAdminStatus8,isPendingSupervisorStatus9,isPendingGrantAdminStatus10,downloadUSCF11,isDownloadUSCF12,isDownloadSCF13,downloadSCF14,isUSCF15));
+
+
+
+        }
+        showList();
+        showProgress(false,mContentView,mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
+
 
         private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
             recyclerView.setAdapter(new SNewClaimAdapter(rDataObjList,baseApcContext,activityIn,ll_download_progress,download_progress_bar,tv_progress));
@@ -485,6 +560,7 @@ public void downloadPDF(Context context, String downloadurl, LinearLayout ll_dow
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -495,6 +571,7 @@ public void downloadPDF(Context context, String downloadurl, LinearLayout ll_dow
     @Override
     protected void onStart() {
         super.onStart();
+       checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

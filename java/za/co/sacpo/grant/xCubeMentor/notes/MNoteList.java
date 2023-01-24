@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,10 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MNoteObj;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListArray;
+import za.co.sacpo.grant.xCubeLib.db.noteListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.noteListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
@@ -108,6 +113,28 @@ public class MNoteList extends BaseAPCPrivate {
             initializeInputs();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             fetchData();
+            showProgress(false, mContentView, mProgressView);
+        }else{
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            registerBroadcastIC();
+            fetchVersionData();
+            verifyVersion();
+            initializeViews();
+            initBackBtn();
+            showProgress(true, mContentView, mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken = userSessionObj.getToken();
+            syncToken(baseApcContext, activityIn);
+            if (TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            printLogs(LogTag,"bootStrapInit","exitConnected");
+            fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
         }
     }
@@ -179,9 +206,7 @@ public class MNoteList extends BaseAPCPrivate {
         btnAddNote = findViewById(R.id.btnAddNote);
         rDataObjList = rDataObj.getITEMS();
         recyclerViewQ = (RecyclerView) findViewById(R.id.rVNoteList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerViewQ.setLayoutManager(linearLayoutManager);
-        setupRecyclerView(recyclerViewQ);
+
 
     }
 
@@ -221,21 +246,20 @@ public class MNoteList extends BaseAPCPrivate {
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
     @Override
     protected void setLayoutXml() {
         printLogs(LogTag,"setLayoutXml","a_m_ticket_details");
         setContentView(R.layout.a_m_not_list);
     }
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new MNoteListAdapter(rDataObjList, baseApcContext, activityIn,this));
-    }
 
     public void showList() {
         List<MNoteObj.Item> WorkstationData = rDataObj.getITEMS();
-        MNoteListAdapter adapter = new MNoteListAdapter(WorkstationData, baseApcContext, activityIn,this);
-        recyclerViewQ.setAdapter(adapter);
+      //  MNoteListAdapter adapter = new MNoteListAdapter(WorkstationData, baseApcContext, activityIn,this);
+        //recyclerViewQ.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerViewQ.setLayoutManager(linearLayoutManager);
+        recyclerViewQ.setAdapter(new MNoteListAdapter(rDataObjList, baseApcContext, activityIn,this));
         showProgress(false, mContentRView, mProgressRView);
     }
 
@@ -255,6 +279,9 @@ public class MNoteList extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+                        noteListAdapter adapter = new noteListAdapter(getApplicationContext());
+                        adapter.truncate();
+                        ArrayList<noteListArray> arrayList = new ArrayList<>();
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i + 1;
@@ -267,14 +294,25 @@ public class MNoteList extends BaseAPCPrivate {
                             String cell_no7 = rec.getString("n_id");
                             String note_from8= rec.getString("note_from");
                             String duration9= rec.getString("n_duration");
-                            String note_10= rec.getString("n_category_name");
+                            String note_10= rec.getString("n_category_id");
+                            String note_11= rec.getString("n_category_name");
                             String grant_id11= rec.getString("grant_id");
                             String user_id12= rec.getString("n_user_id");
-                            rDataObj.addItem(rDataObj.createItem(pos, aId2, description3,add_date4
-                            ,addby5,note_for6,cell_no7,note_from8,duration9,note_10,grant_id11,user_id12));
-                            showList();
-                        }
+                          //  rDataObj.addItem(rDataObj.createItem(pos, aId2, description3,add_date4
+                          //  ,addby5,note_for6,cell_no7,note_from8,duration9,note_10,note_11,grant_id11,user_id12));
 
+                            rDataObjList.add(rDataObj.createItem(pos, aId2, description3,add_date4
+                                    ,addby5,note_for6,cell_no7,note_from8,duration9,note_10,note_11,grant_id11,user_id12));
+
+                            arrayList.add(new noteListArray(String.valueOf(aId2),user_id12,description3,
+                                    rec.getString("n_status"),add_date4,addby5,duration9,
+                                    rec.getString("n_category"),rec.getString("n_note_type_id"),grant_id11,
+                                    note_for6,rec.getString("u_p_cell_no"),note_from8,
+                                    rec.getString("add_by_cell_no"),
+                                    rec.getString("add_by_u_id"),note_10,user_id12));
+                        }
+                        adapter.insert(arrayList);
+                        showList();
                     showProgress(false,mContentView,mProgressView);
                 }
                     else if(Status.equals("2")) {
@@ -324,6 +362,41 @@ public class MNoteList extends BaseAPCPrivate {
         requestQueue.add(jsonObjectRequest);
 
     }
+
+    private void fetchOfflineData() {
+
+        printLogs(LogTag, "fetchOfflineData", "init");
+        noteListAdapter adapter  =new noteListAdapter(getApplicationContext());
+        List<noteListArray> adapterAll = adapter.getAll();
+        for (int i = 0; i < adapterAll.size(); i++) {
+            int pos = i + 1;
+            int aId2 = Integer.parseInt(adapterAll.get(i).getN_id());
+            String description3 = adapterAll.get(i).getN_description();
+            String add_date4 = adapterAll.get(i).getN_add_date();
+            String addby5 = adapterAll.get(i).getN_add_by();
+            String note_for6 = adapterAll.get(i).getNote_for();
+            String cell_no7 = adapterAll.get(i).getN_id();
+            String note_from8= adapterAll.get(i).getNote_from();
+            String duration9= adapterAll.get(i).getN_duration();
+            String note_10= adapterAll.get(i).getN_category_id();
+            String note_11= adapterAll.get(i).getN_category_name();
+            String grant_id11= adapterAll.get(i).getGrant_id();
+            String user_id12= adapterAll.get(i).getN_user_id();
+            //  rDataObj.addItem(rDataObj.createItem(pos, aId2, description3,add_date4
+            //  ,addby5,note_for6,cell_no7,note_from8,duration9,note_10,note_11,grant_id11,user_id12));
+
+            rDataObjList.add(rDataObj.createItem(pos, aId2, description3,add_date4
+                    ,addby5,note_for6,cell_no7,note_from8,duration9,note_10,note_11,grant_id11,user_id12));
+
+        }
+        showList();
+        showProgress(false,mContentView,mProgressView);
+        printLogs(LogTag, "fetchOfflineData", "exit");
+
+
+    }
+
+
     public String getStudentName(){
         return student_name;
     }
@@ -351,6 +424,7 @@ public class MNoteList extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -361,6 +435,7 @@ public class MNoteList extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -14,13 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/bigDp"
             android:background="@drawable/myaccount_border"
-            android:padding="@dimen/bigDp">
-
+            android:padding="@dimen/bigDp"
+            android:orientation="vertical">
+<include layout="@layout/internet_connectivity_layout"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
@@ -207,7 +208,7 @@
 
 
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

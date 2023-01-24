@@ -12,6 +12,8 @@ import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
 import za.co.sacpo.grant.xCubeLib.dataObj.MDCenterObj;
+import za.co.sacpo.grant.xCubeLib.db.mDocCenterListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.mDocCenterListArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeMentor.MDashboardDA;
@@ -37,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,8 +109,30 @@ public class MDocumentCenterA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData();
             showProgress(false,mContentView,mProgressView);
+        }else{
+            printLogs(LogTag,"bootStrapInit","initConnected");
+            setLayoutXml();
+            callFooter(baseApcContext,activityIn,ActivityId);
+            initMenusCustom(ActivityId,baseApcContext,activityIn);
+            initBackBtn();
+            initializeViews();
+            showProgress(true,mContentView,mProgressView);
+            initializeLabels();
+            initializeListeners();
+            userToken =userSessionObj.getToken();
+            syncToken(baseApcContext,activityIn);
+            if(TextUtils.isEmpty(userToken)) {
+                syncToken(baseApcContext, activityIn);
+            }
+            callDataApi();
+            initializeInputs();
+            callHeaderBuilder();
+            fetchOfflineData();
+            showProgress(false,mContentView,mProgressView);
         }
     }
+
+
 
     @Override
     protected void internetChangeBroadCast(){
@@ -222,6 +247,13 @@ public class MDocumentCenterA extends BaseAPCPrivate {
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
+
+
+                        mDocCenterListAdapter adapter = new mDocCenterListAdapter(getApplicationContext());
+                        adapter.truncate();
+
+                        ArrayList<mDocCenterListArray> arrayList = new ArrayList<>();
+
                         JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
                             int pos = i+1;
@@ -241,8 +273,16 @@ public class MDocumentCenterA extends BaseAPCPrivate {
                             String aMonthNumber12 = rec.getString("month");
                             //aYear3,aMonth4,aDownloadAttRegister5,aIsDownloadAttRegister6,aDownloadUnsignedClaimForm7,aIsDownloadUnsignedClaimForm8,aUploadSignedClaimForm9,aDownloadSignedClaimForm10,aIsDownloadSignedClaimForm11,aMonthNumber12
                             rDataObj.addItem(rDataObj.createItem(pos,aId2,aYear3,aMonth4,aDownloadAttRegister5,aIsDownloadAttRegister6,aDownloadUnsignedClaimForm7,aIsDownloadUnsignedClaimForm8,aUploadSignedClaimForm9,aDownloadSignedClaimForm10,aIsDownloadSignedClaimForm11,aMonthNumber12));
-                            showList();
+
+                            arrayList.add(new mDocCenterListArray(String.valueOf(aId2),aYear3,aMonth4,aDownloadAttRegister5,
+                                    aIsDownloadAttRegister6,aDownloadUnsignedClaimForm7,aIsDownloadUnsignedClaimForm8,
+                                    aUploadSignedClaimForm9,aDownloadSignedClaimForm10,aIsDownloadSignedClaimForm11,
+                                    aMonthNumber12));
+
+
                         }
+                        adapter.insert(arrayList);
+                        showList();
                         showProgress(false,mContentRView,mProgressRView);
                     }
                     else if(Status.equals("2")) {
@@ -290,7 +330,32 @@ public class MDocumentCenterA extends BaseAPCPrivate {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+    private void fetchOfflineData() {
 
+        mDocCenterListAdapter adapter = new mDocCenterListAdapter(getApplicationContext());
+        List<mDocCenterListArray> all = adapter.getAll();
+        for (int i = 0; i < all.size(); i++) {
+            int pos = i+1;
+            int aId2 = Integer.parseInt(all.get(i).getStipend_id());
+            // int aId2 = pos;
+            String aYear3 = all.get(i).getYear();
+            String aMonth4 =all.get(i).getMonthName();
+            String aDownloadAttRegister5 = all.get(i).getDownload_att_register();
+            String aIsDownloadAttRegister6 = all.get(i).getIs_download_att_register();
+            String aDownloadUnsignedClaimForm7 = "download_unsigned_claim_form";
+            String aIsDownloadUnsignedClaimForm8 = all.get(i).getIs_download_unsigned_claim_form();
+            String aUploadSignedClaimForm9 = all.get(i).getUpload_signed_claim_form();
+            String aDownloadSignedClaimForm10 = all.get(i).getDownload_signed_claim_form();
+            String aIsDownloadSignedClaimForm11 = all.get(i).getIs_download_signed_claim_form();
+            String aMonthNumber12 = all.get(i).getMonth();
+            //aYear3,aMonth4,aDownloadAttRegister5,aIsDownloadAttRegister6,aDownloadUnsignedClaimForm7,aIsDownloadUnsignedClaimForm8,aUploadSignedClaimForm9,aDownloadSignedClaimForm10,aIsDownloadSignedClaimForm11,aMonthNumber12
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,aYear3,aMonth4,aDownloadAttRegister5,aIsDownloadAttRegister6,aDownloadUnsignedClaimForm7,aIsDownloadUnsignedClaimForm8,aUploadSignedClaimForm9,aDownloadSignedClaimForm10,aIsDownloadSignedClaimForm11,aMonthNumber12));
+
+        }
+        showList();
+        showProgress(false,mContentRView,mProgressRView);
+
+    }
     public void callHeaderBuilder(){
         printLogs(LogTag,"callHeaderBuilder","init");
         String tHeader3 = getLabelFromDb("t_head_M199_YEAR",R.string.t_head_M199_YEAR);
@@ -348,6 +413,7 @@ public class MDocumentCenterA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -358,6 +424,7 @@ public class MDocumentCenterA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

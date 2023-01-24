@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/c_login"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".xCubeMentor.attendance.MAttMonthlyA"
     tools:showIn="@layout/a_m_view_att">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="40dp"
-        android:layout_alignParentTop="true">
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/SmallerDp"
             android:background="@drawable/myaccount_border"
-            android:padding="@dimen/SmallerDp">
-
+            android:padding="@dimen/SmallerDp"
+            android:orientation="vertical">
+            <include layout="@layout/internet_connectivity_layout"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
@@ -114,11 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/progress_bar_r"
                         android:orientation="vertical">
-                        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                            android:id="@+id/attendanceTable"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:stretchColumns="*">
+
 
                             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:id="@+id/attendanceTableScroll"
@@ -138,7 +129,6 @@
                                     tools:context=".grant.xCubeMentor.attendance.MAttMonthlyA"
                                     tools:listitem="@layout/layout_m_att_summary" />
                             </HorizontalScrollView>
-                        </TableLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -147,9 +137,9 @@
             </LinearLayout>
 
 
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+        </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
 
 
 

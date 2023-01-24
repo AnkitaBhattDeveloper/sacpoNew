@@ -1,11 +1,9 @@
 package za.co.sacpo.grant.xCubeStudent.grant;
 
-import static android.view.View.GONE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,10 +37,7 @@ import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPCPrivate;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
 import za.co.sacpo.grant.xCubeLib.component.Utils;
-import za.co.sacpo.grant.xCubeLib.db.DashboardDataArray;
-import za.co.sacpo.grant.xCubeLib.db.DashboardDataArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.db.GrantDetailsArrayAdapter;
-import za.co.sacpo.grant.xCubeLib.db.bankDetailsArray;
 import za.co.sacpo.grant.xCubeLib.db.grantDetailsArray;
 import za.co.sacpo.grant.xCubeLib.dialogs.ErrorDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
@@ -60,6 +56,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
     Button mLEAContactButton,mMentorContactButton,mMentorCallButton,mLEACallButton,mMentorEmailButton,mLEAEmailButton;
     String grant_id,mentor_id,seta_user_id,lea_id,generator,grant_adminId,fId;
     Bundle activeUri;
+
     public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String cTAId){
         baseApcContext = cnt;
         CAId=cTAId;
@@ -135,7 +132,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
             callDataApi();
             initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
-        }/*else{
+        }else{
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
             initMenusCustom(ActivityId,baseApcContext,activityIn);
@@ -154,11 +151,11 @@ public class SGrantDetailsA extends BaseAPCPrivate {
             fetchOfflineData();
            // initializeInputs();
             printLogs(LogTag,"onCreate","exitConnected");
-        }*/
+        }
     }
     private void initBackBtn(){
         printLogs(LogTag,"initBackBtn","init");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
     @Override
@@ -200,6 +197,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
         txtMentorEmail=(TextView) findViewById(R.id.txtMentorEmail);
         lblGrantAdminEmail=(TextView) findViewById(R.id.lblGrantAdminEmail);
         txtGrantAdminEmail=(TextView) findViewById(R.id.txtGrantAdminEmail);
+
 
     }
     @Override
@@ -577,6 +575,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -587,6 +586,7 @@ public class SGrantDetailsA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -4,9 +4,15 @@ package za.co.sacpo.grant.xCubeLib.baseFramework;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -31,6 +37,7 @@ import za.co.sacpo.grant.xCubeLib.asyncCalls.SETAMData;
 import za.co.sacpo.grant.xCubeLib.asyncCalls.StudentData;
 import za.co.sacpo.grant.xCubeLib.asyncCalls.UserData;
 import za.co.sacpo.grant.xCubeLib.asyncCalls.VerifierData;
+import za.co.sacpo.grant.xCubeLib.dialogs.InternetDialog;
 import za.co.sacpo.grant.xCubeLib.session.OlumsFMSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGASession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGMSession;
@@ -73,8 +80,52 @@ public abstract class BaseAPCPrivate extends BaseAPC {
     private FMData mFMDataTask = null;
     private AlertsData mAlertDataTask = null;
     protected String userToken;
+    final Handler handler = new Handler();
+    final int delay = 500; // 1000 milliseconds == 1 second
 
     protected abstract void bootStrapInit();
+
+
+    public void checkInternetConnection(){
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                LinearLayout ll_netinfo = findViewById(R.id.ll_netinfo);
+                if (isOnline == false) {
+                    if(!(ll_netinfo == null)){
+                        ll_netinfo.setVisibility(View.VISIBLE);
+                        // cv_netinfo.setVisibility(View.VISIBLE);
+                        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        TextView tv_net = findViewById(R.id.tv_net);
+                        ImageView iv_net = findViewById(R.id.iv_net);
+                        if (cm.getActiveNetworkInfo() != null) {
+                            tv_net.setText("Online");
+                            iv_net.setImageResource(R.drawable.interview_accept_btn);
+                        } else {
+                            tv_net.setText("Offline");
+                            iv_net.setImageResource(R.drawable.interview_reject_btn);
+                        }
+                        handler.postDelayed(this, delay);
+                    }else{
+                        String sTitle = getString(R.string.dialog_no_internet);
+                        String sMessage = getString(R.string.dialog_no_inter_message);
+                        String sButtonLabel3g = getString(R.string.dialog_enable_internet);
+                        String buttonLabelWifi= getString(R.string.dialog_enable_wifi);
+                        String buttonLabelTryAgain= getString(R.string.dialog_try_again);
+                        InternetDialog.showInternetDialog(baseApcContext,activityIn,sTitle,sMessage,sButtonLabel3g,buttonLabelWifi,buttonLabelTryAgain);
+
+                    }
+
+                }else{
+
+                    ll_netinfo.setVisibility(View.GONE);
+                    //  cv_netinfo.setVisibility(View.GONE);
+                }
+            }
+        }, delay);
+
+    }
+
+
 
     public void validateLogin(Context baseApcContext, AppCompatActivity activityIn) {
         userSessionObj = new OlumsUserSession(baseApcContext);
@@ -299,6 +350,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
     public void callFooter(final Context baseApcContext, final AppCompatActivity activityIn, final String ActivityId) {
         userSessionObj = new OlumsUserSession(baseApcContext);

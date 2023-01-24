@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <include layout="@layout/internet_connectivity_layout"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -257,9 +257,8 @@
                            android:textColor="@color/textColor"
                            android:textStyle="bold" />
                        </LinearLayout>
-
                     <LinearLayout
-                        android:id="@+id/institution"
+                        android:id="@+id/alternative_idContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -269,7 +268,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lblinstitution"
+                            android:id="@+id/lblalternative_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/SmallerDp"
@@ -278,37 +277,40 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/SmallerTextSize" />
 
-
-                        <Spinner
-                            android:id="@+id/inputSpinnerinstitution"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutalternative_id"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:background="@drawable/spinner_bg_1"
-                            android:spinnerMode="dropdown"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/textColor"
-                            android:textStyle="bold" />
+                            android:layout_height="wrap_content">
 
-
+                            <EditText
+                                android:id="@+id/inputalternative_id"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="1"
+                                android:text=""
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_university"
+                        android:id="@+id/NationalityContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_marginBottom="@dimen/small"
                         android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/lbluniversity"
+                            android:id="@+id/lblNationality"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/SmallerDp"
                             android:layout_marginLeft="@dimen/SmallerDp"
                             android:text=""
                             android:textAllCaps="true"
@@ -317,7 +319,7 @@
 
 
                         <Spinner
-                            android:id="@+id/inputSpinneruniversity"
+                            android:id="@+id/inputSpinnerNationality"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -331,42 +333,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll_college"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="@dimen/small"
-                        android:layout_marginTop="@dimen/small"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:id="@+id/lblcollege"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/SmallerDp"
-                            android:text=""
-                            android:textAllCaps="true"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/SmallerTextSize" />
-
-
-                        <Spinner
-                            android:id="@+id/inputSpinnercollege"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:background="@drawable/spinner_bg_1"
-                            android:spinnerMode="dropdown"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/textColor"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_marginTop="@dimen/margin_10"

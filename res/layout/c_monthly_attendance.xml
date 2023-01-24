@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".grant.xCubeStudent.attendance.SMonthlyAttDA"
+    tools:context=".xCubeStudent.attendance.SMonthlyAttDA"
     tools:showIn="@layout/container_c_monthly_attendance">
 
     <ScrollView
@@ -20,14 +20,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/SmallerDp"
+            android:background="@drawable/myaccount_border"
+            android:padding="@dimen/SmallerDp"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/SmallerDp"
-                android:background="@drawable/myaccount_border"
-                android:padding="@dimen/SmallerDp">
+            <include layout="@layout/internet_connectivity_layout"/>
+
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -163,7 +163,6 @@
                 </LinearLayout>
 
 
-            </RelativeLayout>
 
         </LinearLayout>
 

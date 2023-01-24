@@ -115,7 +115,7 @@ public class SAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchData(selectedYear,selectedMonth);
             showProgress(false,mContentView,mProgressView);
-        }/*else{
+        }else{
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -135,7 +135,7 @@ public class SAttDA extends BaseAPCPrivate {
             callHeaderBuilder();
             fetchOfflineData(selectedYear,selectedMonth);
             showProgress(false,mContentView,mProgressView);
-        }*/
+        }
     }
 
 
@@ -280,7 +280,7 @@ public class SAttDA extends BaseAPCPrivate {
                     String Status = jsonObject.getString(KEY_STATUS);
                     if(Status.equals("1")){
                         attListDetailsAdapter adapter  =new attListDetailsAdapter(getApplicationContext());
-                        adapter.truncate();
+                        //adapter.truncate();
                         ArrayList<attListArray> attArrayList = new ArrayList<>();
                         JSONArray dataM = jsonObject.getJSONArray(KEY_DATA);
                         for (int i = 0; i < dataM.length(); i++) {
@@ -438,6 +438,7 @@ public class SAttDA extends BaseAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -448,6 +449,7 @@ public class SAttDA extends BaseAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override

@@ -15,6 +15,18 @@ import za.co.sacpo.grant.LoginA;
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.asyncCalls.TokenDelete;
 import za.co.sacpo.grant.xCubeLib.component.URLHelper;
+import za.co.sacpo.grant.xCubeLib.db.DashboardDataArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.GrantDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.attDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.attListDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.bankDetailsArrayAdapter;
+import za.co.sacpo.grant.xCubeLib.db.docCenterListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.existingLeaveListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.pastClaimListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.populateAttListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportDetailsAdapter;
+import za.co.sacpo.grant.xCubeLib.db.sWeeklyReportListAdapter;
+import za.co.sacpo.grant.xCubeLib.db.supervisorDetailsAdapter;
 import za.co.sacpo.grant.xCubeLib.session.OlumsGrantSession;
 import za.co.sacpo.grant.xCubeStudent.editprofile.SEditProfileMainA;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
@@ -37,6 +49,11 @@ import za.co.sacpo.grant.xCubeStudent.upload.UploadCv;
 public abstract class StudentBaseDrawerA extends BaseDrawerA {
     private String ActivityId="175";
     private TokenDelete mTokenDeleteTask = null;
+
+
+
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,6 +119,7 @@ public abstract class StudentBaseDrawerA extends BaseDrawerA {
                 public void onClick(DialogInterface dialog, int which) {
                     // Do nothing but close the dialog
                     clearSession(getApplicationContext());
+                    clearOfflineData();
                     mTokenDeleteTask = new TokenDelete(baseApcContext);
                     mTokenDeleteTask.execute((Void) null);
                     Intent intent = new Intent(baseApcContext, LoginA.class);
@@ -126,6 +144,36 @@ public abstract class StudentBaseDrawerA extends BaseDrawerA {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void clearOfflineData() {
+    attDetailsArrayAdapter attDetailsArrayAdapter = new attDetailsArrayAdapter(getApplicationContext());
+    attListDetailsAdapter attListDetailsAdapter = new attListDetailsAdapter(getApplicationContext());
+    bankDetailsArrayAdapter bankDetailsArrayAdapter = new bankDetailsArrayAdapter(getApplicationContext());
+    DashboardDataArrayAdapter dashboardDataArrayAdapter = new DashboardDataArrayAdapter(getApplicationContext());
+    docCenterListAdapter docCenterListAdapter = new docCenterListAdapter(getApplicationContext());
+    existingLeaveListAdapter existingLeaveListAdapter = new existingLeaveListAdapter(getApplicationContext());
+    GrantDetailsArrayAdapter grantDetailsArrayAdapter =new GrantDetailsArrayAdapter(getApplicationContext());
+    pastClaimListAdapter pastClaimListAdapter = new pastClaimListAdapter(getApplicationContext());
+    populateAttListAdapter populateAttListAdapter = new populateAttListAdapter(getApplicationContext());
+    supervisorDetailsAdapter supervisorDetailsAdapter = new supervisorDetailsAdapter(getApplicationContext());
+    sWeeklyReportDetailsAdapter sWeeklyReportDetailsAdapter = new sWeeklyReportDetailsAdapter(getApplicationContext());
+    sWeeklyReportListAdapter sWeeklyReportListAdapter = new sWeeklyReportListAdapter(getApplicationContext());
+        attDetailsArrayAdapter.truncate();
+        attListDetailsAdapter.truncate();
+        bankDetailsArrayAdapter.truncate();
+        dashboardDataArrayAdapter.truncate();
+        docCenterListAdapter.truncate();
+        existingLeaveListAdapter.truncate();
+        grantDetailsArrayAdapter.truncate();
+        pastClaimListAdapter.truncate();
+        populateAttListAdapter.truncate();
+        supervisorDetailsAdapter.truncate();
+        sWeeklyReportDetailsAdapter.truncate();
+        sWeeklyReportListAdapter.truncate();
+
+
+    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item ) {
         int id = item.getItemId();

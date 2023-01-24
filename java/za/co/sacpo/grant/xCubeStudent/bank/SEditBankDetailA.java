@@ -134,7 +134,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
             fetchBankname();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             showProgress(false,mContentView,mProgressView);
-        }/*else {
+        }else {
             printLogs(LogTag,"bootStrapInit","initConnected");
             setLayoutXml();
             callFooter(baseApcContext,activityIn,ActivityId);
@@ -158,7 +158,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
             //fetchBankname();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             showProgress(false,mContentView,mProgressView);
-        }*/
+        }
     }
 
     private void fetchOfflineData() {
@@ -796,6 +796,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
     @Override
     protected void onResume() {
         super.onResume();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
@@ -806,6 +807,7 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
     @Override
     protected void onStart() {
         super.onStart();
+        checkInternetConnection();
         registerBroadcastIC();
     }
     @Override
