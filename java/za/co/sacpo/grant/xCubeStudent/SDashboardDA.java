@@ -596,7 +596,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         String lStartDate = rec.getString("startDate");
                         String lEndDate = rec.getString("end_Date");
                         String bankName = rec.getString("bankName");
-                        String setaName = rec.getString("seta_ame");
+                        String setaName = rec.getString("seta_name");
                         String managedBy = rec.getString("managedBy");
                         String employerName = rec.getString("employer_name");
                         String supervisorName = rec.getString("supervisor_name");

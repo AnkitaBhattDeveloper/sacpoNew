@@ -82,7 +82,7 @@ public abstract class BaseAPC extends AppCompatActivity {
     protected Bundle inBundle;
     protected Bundle outBundle;
     protected OlumsUserSession userSessionObj;
-    protected Boolean isLive = true;//Logs Show If False
+    protected Boolean isLive = false;//Logs Show If False
     protected int[] ITEM_DRAWABLES = { R.mipmap.ic_launcher_video_cam,R.mipmap.ic_launcher_help_cam};
     protected abstract void setBaseApcContextParent(Context cnt,AppCompatActivity ain,String lt,String cAId);
     protected abstract void initializeViews();
