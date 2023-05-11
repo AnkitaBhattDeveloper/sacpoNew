@@ -328,7 +328,8 @@ public class LoginA extends BaseFormAPCPublic {
         // final String mRequestBody = jsonBody.toString();
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, LOGIN_FINAL_URL, jsonBody, response -> {
             JSONObject jsonObject;
-            printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+            //printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+            printLogs(LogTag, "FormSubmit", String.valueOf(response));
             try {
                 jsonObject = new JSONObject(String.valueOf(response));
                 String Status = jsonObject.getString(KEY_STATUS);
@@ -390,6 +391,10 @@ public class LoginA extends BaseFormAPCPublic {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(LoginA.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -460,6 +465,10 @@ public class LoginA extends BaseFormAPCPublic {
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(LoginA.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -512,7 +521,8 @@ public class LoginA extends BaseFormAPCPublic {
             }
         },
                 error -> {
-                    printLogs(LogTag, "FormSubmit", "error_try_again : " + error.getMessage());
+
+                    printLogs(LogTag, "getStudentDetails", "error_try_again : "+ error.toString());
                     showProgress(false, mContentView, mProgressView);
                     String sTitle = "Error :" + ActivityId + "-113";
                     String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
@@ -531,7 +541,7 @@ public class LoginA extends BaseFormAPCPublic {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
+                50000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);

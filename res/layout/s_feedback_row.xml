@@ -7,7 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
         android:id="@+id/lblSReportNo"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:minHeight="@dimen/btnHeightSmall"

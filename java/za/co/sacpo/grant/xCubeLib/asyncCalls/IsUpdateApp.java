@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,7 +34,7 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
         private String KEY_APP_DOWN_USER_TYPE_ID="app_down_user_type_id";
         private Boolean dataLogCall =false;
         private Context contextA;
-        private Boolean isLive =true;
+        private Boolean isLive =false;
         private OlumsUtilitySession utilSessionObj;
         private OlumsUserSession userSessionObj;
     public IsUpdateApp(String version, Context context) {
@@ -43,7 +44,7 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
     public void printLogsAsync(String funcs,String msg){
         String tag = this.getClass().getSimpleName();
         if(isLive==false) {
-            //Log.i("OSG-"+tag+"__"+funcs,msg);
+            Log.i("OSG-"+tag+"__"+funcs,msg);
         }
     }
     @Override
@@ -52,9 +53,9 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params) {
         userSessionObj = new OlumsUserSession(contextA);
         String userSessionType = userSessionObj.getUserType();
-        String UPDATES_URL_FINAL = URLHelper.DOMAIN_BASE_URL+URLHelper.UPDATE_URL+"?type="+userSessionType+"&version_id="+versionV;
+        String UPDATES_URL_FINAL = URLHelper.DOMAIN_BASE_URL+URLHelper.UPDATE_URL+"?u_type="+userSessionType+"&version_number="+versionV;
         printLogsAsync("doInBackground","URL "+UPDATES_URL_FINAL);
-        Log.d("doInBackground","URL "+UPDATES_URL_FINAL);
+        //Log.d("doInBackground","URL "+UPDATES_URL_FINAL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(UPDATES_URL_FINAL,null,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -90,40 +91,22 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
                     else{
                         if(AppDown.equalsIgnoreCase("1")){
                             printLogsAsync("doInBackground", "APP Down >> TRUE");
-                            if(isUserLogin) {
-                                if (userSessionType.equalsIgnoreCase(AppDownUserTypeId)) {
-                                    printLogsAsync("doInBackground", "APP Down For "+userSessionType+ "---" + AppDownUserTypeId + " >> TRUE");
-                                    utilSessionObj.setIsUpdateRequired(true);
-                                    utilSessionObj.setIsGooglePlayUpdateRequired(false);
-                                    utilSessionObj.setIsAppDown(true);
-                                    utilSessionObj.setDownMessage(AppDownMessage);
-                                    utilSessionObj.setDownUserTypeId(AppDownUserTypeId);
-                                }
-                                else if(AppDownUserTypeId.equalsIgnoreCase("0")){
-                                    printLogsAsync("doInBackground", "APP Down For "+userSessionType+ "---" + AppDownUserTypeId + " >> TRUE");
-                                    utilSessionObj.setIsGooglePlayUpdateRequired(false);
-                                    utilSessionObj.setIsUpdateRequired(true);
-                                    utilSessionObj.setIsAppDown(true);
-                                    utilSessionObj.setDownMessage(AppDownMessage);
-                                    utilSessionObj.setDownUserTypeId(AppDownUserTypeId);
-                                }
-                                else{
-                                    printLogsAsync("doInBackground", "APP Down For "+userSessionType+ "---" + AppDownUserTypeId + " >> TRUE");
-                                    utilSessionObj.setIsUpdateRequired(false);
-                                    utilSessionObj.setIsGooglePlayUpdateRequired(false);
-                                    utilSessionObj.setIsAppDown(false);
-                                    utilSessionObj.setDownMessage(AppDownMessage);
-                                    utilSessionObj.setDownUserTypeId(AppDownUserTypeId);
-                                }
-                            }
-                            else{
-                                printLogsAsync("doInBackground", "APP not Down Guest >> TRUE");
-                                utilSessionObj.setIsGooglePlayUpdateRequired(false);
-                                utilSessionObj.setIsUpdateRequired(false);
-                                utilSessionObj.setIsAppDown(false);
-                                utilSessionObj.setDownMessage(AppDownMessage);
-                                utilSessionObj.setDownUserTypeId(AppDownUserTypeId);
-                            }
+                            printLogsAsync("doInBackground", "APP Down For "+userSessionType+ "---" + AppDownUserTypeId + " >> TRUE");
+                            utilSessionObj.setIsUpdateRequired(true);
+                            utilSessionObj.setIsGooglePlayUpdateRequired(false);
+                            utilSessionObj.setIsAppDown(true);
+                            utilSessionObj.setDownMessage(AppDownMessage);
+                            utilSessionObj.setDownUserTypeId(AppDownUserTypeId);
+
+                        }
+                        else{
+                            printLogsAsync("doInBackground","APP Down >> FALSE");
+                            utilSessionObj = new OlumsUtilitySession(contextA);
+                            utilSessionObj.setIsUpdateRequired(false);
+                            utilSessionObj.setIsGooglePlayUpdateRequired(false);
+                            utilSessionObj.setIsAppDown(false);
+                            utilSessionObj.setDownMessage("");
+                            utilSessionObj.setDownUserTypeId("");
                         }
                     }
                 }
@@ -158,6 +141,10 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(contextA);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
         return dataLogCall;
     }

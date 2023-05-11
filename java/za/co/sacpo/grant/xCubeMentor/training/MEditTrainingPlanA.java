@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -559,6 +560,10 @@ public class MEditTrainingPlanA extends BaseFormAPCPrivate {
                     }
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(MEditTrainingPlanA.this);
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 requestQueue.add(jsonObjectRequest);
             }
         } catch(FileNotFoundException e){

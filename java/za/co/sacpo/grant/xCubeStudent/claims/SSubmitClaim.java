@@ -322,13 +322,13 @@ public class SSubmitClaim extends BaseAPCPrivate {
     private void putapi() {
         String token = userSessionObj.getToken();
         String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.S_REF_199_1;
-        printLogs(LogTag, "FormSubmit", "URL : " + FINAL_URL);
+        printLogs(LogTag, "putapi", "URL : " + FINAL_URL);
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", token);
          //   jsonBody.put(KEY_ID, stipend_id);
-            printLogs(LogTag, "FormSubmit", "jsonBody " + jsonBody);
+            printLogs(LogTag, "putapi", "jsonBody " + jsonBody);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -336,7 +336,7 @@ public class SSubmitClaim extends BaseAPCPrivate {
             @Override
             public void onResponse(JSONObject response) {
                 JSONObject jsonObject;
-                printLogs(LogTag, "FormSubmit", String.format("RESPONSE : %s", response));
+                printLogs(LogTag, "putapi", String.format("RESPONSE : %s", response));
                 try {
                     jsonObject = new JSONObject(String.valueOf(response));
                     String Status = jsonObject.getString(KEY_STATUS);
@@ -381,6 +381,10 @@ public class SSubmitClaim extends BaseAPCPrivate {
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(SSubmitClaim.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
 
     }

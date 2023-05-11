@@ -35,7 +35,7 @@
         android:id="@+id/action_uploadCv"
         android:orderInCategory="103"
         android:title="@string/action_uploadCv"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="never" />
 
     <item

@@ -134,12 +134,25 @@
                 android:id="@+id/nav_view_queries"
                 android:icon="@mipmap/ic_launcher_viewqueries"
                 android:title="INCOMING MESSAGES"
-                android:visible="true" />
+                android:visible="false" />
             <item
                 android:id="@+id/nav_post_query"
                 android:icon="@mipmap/ic_launcher_postqueries"
                 android:title="CONTACT SUPPORT"
                 android:visible="true" />
+            <item
+                android:id="@+id/nav_post_query_temp"
+                android:icon="@mipmap/ic_launcher_postqueries"
+                android:title="FOR SUPPORT PLEASE CONTACT"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_post_query_temp1"
+                android:title="THE ADMINISTRATOR AT"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_post_query_temp2"
+                android:title="matthews@sacpo.co.za"
+                android:visible="false" />
 
             <!--      <item
                       android:id="@+id/nav_messages"

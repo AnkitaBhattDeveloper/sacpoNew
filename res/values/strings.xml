@@ -259,6 +259,7 @@
     <string name="error_S113_105">Please explain reason for Leave Application</string>
     <string name="error_S113_106">Please select Type of Leave you want to apply.</string>
     <string name="error_S113_107">Please select valid dates.</string>
+    <string name="error_S113_110">Leave end date is smaller than leave start date.</string>
     <string name="error_S113_108">Please enter number of days.</string>
     <string name="error_S113_109">Please enter a valid reason.</string>
 
@@ -763,10 +764,12 @@
     <!--98 Contact Private  Publick-->
     <string name="b_A98_send_message">Send</string>
     <string name="b_98_login">Login</string>
-    <string name="l_A98_name">Name</string>
+    <string name="l_A98_name">Full Name</string>
+    <string name="l_A98_u_status">Your Status</string>
     <string name="l_98_mobile">Mobile</string>
     <string name="l_A98_email">Email</string>
-    <string name="l_A98_subject">Topic</string>
+    <string name="l_A98_subject">Select Topic From</string>
+    <string name="l_A98_other_subject">Topic of Query</string>
     <string name="l_98_usertype">User Type</string>
     <string name="l_A98_message">Query</string>
     <string name="m_A98_title">QUERY REF:</string>
@@ -774,16 +777,20 @@
     <string name="tt_A98_Message">Query should have a minimum of 30 Characters.</string>
 
 
-    <string name="m_A98_message_1">QUERY SUCCESSFULLY SENT \n\n We will be responding to your query within 24 Hours.
+    <string name="m_A98_message_1">QUERY SUCCESSFULLY SENT \n\nWe will be responding to your query within 24 Hours.
   </string>
     <string name="m_A98_message_2_1"> \n\n With kind regards from the \n\n OLUMS SUPPORT TEAM \n </string>
     <string name="m_A98_message_2_2"> \n\n With kind regards from the \n\n SACPO SUPPORT TEAM \n </string>
+    <string name="l_110_mentor_details">MENTOR DETAILS</string>
+    <string name="l_110_mentor_email_change">TICK TO CHANGE MENTOR EMAIL</string>
 
 
     <string name="error_A98_104">Error! Name is not valid.</string>
     <string name="error_A98_105">Error! Email is not valid.</string>
+    <string name="error_A98_112">Error! Status is not valid.</string>
     <string name="error_A98_106">Error! Mobile is not valid.</string>
     <string name="error_A98_107">Error! Topic is not valid and should have minimum 12 characters.</string>
+    <string name="error_A98_113">Error! Please select Topic.</string>
     <string name="error_A98_108">Error! Query is not valid.</string>
     <string name="error_A98_109">Error! Please write minimum 3 character.</string>
     <string name="error_A98_110">Error! Address is not valid Address.</string>

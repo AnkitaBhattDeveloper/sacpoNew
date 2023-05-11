@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -741,6 +742,18 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+//                String bodys;
+//                //get status code here
+//                final String statusCode = String.valueOf(error.networkResponse.statusCode);
+//                //get response body and parse with appropriate encoding
+//                try {
+//                    bodys = new String(error.networkResponse.data,"UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    // exception
+//                    bodys="v";
+//                }
+//                printLogs(LogTag, "FormSubmit", "error :"+ error.getMessage());
+//                printLogs(LogTag, "FormSubmit", "error :"+ bodys);
                 String sTitle = "Error :" + ActivityId + "-106";
                 String sMessage = getLabelFromDb("error_try_again", R.string.error_try_again);
                 String sButtonLabelClose = "Close";
@@ -757,6 +770,10 @@ public class SEditBankDetailA extends BaseFormAPCPrivate {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(SEditBankDetailA.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
 
     }

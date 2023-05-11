@@ -74,6 +74,8 @@ public abstract class BaseFormAPCPublic extends BaseAPCPublic {
         }
         return result;
     }
+
+
     public boolean validateUsername(EditText mNameView, TextInputLayout inputLayoutName) {
         String data = mNameView.getText().toString().trim();
         setCustomError(inputLayoutName,null,mNameView);

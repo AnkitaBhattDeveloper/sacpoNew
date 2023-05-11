@@ -80,18 +80,25 @@
                             android:textAllCaps="true"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/SmallerTextSize" />
-                        <Spinner
-                            android:id="@+id/inputUsertype"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutUsertype"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginRight="@dimen/SmallerDp"
-                            android:layout_weight="1"
-                            android:background="@drawable/spinner_bg_1"
-                            android:spinnerMode="dropdown"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/textColor"
-                            android:textStyle="bold" />
+                            >
+                            <EditText
+                                style="@style/editText_1"
+                                android:id="@+id/inputUsertype"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:inputType="text"
+                                android:layout_gravity="left"
+                                android:gravity="top"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix"
+                                android:hint="eg. Student, Supervisor"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                     </LinearLayout>
                     <LinearLayout
@@ -210,6 +217,49 @@ tools:ignore="MissingPrefix" />
                                 android:textColor="@color/textColor"
                                 android:textSize="@dimen/SmallerTextSize" />
 
+                        </RelativeLayout>
+                        <Spinner
+                            android:id="@+id/inputSpinnersubject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/OthersubjectContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/subjectContainer"
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/small"
+                        android:layout_marginTop="@dimen/small"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/labelOtherSubjectContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/lblOtherSubject"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginBottom="@dimen/SmallerDp"
+                                android:layout_marginLeft="@dimen/SmallerDp"
+                                android:text=""
+                                android:textAllCaps="true"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/SmallerTextSize" />
+
 
                             <TextView
                                 android:id="@+id/ttSubject"
@@ -227,6 +277,7 @@ tools:ignore="MissingPrefix" />
                                 android:background="@drawable/tool_tip_button"
                                 android:textAllCaps="true"
                                 android:clickable="true"
+                                android:visibility="gone"
                                 android:textColor="@color/textColor"
                                 android:textSize="@dimen/SmallerTextSize" />
 
@@ -245,7 +296,7 @@ tools:ignore="MissingPrefix" />
                                 android:inputType="text"
                                 android:maxLines="1"
                                 app:errorTextAppearance="@style/errorText"
-tools:ignore="MissingPrefix" />
+                                tools:ignore="MissingPrefix" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -295,6 +346,7 @@ tools:ignore="MissingPrefix" />
                                 android:textAllCaps="true"
                                 android:clickable="true"
                                 android:textColor="@color/textColor"
+                                android:visibility="gone"
                                 android:textSize="@dimen/SmallerTextSize" />
 
 

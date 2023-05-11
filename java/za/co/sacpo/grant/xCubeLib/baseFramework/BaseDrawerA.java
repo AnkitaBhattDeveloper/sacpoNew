@@ -93,27 +93,27 @@ public abstract class BaseDrawerA extends BaseAPCPrivate
 
         LinearLayout LLHeadTop = (LinearLayout) v.findViewById(R.id.headerTop);
 
-        if(userType.equals("2")) {
-            LLHeadTop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Intent intent = new Intent(baseApcContext, SEditProfileStepOneA.class);
-                    Intent intent = new Intent(baseApcContext, SEditProfileMainA.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-        else if(userType.equals("5")) {
-            LLHeadTop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(baseApcContext, MEditProfileA.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
+//        if(userType.equals("2")) {
+//            LLHeadTop.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //Intent intent = new Intent(baseApcContext, SEditProfileStepOneA.class);
+//                    Intent intent = new Intent(baseApcContext, SEditProfileMainA.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//            });
+//        }
+//        else if(userType.equals("5")) {
+//            LLHeadTop.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intent = new Intent(baseApcContext, MEditProfileA.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//            });
+//        }
 
         printLogs(LogTag,"initDrawer","initDrawer nav_view");
     }

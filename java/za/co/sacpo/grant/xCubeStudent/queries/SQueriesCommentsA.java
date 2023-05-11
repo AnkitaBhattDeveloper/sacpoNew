@@ -529,6 +529,10 @@ recyclerViewQ.setNestedScrollingEnabled(false);
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(SQueriesCommentsA.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -599,6 +603,10 @@ recyclerViewQ.setNestedScrollingEnabled(false);
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(SQueriesCommentsA.this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 

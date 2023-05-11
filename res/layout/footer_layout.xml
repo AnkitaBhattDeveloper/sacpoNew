@@ -12,7 +12,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/sacpocolorPrimaryDark" />
+        android:background="@color/background_footer" />
 
     <LinearLayout
         android:id="@+id/alertsContainer"
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+
                 android:gravity="center">
 
                 <ImageView
@@ -313,38 +314,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/activityId"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/ExtraSmallestDp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:background="@color/background_footer"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/activityIdTitle"
-                    android:layout_width="43dp"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/SmallerTextSize" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/alertAttAppContainer"
@@ -448,7 +418,38 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/activityId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/ExtraSmallestDp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            android:background="@color/background_footer"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/activityIdTitle"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="222"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/SmallerTextSize" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

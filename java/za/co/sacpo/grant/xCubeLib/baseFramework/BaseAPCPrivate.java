@@ -90,9 +90,10 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         handler.postDelayed(new Runnable() {
             public void run() {
                 LinearLayout ll_netinfo = findViewById(R.id.ll_netinfo);
+                ll_netinfo.setVisibility(View.VISIBLE);
+                ll_netinfo.setVisibility(View.GONE);
                 if (isOnline == false) {
                     if(!(ll_netinfo == null)){
-                        ll_netinfo.setVisibility(View.VISIBLE);
                         // cv_netinfo.setVisibility(View.VISIBLE);
                         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         TextView tv_net = findViewById(R.id.tv_net);
@@ -104,6 +105,7 @@ public abstract class BaseAPCPrivate extends BaseAPC {
                             tv_net.setText("Offline");
                             iv_net.setImageResource(R.drawable.interview_reject_btn);
                         }
+
                         handler.postDelayed(this, delay);
                     }else{
                         String sTitle = getString(R.string.dialog_no_internet);
@@ -391,8 +393,10 @@ public abstract class BaseAPCPrivate extends BaseAPC {
             mClaimContainer.setVisibility(View.GONE);
             mSignInContainer.setVisibility(View.GONE);
             mSignOutContainer.setVisibility(View.GONE);
-            video_cam_container.setVisibility(View.VISIBLE);
-            help_cam_container.setVisibility(View.GONE);
+            video_cam_container.setVisibility(View.GONE);
+            help_cam_container.setVisibility(View.VISIBLE);
+            mMessageContainer.setVisibility(View.GONE);
+            mNotificationContainer.setVisibility(View.GONE);
             mMessageContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -443,8 +447,10 @@ public abstract class BaseAPCPrivate extends BaseAPC {
             mClaimContainer.setVisibility(View.GONE);
             mSignInContainer.setVisibility(View.GONE);
             mSignOutContainer.setVisibility(View.GONE);
-            video_cam_container.setVisibility(View.VISIBLE);
-            help_cam_container.setVisibility(View.GONE);
+            video_cam_container.setVisibility(View.GONE);
+            help_cam_container.setVisibility(View.VISIBLE);
+            mMessageContainer.setVisibility(View.GONE);
+            mNotificationContainer.setVisibility(View.GONE);
             mMessageContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

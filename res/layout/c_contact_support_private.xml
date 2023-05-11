@@ -69,6 +69,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/cb_container"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -204,7 +206,6 @@
                         android:layout_height="0dp"
                         android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:entries="@array/title"
                         android:background="@drawable/spinner_bg_1"
                         android:spinnerMode="dropdown"
                         android:textAlignment="textStart"
@@ -240,9 +241,340 @@
 
                     </LinearLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_emp_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    >
 
 
+                    <LinearLayout
+                        android:id="@+id/empContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutEname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputEname"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="EMPLOYER NAME"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_mentor_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/mCSupervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="CURRENT MENTOR DETAILS"
+                        android:textSize="15sp"
+                        android:textAllCaps="true" />
+                    <TextView
+                        android:id="@+id/mCSupervisorData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text=""
+                        android:textSize="10sp"
+                        android:textAllCaps="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/l_110_mentor_details"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:textSize="15sp"
+                        android:textAllCaps="true" />
+
+                    <LinearLayout
+                        android:id="@+id/mTitleContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+                        <Spinner
+                            android:id="@+id/inputTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:entries="@array/title"
+                            android:background="@drawable/spinner_bg_1"
+                            android:spinnerMode="dropdown"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mFnameContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutMFName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputMFName"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="FIRST NAME"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mSnameContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutMSName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputMSName"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="SURNAME"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mEmailContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/mEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textAllCaps="true" />
+                        <CheckBox
+                            android:id="@+id/cb_m_email_change"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/l_110_mentor_email_change"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutMEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputMEmail"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="E-MAIL"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mCellContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutMCell"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputMCell"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="CELL NO"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/mTelContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputLayoutMTel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/inputMTel"
+                                style="@style/editText_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="OFFICE TEL NO"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                app:errorTextAppearance="@style/errorText"
+                                tools:ignore="MissingPrefix" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_gd_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/gCDateLbl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="OLD GRANT DATES"
+                        android:textSize="15sp"
+                        android:textAllCaps="true" />
+                    <TextView
+                        android:id="@+id/gCDateData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text=""
+                        android:textSize="10sp"
+                        android:textAllCaps="false" />
+                    <LinearLayout
+                        android:id="@+id/gSDateContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/gCSDateLbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="NEW GRANT START DATE"
+                            android:textSize="15sp"
+                            android:textAllCaps="true" />
+                        <DatePicker
+                            android:id="@+id/inputStartDate"
+                            android:datePickerMode="spinner"
+                            android:minDate=""
+                            android:calendarViewShown="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </DatePicker>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/gEDateContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/gCEDateLbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="NEW GRANT END DATE"
+                            android:textSize="15sp"
+                            android:textAllCaps="true" />
+                        <DatePicker
+                            android:id="@+id/inputEndDate"
+                            android:datePickerMode="spinner"
+                            android:minDate=""
+                            android:calendarViewShown="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </DatePicker>
+
+                    </LinearLayout>
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/messageContainer"
                     android:layout_width="match_parent"
@@ -301,6 +633,7 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:adjustViewBounds="true"
+                            android:visibility="gone"
                             android:backgroundTint="#1BFFFFFF"
                             android:src="@mipmap/ic_launcher_upload_icon"
                             android:padding="5dp"

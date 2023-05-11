@@ -87,18 +87,18 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     private final String KEY_IMAGE = "uploaded_file";
     private final String KEY_EXT = "extension";
     private String extension="",extensionOne="";
-    public EditText mSubjectView,mMessageView,inputtickettypeSubject;
+    public EditText mSubjectView,mMessageView,inputtickettypeSubject,inputEname,inputMFName,inputMSName,inputMCell,inputMTel,inputMEmail;
     public View mProgressView, mContentView,heading;
-    public TextInputLayout inputLayoutSubject,inputLayoutMessage;
+    public TextInputLayout inputLayoutSubject,inputLayoutMessage,inputLayoutEname,inputLayoutMFName,inputLayoutMSName,inputLayoutMCell,inputLayoutMTel,inputLayoutMEmail;
     public Button mSendMessageButton;
-    private TextView lblView,ttSubjectView,ttMessageView,txtFilePath;
+    private TextView lblView,ttSubjectView,ttMessageView,txtFilePath,mEmail,mCSupervisor,mCSupervisorData,gCDateData;
     public Button btnSendMessage,btnSendMessagewithImage,btnChoose;
     public ImageButton imgBtn_removeImage;
     private LinearLayout ActionContainerwithImage,ActionContainer,topicContainer,ticket_typeContainer
-                        ,ll_topic,tickettypetitleContainer;
+                        ,ll_topic,tickettypetitleContainer,ll_emp_update,ll_mentor_update,ll_gd_update;
     String filestring="",i_requested_file="";
     int SELECT_PDF = 20;
-    public String generator,title_value;
+    public String generator,title_value,grant_s_date,grant_e_date,emp_name,m_title,m_u_title,m_fname,m_surname,m_email,m_cell_no,m_office_cell_no;
     private ImageButton uploadImage_btn;
     private Bitmap bitmap;
     private ImageView imageView_getimagewithImage;
@@ -110,8 +110,9 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
     private int mShortAnimationDuration,selected_subjecttype,i_stu_issue_title_type;
     SContactSupportPrivateA thisClass;
     Spinner inputSpinnerTitle,inputSpinnersubject;
-    CheckBox cb_ticket_type;
-    int istickettypechecked;
+    CheckBox cb_ticket_type,cb_m_email_change;
+    int is_email_changed;
+
     private File myFile;
     public SpinnerObj[] StuTicketIssue ;
     public SpinnerObj[] TicketIssue ;
@@ -161,53 +162,42 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
             callDataApi();
             initializeInputs();
             fetchTicketIssueSpinner();
-            fetchTicketSpinner();
+            fetchStudentData();
             printLogs(LogTag,"bootStrapInit","exitConnected");
             showProgress(false,mContentView,mProgressView);
         }
     }
 
-    private void fetchTicketSpinner() {
+    private void fetchStudentData() {
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.STU_TITLE_TYPE;
-        FINAL_URL=FINAL_URL+"/"+token;
-        printLogs(LogTag,"fetchTicketIssueSpinner","URL : "+FINAL_URL);
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.STU_DATA_FOR_CONTACT;
+        FINAL_URL=FINAL_URL+"?token="+token;
+        //FINAL_URL=FINAL_URL+"/"+token;
+        printLogs(LogTag,"fetchStudentData","URL : "+FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject outputJson= new JSONObject(String.valueOf(response));
-                    printLogs(LogTag, "fetchTicketIssueSpinner", "response : " + response);
+                    printLogs(LogTag, "fetchStudentData", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if(Status.equals("1")){
-                        JSONArray dataM = outputJson.getJSONArray(KEY_DATA);
-                        TicketIssue = new SpinnerObj[dataM.length()];
-                        for (int i = 0; i <dataM.length() ; i++) {
-                            JSONObject jsonObject = dataM.getJSONObject(i);
-                            TicketIssue[i] = new SpinnerObj();
-                            TicketIssue[i].setId(jsonObject.getString("i_title_id"));
-                            TicketIssue[i].setName(jsonObject.getString("i_title_type"));
-                        }
-                        SpinAdapter adapter = new SpinAdapter(SContactSupportPrivateA.this, android.R.layout.simple_spinner_item, TicketIssue);
-                        inputSpinnersubject.setAdapter(adapter);
-                        inputSpinnersubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
+                        printLogs(LogTag, "fetchStudentData", "dataM : " + dataM);
+                        grant_s_date=dataM.getString("grant_s_date");
+                        grant_e_date=dataM.getString("grant_e_date");
+                        emp_name=dataM.getString("emp_name");
+                        m_title=dataM.getString("m_title");
+                        m_u_title=dataM.getString("m_u_title");
+                        m_fname=dataM.getString("m_fname");
+                        m_surname=dataM.getString("m_surname");
+                        m_email=dataM.getString("m_email");
+                        m_cell_no=dataM.getString("m_cell_no");
+                        m_office_cell_no=dataM.getString("m_office_cell_no");
 
-                                selected_subjecttype = Integer.parseInt(adapter.getItem(i).getId());
-                                if(selected_subjecttype == 0){
-                                    topicContainer.setVisibility(View.VISIBLE);
-                                }else{
-                                    topicContainer.setVisibility(View.GONE);
-                                }
-                                printLogs(LogTag, "inputSpinnerSubjectType", "i_stu_issue_title_type : "+i_stu_issue_title_type);
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                            }
-                        });
+
                     }
                     else if(Status.equals("2")) {
                         // showProgress(false,mContentRView,mProgressRView);
@@ -289,8 +279,50 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
                                i_stu_issue_title_type = Integer.parseInt(adapter.getItem(i).getId());
                                 if(i_stu_issue_title_type == 0){
                                     tickettypetitleContainer.setVisibility(View.VISIBLE);
+                                    ll_emp_update.setVisibility(View.GONE);
+                                    ll_mentor_update.setVisibility(View.GONE);
+                                    ll_gd_update.setVisibility(View.GONE);
                                 }else{
                                     tickettypetitleContainer.setVisibility(View.GONE);
+                                    ll_gd_update.setVisibility(View.GONE);
+                                    ll_emp_update.setVisibility(View.GONE);
+                                    ll_mentor_update.setVisibility(View.GONE);
+                                    mEmail.setVisibility(View.GONE);
+                                    cb_m_email_change.setVisibility(View.GONE);
+                                    mCSupervisor.setVisibility(View.GONE);
+                                    mCSupervisorData.setVisibility(View.GONE);
+                                    if(i_stu_issue_title_type==11){
+                                        ll_emp_update.setVisibility(View.VISIBLE);
+                                        inputEname.setText(emp_name);
+                                    }
+                                    if(i_stu_issue_title_type==12){
+                                        ll_emp_update.setVisibility(View.VISIBLE);
+                                        ll_mentor_update.setVisibility(View.VISIBLE);
+                                    }
+                                    if(i_stu_issue_title_type==13){
+                                        ll_mentor_update.setVisibility(View.VISIBLE);
+                                        mCSupervisor.setVisibility(View.VISIBLE);
+                                        mCSupervisorData.setVisibility(View.VISIBLE);
+                                        //grant_s_date,grant_e_date,emp_name,m_title,m_u_title,m_fname,m_surname,m_email,m_cell_no,m_office_cell_no
+                                        mCSupervisorData.setText(m_title+" "+m_fname+" "+m_surname+ " "+m_email);
+                                    }
+                                    if(i_stu_issue_title_type==14){
+                                        ll_gd_update.setVisibility(View.VISIBLE);
+                                        gCDateData.setText(grant_s_date + " - " +grant_e_date);
+                                    }
+
+                                    if(i_stu_issue_title_type==17){
+                                        ll_mentor_update.setVisibility(View.VISIBLE);
+                                        inputLayoutMEmail.setVisibility(View.GONE);
+                                        mEmail.setVisibility(View.VISIBLE);
+                                        cb_m_email_change.setVisibility(View.VISIBLE);
+                                        inputMFName.setText(m_fname);
+                                        inputMSName.setText(m_surname);
+                                        mEmail.setText(m_email);
+                                        inputMEmail.setText(m_email);
+                                        inputMCell.setText(m_cell_no);
+                                        inputMTel.setText(m_office_cell_no);
+                                    }
                                 }
                                 printLogs(LogTag, "inputSpinnerSubjectType", "i_stu_issue_title_type : "+i_stu_issue_title_type);
                             }
@@ -396,6 +428,26 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         ll_topic = findViewById(R.id.ll_topic);
         inputtickettypeSubject = findViewById(R.id.inputtickettypeSubject);
 
+        gCDateData = findViewById(R.id.gCDateData);
+        inputEname = findViewById(R.id.inputEname);
+        inputLayoutEname = findViewById(R.id.inputLayoutEname);
+        ll_emp_update = findViewById(R.id.ll_emp_update);
+        ll_mentor_update=findViewById(R.id.ll_mentor_update);
+        ll_gd_update=findViewById(R.id.ll_gd_update);
+        inputLayoutMFName=findViewById(R.id.inputLayoutMFName);
+        inputMFName=findViewById(R.id.inputMFName);
+        inputMSName=findViewById(R.id.inputMSName);
+        inputLayoutMSName=findViewById(R.id.inputLayoutMSName);
+        inputLayoutMCell=findViewById(R.id.inputLayoutMCell);
+        inputMCell=findViewById(R.id.inputMCell);
+        inputLayoutMTel=findViewById(R.id.inputLayoutMTel);
+        inputMTel=findViewById(R.id.inputMTel);
+        mEmail=findViewById(R.id.mEmail);
+        cb_m_email_change=findViewById(R.id.cb_m_email_change);
+        inputLayoutMEmail=findViewById(R.id.inputLayoutMEmail);
+        inputMEmail=findViewById(R.id.inputMEmail);
+        mCSupervisor=findViewById(R.id.mCSupervisor);
+        mCSupervisorData=findViewById(R.id.mCSupervisorData);
         inputLayoutSubject = findViewById(R.id.inputLayoutSubject);
         inputLayoutMessage = findViewById(R.id.inputLayoutMessage);
 
@@ -452,34 +504,29 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
             inputSpinnerTitle.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             inputSpinnersubject.setBackground(getDrawable(getDrwabaleResourceId("spinner_bg")));
             mMessageView.setBackground(getDrawable(getDrwabaleResourceId("input_boder_profile")));
-
-
-
         }
-
-
-
     }
     @Override
     protected void initializeInputs(){
         printLogs(LogTag,"initializeInputs","init");
+        is_email_changed = 0;
+        ticket_typeContainer.setVisibility(View.VISIBLE);
+        ll_topic.setVisibility(View.GONE);
     }
     @Override
     protected void initializeListeners() {
         printLogs(LogTag,"initializeListeners","init");
 
-        cb_ticket_type.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cb_m_email_change.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 if(b){
-                    istickettypechecked = 1;
-                    ticket_typeContainer.setVisibility(View.VISIBLE);
-                    ll_topic.setVisibility(View.GONE);
+                    is_email_changed = 1;
+                    inputLayoutMEmail.setVisibility(View.VISIBLE);
                 }else{
-                    istickettypechecked = 0;
-                    ll_topic.setVisibility(View.VISIBLE);
-                    ticket_typeContainer.setVisibility(View.GONE);
+                    is_email_changed = 0;
+                    inputLayoutMEmail.setVisibility(View.GONE);
                 }
             }
         });
@@ -761,7 +808,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", token);
-            jsonBody.put("checkbox", istickettypechecked);
+            jsonBody.put("checkbox", is_email_changed);
             jsonBody.put("extensionOne", extensionOne);
             jsonBody.put("i_stu_issue_title_type", i_stu_issue_title_type);
             jsonBody.put("i_stu_issue_title", i_stu_issue_title);
@@ -832,6 +879,10 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -847,7 +898,7 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", token);
-            jsonBody.put("checkbox", istickettypechecked);
+            jsonBody.put("checkbox", is_email_changed);
             jsonBody.put("extensionOne", extensionOne);
             jsonBody.put("i_stu_issue_title_type", i_stu_issue_title_type);
             jsonBody.put("i_stu_issue_title", i_stu_issue_title);
@@ -921,6 +972,10 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 

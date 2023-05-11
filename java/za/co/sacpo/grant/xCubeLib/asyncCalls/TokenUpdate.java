@@ -3,6 +3,7 @@ package za.co.sacpo.grant.xCubeLib.asyncCalls;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -83,6 +84,10 @@ public class TokenUpdate extends AsyncTask<Void, Void, Boolean> {
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(contextA);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
         return dataLogCall;
     }

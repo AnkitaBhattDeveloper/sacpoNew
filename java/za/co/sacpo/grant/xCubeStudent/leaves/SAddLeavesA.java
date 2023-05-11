@@ -340,13 +340,28 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
 
                 Date dateStart = dateFromString(start_date);
                 Date dateEnd = dateFromString(end_date);
-                printLogs(LogTag,"initializeListeners","dateStart"+dateStart);
-                printLogs(LogTag,"initializeListeners","dateEnd"+dateEnd);
+                printLogs(LogTag,"inputEndDate","dateStart"+dateStart);
+                printLogs(LogTag,"inputEndDate","dateEnd"+dateEnd);
                 setNoOfDays(dateStart,dateEnd);
             }
         });
+        inputStartDate.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
 
-        /*inputEndDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                int monthS = inputStartDate.getMonth()+1;
+                int monthE = inputEndDate.getMonth()+1;
+                final String start_date = inputStartDate.getYear()+"-"+monthS+"-"+inputStartDate.getDayOfMonth();
+                final String end_date = inputEndDate.getYear()+"-"+monthE+"-"+inputEndDate.getDayOfMonth();
+
+                Date dateStart = dateFromString(start_date);
+                Date dateEnd = dateFromString(end_date);
+                printLogs(LogTag,"inputStartDate","dateStart"+dateStart);
+                printLogs(LogTag,"inputStartDate","dateEnd"+dateEnd);
+                setNoOfDays(dateStart,dateEnd);
+            }
+        });
+        /*inputStartDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
@@ -368,7 +383,10 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         int number;
         number = countWorkingDate(dateStart,dateStop);
         printLogs(LogTag,"setNoOfDays","number"+number+dateStart);
-        String nums = String.valueOf(number);
+        String nums="";
+        if(number>0){
+            nums = String.valueOf(number);
+        }
         printLogs(LogTag,"setNoOfDays","nums"+nums+dateStop);
         inputLeaveInDays.setText(nums);
     }
@@ -394,6 +412,9 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         int monthE = inputEndDate.getMonth()+1;
         final String start_date = inputStartDate.getDayOfMonth()+"-"+monthS+"-"+inputStartDate.getYear();
         final String end_date = inputEndDate.getDayOfMonth()+"-"+monthE+"-"+inputEndDate.getYear();
+        final String start_dateL = inputStartDate.getYear()+"-"+monthS+"-"+inputStartDate.getDayOfMonth();
+        final String end_dateL = inputEndDate.getYear()+"-"+monthE+"-"+inputEndDate.getDayOfMonth();
+        printLogs(LogTag,"validateForm","start_date--"+start_date+"--end_date"+end_date);
         if(!isSpinnerValid(selected_leave_type)){
             cancel = true;
             String ErrorTitle ="Message :"+ActivityId+"-101";
@@ -405,9 +426,10 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         }
         else if (!validateEDate(inputEndDate)) {
             cancel = true;
-        }/*else if (!validateELessSDate(start_date,end_date)) {
+        }
+        else if (!validateELessSDate(start_dateL,end_dateL)) {
             cancel = true;
-        }*/
+        }
         else if(!validateLeaveDays(inputLeaveInDays,inputLayoutLeaveDays)){
             cancel = true;
         }
@@ -424,15 +446,20 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
     }
 
     private boolean validateLeaveDays(EditText inputLeaveInDays, TextInputLayout inputLayoutLeaveDays) {
-        printLogs(LogTag,"onCreate","validate department");
         String feedback = inputLeaveInDays.getText().toString().trim();
+        printLogs(LogTag,"validateLeaveDays","feedback=="+feedback);
+        printLogs(LogTag,"validateLeaveDays","feedback.isEmpty()=="+feedback.isEmpty());
+        printLogs(LogTag,"validateLeaveDays","TextUtils.isEmpty(feedback)=="+TextUtils.isEmpty(feedback));
+        printLogs(LogTag,"validateLeaveDays","feedback.equals=="+feedback.equals(""));
+
         setCustomError(inputLayoutLeaveDays,null,inputLeaveInDays);
-        if (feedback.isEmpty()) {
+        if (feedback.isEmpty() || TextUtils.isEmpty(feedback) || feedback.equals("") || feedback =="") {
             String sMessage = getLabelFromDb("error_S113_108",R.string.error_S113_108);
-            setCustomError(inputLayoutLeaveDays,sMessage,inputLeaveInDays);
+            printLogs(LogTag,"validateLeaveDays","sMessage=="+sMessage);
+            String ErrorTitle = "Message :" + ActivityId + "-108";
+            spinnerError(ErrorTitle, sMessage);
             return false;
         } else {
-            setCustomErrorDisabled(inputLayoutLeaveDays,inputLeaveInDays);
             return true;
         }
     }
@@ -469,9 +496,19 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         return true;
     }
     public boolean validateELessSDate(String firstDate,String secondDate){
+        printLogs(LogTag,"validateELessSDate","firstDate--"+firstDate+"--secondDate"+secondDate);
         Date fDate = dateFromString(firstDate);
         Date sDate = dateFromString(secondDate);
-        return fDate.after(sDate);
+        boolean faDateStatus =  fDate.after(sDate);
+        printLogs(LogTag,"validateELessSDate","fDate--"+fDate+"--sDate"+sDate+"--faDateStatus"+faDateStatus);
+        if(faDateStatus){
+            String ErrorTitle = "Message :" + ActivityId + "-110";
+            String ErrorMessage = getLabelFromDb("error_S113_110", R.string.error_S113_110);
+            spinnerError(ErrorTitle, ErrorMessage);
+            return false;
+        }else {
+            return true;
+        }
     }
     public boolean validateReasons(EditText inputLeaveReasons,TextInputLayout inputLayoutLeaveReasons) {
         printLogs(LogTag,"onCreate","validateReason");
@@ -510,7 +547,6 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
         printLogs(LogTag,"onOptionsItemSelected","SDashboardDA");
         startActivity(intent);
         finish();
-
         return true;
     }
 
@@ -552,8 +588,9 @@ public class SAddLeavesA extends BaseFormAPCPrivate{
             return 1;
         }
         if (startCal.getTimeInMillis() > endCal.getTimeInMillis()) {
-            startCal.setTime(dateStop);
-            endCal.setTime(dateStart);
+            //startCal.setTime(dateStop);
+            //endCal.setTime(dateStart);
+            return 0;
         }
         do {
             //excluding start date
