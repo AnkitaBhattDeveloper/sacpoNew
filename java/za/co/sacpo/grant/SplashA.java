@@ -39,6 +39,7 @@ import za.co.sacpo.grant.xCubeLib.db.masterArrayAdapter;
 import za.co.sacpo.grant.xCubeLib.db.masterArrays;
 import za.co.sacpo.grant.xCubeLib.db.staticLabels;
 import za.co.sacpo.grant.xCubeLib.db.staticLabelsAdapter;
+import za.co.sacpo.grant.xCubeStudent.attendance.SignInA;
 
 public class SplashA extends Activity {
     private final String ActivityId="A100";
@@ -76,6 +77,7 @@ public class SplashA extends Activity {
         else{
 
             Intent intent = new Intent(SplashA.this, LoginA.class);
+            //Intent intent = new Intent(SplashA.this, SignInA.class);
             startActivity(intent);
             finish();
 

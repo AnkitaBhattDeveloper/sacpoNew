@@ -196,7 +196,8 @@ public class MLearnerGrantDetailsA extends BaseFormAPCPrivate {
                 inputUri.putString("m_student_name", m_student_name);
                 inputUri.putString("stipend_id", stipend_id);
                 inputUri.putString("student_id", student_id);
-                Intent intent = new Intent(MLearnerGrantDetailsA.this, MMonthlyFeedbackA.class);
+                //Intent intent = new Intent(MLearnerGrantDetailsA.this, MMonthlyFeedbackA.class);
+                Intent intent = new Intent(MLearnerGrantDetailsA.this, MClaimAttApproveA.class);
                 printLogs(LogTag, "onOptionsItemSelected", "MMonthlyFeedbackA");
                 intent.putExtras(inputUri);
                 startActivity(intent);
@@ -592,7 +593,8 @@ public class MLearnerGrantDetailsA extends BaseFormAPCPrivate {
         inputUri.putString("m_student_name", m_student_name);
         inputUri.putString("stipend_id", stipend_id);
         inputUri.putString("student_id", student_id);
-        Intent intent = new Intent(MLearnerGrantDetailsA.this, MMonthlyFeedbackA.class);
+        //Intent intent = new Intent(MLearnerGrantDetailsA.this, MMonthlyFeedbackA.class);
+        Intent intent = new Intent(MLearnerGrantDetailsA.this, MClaimAttApproveA.class);
         printLogs(LogTag,"onOptionsItemSelected","MMonthlyFeedbackA");
         intent.putExtras(inputUri);
         startActivity(intent);

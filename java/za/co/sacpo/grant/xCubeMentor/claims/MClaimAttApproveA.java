@@ -711,7 +711,8 @@ public class MClaimAttApproveA extends BaseAPCPrivate {
         inputUri.putString("generator", "329");
         inputUri.putString("stipend_id", stipend_id);
         inputUri.putString("m_student_name", m_student_name);
-        Intent intent = new Intent(baseApcContext, MMonthlyFeedbackA.class);
+        ///Intent intent = new Intent(baseApcContext, MMonthlyFeedbackA.class);
+        Intent intent = new Intent(baseApcContext, MLearnerGrantDetailsA.class);
         intent.putExtras(inputUri);
         startActivity(intent);
     }

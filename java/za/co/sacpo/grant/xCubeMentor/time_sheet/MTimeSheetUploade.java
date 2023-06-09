@@ -24,7 +24,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -307,9 +306,6 @@ public class MTimeSheetUploade extends BaseFormAPCPrivate {
                     if (Status.equals("1")) {
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
 
-
-                        String token = FirebaseInstanceId.getInstance().getToken();
-                        userSessionObj.setHasSession(true);
                         showProgress(false, mContentView, mProgressView);
 
                         Toast.makeText(baseApcContext, "Demo Test", Toast.LENGTH_SHORT).show();

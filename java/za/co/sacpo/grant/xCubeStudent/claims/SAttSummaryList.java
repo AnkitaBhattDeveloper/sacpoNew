@@ -47,7 +47,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
 
     public String ActivityId = "S220";
     public View mProgressView, mContentView,mProgressRView, mContentRView,heading;
-    String generator,t_id,group_id,month_year,student_id,clamDate,date_input,grant_id,is_upload_attendance,is_claim_submitted,is_report_due;
+    String generator,t_id,group_id,month_year,student_id,clamDate,date_input,grant_id,is_upload_attendance,is_claim_submitted,is_report_due,is_feedback_pending;
     private Button btn_continue,btnUploadAtt,btnDownloadAtt;
     private TextView lblView;
     private RecyclerView recyclerViewQ;
@@ -75,9 +75,14 @@ public class SAttSummaryList extends BaseAPCPrivate {
         Bundle activeInputUri = getIntent().getExtras();
         is_claim_submitted= "1";
         is_report_due="1";
+        is_feedback_pending="1";
         if (inputIntent.hasExtra("is_claim_submitted")) {
             is_claim_submitted = activeInputUri.getString("is_claim_submitted");
             printLogs(LogTag,"onCreate","is_claim_submitted "+is_claim_submitted);
+        }
+        if (inputIntent.hasExtra("is_feedback_report_due")) {
+            is_feedback_pending = activeInputUri.getString("is_feedback_report_due");
+            printLogs(LogTag,"onCreate","is_feedback_pending "+is_feedback_pending);
         }
         if (inputIntent.hasExtra("is_report_due")) {
             is_report_due = activeInputUri.getString("is_report_due");
@@ -164,9 +169,11 @@ public class SAttSummaryList extends BaseAPCPrivate {
             public void onClick(View view) {
             printLogs(LogTag,"initializeListeners","SPastClaimDA");
             inBundle = new Bundle();
+
             Intent intent = new Intent(SAttSummaryList.this, SConfirmBankDetailsA.class);
                 inBundle.putString("generator", ActivityId);
                 inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                 inBundle.putString("is_report_due", String.valueOf(is_report_due));
                 intent.putExtras(inBundle);
             intent.putExtras(inBundle);
@@ -459,6 +466,7 @@ public class SAttSummaryList extends BaseAPCPrivate {
             Intent intent = new Intent(SAttSummaryList.this, SPastClaimDA.class);
             inBundle.putString("generator", ActivityId);
             inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
             inBundle.putString("is_report_due", String.valueOf(is_report_due));
             intent.putExtras(inBundle);
             startActivity(intent);

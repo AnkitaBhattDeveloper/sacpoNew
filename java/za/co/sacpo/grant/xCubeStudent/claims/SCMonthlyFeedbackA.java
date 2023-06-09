@@ -49,7 +49,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
     public TextView activity_heading,lblView;
     private RecyclerView recyclerViewQ;
     private SCMonthlyFeedbackA thisClass;
-    public String generator,is_claim_submitted,is_report_due;
+    public String generator,is_claim_submitted,is_report_due,is_feedback_pending;
     private Button btn_next,btn_back;
     private String feedback_ratings_input ="";
     public SCMonthlyFeedbackObj rDataObj = new SCMonthlyFeedbackObj();
@@ -72,9 +72,14 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
         Bundle activeInputUri = getIntent().getExtras();
         is_claim_submitted= "1";
         is_report_due="1";
+        is_feedback_pending="1";
         if (inputIntent.hasExtra("is_claim_submitted")) {
             is_claim_submitted = activeInputUri.getString("is_claim_submitted");
             printLogs(LogTag,"onCreate","is_claim_submitted "+is_claim_submitted);
+        }
+        if (inputIntent.hasExtra("is_feedback_report_due")) {
+            is_feedback_pending = activeInputUri.getString("is_feedback_report_due");
+            printLogs(LogTag,"onCreate","is_feedback_pending "+is_feedback_pending);
         }
         if (inputIntent.hasExtra("is_report_due")) {
             is_report_due = activeInputUri.getString("is_report_due");
@@ -157,6 +162,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
                 inBundle.putString("generator", ActivityId);
                 inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
                 inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                 intent.putExtras(inBundle);
                 startActivity(intent);
                 finish();
@@ -366,6 +372,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
                         inBundle.putString("generator", ActivityId);
                         inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
                         inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                        inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                         intent.putExtras(inBundle);
                         startActivity(intent);
                     }
@@ -419,6 +426,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
             inBundle.putString("generator", ActivityId);
             inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
             inBundle.putString("is_report_due", String.valueOf(is_report_due));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
             intent.putExtras(inBundle);
             startActivity(intent);
             finish();
@@ -434,6 +442,7 @@ public class SCMonthlyFeedbackA extends BaseAPCPrivate {
             inBundle.putString("generator", ActivityId);
             inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
             inBundle.putString("is_report_due", String.valueOf(is_report_due));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
             intent.putExtras(inBundle);
             startActivity(intent);
             finish();

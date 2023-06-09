@@ -1,6 +1,7 @@
 package za.co.sacpo.grant.xCubeStudent;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -76,13 +77,22 @@ public class SDashboardDA extends StudentBaseDrawerA {
             lbl_head_process_7,lbl_head_process_1_1,lbl_head_process_1_1_1,lbl_head_process_1_1_2,lbl_head_process_2_1,
             lbl_head_process_3_1,lbl_head_process_3_1_1,lbl_head_process_4_1,lbl_head_process_4_1_1,
             tv_btn_view_workstation,lbl_head_process_5_1,lbl_head_process_5_1_1,lbl_head_process_5_1_2,tv_btn_view_reports,lbl_head_process_6_1,tv_training_prog,lbl_head_process_7_1,tv_reports_done;
-    private LinearLayout c_data_tv_btn_view_reports,c_data_process_6;
+    private LinearLayout c_data_tv_btn_view_reports,c_data_process_6,c_process_1,c_process_2,c_process_3,c_process_4,c_process_5,c_process_6,c_process_7;
     private RelativeLayout c_tv_btn_view_workstation;
     private int is_workstation_assigned=0;
     private int is_training_program_assigned=0;
     private int is_claim_submitted=1;
     private int is_report_due =1;
+    private int is_feedback_report_due =1;
     private String training_program_url="";
+    private Boolean is_back_added = false;
+    private Boolean show_process_1 = true;
+    private Boolean show_process_2 = false;//false
+    private Boolean show_process_3 = true;
+    private Boolean show_process_4 = false;//false
+    private Boolean show_process_5 = false;//false
+    private Boolean show_process_6 = false;//false
+    private Boolean show_process_7 = true;
     boolean doubleBackToExitPressedOnce = false;
     private static final int REQUEST_LOCATION = 1;
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 3;
@@ -166,7 +176,7 @@ public class SDashboardDA extends StudentBaseDrawerA {
 
             //initializeInputs();
             studentSessionObj = new OlumsStudentSession(baseApcContext);
-            fetchOfflineData();
+            //fetchOfflineData();
             showProgress(false, mContentView, mProgressView);
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
@@ -249,6 +259,14 @@ public class SDashboardDA extends StudentBaseDrawerA {
         lbl_head_process_5=findViewById(R.id.lbl_head_process_5);
         lbl_head_process_6=findViewById(R.id.lbl_head_process_6);
         lbl_head_process_7=findViewById(R.id.lbl_head_process_7);
+
+        c_process_1=findViewById(R.id.c_process_1);
+        c_process_2=findViewById(R.id.c_process_2);
+        c_process_3=findViewById(R.id.c_process_3);
+        c_process_4=findViewById(R.id.c_process_4);
+        c_process_5=findViewById(R.id.c_process_5);
+        c_process_6=findViewById(R.id.c_process_6);
+        c_process_7=findViewById(R.id.c_process_7);
         lbl_head_process_1_1=findViewById(R.id.lbl_head_process_1_1);
         lbl_head_process_1_1_1=findViewById(R.id.lbl_head_process_1_1_1);
         lbl_head_process_1_1_2=findViewById(R.id.lbl_head_process_1_1_2);
@@ -419,6 +437,48 @@ public class SDashboardDA extends StudentBaseDrawerA {
         studentSessionObj = new OlumsStudentSession(baseApcContext);
         showProgress(true, mContentView, mProgressView);
         fetchData();
+        if(show_process_1 ==true){
+            c_process_1.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_1.setVisibility(GONE);
+        }
+        if(show_process_2 ==true){
+            c_process_2.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_2.setVisibility(GONE);
+        }
+        if(show_process_3 ==true){
+            c_process_3.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_3.setVisibility(GONE);
+        }
+        if(show_process_4 ==true){
+            c_process_4.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_4.setVisibility(GONE);
+        }
+        if(show_process_5 ==true){
+            c_process_5.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_5.setVisibility(GONE);
+        }
+        if(show_process_6 ==true){
+            c_process_6.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_6.setVisibility(GONE);
+        }
+        if(show_process_7 ==true){
+            c_process_7.setVisibility(VISIBLE);
+        }
+        else{
+            c_process_7.setVisibility(GONE);
+        }
         printLogs(LogTag, "initializeInputs", "exit");
     }
     protected void initializeDynamicListeners() {
@@ -457,21 +517,34 @@ public class SDashboardDA extends StudentBaseDrawerA {
             inBundle.putString("generator", ActivityId);
             inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
             inBundle.putString("is_report_due", String.valueOf(is_report_due));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_report_due));
             intent.putExtras(inBundle);
             startActivity(intent);
             finish();
             });
         } else{
             btn_submit_claim.setOnClickListener(view -> {
-            inBundle = new Bundle();
-            Intent intent = new Intent(SDashboardDA.this, SPastClaimDA.class);
-            inBundle.putString("generator", ActivityId);
-            inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
-            inBundle.putString("is_report_due", String.valueOf(is_report_due));
-            intent.putExtras(inBundle);
-            startActivity(intent);
-            finish();
+                if(is_back_added == true) {
+                    inBundle = new Bundle();
+                    Intent intent = new Intent(SDashboardDA.this, SPastClaimDA.class);
+                    inBundle.putString("generator", ActivityId);
+                    inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                    inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_report_due));
+                    inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                    intent.putExtras(inBundle);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    inBundle = new Bundle();
+                    Intent intent = new Intent(SDashboardDA.this, SBankDA.class);
+                    inBundle.putString("generator", ActivityId);
+                    intent.putExtras(inBundle);
+                    startActivity(intent);
+                    finish();
+                }
             });
+
         }
         printLogs(LogTag, "initializeDynamicListeners", "exit");
     }
@@ -604,6 +677,37 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         String is_workstation_set = rec.getString("workstation_btn");
                         String is_training_program_set = rec.getString("training_program_status");
                         String trainingProgram = rec.getString("training_program");
+                        String is_s_p_r = rec.getString("g_d_is_stu_progress_report");//5
+                        String is_f_r = rec.getString("g_d_is_stu_feedback_report");
+                        String is_e_att = rec.getString("g_d_is_stu_edit_attendance");
+                        String is_s_leave = rec.getString("g_d_is_stu_submit_leave");//2
+                        String is_s_works = rec.getString("g_d_is_stu_workstation");//4
+                        String is_s_training_p = rec.getString("g_d_is_stu_training_plan");//6
+                        if(Integer.parseInt(is_s_p_r)==1) {
+                            show_process_5=true;
+                        }
+                        else{
+                            reportDue="0";
+                        }
+                        if(Integer.parseInt(is_f_r)==1) {
+                            //set feedback report
+                            is_feedback_report_due=1;
+                        }
+                        else{
+                            is_feedback_report_due=0;
+                        }
+                        if(Integer.parseInt(is_e_att)==1) {
+                            //need to check
+                        }
+                        if(Integer.parseInt(is_s_leave)==1) {
+                            show_process_2=true;
+                        }
+                        if(Integer.parseInt(is_s_works)==1) {
+                            show_process_4=true;
+                        }
+                        if(Integer.parseInt(is_s_training_p)==1) {
+                            show_process_6=true;
+                        }
 
 
                         DashboardDataArray dataArray = new DashboardDataArray(rec.getString("s_s_g_student_id"),
@@ -618,7 +722,11 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         adapter.insert(dataArray);
                         if(bankName.equals("") || bankName.equals("null")){
                             String Label = getLabelFromDb("b_S103_add_bank", R.string.b_S103_add_bank);
+                            is_back_added = false;
                             btn_view_bank_details.setText(Label);
+                        }
+                        else{
+                            is_back_added = true;
                         }
                         i_l_name.setText(lName);
                         i_l_status.setText(lStatus);
@@ -635,24 +743,24 @@ public class SDashboardDA extends StudentBaseDrawerA {
                         btn_edit_attendance.setText(attendance_btn_lbl);
                         tv_sign_done.setText(attendance_btn_lbl);
                         if(Integer.parseInt(attendance_status)==1) {
-                            btn_sign_in_out.setVisibility(View.VISIBLE);
+                            btn_sign_in_out.setVisibility(VISIBLE);
                             btn_edit_attendance.setVisibility(GONE);
                             tv_sign_done.setVisibility(GONE);
                         }
                         else if(Integer.parseInt(attendance_status)==2) {
-                            btn_sign_in_out.setVisibility(View.VISIBLE);
+                            btn_sign_in_out.setVisibility(VISIBLE);
                             btn_edit_attendance.setVisibility(GONE);
                             tv_sign_done.setVisibility(GONE);
                         }
                         else if(Integer.parseInt(attendance_status)==4) {
                             btn_sign_in_out.setVisibility(GONE);
-                            btn_edit_attendance.setVisibility(View.VISIBLE);
+                            btn_edit_attendance.setVisibility(VISIBLE);
                             tv_sign_done.setVisibility(GONE);
                         }
                         else{
                             btn_sign_in_out.setVisibility(GONE);
                             btn_edit_attendance.setVisibility(GONE);
-                            tv_sign_done.setVisibility(View.VISIBLE);
+                            tv_sign_done.setVisibility(VISIBLE);
                         }
                         btn_submit_claim.setText(claim_status);
                         if(Integer.parseInt(past_claim_btn)==1){
@@ -663,18 +771,20 @@ public class SDashboardDA extends StudentBaseDrawerA {
                             btn_submit_claim.setBackgroundResource(R.drawable.themed_small_button_action_r);
                             is_claim_submitted = 0;
                         }
+                        printLogs(LogTag, "fetchData", "RESPONSE : reportDue===="+Integer.parseInt(reportDue));
                         if(Integer.parseInt(reportDue)>0){
                             is_report_due = 1;
                             btn_reports_due.setText(reportDue);
                             tv_reports_done.setVisibility(GONE);
-                            btn_reports_due.setVisibility(View.VISIBLE);
+                            btn_reports_due.setVisibility(VISIBLE);
                         }
                         else{
                             is_report_due = 0;
-                            tv_reports_done.setVisibility(View.VISIBLE);
+                            tv_reports_done.setVisibility(VISIBLE);
                             btn_reports_due.setVisibility(GONE);
                             btn_reports_due.setText(" - ");
                         }
+                        printLogs(LogTag, "fetchData", "RESPONSE : is_report_due===="+is_report_due);
                         printLogs(LogTag, "fetchData", "RESPONSE : " + is_workstation_set+"===="+Integer.parseInt(is_workstation_set));
                         if(Integer.parseInt(is_workstation_set)==1){
                             is_workstation_assigned = 1;
@@ -783,24 +893,24 @@ public class SDashboardDA extends StudentBaseDrawerA {
         btn_edit_attendance.setText(dataArray.atendance_status);
         tv_sign_done.setText(dataArray.atendance_status);
         if(Integer.parseInt(attendance_status)==1) {
-            btn_sign_in_out.setVisibility(View.VISIBLE);
+            btn_sign_in_out.setVisibility(VISIBLE);
             btn_edit_attendance.setVisibility(GONE);
             tv_sign_done.setVisibility(GONE);
         }
         else if(Integer.parseInt(attendance_status)==2) {
-            btn_sign_in_out.setVisibility(View.VISIBLE);
+            btn_sign_in_out.setVisibility(VISIBLE);
             btn_edit_attendance.setVisibility(GONE);
             tv_sign_done.setVisibility(GONE);
         }
         else if(Integer.parseInt(attendance_status)==4) {
             btn_sign_in_out.setVisibility(GONE);
-            btn_edit_attendance.setVisibility(View.VISIBLE);
+            btn_edit_attendance.setVisibility(VISIBLE);
             tv_sign_done.setVisibility(GONE);
         }
         else{
             btn_sign_in_out.setVisibility(GONE);
             btn_edit_attendance.setVisibility(GONE);
-            tv_sign_done.setVisibility(View.VISIBLE);
+            tv_sign_done.setVisibility(VISIBLE);
         }
         btn_submit_claim.setText(claim_status);
         if(Integer.parseInt(past_claim_btn)==1){
@@ -815,11 +925,11 @@ public class SDashboardDA extends StudentBaseDrawerA {
             is_report_due = 1;
             btn_reports_due.setText(reportDue);
             tv_reports_done.setVisibility(GONE);
-            btn_reports_due.setVisibility(View.VISIBLE);
+            btn_reports_due.setVisibility(VISIBLE);
         }
         else{
             is_report_due = 0;
-            tv_reports_done.setVisibility(View.VISIBLE);
+            tv_reports_done.setVisibility(VISIBLE);
             btn_reports_due.setVisibility(GONE);
             btn_reports_due.setText(" - ");
         }

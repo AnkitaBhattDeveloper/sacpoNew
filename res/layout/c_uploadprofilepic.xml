@@ -69,7 +69,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:elevation="0dp"
-                    app:srcCompat="@drawable/cast_album_art_placeholder" />
+                    app:srcCompat="@drawable/profile" />
 
 
                 <LinearLayout

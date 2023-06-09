@@ -53,7 +53,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
     private String KEY_ID = "stipend_id";
     public WebView wv_information;
     String stipend_id = "4";
-    public String generator,is_claim_submitted,is_report_due;
+    public String generator,is_claim_submitted,is_report_due,is_feedback_pending;
 
     public Button btnSubmitClaim, btnUpdateBankDetails,btn_back;
     private LinearLayout buttonContainer;
@@ -79,9 +79,14 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
         Bundle activeInputUri = getIntent().getExtras();
         is_claim_submitted= "1";
         is_report_due="1";
+        is_feedback_pending="1";
         if (inputIntent.hasExtra("is_claim_submitted")) {
             is_claim_submitted = activeInputUri.getString("is_claim_submitted");
             printLogs(LogTag,"onCreate","is_claim_submitted "+is_claim_submitted);
+        }
+        if (inputIntent.hasExtra("is_feedback_report_due")) {
+            is_feedback_pending = activeInputUri.getString("is_feedback_report_due");
+            printLogs(LogTag,"onCreate","is_feedback_pending "+is_feedback_pending);
         }
         if (inputIntent.hasExtra("is_report_due")) {
             is_report_due = activeInputUri.getString("is_report_due");
@@ -173,12 +178,24 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Bundle inBundle = new Bundle();
-                Intent intent = new Intent(SConfirmBankDetailsA.this, SCMonthlyFeedbackA.class);
-                inBundle.putString("generator", ActivityId);
-                inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
-                inBundle.putString("is_report_due", String.valueOf(is_report_due));
-                intent.putExtras(inBundle);
-                context.startActivity(intent);
+                if(Integer.parseInt(is_feedback_pending)==1) {
+                    Intent intent = new Intent(SConfirmBankDetailsA.this, SCMonthlyFeedbackA.class);
+                    inBundle.putString("generator", ActivityId);
+                    inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                    inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                    inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+                    intent.putExtras(inBundle);
+                    context.startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(SConfirmBankDetailsA.this, SSubmitClaim.class);
+                    inBundle.putString("generator", ActivityId);
+                    inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                    inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                    inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+                    intent.putExtras(inBundle);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -190,6 +207,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
                 inBundle.putString("generator", ActivityId);
                 inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
                 inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                 intent.putExtras(inBundle);
                 startActivity(intent);
                 finish();
@@ -207,6 +225,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
                 inBundle.putString("generator", ActivityId);
                 inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
                 inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                 intent3.putExtras(inBundle);
                 context.startActivity(intent3);
 
@@ -408,6 +427,7 @@ public class SConfirmBankDetailsA extends BaseAPCPrivate {
             Intent intent = new Intent(SConfirmBankDetailsA.this, SAttSummaryList.class);
             inBundle.putString("generator", ActivityId);
             inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
             inBundle.putString("is_report_due", String.valueOf(is_report_due));
             intent.putExtras(inBundle);
             startActivity(intent);

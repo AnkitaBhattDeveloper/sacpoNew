@@ -21,7 +21,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -210,9 +209,6 @@ public class MRemoveWorkXA extends BaseFormAPCPrivate {
                         JSONObject dataM = outputJson.getJSONObject(KEY_DATA);
 
                         userSessionObj.setUserId(dataM.getInt("latitude"));
-
-                        String token = FirebaseInstanceId.getInstance().getToken();
-                        userSessionObj.setHasSession(true);
                         showProgress(false,mContentView,mProgressView);
                         Intent intent = new Intent(MRemoveWorkXA.this,SDashboardDA.class);
                         startActivity(intent);

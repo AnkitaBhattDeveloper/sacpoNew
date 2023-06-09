@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -20,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -156,17 +159,53 @@ public abstract class BaseAPCPrivate extends BaseAPC {
         userSessionObj = new OlumsUserSession(baseApcContext);
         String userToken = userSessionObj.getToken();
         final int u_id = userSessionObj.getUserId();
-        final String token = FirebaseInstanceId.getInstance().getToken();
-        if (TextUtils.isEmpty(userToken)) {
-            mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
-            mTokenUpdateTask.execute((Void) null);
-        } else if (!userToken.equals(token)) {
-            mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
-            mTokenUpdateTask.execute((Void) null);
-        } else if (userToken.compareTo("null") == 0) {
-            mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
-            mTokenUpdateTask.execute((Void) null);
-        }
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            printLogs(LogTag, "syncToken", "FirebaseMessaging > Token failed "+task.getException());
+                            //mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+                            //mTokenUpdateTask.execute((Void) null);
+                            return;
+                        }
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        if (!userToken.equals(token)) {
+                            mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+                            mTokenUpdateTask.execute((Void) null);
+                        } else if (userToken.compareTo("null") == 0) {
+                            mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+                            mTokenUpdateTask.execute((Void) null);
+                        }
+
+                        printLogs(LogTag, "syncToken", "FirebaseMessaging > Token"+token);
+
+                    }
+                });
+//        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+//            if (!TextUtils.isEmpty(token)) {
+//                if (TextUtils.isEmpty(userToken)) {
+//                    mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+//                    mTokenUpdateTask.execute((Void) null);
+//                } else if (!userToken.equals(token)) {
+//                    mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+//                    mTokenUpdateTask.execute((Void) null);
+//                } else if (userToken.compareTo("null") == 0) {
+//                    mTokenUpdateTask = new TokenUpdate(u_id, token, baseApcContext);
+//                    mTokenUpdateTask.execute((Void) null);
+//                }
+//            } else{
+//                printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//            }
+//        }).addOnFailureListener(e -> {
+//            printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token"+e.getMessage());
+//        }).addOnCanceledListener(() -> {
+//            printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//        }).addOnCompleteListener(task -> printLogs(LogTag, "FormSubmit", "FirebaseMessaging > TRA "+task));
+        //}).addOnCompleteListener(task -> printLogs(LogTag, "FormSubmit", "FirebaseMessaging > TRA "+task.getResult()));
+        //final String token = FirebaseInstanceId.getInstance().getToken();
+
     }
 
     public void syncUserData(Context baseApcContext, AppCompatActivity activityIn) {

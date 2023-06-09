@@ -34,7 +34,7 @@ public class IsUpdateApp extends AsyncTask<Void, Void, Boolean> {
         private String KEY_APP_DOWN_USER_TYPE_ID="app_down_user_type_id";
         private Boolean dataLogCall =false;
         private Context contextA;
-        private Boolean isLive =false;
+        private Boolean isLive =true;
         private OlumsUtilitySession utilSessionObj;
         private OlumsUserSession userSessionObj;
     public IsUpdateApp(String version, Context context) {

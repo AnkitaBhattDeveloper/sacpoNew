@@ -69,7 +69,7 @@ public class SPastClaimDA extends BaseAPCPrivate {
     ProgressBar download_progress_bar;
     public Button btnSubmitClaim;
     private TextView lblView,mIGrantNameText,mIStartDateText,mIEndDateText,mIClaimTTText,tv_progress;
-    public String generator,is_claim_submitted,is_report_due;
+    public String generator,is_claim_submitted,is_report_due,is_feedback_pending;
     // declare the dialog as a member field of your activity
     public ProgressDialog mProgressDialog;
     LinearLayout ll_download_progress;
@@ -96,9 +96,14 @@ public class SPastClaimDA extends BaseAPCPrivate {
         Bundle activeInputUri = getIntent().getExtras();
         is_claim_submitted= "1";
         is_report_due="1";
+        is_feedback_pending="1";
         if (inputIntent.hasExtra("is_claim_submitted")) {
             is_claim_submitted = activeInputUri.getString("is_claim_submitted");
             printLogs(LogTag,"onCreate","is_claim_submitted "+is_claim_submitted);
+        }
+        if (inputIntent.hasExtra("is_feedback_report_due")) {
+            is_feedback_pending = activeInputUri.getString("is_feedback_report_due");
+            printLogs(LogTag,"onCreate","is_feedback_pending "+is_feedback_pending);
         }
         if (inputIntent.hasExtra("is_report_due")) {
             is_report_due = activeInputUri.getString("is_report_due");
@@ -266,6 +271,7 @@ public class SPastClaimDA extends BaseAPCPrivate {
             public void onClick(View view) {
                 int is_claimed = Integer.parseInt(is_claim_submitted);
                 int is_reportOverDue = Integer.parseInt(is_report_due);
+
                 //is_claimed=0;
                 if(is_claimed==1){
                     ///OVERLAY IF NO CLAIM TO SUBMIT
@@ -281,6 +287,7 @@ public class SPastClaimDA extends BaseAPCPrivate {
                         Intent intent = new Intent(SPastClaimDA.this, SPendingReportsDA.class);
                         inBundle.putString("generator", ActivityId);
                         inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                        inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                         inBundle.putString("is_report_due", String.valueOf(is_report_due));
                         intent.putExtras(inBundle);
                         startActivity(intent);
@@ -291,6 +298,7 @@ public class SPastClaimDA extends BaseAPCPrivate {
                         Intent intent = new Intent(SPastClaimDA.this, SAttSummaryList.class);
                         inBundle.putString("generator", ActivityId);
                         inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                        inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
                         inBundle.putString("is_report_due", String.valueOf(is_report_due));
                         intent.putExtras(inBundle);
                         startActivity(intent);

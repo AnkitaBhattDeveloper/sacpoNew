@@ -58,12 +58,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,10 +89,9 @@ import za.co.sacpo.grant.xCubeLib.session.OlumsStudentSession;
 import za.co.sacpo.grant.xCubeLib.session.OlumsUtilitySession;
 import za.co.sacpo.grant.xCubeStudent.SDashboardDA;
 
-public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnMapsSdkInitializedCallback {
     private String ActivityId = "S107";
-    public View mProgressView, mContentView,heading;
+    public View mProgressView, mContentView, heading;
     private TextView tvII, lblView, txtiPunchOut, txtPunchOutDate, txtiPunchInDone, iDate, iTime, iDistanceFrmWorkstation, iWorkstation, lblGpsCordinate, iLat, iLong, gps_error_po, gps_error_pi;
     private GoogleMap googleMap;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -100,7 +101,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     public Double currentLat;
     public Double currentLong;
     private Location myCurrentLocation;
-    public LocationManager locationManager ;
+    public LocationManager locationManager;
     private LinearLayout LLiPunchOutContainer, LLiPunchInContainer, LLinformationContainer, LLiPunchInDoneContainer, LLII;
     private Button btnPunchIn, btnPunchOut, btnTryAgain;
     private String KEY_LAT = "latitude";
@@ -111,7 +112,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     private SignInA thisClass;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     //private SignInA.MyReceiver myReceiver;
-    SupportMapFragment mapFragment ;
+    SupportMapFragment mapFragment;
     private boolean mBound = false;
     private LocationUpdatesService mService = null;
     private Button mRequestLocationUpdatesButton;
@@ -124,10 +125,8 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     Geocoder geocoder;
     List<Address> addresses;
-    boolean GpsStatus ;
+    boolean GpsStatus;
     TextView text_internet_info_head;
-
-
 
 
     @Override
@@ -146,17 +145,18 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         //generator = outBundle.getString("generator");
         network_enabled = false;
         gps_enabled = false;
-       // myReceiver = new SignInA.MyReceiver();
+        // myReceiver = new SignInA.MyReceiver();
         super.onCreate(savedInstanceState);
         setBaseApcContextParent(getApplicationContext(), this, this.getClass().getSimpleName(), ActivityId);
         printLogs(LogTag, "onCreate", "init");
-       ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
+        ///mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
 
-          mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         bootStrapInit();
     }
+
     @Override
     protected void bootStrapInit() {
         boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
@@ -164,13 +164,15 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
             setLayoutXml();
+
             callFooter(baseApcContext, activityIn, ActivityId);
             initMenusCustom(ActivityId, baseApcContext, activityIn);
             fetchVersionData();
             verifyVersion();
             internetChangeBroadCast();
+
             initializeViews();
-            showProgress(true,mContentView,mProgressView);
+            ///Temp Block showProgress(true,mContentView,mProgressView);
             initBackBtn();
             initializeLabels();
             initializeListeners();
@@ -179,28 +181,34 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
             }
+
             callDataApi();
             CheckGpsStatus();
-          //  initializeInputs();
+            initializeInputs();
             //fetchData();
+
+
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
     }
-    public void CheckGpsStatus(){
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
+    public void CheckGpsStatus() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         assert locationManager != null;
         GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if(GpsStatus) {
+        if (GpsStatus) {
             setButtonsState(true);
         } else {
             setButtonsState(false);
         }
     }
+
     @Override
     protected void setLayoutXml() {
         printLogs(LogTag, "setLayoutXml", "a_sign_in");
         setContentView(R.layout.a_sign_in);
     }
+
     @Override
     protected void initializeViews() {
         printLogs(LogTag, "initializeViews", "init");
@@ -273,13 +281,14 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         mRequestLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                printLogs(LogTag, "mRequestLocationUpdatesButton", "init "+checkPermissions());
-               // turnGPSOn();
+                printLogs(LogTag, "mRequestLocationUpdatesButton", "init " + checkPermissions());
+                // turnGPSOn();
                 enableLoc();
-              //  setButtonsState(true);
+                //  setButtonsState(true);
             }
         });
     }
+
     private void enableLoc() {
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(SignInA.this)
@@ -351,15 +360,63 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
             }
             if (grantIdInt > 0) {
                 LLinformationContainer.setVisibility(View.GONE);
+                checkPermissions();
+                getLocation();
                 initializeMap();
                 fetchData();
-                checkPermissions();
             } else {
                 LLinformationContainer.setVisibility(View.VISIBLE);
             }
         }
     }
+
+    @Override
+    public void onMapsSdkInitialized(MapsInitializer.Renderer renderer) {
+        switch (renderer) {
+            case LATEST:
+                printLogs(LogTag, "initializeMap", "onMapsSdkInitialized - LATEST");
+                break;
+            case LEGACY:
+                printLogs(LogTag, "initializeMap", "onMapsSdkInitialized - LEGACY");
+                break;
+        }
+    }
+
+    public void getLocation() {
+        if(gps_enabled) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                mFusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                if (location != null) {
+                                    // Logic to handle location object
+                                    locationCatch(location);
+                                }
+                            }
+                        });
+            }
+        }
+
+    }
     public void initializeMap() {
+//        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, new OnMapsSdkInitializedCallback() {
+//            @Override
+//            public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+//                switch (renderer) {
+//                    case LATEST:
+//                        printLogs(LogTag,"initializeMap","onMapsSdkInitialized - LATEST");
+//                        break;
+//                    case LEGACY:
+//                        printLogs(LogTag,"initializeMap","onMapsSdkInitialized - LEGACY");
+//                        break;
+//                }
+//
+//
+//            }
+//        }) ;
         printLogs(LogTag,"initializeMap","init");
         if (googleMap == null) {
             mapFragment = (FMap) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -384,13 +441,37 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
                 });
             }
         }
-        MapsInitializer.initialize(getApplicationContext());
+        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
+        //MapsInitializer.initialize(getApplicationContext());
+//        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, new OnMapsSdkInitializedCallback() {
+//            @Override
+//            public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+//                switch (renderer) {
+//                    case LATEST:
+//                        printLogs(LogTag,"initializeMap","onMapsSdkInitialized - LATEST");
+//                        break;
+//                    case LEGACY:
+//                        printLogs(LogTag,"initializeMap","onMapsSdkInitialized - LEGACY");
+//                        break;
+//                }
+//
+//
+//            }
+//        }) ;
+//        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, new OnMapsSdkInitializedCallback() {
+//            @Override
+//            public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+//                //println(it.name)
+//                 Log.d("TAG", "onMapsSdkInitialized: ");
+//            }
+//        });
     }
     private boolean checkPermissions() {
         gps_enabled = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         LocationManager lm = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            //lm.requestLocationUpdates(lm.GPS_PROVIDER, 0, 0, this);
         } catch(Exception ex) {}
 
         try {
@@ -406,6 +487,15 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         }
         return gps_enabled;
 
+    }
+    public interface LocationListener {
+        void onLocationChanged(Location var1);
+
+        void onStatusChanged(String var1, int var2, Bundle var3);
+
+        void onProviderEnabled(String var1);
+
+        void onProviderDisabled(String var1);
     }
     @Override
     protected void initializeLabels() {
@@ -823,26 +913,29 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         finish();
     }
     @SuppressLint("SetTextI18n")
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkLocationPermission();
-        }
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(100000); // Update location every second
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this::onLocationChanged);
-        }
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-        if (mLastLocation != null) {
+//    @Override
+//    public void onConnected(@Nullable Bundle bundle) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            checkLocationPermission();
+//        }
+//        mLocationRequest = LocationRequest.create();
+//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//        mLocationRequest.setInterval(100000); // Update location every second
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this::onLocationChanged);
+//        }
+//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+//        locationCatch(mLastLocation);
+//
+//    }
+    public void locationCatch(Location mLocationRequestS){
+        if (mLocationRequestS != null) {
             geocoder = new Geocoder(this, Locale.getDefault());
-            latitude = mLastLocation.getLatitude();
-            currentLat = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
-            currentLong = mLastLocation.getLongitude();
-          //  submituserlatlong(latitude,longitude);
+            latitude = mLocationRequestS.getLatitude();
+            currentLat = mLocationRequestS.getLatitude();
+            longitude = mLocationRequestS.getLongitude();
+            currentLong = mLocationRequestS.getLongitude();
+            //  submituserlatlong(latitude,longitude);
             iLat.setText("LAT :: " + latitude);
             iLong.setText("LONG :: " + longitude);
             if(currentLat !=null && currentLong != null){
@@ -855,7 +948,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
 
 
             //   enablePunchInActions("latitude", "longitude", latitude, longitude);
-           // createMarker(latitude, longitude, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
+            // createMarker(latitude, longitude, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
 
             printLogs(LogTag, "onConnected", "=======================================" );
             printLogs(LogTag, "onConnected", "latitude : " + latitude);
@@ -868,16 +961,17 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
                 String country = addresses.get(0).getCountryName();
                 String postalCode = addresses.get(0).getPostalCode();
                 String knownName = addresses.get(0).getFeatureName();*/
-              //  tv_address.setText("Address : "+address);
-                //Log.i("mLastLocation", address);
+                //  tv_address.setText("Address : "+address);
+                //Log.i("mLocationRequestS", address);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //Log.d("locationlat",""+latitude+","+longitude);
-        }else{
+        }
+        else{
             AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(SignInA.this);
             alertDialog2.setTitle("GPS Disabled");
-          //  alertDialog2.setIcon(R.drawable.ic_baseline_location_off_24);
+            //  alertDialog2.setIcon(R.drawable.ic_baseline_location_off_24);
             alertDialog2.setPositiveButton("Enable",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -911,15 +1005,15 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
             }
         }
     }
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+//    @Override
+//    public void onConnectionSuspended(int i) {
+//
+//    }
+//
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//
+//    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -942,7 +1036,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     protected void onResume() {
         super.onResume();
         checkInternetConnection();
-        mGoogleApiClient.connect();
+       // mGoogleApiClient.connect();
         registerBroadcastIC();
     }
 
@@ -950,7 +1044,7 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
     protected void onPause() {
         super.onPause();
 
-        mGoogleApiClient.disconnect();
+       // mGoogleApiClient.disconnect();
         unregisterBroadcastIC();
 
     }
@@ -961,12 +1055,12 @@ public class SignInA extends BaseFormAPCPrivate implements GoogleApiClient.Conne
         super.onStart();
         checkInternetConnection();
         registerBroadcastIC();
-        mGoogleApiClient.connect();
+//        mGoogleApiClient.connect();
     }
 
     @Override
     public void onDestroy() {
-        mGoogleApiClient.disconnect();
+    //    mGoogleApiClient.disconnect();
         unregisterBroadcastIC();
         super.onDestroy();
     }

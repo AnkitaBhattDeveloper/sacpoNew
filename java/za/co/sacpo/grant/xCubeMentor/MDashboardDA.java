@@ -254,7 +254,10 @@ public class MDashboardDA extends MentorBaseDrawerA{
                         String workasl16 = rec.getString("assigned_workstation");
                         String reports18 = rec.getString("monthly_reports_completed");
                         String rpending19 = rec.getString("supervisor_comments_pending");
-                        String tp20 = rec.getString("trainging_doc");
+                        String tp20="";
+                        if(rec.has("trainging_doc")) {
+                            tp20 = rec.getString("trainging_doc");
+                        }
                         String doc21 = "VIEW";
                         String grantid22 = rec.getString("grant_id");
                         String alertcount23 = rec.getString("alert_count");
@@ -262,8 +265,40 @@ public class MDashboardDA extends MentorBaseDrawerA{
                         String isWorkxPending25 = rec.getString("workstations_status");
                         String isWorkXassingPending26 = rec.getString("workstations_status");
                         String isRpending27 = rec.getString("supervisor_comments_pending");
-                        String isTpPending28 = rec.getString("training_program_upload");
-                        rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28));
+                        String isTpPending28="0";
+                        if(rec.has("training_program_upload")) {
+                            isTpPending28 = rec.getString("training_program_upload");
+                        }
+                        String show_process_1="0";
+                        if(rec.has("show_process_1")) {
+                            show_process_1 = rec.getString("show_process_1");
+                        }
+                        String show_process_2="0";
+                        if(rec.has("show_process_2")) {
+                            show_process_2 = rec.getString("show_process_2");
+                        }
+                        String show_process_3="0";
+                        if(rec.has("show_process_3")) {
+                            show_process_3 = rec.getString("show_process_3");
+                        }
+                        String show_process_4="0";
+                        if(rec.has("show_process_4")) {
+                            show_process_4 = rec.getString("show_process_4");
+                        }
+                        String show_process_5="0";
+                        if(rec.has("show_process_5")) {
+                            show_process_5 = rec.getString("show_process_5");
+                        }
+                        String show_process_6="0";
+                        if(rec.has("show_process_6")) {
+                            show_process_6 = rec.getString("show_process_6");
+                        }
+                        String show_process_7="0";
+                        if(rec.has("show_process_7")) {
+                            show_process_7 = rec.getString("show_process_7");
+                        }
+
+                        rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28,show_process_1,show_process_2,show_process_3,show_process_4,show_process_5,show_process_6,show_process_7));
 
                         arraylist.add(new MentorDashboardArray(String.valueOf(aId2),grantid22,lname4,
                                 lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,
@@ -362,7 +397,14 @@ public class MDashboardDA extends MentorBaseDrawerA{
             String isWorkXassingPending26 = adapterAll.get(i).getWorkstations_status();
             String isRpending27 = adapterAll.get(i).getSupervisor_comments_pending();
             String isTpPending28 = adapterAll.get(i).getTraining_program_upload();
-            rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28));
+            String show_process_1="0";
+            String show_process_2="0";
+            String show_process_3="0";
+            String show_process_4="0";
+            String show_process_5="0";
+            String show_process_6="0";
+            String show_process_7="0";
+            rDataObj.addItem(rDataObj.createItem(pos,aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28,show_process_1,show_process_2,show_process_3,show_process_4,show_process_5,show_process_6,show_process_7));
 
 
         }
@@ -376,7 +418,7 @@ public class MDashboardDA extends MentorBaseDrawerA{
 
 
     public void callHeaderBuilder(){
-        rDataObj.addItem(rDataObj.createItem(0,0,"","","","","","","","","","","","","","","","","","","","","","","","","",""));
+        rDataObj.addItem(rDataObj.createItem(0,0,"","","","","","","","","","","","","","","","","","","","","","","","","","","0","0","0","0","0","0","0"));
     }
 
     @Override

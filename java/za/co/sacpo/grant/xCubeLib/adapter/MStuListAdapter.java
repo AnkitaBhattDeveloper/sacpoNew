@@ -142,6 +142,13 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
 
         Drawable BColorD;
         BColor = res.getColor(R.color.red_link_back_even);
+        int showProcess1 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_1);
+        int showProcess2 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_2);
+        int showProcess3 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_3);
+        int showProcess4 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_4);
+        int showProcess5 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_5);
+        int showProcess6 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_6);
+        int showProcess7 = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).show_process_7);
         if(holder.getAdapterPosition()==0){
             BColor = res.getColor(R.color.row_head_1);
 
@@ -276,13 +283,17 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             });
             Labels=this.getLabelFromDb("t_head_M401_EATT",R.string.t_head_M401_EATT);
             holder.tvC2R3C2.setText(Labels);
-            holder.tvC2R3C2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String sToolTip = getLabelFromDb("t_head_M401_EATT",R.string.t_head_M401_EATT);;
-                    ((BaseAPC) activityInCall).showTooltip(holder.tvC2R3C2, sToolTip, 4);
-                }
-            });
+
+
+                holder.tvC2R3C2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String sToolTip = getLabelFromDb("t_head_M401_EATT", R.string.t_head_M401_EATT);
+                        ;
+                        ((BaseAPC) activityInCall).showTooltip(holder.tvC2R3C2, sToolTip, 4);
+                    }
+                });
+
             Labels=this.getLabelFromDb("t_head_M401_P2",R.string.t_head_M401_P2);
             holder.tvC3R1C1.setText(Labels);
             holder.tvC3R1C1.setOnClickListener(new View.OnClickListener() {
@@ -492,23 +503,22 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
 
 
         }
-        else{
+        else {
             int BWhite = res.getColor(R.color.white);
-            if((holder.getAdapterPosition()%2)==0){
-                BColor=res.getColor(R.color.row_even);
-                BColorRedLink=res.getColor(R.color.red_link_back_even);
+            if ((holder.getAdapterPosition() % 2) == 0) {
+                BColor = res.getColor(R.color.row_even);
+                BColorRedLink = res.getColor(R.color.red_link_back_even);
 
-            }
-            else{
-                BColor=res.getColor(R.color.row_odd);
-                BColorRedLink=res.getColor(R.color.red_link_back_odd);
+            } else {
+                BColor = res.getColor(R.color.row_odd);
+                BColorRedLink = res.getColor(R.color.red_link_back_odd);
             }
             String posNP = String.valueOf(holder.getAdapterPosition());
             //String pos = "00"+holder.getAdapterPosition();
-            String pos =  String.format("%1$3s", posNP).replace(' ', '0');
-            int ProcessDate1=res.getColor(R.color.process_1_color_data);
-            int ProcessDate2=res.getColor(R.color.process_2_color_data);
-            int ProcessDate3=res.getColor(R.color.process_3_color_data);
+            String pos = String.format("%1$3s", posNP).replace(' ', '0');
+            int ProcessDate1 = res.getColor(R.color.process_1_color_data);
+            int ProcessDate2 = res.getColor(R.color.process_2_color_data);
+            int ProcessDate3 = res.getColor(R.color.process_3_color_data);
 
 
            /* Log.i("color",R.color.process_1_color_data+"---"+pos);
@@ -520,11 +530,6 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.LLC6.setBackgroundColor(ProcessDate2);
             holder.LLC7.setBackgroundColor(ProcessDate1);
             holder.LLC8.setBackgroundColor(ProcessDate3);*/
-
-
-
-
-
 
 
             holder.separator1.setText(pos);
@@ -568,40 +573,51 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.tvC2R3C1.setTextColor(res.getColor(R.color.row_link));
             holder.tvC2R3C1.setPaintFlags(holder.tvC2R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             holder.tvC2R3C1.getPaint().setUnderlineText(true);
-            holder.tvC2R3C2.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC2R3C2.setPaintFlags(holder.tvC2R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC2R3C2.getPaint().setUnderlineText(true);
-            holder.tvC3R3C1.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC3R3C1.setPaintFlags(holder.tvC3R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC3R3C1.getPaint().setUnderlineText(true);
-            holder.tvC3R3C2.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC3R3C2.setPaintFlags(holder.tvC3R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC3R3C2.getPaint().setUnderlineText(true);
+            if (showProcess1 == 1) {
+                holder.tvC2R3C2.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC2R3C2.setPaintFlags(holder.tvC2R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC2R3C2.getPaint().setUnderlineText(true);
+            }
+            if (showProcess2 == 1) {
+                holder.tvC3R3C1.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC3R3C1.setPaintFlags(holder.tvC3R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC3R3C1.getPaint().setUnderlineText(true);
+                holder.tvC3R3C2.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC3R3C2.setPaintFlags(holder.tvC3R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC3R3C2.getPaint().setUnderlineText(true);
+            }
             holder.tvC4R3C1.setTextColor(res.getColor(R.color.row_link));
             holder.tvC4R3C1.setPaintFlags(holder.tvC4R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             holder.tvC4R3C1.getPaint().setUnderlineText(true);
             holder.tvC4R3C2.setTextColor(res.getColor(R.color.row_link));
             holder.tvC4R3C2.setPaintFlags(holder.tvC4R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             holder.tvC4R3C2.getPaint().setUnderlineText(true);
-            holder.tvC5R3C1.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC5R3C1.setPaintFlags(holder.tvC5R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC5R3C1.getPaint().setUnderlineText(true);
-            holder.tvC5R3C2.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC5R3C2.setPaintFlags(holder.tvC5R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC5R3C2.getPaint().setUnderlineText(true);
-            holder.tvC6R3C1.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC6R3C1.setPaintFlags(holder.tvC6R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC6R3C1.getPaint().setUnderlineText(true);
-            holder.tvC6R3C2.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC6R3C2.setPaintFlags(holder.tvC6R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC6R3C2.getPaint().setUnderlineText(true);
-            holder.tvC7R3C1.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC7R3C1.setPaintFlags(holder.tvC7R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC7R3C1.getPaint().setUnderlineText(true);
-            holder.tvC8R3C1.setTextColor(res.getColor(R.color.row_link));
-            holder.tvC8R3C1.setPaintFlags(holder.tvC8R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.tvC8R3C1.getPaint().setUnderlineText(true);
-
+            if (showProcess4 == 1) {
+                holder.tvC5R3C1.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC5R3C1.setPaintFlags(holder.tvC5R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC5R3C1.getPaint().setUnderlineText(true);
+                holder.tvC5R3C2.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC5R3C2.setPaintFlags(holder.tvC5R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC5R3C2.getPaint().setUnderlineText(true);
+            }
+            if (showProcess5 == 1) {
+                holder.tvC6R3C1.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC6R3C1.setPaintFlags(holder.tvC6R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC6R3C1.getPaint().setUnderlineText(true);
+                holder.tvC6R3C2.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC6R3C2.setPaintFlags(holder.tvC6R3C2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC6R3C2.getPaint().setUnderlineText(true);
+            }
+            if (showProcess6 == 1) {
+                holder.tvC7R3C1.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC7R3C1.setPaintFlags(holder.tvC7R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC7R3C1.getPaint().setUnderlineText(true);
+            }
+            if (showProcess7 == 1) {
+                holder.tvC8R3C1.setTextColor(res.getColor(R.color.row_link));
+                holder.tvC8R3C1.setPaintFlags(holder.tvC8R3C1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                holder.tvC8R3C1.getPaint().setUnderlineText(true);
+            }
             holder.tvC1R3C0.setBackgroundColor(BColor);
             holder.tvC1R3C1.setBackgroundColor(BColor);
             holder.tvC1R3C2.setBackgroundColor(BColor);
@@ -614,85 +630,94 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
 
             holder.tvC2R3C1.setBackgroundColor(ProcessDate1);
             int pendingA = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).patt9);
-            if(pendingA>0){
-                holder.tvC2R3C2.setBackgroundResource(R.color.red_link);
-                holder.tvC2R3C2.setTextColor(BWhite);
-            }
-            else {
+            if (showProcess1 == 1) {
+                if (pendingA > 0) {
+                    holder.tvC2R3C2.setBackgroundResource(R.color.red_link);
+                    holder.tvC2R3C2.setTextColor(BWhite);
+                } else {
+                    holder.tvC2R3C2.setBackgroundColor(ProcessDate1);
+                }
+            } else {
                 holder.tvC2R3C2.setBackgroundColor(ProcessDate1);
             }
-
             holder.tvC3R3C1.setBackgroundColor(ProcessDate2);
 
-
-            int leaveA = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).lpending12);
-            if(leaveA>0){
-                holder.tvC3R3C2.setBackgroundResource(R.color.red_link);
-                holder.tvC3R3C2.setTextColor(BWhite);
+            if (showProcess2 == 1) {
+                int leaveA = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).lpending12);
+                if (leaveA > 0) {
+                    holder.tvC3R3C2.setBackgroundResource(R.color.red_link);
+                    holder.tvC3R3C2.setTextColor(BWhite);
+                } else {
+                    holder.tvC3R3C2.setBackgroundColor(ProcessDate2);///
+                }
+            } else {
+                holder.tvC3R3C2.setBackgroundColor(ProcessDate2);
             }
-            else {
-                holder.tvC3R3C2.setBackgroundColor(ProcessDate2);///
-            }
-
             holder.tvC4R3C1.setBackgroundColor(ProcessDate3);
 
             int stipendPA = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).stpending14);
-            if(stipendPA>0){
+            if (stipendPA > 0) {
                 holder.tvC4R3C2.setBackgroundResource(R.color.red_link);
                 holder.tvC4R3C2.setTextColor(BWhite);
-            }
-            else {
+            } else {
                 holder.tvC4R3C2.setBackgroundColor(ProcessDate3);///
             }
 
 
             holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
-            int rworkx = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).workx15);
-            if(rworkx==0){
-                holder.tvC5R3C1.setBackgroundResource(R.color.red_link);
-                holder.tvC5R3C1.setTextColor(BWhite);
-            }
-            else {
-                holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
-            }
-
             holder.tvC5R3C2.setBackgroundColor(ProcessDate1);////
-            int rworkxassP = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).isWorkXassingPending26);
-            if(rworkxassP==0){
-                holder.tvC5R3C2.setBackgroundResource(R.color.red_link);
-                holder.tvC5R3C2.setTextColor(BWhite);
-                holder.tvC5R3C2.setText("PENDING");
-            }
-            else {
+            int rworkx = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).workx15);
+            if (showProcess4 == 1) {
+                if (rworkx == 0) {
+                    holder.tvC5R3C1.setBackgroundResource(R.color.red_link);
+                    holder.tvC5R3C1.setTextColor(BWhite);
+                } else {
+                    holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
+                }
+                int rworkxassP = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).isWorkXassingPending26);
+                if (rworkxassP == 0) {
+                    holder.tvC5R3C2.setBackgroundResource(R.color.red_link);
+                    holder.tvC5R3C2.setTextColor(BWhite);
+                    holder.tvC5R3C2.setText("PENDING");
+                } else {
+                    holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
+                    holder.tvC5R3C2.setText(aObjList.get(holder.getAdapterPosition()).workasl16);
+                }
+            } else {
                 holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
-                holder.tvC5R3C2.setText(aObjList.get(holder.getAdapterPosition()).workasl16);
+                holder.tvC5R3C1.setBackgroundColor(ProcessDate1);////
+                holder.tvC5R3C1.setText(" - ");
+                holder.tvC5R3C2.setText(" - ");
             }
 
             holder.tvC6R3C1.setBackgroundColor(ProcessDate3);
-            int rPending = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).rpending19);
-            if(rPending>0){
-                holder.tvC6R3C2.setBackgroundResource(R.color.red_link);
-                holder.tvC6R3C2.setTextColor(BWhite);
-            }
-            else {
-                holder.tvC6R3C2.setBackgroundColor(ProcessDate3);////
-            }
-
-
-            int programP = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).isTpPending28);
-            if(programP==0){
-                holder.tvC7R3C1.setBackgroundResource(R.color.red_link);
-                holder.tvC7R3C1.setTextColor(BWhite);
-                holder.tvC7R3C1.setText(aObjList.get(holder.getAdapterPosition()).tp20);
-            }
-            else {
-                holder.tvC7R3C1.setBackgroundColor(ProcessDate1);//
-                holder.tvC7R3C1.setText("DOWNLOAD");
+            holder.tvC6R3C2.setBackgroundColor(ProcessDate3);
+            if (showProcess5 == 1) {
+                int rPending = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).rpending19);
+                if (rPending > 0) {
+                    holder.tvC6R3C2.setBackgroundResource(R.color.red_link);
+                    holder.tvC6R3C2.setTextColor(BWhite);
+                } else {
+                    holder.tvC6R3C2.setBackgroundColor(ProcessDate3);////
+                }
             }
 
+            if (showProcess6 == 1) {
+                int programP = Integer.parseInt(aObjList.get(holder.getAdapterPosition()).isTpPending28);
+                if (programP == 0) {
+                    holder.tvC7R3C1.setBackgroundResource(R.color.red_link);
+                    holder.tvC7R3C1.setTextColor(BWhite);
+                    holder.tvC7R3C1.setText(aObjList.get(holder.getAdapterPosition()).tp20);
+                } else {
+                    holder.tvC7R3C1.setBackgroundColor(ProcessDate1);//
+                    holder.tvC7R3C1.setText("DOWNLOAD");
+                }
+            } else {
+                holder.tvC7R3C1.setText(" - ");
+                holder.tvC7R3C1.setBackgroundColor(ProcessDate1);
+            }
 
             holder.tvC8R3C1.setBackgroundColor(ProcessDate2);
-
 
 
             holder.tvC1R3C0.setText(aObjList.get(holder.getAdapterPosition()).alertcount23);
@@ -704,20 +729,41 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.tvC1R3C5.setText(aObjList.get(holder.getAdapterPosition()).edate6);
             holder.tvC1R3C6.setText(aObjList.get(holder.getAdapterPosition()).seta7);
             holder.tvC1R3C7.setText(aObjList.get(holder.getAdapterPosition()).le8);
-            holder.tvC2R3C1.setText("VIEW");
-            holder.tvC2R3C2.setText(aObjList.get(holder.getAdapterPosition()).catt10+" Days");
-            holder.tvC3R3C1.setText(aObjList.get(holder.getAdapterPosition()).leave11);
-            holder.tvC3R3C2.setText(aObjList.get(holder.getAdapterPosition()).lpending12);
+            ///tvC2R3C1
+            if (showProcess7 == 1) {
+                holder.tvC8R3C1.setText("VIEW");
+            } else {
+                holder.tvC8R3C1.setText(" - ");
+            }
+
+            holder.tvC2R3C1.setText(aObjList.get(holder.getAdapterPosition()).patt9 + " Days");
+            if (showProcess1 == 1) {
+                holder.tvC2R3C2.setText(aObjList.get(holder.getAdapterPosition()).catt10 + " Days");
+            } else {
+                holder.tvC2R3C2.setText(" - ");
+            }
+            if (showProcess2 == 1) {
+                holder.tvC3R3C1.setText(aObjList.get(holder.getAdapterPosition()).leave11);
+                holder.tvC3R3C2.setText(aObjList.get(holder.getAdapterPosition()).lpending12);
+            } else {
+                holder.tvC3R3C1.setText(" - ");
+                holder.tvC3R3C2.setText(" - ");
+            }
             holder.tvC4R3C1.setText(aObjList.get(holder.getAdapterPosition()).pstipend13);
             holder.tvC4R3C2.setText(aObjList.get(holder.getAdapterPosition()).stpending14);
-            holder.tvC5R3C1.setText(aObjList.get(holder.getAdapterPosition()).workx15);
-
-            holder.tvC6R3C1.setText(aObjList.get(holder.getAdapterPosition()).reports18);
-            holder.tvC6R3C2.setText(aObjList.get(holder.getAdapterPosition()).rpending19);
-
-            holder.tvC8R3C1.setText(aObjList.get(holder.getAdapterPosition()).doc21);
-
-
+            if (showProcess4 == 1) {
+                holder.tvC5R3C1.setText(aObjList.get(holder.getAdapterPosition()).workx15);
+            } else {
+                holder.tvC5R3C1.setText(" - ");
+            }
+            if (showProcess5 == 1) {
+                holder.tvC6R3C1.setText(aObjList.get(holder.getAdapterPosition()).reports18);
+                holder.tvC6R3C2.setText(aObjList.get(holder.getAdapterPosition()).rpending19);
+            } else {
+                holder.tvC6R3C1.setText(" - ");
+                holder.tvC6R3C2.setText(" - ");
+            }
+            //holder.tvC8R3C1.setText(aObjList.get(holder.getAdapterPosition()).doc21);
 
 
             holder.tvC1R1C1.setVisibility(View.GONE);
@@ -737,7 +783,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
             holder.tvC8R1C1.setVisibility(View.GONE);
             holder.tvC8R2C1.setVisibility(View.GONE);
 
-            holder.tvC1R3C0.setOnClickListener(new View.OnClickListener(){
+            holder.tvC1R3C0.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -753,7 +799,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                 }
             });
 
-            holder.tvC1R3C1.setOnClickListener(new View.OnClickListener(){
+            holder.tvC1R3C1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -774,7 +820,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                 }
             });
 
-            holder.tvC1R3C2.setOnClickListener(new View.OnClickListener(){
+            holder.tvC1R3C2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -805,7 +851,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-            holder.tvC2R3C1.setOnClickListener(new View.OnClickListener(){
+            holder.tvC2R3C1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -822,46 +868,31 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-            holder.tvC2R3C2.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
+            if (showProcess1 == 1) {
+                holder.tvC2R3C2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
 
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("m_student_name", m_student_name);
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("m_student_name", m_student_name);
 
-                    String start_date = String.valueOf(holder.hItem.sdate6);
-                    inputUri.putString("start_date", start_date);
-                    String end_date = String.valueOf(holder.hItem.edate6);
-                    inputUri.putString("end_date", end_date);
+                        String start_date = String.valueOf(holder.hItem.sdate6);
+                        inputUri.putString("start_date", start_date);
+                        String end_date = String.valueOf(holder.hItem.edate6);
+                        inputUri.putString("end_date", end_date);
 
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MCurrentAttA.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-            holder.tvC3R3C2.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
-                    String attendance_id = String.valueOf(holder.hItem.aId2);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("attendance_id", attendance_id);
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    inputUri.putString("m_student_name", m_student_name);
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MSLeaveListA.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-            holder.tvC3R3C1.setOnClickListener(new View.OnClickListener(){
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MCurrentAttA.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                    }
+                });
+            }
+            holder.tvC3R3C2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -878,8 +909,25 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
+            holder.tvC3R3C1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle inputUri = new Bundle();
+                    String attendance_id = String.valueOf(holder.hItem.aId2);
+                    String m_student_name = String.valueOf(holder.hItem.lname4);
+                    inputUri.putString("attendance_id", attendance_id);
+                    String student_id = String.valueOf(holder.hItem.aId2);
+                    inputUri.putString("student_id", student_id);
+                    inputUri.putString("m_student_name", m_student_name);
+                    inputUri.putString("generator", "M401");
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, MSLeaveListA.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
+                }
+            });
 
-            holder.tvC4R3C1.setOnClickListener(new View.OnClickListener(){
+            holder.tvC4R3C1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -896,7 +944,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-            holder.tvC4R3C2.setOnClickListener(new View.OnClickListener(){
+            holder.tvC4R3C2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -913,95 +961,98 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-            holder.tvC6R3C1.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
+            if (showProcess5 == 1) {
+                holder.tvC6R3C1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
 
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("student_name", m_student_name);
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("student_name", m_student_name);
 
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MStudentReports.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-            holder.tvC6R3C2.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MStudentReports.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                    }
+                });
+                holder.tvC6R3C2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
 
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("student_name", m_student_name);
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("student_name", m_student_name);
 
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MStudentReports.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-            holder.tvC5R3C1.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MStudentReports.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                    }
+                });
+            }
+            if (showProcess4 == 1) {
+                holder.tvC5R3C1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
 
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("m_student_name", m_student_name);
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("m_student_name", m_student_name);
 
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MWorkXsDA.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-            holder.tvC5R3C2.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MWorkXsDA.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                    }
+                });
+                holder.tvC5R3C2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
 
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("mwX_student_name4", m_student_name);
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("mwX_student_name4", m_student_name);
 
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MChangeSWorkXA.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                }
-            });
-
-
-            holder.tvC7R3C1.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Bundle inputUri = new Bundle();
-                    String student_id = String.valueOf(holder.hItem.aId2);
-                    inputUri.putString("student_id", student_id);
-                    String m_student_name = String.valueOf(holder.hItem.lname4);
-                    inputUri.putString("mwX_student_name4", m_student_name);
-                    inputUri.putString("generator", "M401");
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, MTrainingPlanA.class);
-                    intent.putExtras(inputUri);
-                    context.startActivity(intent);
-                    /*TODO::ON HOLD */
-                }
-            });
-
-
-            holder.tvC8R3C1.setOnClickListener(new View.OnClickListener(){
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MChangeSWorkXA.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                    }
+                });
+            }
+            if (showProcess6 == 1){
+                holder.tvC7R3C1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle inputUri = new Bundle();
+                        String student_id = String.valueOf(holder.hItem.aId2);
+                        inputUri.putString("student_id", student_id);
+                        String m_student_name = String.valueOf(holder.hItem.lname4);
+                        inputUri.putString("mwX_student_name4", m_student_name);
+                        inputUri.putString("generator", "M401");
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, MTrainingPlanA.class);
+                        intent.putExtras(inputUri);
+                        context.startActivity(intent);
+                        /*TODO::ON HOLD */
+                    }
+                });
+        }
+        if(showProcess7==1) {
+            holder.tvC8R3C1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle inputUri = new Bundle();
@@ -1019,7 +1070,7 @@ public class MStuListAdapter extends RecyclerView.Adapter<MStuListAdapter.ViewHo
                     /*TODO::ON HOLD */
                 }
             });
-            
+        }
 
 
 

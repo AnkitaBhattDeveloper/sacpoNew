@@ -54,7 +54,7 @@ public class SSubmitClaim extends BaseAPCPrivate {
     private TextView lblView, lblBankDetails, lblBankName, txtBankName, lblStipendClaim, txtStipendClaim, lblStipendMonth, txtStipendMonth, lblAccountNumber, txtAccNumb, lblBranchCode, txtBranchCode
     ,lblAtt,txtAtt,lblALeave,txtALeave,lblSLeave,txtSLeave,lbOPLeave,txtOPLeave,lblUPLeave,txtUPLeave,lblSurname, txtSurname,lblInitialName,txtInitialName;
     public WebView wv_information;
-    public String generator,is_claim_submitted,is_report_due;
+    public String generator,is_claim_submitted,is_report_due,is_feedback_pending;
 
     public Button btnSubmitClaim,btn_back;
     private LinearLayout buttonContainer;
@@ -76,9 +76,14 @@ public class SSubmitClaim extends BaseAPCPrivate {
         Bundle activeInputUri = getIntent().getExtras();
         is_claim_submitted= "1";
         is_report_due="1";
+        is_feedback_pending="1";
         if (inputIntent.hasExtra("is_claim_submitted")) {
             is_claim_submitted = activeInputUri.getString("is_claim_submitted");
             printLogs(LogTag,"onCreate","is_claim_submitted "+is_claim_submitted);
+        }
+        if (inputIntent.hasExtra("is_feedback_report_due")) {
+            is_feedback_pending = activeInputUri.getString("is_feedback_report_due");
+            printLogs(LogTag,"onCreate","is_feedback_pending "+is_feedback_pending);
         }
         if (inputIntent.hasExtra("is_report_due")) {
             is_report_due = activeInputUri.getString("is_report_due");
@@ -305,15 +310,30 @@ public class SSubmitClaim extends BaseAPCPrivate {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                printLogs(LogTag,"initializeListeners","SPastClaimDA");
+
+                printLogs(LogTag, "initializeListeners", "SPastClaimDA");
                 inBundle = new Bundle();
-                Intent intent = new Intent(SSubmitClaim.this, SCMonthlyFeedbackA.class);
-                inBundle.putString("generator", ActivityId);
-                inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
-                inBundle.putString("is_report_due", String.valueOf(is_report_due));
-                intent.putExtras(inBundle);
-                startActivity(intent);
-                finish();
+                if(Integer.parseInt(is_feedback_pending)==1) {
+                    Intent intent = new Intent(SSubmitClaim.this, SCMonthlyFeedbackA.class);
+                    inBundle.putString("generator", ActivityId);
+                    inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                    inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                    inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+                    intent.putExtras(inBundle);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Intent intent = new Intent(SSubmitClaim.this, SConfirmBankDetailsA.class);
+                    printLogs(LogTag, "onOptionsItemSelected", "SConfirmBankDetailsA");
+                    inBundle.putString("generator", ActivityId);
+                    inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+                    inBundle.putString("is_report_due", String.valueOf(is_report_due));
+                    inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+                    intent.putExtras(inBundle);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
@@ -441,11 +461,26 @@ public class SSubmitClaim extends BaseAPCPrivate {
                             lblAtt.setText(dataM.getString("attendance_duration"));
                             txtAtt.setText(dataM.getString("attendance_count"));
                             String isLastClaim =dataM.getString("isLastClaim");
+                            int claim_enabled = 0;
+                            printLogs(LogTag,"fetchData","claim_enabled : "+claim_enabled);
+                            if(dataM.has("claim_enabled")){
+                                claim_enabled = Integer.parseInt(dataM.getString("claim_enabled"));
+                                printLogs(LogTag,"fetchData","claim_enabled : "+claim_enabled);
+                            }
+                            else{
+                                claim_enabled =1;
+                                printLogs(LogTag,"fetchData","claim_enabled : "+claim_enabled);
+                            }
                             is_last_claim = Integer.parseInt(isLastClaim);
                             String imagGraphS =URLHelper.DOMAIN_URL+dataM.getString("chart_link");
                             printLogs(LogTag,"fetchData","imagGraphS : "+imagGraphS);
                             Picasso.get().load(imagGraphS).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE).into(imgGraph);
-                            btnSubmitClaim.setVisibility(View.VISIBLE);
+                            if(claim_enabled==1) {
+                                btnSubmitClaim.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                btnSubmitClaim.setVisibility(View.GONE);
+                            }
                         }
                             showProgress(false, mContentView, mProgressView);
                     } else if (Status.equals("2")) {
@@ -499,15 +534,28 @@ public class SSubmitClaim extends BaseAPCPrivate {
     public boolean onOptionsItemSelected(MenuItem item) {
         printLogs(LogTag, "onOptionsItemSelected", "init");
         Bundle inBundle = new Bundle();
-        Intent intent = new Intent(SSubmitClaim.this, SCMonthlyFeedbackA.class);
-        printLogs(LogTag, "onOptionsItemSelected", "SStipendDetailsA");
-        inBundle.putString("generator", ActivityId);
-        inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
-        inBundle.putString("is_report_due", String.valueOf(is_report_due));
-        intent.putExtras(inBundle);
-        startActivity(intent);
-        finish();
-
+        if(Integer.parseInt(is_feedback_pending)==1) {
+            Intent intent = new Intent(SSubmitClaim.this, SCMonthlyFeedbackA.class);
+            printLogs(LogTag, "onOptionsItemSelected", "SCMonthlyFeedbackA");
+            inBundle.putString("generator", ActivityId);
+            inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+            inBundle.putString("is_report_due", String.valueOf(is_report_due));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+            intent.putExtras(inBundle);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Intent intent = new Intent(SSubmitClaim.this, SConfirmBankDetailsA.class);
+            printLogs(LogTag, "onOptionsItemSelected", "SConfirmBankDetailsA");
+            inBundle.putString("generator", ActivityId);
+            inBundle.putString("is_claim_submitted", String.valueOf(is_claim_submitted));
+            inBundle.putString("is_report_due", String.valueOf(is_report_due));
+            inBundle.putString("is_feedback_report_due", String.valueOf(is_feedback_pending));
+            intent.putExtras(inBundle);
+            startActivity(intent);
+            finish();
+        }
         return true;
     }
 

@@ -56,6 +56,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -64,14 +65,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+//import com.google.firebase.iid.FirebaseInstanceId;
+//import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -351,11 +358,48 @@ public class LoginA extends BaseFormAPCPublic {
                     userSessionObj.setUserTypeName(dataM.getString("r_display_name"));
                     printLogs(LogTag, "FormSubmit", "USERType" + dataM.getString("r_display_name"));
                     printLogs(LogTag, "FormSubmit", "USERID" + user_id);
+                    FirebaseMessaging.getInstance().getToken()
+                            .addOnCompleteListener(new OnCompleteListener<String>() {
+                                @Override
+                                public void onComplete(@NonNull Task<String> task) {
+                                    if (!task.isSuccessful()) {
+                                        printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Token failed "+task.getException());
+                                        return;
+                                    }
+                                    // Get new FCM registration token
+                                    String token = task.getResult();
+                                    printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Token"+token);
+                                    callBackLogin(token, user_id, user_type_id);
+                                }
+                            });
+//                    FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+//                        if (!TextUtils.isEmpty(token)) {
+//                            callBackLogin(token, user_id, user_type_id);
+//                        } else{
+//                            printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//                        }
+//                    }).addOnFailureListener(e -> {
+//                        printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token"+e.getMessage());
+//                    }).addOnCanceledListener(() -> {
+//                        printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//                    }).addOnCompleteListener(task -> printLogs(LogTag, "FormSubmit", "FirebaseMessaging > TRA "+task.getResult()));
+//                    FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+//                        if (!TextUtils.isEmpty(token)) {
+//                            callBackLogin(token, user_id, user_type_id);
+//                        } else{
+//                            printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//                        }
+//                    }).addOnFailureListener(e -> {
+//                        printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token"+e.getMessage());
+//                    }).addOnCanceledListener(() -> {
+//                        printLogs(LogTag, "FormSubmit", "FirebaseMessaging > Empty Token");
+//                    }).addOnCompleteListener(task -> printLogs(LogTag, "FormSubmit", "FirebaseMessaging > TRA "+task));
+                    //}).addOnCompleteListener(task -> printLogs(LogTag, "FormSubmit", "FirebaseMessaging > TRA "+task.getResult()));
 
-                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginA.this, instanceIdResult -> {
-                        String newToken = instanceIdResult.getToken();
-                        callBackLogin(newToken, user_id, user_type_id);
-                    });
+//                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginA.this, instanceIdResult -> {
+//                        String newToken = instanceIdResult.getToken();
+//                        callBackLogin(newToken, user_id, user_type_id);
+//                    });
                 } else {
                     showProgress(false, mContentView, mProgressView);
                     String sTitle = "Error :" + ActivityId + "-101";

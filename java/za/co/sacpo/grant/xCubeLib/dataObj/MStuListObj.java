@@ -18,8 +18,8 @@ public class MStuListObj {
     public Map<Integer, MStuListObj.Item> getITEM_MAP(){
         return this.ITEM_MAP;
     }
-    public MStuListObj.Item createItem(int pos1, int aId2,String notes3,String lname4,String lstatus5,String sdate6,String edate6,String seta7,String le8,String patt9,String catt10,String leave11,String lpending12,String pstipend13,String stpending14,String workx15,String workasl16,String reports18,String rpending19,String tp20,String doc21,String grantid22,String alertcount23,String isSPending24,String isWorkxPending25,String isWorkXassingPending26,String isRpending27,String isTpPending28) {
-        return new MStuListObj.Item(String.valueOf(pos1),aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28);
+    public MStuListObj.Item createItem(int pos1, int aId2,String notes3,String lname4,String lstatus5,String sdate6,String edate6,String seta7,String le8,String patt9,String catt10,String leave11,String lpending12,String pstipend13,String stpending14,String workx15,String workasl16,String reports18,String rpending19,String tp20,String doc21,String grantid22,String alertcount23,String isSPending24,String isWorkxPending25,String isWorkXassingPending26,String isRpending27,String isTpPending28,String show_process_1,String show_process_2,String show_process_3,String show_process_4,String show_process_5,String show_process_6,String show_process_7){
+        return new MStuListObj.Item(String.valueOf(pos1),aId2,notes3,lname4,lstatus5,sdate6,edate6,seta7,le8,patt9,catt10,leave11,lpending12,pstipend13,stpending14,workx15,workasl16,reports18,rpending19,tp20,doc21,grantid22,alertcount23,isSPending24,isWorkxPending25,isWorkXassingPending26,isRpending27,isTpPending28,show_process_1,show_process_2,show_process_3,show_process_4,show_process_5,show_process_6,show_process_7);
     }
 
     public static class Item {
@@ -51,8 +51,14 @@ public class MStuListObj {
         public final String isWorkXassingPending26;
         public final String isRpending27;
         public final String isTpPending28;
-
-        public Item(String aPos1, int aId2, String notes3,String lname4,String lstatus5,String sdate6,String edate6,String seta7,String le8,String patt9,String catt10,String leave11,String lpending12,String pstipend13,String stpending14,String workx15,String workasl16,String reports18,String rpending19,String tp20,String doc21,String grantid22,String alertcount23,String isSPending24,String isWorkxPending25,String isWorkXassingPending26,String isRpending27,String isTpPending28) {
+        public final String show_process_1;
+        public final String show_process_2;
+        public final String show_process_3;
+        public final String show_process_4;
+        public final String show_process_5;
+        public final String show_process_6;
+        public final String show_process_7;
+        public Item(String aPos1, int aId2, String notes3,String lname4,String lstatus5,String sdate6,String edate6,String seta7,String le8,String patt9,String catt10,String leave11,String lpending12,String pstipend13,String stpending14,String workx15,String workasl16,String reports18,String rpending19,String tp20,String doc21,String grantid22,String alertcount23,String isSPending24,String isWorkxPending25,String isWorkXassingPending26,String isRpending27,String isTpPending28,String show_process_1,String show_process_2,String show_process_3,String show_process_4,String show_process_5,String show_process_6,String show_process_7) {
             this.aPos1 = aPos1;
             this.aId2 = aId2;
             this.notes3=notes3;
@@ -81,6 +87,13 @@ public class MStuListObj {
             this.isWorkXassingPending26=isWorkXassingPending26;
             this.isRpending27=isRpending27;
             this.isTpPending28=isTpPending28;
+            this.show_process_1=show_process_1;
+            this.show_process_2=show_process_2;
+            this.show_process_3=show_process_3;
+            this.show_process_4=show_process_4;
+            this.show_process_5=show_process_5;
+            this.show_process_6=show_process_6;
+            this.show_process_7=show_process_7;
         }
 
         @Override
