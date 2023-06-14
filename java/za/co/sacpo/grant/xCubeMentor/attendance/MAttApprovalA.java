@@ -400,11 +400,8 @@ public class MAttApprovalA extends BaseFormAPCPrivate {
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputMRemark:
-                    validateRemarks(EditView,EditLayout);
-                    break;
-
+            if (EditView.getId() == R.id.inputMRemark) {
+                validateRemarks(EditView, EditLayout);
             }
         }
     }

@@ -527,11 +527,9 @@ public class MUpdateMobile extends BaseFormAPCPrivate {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputMobileNumber:
-                    validateNumber(EditView,EditLayout);
-                    break;
-              }
+            if (EditView.getId() == R.id.inputMobileNumber) {
+                validateNumber(EditView, EditLayout);
+            }
            }
        }
 

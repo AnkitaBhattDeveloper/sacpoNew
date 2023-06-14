@@ -753,11 +753,9 @@ public class MAddWorksA extends BaseFormAPCPrivate  implements GoogleApiClient.O
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.act_physical_address:
-                    final String et_err = act_physical_address.getText().toString();
-                    validateDeptName(et_err);
-                    break;
+            if (EditView.getId() == R.id.act_physical_address) {
+                final String et_err = act_physical_address.getText().toString();
+                validateDeptName(et_err);
             }
         }
     }

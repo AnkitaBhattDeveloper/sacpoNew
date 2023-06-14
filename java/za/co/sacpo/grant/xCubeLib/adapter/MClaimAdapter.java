@@ -294,60 +294,41 @@ BaseAPC baseAPC = new BaseAPC() {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.one) {//do do
+                    // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
 
-                    case R.id.one:
-                        //do do
-                        // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Bundle inputUri = new Bundle();
+                    inputUri.putString("stipend_id", monthField_18);
+                    inputUri.putString("generator", "126");
+                    inputUri.putString("m_student_name", baseActivity.getStudentName());
+                    inputUri.putString("student_id", baseActivity.getStudentId());
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, MDownloadClaimFormA.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
+                } else if (itemId == R.id.two) {//do do
+                    //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
 
-                        Bundle inputUri = new Bundle();
-                        inputUri.putString("stipend_id", monthField_18);
-                        inputUri.putString("generator", "126");
-                        inputUri.putString("m_student_name", baseActivity.getStudentName());
-                        inputUri.putString("student_id",baseActivity.getStudentId());
-                        Context context = view.getContext();
-                        Intent intent = new Intent(context, MDownloadClaimFormA.class);
-                        intent.putExtras(inputUri);
-                        context.startActivity(intent);
-
-                        break;
-
-                    case R.id.two:
-                        //do do
-                        //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-
-                        Bundle inputUri3 = new Bundle();
-                        inputUri3.putString("stipend_id", monthField_18);
-                        inputUri3.putString("generator", "126");
-                        inputUri3.putString("m_student_name", baseActivity.getStudentName());
-                        inputUri3.putString("student_id",baseActivity.getStudentId());
-                        Context context3 = view.getContext();
-                        Intent intent3 = new Intent(context3, MUploadSignedFormA.class);
-                        intent3.putExtras(inputUri3);
-                        context3.startActivity(intent3);
-
-                        break;
-
-
-                    case R.id.three:
-
-
-                        Bundle inputUri2 = new Bundle();
-                        inputUri2.putString("generator", "126");
-                        inputUri2.putString("m_student_name", baseActivity.getStudentName());
-                        inputUri2.putString("stipend_id", monthField_18);
-                        inputUri2.putString("student_id",baseActivity.getStudentId());
-                        Context context2 = view.getContext();
-                        Intent intent2= new Intent(context2, MDownloadSignedFormA.class);
-                        intent2.putExtras(inputUri2);
-                        context2.startActivity(intent2);
-                        break;
-
-
-                    default:
-                        break;
-
-
+                    Bundle inputUri3 = new Bundle();
+                    inputUri3.putString("stipend_id", monthField_18);
+                    inputUri3.putString("generator", "126");
+                    inputUri3.putString("m_student_name", baseActivity.getStudentName());
+                    inputUri3.putString("student_id", baseActivity.getStudentId());
+                    Context context3 = view.getContext();
+                    Intent intent3 = new Intent(context3, MUploadSignedFormA.class);
+                    intent3.putExtras(inputUri3);
+                    context3.startActivity(intent3);
+                } else if (itemId == R.id.three) {
+                    Bundle inputUri2 = new Bundle();
+                    inputUri2.putString("generator", "126");
+                    inputUri2.putString("m_student_name", baseActivity.getStudentName());
+                    inputUri2.putString("stipend_id", monthField_18);
+                    inputUri2.putString("student_id", baseActivity.getStudentId());
+                    Context context2 = view.getContext();
+                    Intent intent2 = new Intent(context2, MDownloadSignedFormA.class);
+                    intent2.putExtras(inputUri2);
+                    context2.startActivity(intent2);
                 }
 
                 return false;

@@ -331,54 +331,34 @@ public class SClaimAdapter extends RecyclerView.Adapter<SClaimAdapter.ClaimHolde
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.one) {//do do
+                    // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
 
-                    case R.id.one:
-                        //do do
-                        // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Bundle inputUri = new Bundle();
+                    inputUri.putString("stipend_id", stipend_id);
+                    inputUri.putString("generator", "126");
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, SDownUnSignCFormA.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
+                } else if (itemId == R.id.two) {//do do
+                    //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
 
-                        Bundle inputUri = new Bundle();
-                        inputUri.putString("stipend_id", stipend_id);
-                        inputUri.putString("generator", "126");
-                        Context context = view.getContext();
-                        Intent intent = new Intent(context, SDownUnSignCFormA.class);
-                        intent.putExtras(inputUri);
-                        context.startActivity(intent);
-
-                        break;
-
-                    case R.id.two:
-                        //do do
-                        //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-
-                        Bundle inputUri3 = new Bundle();
-                        inputUri3.putString("stipend_id", stipend_id);
-                        inputUri3.putString("generator", "126");
-                        Context context3 = view.getContext();
-                        Intent intent3 = new Intent(context3, SUpCFormA.class);
-                        intent3.putExtras(inputUri3);
-                        context3.startActivity(intent3);
-
-
-                        break;
-
-
-                    case R.id.three:
-
-                        Context context2 = view.getContext();
-                        Bundle inputUri2 = new Bundle();
-                        inputUri2.putString("stipend_id", stipend_id);
-                        inputUri2.putString("generator", "126");
-                        Intent intent2 = new Intent(context2, SDownCFormA.class);
-                        context2.startActivity(intent2);
-
-                        break;
-
-
-                    default:
-                        break;
-
-
+                    Bundle inputUri3 = new Bundle();
+                    inputUri3.putString("stipend_id", stipend_id);
+                    inputUri3.putString("generator", "126");
+                    Context context3 = view.getContext();
+                    Intent intent3 = new Intent(context3, SUpCFormA.class);
+                    intent3.putExtras(inputUri3);
+                    context3.startActivity(intent3);
+                } else if (itemId == R.id.three) {
+                    Context context2 = view.getContext();
+                    Bundle inputUri2 = new Bundle();
+                    inputUri2.putString("stipend_id", stipend_id);
+                    inputUri2.putString("generator", "126");
+                    Intent intent2 = new Intent(context2, SDownCFormA.class);
+                    context2.startActivity(intent2);
                 }
 
                 return false;

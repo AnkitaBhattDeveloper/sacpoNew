@@ -1026,13 +1026,10 @@ public class SContactSupportPrivateA extends BaseFormAPCPrivate {
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputSubject:
-                 //   validateSubject(EditView, EditLayout);
-                    break;
-                case R.id.inputMessage:
-                    validateMessage(EditView, EditLayout);
-                    break;
+            int id = EditView.getId();
+            if (id == R.id.inputSubject) {//   validateSubject(EditView, EditLayout);
+            } else if (id == R.id.inputMessage) {
+                validateMessage(EditView, EditLayout);
             }
         }
     }

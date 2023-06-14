@@ -190,31 +190,23 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Leav
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.download) {//do do
+                    // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Bundle inputUri = new Bundle();
+                    String Form_id = String.valueOf(form_id);
+                    inputUri.putString("form_id", Form_id);
+                    inputUri.putString("generator", "form_id");
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, MTimeSheetDownload.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
+                } else if (itemId == R.id.upload) {//do do
 
-                    case R.id.download:
-                        //do do
-                        // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-                        Bundle inputUri = new Bundle();
-                        String Form_id = String.valueOf(form_id);
-                        inputUri.putString("form_id", Form_id);
-                        inputUri.putString("generator", "form_id");
-                        Context context = view.getContext();
-                        Intent intent = new Intent(context, MTimeSheetDownload.class);
-                        intent.putExtras(inputUri);
-                        context.startActivity(intent);
-
-                        break;
-
-                    case R.id.upload:
-                        //do do
-
-                        //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-                        Context context1 = view.getContext();
-                        Intent intent1 = new Intent(context1,MTimeSheetUploade.class);
-                        context1.startActivity(intent1);
-
-                        break;
+                    //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Context context1 = view.getContext();
+                    Intent intent1 = new Intent(context1, MTimeSheetUploade.class);
+                    context1.startActivity(intent1);
 
 
                   /*  case R.id.three:
@@ -225,12 +217,6 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Leav
                         context2.startActivity(intent2);
 
                         break;*/
-
-
-                    default:
-                        break;
-
-
                 }
 
                 return false;

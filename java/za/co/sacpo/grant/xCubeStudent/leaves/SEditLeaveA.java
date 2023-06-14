@@ -699,11 +699,8 @@ public class SEditLeaveA extends BaseFormAPCPrivate {
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputLeaveReasons:
-                    validateReasons(EditView,EditLayout);
-                    break;
-
+            if (EditView.getId() == R.id.inputLeaveReasons) {
+                validateReasons(EditView, EditLayout);
             }
         }
     }

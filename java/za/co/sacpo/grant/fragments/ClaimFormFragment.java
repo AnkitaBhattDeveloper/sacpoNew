@@ -80,16 +80,11 @@ public class ClaimFormFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.btnDownloadCF:
+        if (v.getId() == R.id.btnDownloadCF) {
+            Toast.makeText(getActivity(), "downloading...", Toast.LENGTH_SHORT).show();
 
-
-                Toast.makeText(getActivity(), "downloading...", Toast.LENGTH_SHORT).show();
-
-                Intent i = new Intent(getActivity(), SDownCFormA.class);
-                startActivity(i);
-
-
+            Intent i = new Intent(getActivity(), SDownCFormA.class);
+            startActivity(i);
         }
 
     }

@@ -866,10 +866,8 @@ public class MEditWorkXA extends BaseFormAPCPrivate {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputAddDeptName:
-                    validateDeptName(EditView,EditLayout);
-                    break;
+            if (EditView.getId() == R.id.inputAddDeptName) {
+                validateDeptName(EditView, EditLayout);
             }
         }
     }

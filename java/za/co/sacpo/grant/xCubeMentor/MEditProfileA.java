@@ -436,16 +436,13 @@ public class MEditProfileA extends BaseFormAPCPrivate {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputFirstName:
-                    validateFirstName(EditView,EditLayout);
-                    break;
-                case R.id.inputLastName:
-                    validateLastName(EditView,EditLayout);
-                    break;
-                case R.id.inputMobile:
-                    validateNumber(EditView,EditLayout);
-                    break;
+            int id = EditView.getId();
+            if (id == R.id.inputFirstName) {
+                validateFirstName(EditView, EditLayout);
+            } else if (id == R.id.inputLastName) {
+                validateLastName(EditView, EditLayout);
+            } else if (id == R.id.inputMobile) {
+                validateNumber(EditView, EditLayout);
             }
         }
     }

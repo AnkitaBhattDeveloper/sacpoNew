@@ -886,20 +886,15 @@ public class SAddFeedbackA extends BaseAPCPrivate {
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputDepartment:
-                    validateDepartment(EditView, EditLayout);
-                    break;
-                case R.id.inputTraining:
-                    validateTraining(EditView, EditLayout);
-                    break;
-                case R.id.inputFeedback:
-                    validateFeedback(EditView, EditLayout);
-                    break;
-                case R.id.inputExperience:
-                    validateFeedback(EditView, EditLayout);
-                    break;
-
+            int id = EditView.getId();
+            if (id == R.id.inputDepartment) {
+                validateDepartment(EditView, EditLayout);
+            } else if (id == R.id.inputTraining) {
+                validateTraining(EditView, EditLayout);
+            } else if (id == R.id.inputFeedback) {
+                validateFeedback(EditView, EditLayout);
+            } else if (id == R.id.inputExperience) {
+                validateFeedback(EditView, EditLayout);
             }
         }
     }

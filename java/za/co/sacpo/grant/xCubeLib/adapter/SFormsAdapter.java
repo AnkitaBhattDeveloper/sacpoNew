@@ -82,47 +82,28 @@ public class SFormsAdapter extends RecyclerView.Adapter<SFormsAdapter.FormsHolde
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.one) {//do do
+                    // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Bundle inputUri = new Bundle();
+                    String Form_id = String.valueOf(form_id);
+                    inputUri.putString("form_id", Form_id);
+                    inputUri.putString("generator", "form_id");
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, SDownloadUnSignFormA.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
+                } else if (itemId == R.id.two) {//do do
 
-                    case R.id.one:
-                        //do do
-                       // Toast.makeText(baseActivityContext, "one:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-                        Bundle inputUri = new Bundle();
-                        String Form_id = String.valueOf(form_id);
-                        inputUri.putString("form_id", Form_id);
-                        inputUri.putString("generator", "form_id");
-                        Context context = view.getContext();
-                        Intent intent = new Intent(context, SDownloadUnSignFormA.class);
-                        intent.putExtras(inputUri);
-                        context.startActivity(intent);
-
-                        break;
-
-                    case R.id.two:
-                        //do do
-
-                        //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-                        Context context1 = view.getContext();
-                        Intent intent1 = new Intent(context1,SUploadFormA.class);
-                        context1.startActivity(intent1);
-                        
-                        break;
-
-
-                    case R.id.three:
-                        //do do
-                        //Toast.makeText(baseActivityContext, "three:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
-                        Context context2 = view.getContext();
-                        Intent intent2 = new Intent(context2, SDownloadFormA.class);
-                        context2.startActivity(intent2);
-
-                        break;
-
-
-                        default:
-                            break;
-
-
+                    //Toast.makeText(baseActivityContext, "two:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Context context1 = view.getContext();
+                    Intent intent1 = new Intent(context1, SUploadFormA.class);
+                    context1.startActivity(intent1);
+                } else if (itemId == R.id.three) {//do do
+                    //Toast.makeText(baseActivityContext, "three:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+                    Context context2 = view.getContext();
+                    Intent intent2 = new Intent(context2, SDownloadFormA.class);
+                    context2.startActivity(intent2);
                 }
 
                 return false;

@@ -11,13 +11,16 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -43,29 +46,37 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.Granularity;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,8 +105,10 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     public View mProgressView, mContentView, heading;
     private TextView tvII, lblView, txtiPunchOut, txtPunchOutDate, txtiPunchInDone, iDate, iTime, iDistanceFrmWorkstation, iWorkstation, lblGpsCordinate, iLat, iLong, gps_error_po, gps_error_pi;
     private GoogleMap googleMap;
-    private FusedLocationProviderClient mFusedLocationClient;
+    FusedLocationProviderClient mFusedLocationClient;
     public Location currentLocation;
+    public LocationCallback locationCallback;
+    public LocationResult locationResult;
     int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     private Boolean permissionLocation;
     public Double currentLat;
@@ -121,12 +134,16 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     private static final int REQUEST_LOCATION = 1;
     double latitude, longitude;
     Location mLastLocation;
-    private LocationRequest mLocationRequest;
+    LocationRequest mLocationRequest;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     Geocoder geocoder;
+    Address address;
     List<Address> addresses;
     boolean GpsStatus;
     TextView text_internet_info_head;
+    int PERMISSION_ID = 44;
+    Marker marker;
+    GoogleMap myMap;
 
 
     @Override
@@ -160,12 +177,12 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     @Override
     protected void bootStrapInit() {
         boolean isConnected = Utils.isNetworkConnected(this.getApplicationContext());
-        validateLogin(baseApcContext, activityIn);
+        //validateLogin(baseApcContext, activityIn);
         if (isConnected) {
             printLogs(LogTag, "bootStrapInit", "initConnected");
             setLayoutXml();
 
-            callFooter(baseApcContext, activityIn, ActivityId);
+            //callFooter(baseApcContext, activityIn, ActivityId);
             initMenusCustom(ActivityId, baseApcContext, activityIn);
             fetchVersionData();
             verifyVersion();
@@ -176,21 +193,252 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             initBackBtn();
             initializeLabels();
             initializeListeners();
-            userToken = userSessionObj.getToken();
+            /*userToken = userSessionObj.getToken();
             syncToken(baseApcContext, activityIn);
             if (TextUtils.isEmpty(userToken)) {
                 syncToken(baseApcContext, activityIn);
-            }
+            }*/
 
-            callDataApi();
-            CheckGpsStatus();
+            //callDataApi();
+            // CheckGpsStatus();
             initializeInputs();
             //fetchData();
+
+            //isPermissionChecked();
 
 
             printLogs(LogTag, "bootStrapInit", "exitConnected");
         }
     }
+
+    //(Ankita)
+    @SuppressLint("MissingPermission")
+    private void getLastLocation() {
+        // check if permissions are given
+        if (checkSelfPermission()) {
+
+            // check if location is enabled
+            if (isLocationEnabled()) {
+
+                // getting last
+                // location from
+                // FusedLocationClient
+                // object
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        Location location = task.getResult();
+                        if (location == null) {
+                            requestNewLocationData();
+
+
+                        } else {
+
+                            /*latitudeTextView.setText(location.getLatitude() + "");
+                            longitTextView.setText(location.getLongitude() + "");*/
+                            currentLat = location.getLatitude();
+                            currentLong = location.getLongitude();
+                            setMapLocation();
+                            Log.e("TAG", "onComplete: latitude get last location current lat =  " + currentLat);
+                            Log.e("TAG", "onComplete: longitude get last location current long  =  " + currentLong);
+                            geocoder = new Geocoder(baseApcContext);
+                            try {
+                                addresses = geocoder.getFromLocation(currentLat, currentLong, 1);
+                                Log.w("TAG", "onComplete: address country name " + addresses.get(0).getCountryName());
+                                Log.w("TAG", "onComplete: address postal code " + addresses.get(0).getPostalCode());
+                                Log.w("TAG", "onComplete: address SubLocality  " + addresses.get(0).getSubLocality());
+                                Log.w("TAG", "onComplete: address SubAdminArea " + addresses.get(0).getSubAdminArea());
+                                Log.w("TAG", "onComplete: locale " + addresses.get(0).getLocale());
+
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+
+                        }
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        } else {
+            // if permissions aren't available,
+            // request for permissions
+            requestPermissions();
+        }
+    }
+
+    //(Ankita)
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData() {
+
+        // Initializing LocationRequest
+        // object with appropriate methods
+        /*LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(5);
+        mLocationRequest.setFastestInterval(0);
+        mLocationRequest.setNumUpdates(1);*/
+
+        LocationRequest.Builder locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 100);
+        locationRequest.setMinUpdateDistanceMeters(100);
+        locationRequest.setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL);
+        locationRequest.setWaitForAccurateLocation(true);
+        locationRequest.build();
+
+ /*       LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, timeInterval).apply {
+            setMinUpdateDistanceMeters(minimalDistance)
+            setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
+            setWaitForAccurateLocation(true)
+        }.build()*/
+
+        // setting LocationRequest
+        // on FusedLocationClient
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+    }
+
+    //(Ankita)
+    private LocationCallback mLocationCallback = new LocationCallback() {
+
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            Location mLastLocation = locationResult.getLastLocation();
+            Log.e("TAG", "onComplete: latitude = location result ***** " + mLastLocation.getLatitude());
+            Log.e("TAG", "onComplete: longitude  = location Result *** " + mLastLocation.getLongitude());
+
+
+        }
+    };
+
+
+    // (Ankita) method to check for permissions
+    private boolean checkSelfPermission() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+
+        // If we want background location
+        // on Android 10.0 and higher,
+        // use:
+        // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // (Ankita) method to request for permissions
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_ID);
+    }
+
+    //(Ankita)
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    // (Ankita) If everything is alright then
+    @Override
+    public void
+    onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+                setMapLocation();
+            }
+        }
+    }
+
+    //(Ankita)
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (checkSelfPermission()) {
+            getLastLocation();
+            //setMapLocation();
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    public void setMapLocation() {
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        Log.e("TAG", "setMapLocation: set MAp location  ");
+
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                myMap = googleMap;
+                myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                myMap.getUiSettings().setZoomControlsEnabled(true);
+                myMap.setMyLocationEnabled(true);
+
+            }
+        });
+         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String bestProvider = locationManager.getBestProvider(criteria,true);
+        mLastLocation = locationManager.getLastKnownLocation(bestProvider);
+
+
+
+        if(mLastLocation !=null){
+            onNewLocationChanged(mLastLocation);
+            Log.e("TAG", "setMapLocation: location not null");
+        }
+        else{
+            //onNewLocationChanged(mLastLocation);
+            Log.e("TAG", "setMapLocation: location is null!!!!!!" );
+        }
+        locationManager.requestLocationUpdates(bestProvider, 2000L, (float) 0, new android.location.LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                onNewLocationChanged(location);
+                Log.e("TAG", "onLocationChanged: ");
+            }
+        });
+
+
+    }
+
+    @SuppressLint("MissingPermission")
+    private void onNewLocationChanged(Location mLastLocation) {
+   currentLat = mLastLocation.getLatitude();
+   currentLong = mLastLocation.getLongitude();
+   LatLng latLng = new LatLng(currentLat,currentLong);
+        Log.e("TAG", "onNewLocationChanged: points "+currentLat+", "+currentLong);
+   myMap.addMarker(new MarkerOptions().position(latLng).title("current position").visible(false).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+   myMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+   myMap.setMyLocationEnabled(true);
+   myMap.animateCamera(CameraUpdateFactory.zoomIn());
+   myMap.animateCamera(CameraUpdateFactory.zoomOut());
+   myMap.animateCamera(CameraUpdateFactory.zoomBy(1500));
+       // myMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+        myMap.getUiSettings().setZoomControlsEnabled(true);
+
+
+
+
+    }
+
+
+
+
+
+
+
+   /* private boolean isGooglePlayServicesAvailable() {
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (ConnectionResult.SUCCESS == status) {
+            return true;
+        } else {
+            GooglePlayServicesUtil.getErrorDialog(status, this, 0).show();
+            return false;
+        }
+    }*/
+
 
     public void CheckGpsStatus() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -383,7 +631,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     }
 
     public void getLocation() {
-        if(gps_enabled) {
+        if (gps_enabled) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
                 mFusedLocationClient.getLastLocation()
@@ -401,6 +649,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         }
 
     }
+
     public void initializeMap() {
 //        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, new OnMapsSdkInitializedCallback() {
 //            @Override
@@ -417,15 +666,14 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 //
 //            }
 //        }) ;
-        printLogs(LogTag,"initializeMap","init");
+        printLogs(LogTag, "initializeMap", "init");
         if (googleMap == null) {
             mapFragment = (FMap) getSupportFragmentManager().findFragmentById(R.id.map);
             if (mapFragment != null) {
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override
 
-                    public void onMapReady(GoogleMap googleMapI)
-                    {
+                    public void onMapReady(GoogleMap googleMapI) {
                         googleMap = googleMapI;
                         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                         googleMap.getUiSettings().setZoomControlsEnabled(true);
@@ -466,28 +714,31 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 //            }
 //        });
     }
+
     private boolean checkPermissions() {
         gps_enabled = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-        LocationManager lm = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
             //lm.requestLocationUpdates(lm.GPS_PROVIDER, 0, 0, this);
-        } catch(Exception ex) {}
+        } catch (Exception ex) {
+        }
 
         try {
             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
-
-        printLogs(LogTag,"checkPermissions","gps_enabled"+gps_enabled);
-        if(gps_enabled ==false || network_enabled ==false) {
-            LLII.setVisibility(View.VISIBLE);
+        } catch (Exception ex) {
         }
-        else {
+
+        printLogs(LogTag, "checkPermissions", "gps_enabled" + gps_enabled);
+        if (gps_enabled == false || network_enabled == false) {
+            LLII.setVisibility(View.VISIBLE);
+        } else {
             LLII.setVisibility(View.GONE);
         }
         return gps_enabled;
 
     }
+
     public interface LocationListener {
         void onLocationChanged(Location var1);
 
@@ -497,6 +748,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
         void onProviderDisabled(String var1);
     }
+
     @Override
     protected void initializeLabels() {
         printLogs(LogTag, "initializeLabels", "init");
@@ -562,7 +814,6 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         tvII.setText(getApplicationContext().getString(R.string.error_enable_location));
 
 
-
         text_internet_info_head.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         tvII.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
         txtPunchOutDate.setTextColor(getResources().getColor(getTextcolorResourceId("dashboard_textColor")));
@@ -579,9 +830,9 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             btnTryAgain.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btnPunchOut.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
             btnPunchIn.setBackground(getDrawable(getDrwabaleResourceId("themed_button_action")));
-          //  txtiPunchInDone.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
-           // txtiPunchInDone.setTextColor(R.);
-         }
+            //  txtiPunchInDone.setBackground(getDrawable(getDrwabaleResourceId("themed_small_button")));
+            // txtiPunchInDone.setTextColor(R.);
+        }
 
     }
 
@@ -593,7 +844,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
     public void callDataApi() {
         printLogs(LogTag, "callDataApi", "init");
-        userToken = userSessionObj.getToken();
+//        userToken = userSessionObj.getToken();
         if (!TextUtils.isEmpty(userToken)) {
             printLogs(LogTag, "callDataApi", "Token Update");
             syncUserData(baseApcContext, activityIn);
@@ -602,18 +853,19 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             syncAlerts(baseApcContext, activityIn, ActivityId);
         }
     }
+
     private void fetchData() {
         final String currentLatS = String.valueOf(currentLat);
         final String currentLongS = String.valueOf(currentLong);
         String token = userSessionObj.getToken();
-        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_S_107+ "?token=" + token ;
+        String FINAL_URL = URLHelper.DOMAIN_BASE_URL + URLHelper.REF_S_107 + "?token=" + token;
         printLogs(LogTag, "fetchData", "URL : " + FINAL_URL);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FINAL_URL, null, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONObject jsonObject= new JSONObject(String.valueOf(response));
+                    JSONObject jsonObject = new JSONObject(String.valueOf(response));
                     printLogs(LogTag, "fetchData", "response : " + response);
                     String Status = jsonObject.getString(KEY_STATUS);
                     if (Status.equals("1")) {
@@ -630,24 +882,24 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
                         if (!wLat.isEmpty()) {
                             if (!wLon.isEmpty()) {
-                                    if (!wLat.equals("null")) {
-                                            if (!wLon.equals("null")) {
-                                                double workLat = Double.parseDouble(wLat);
-                                                double workLong = Double.parseDouble(wLon);
-                                                LatLng point = new LatLng(workLat, workLong);
-                                                CircleOptions circleOptions = new CircleOptions()
-                                                        .center(point)
-                                                        .radius(200)
-                                                        .fillColor(Color.GREEN)
-                                                        .strokeColor(Color.BLACK)
-                                                        .strokeWidth(5);
-                                                googleMap.addCircle(circleOptions);
-                                                LatLng loginLatLong = new LatLng(workLat, workLong);
-                                                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(loginLatLong));
-                                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loginLatLong, 15f));
-                                                googleMap.getMaxZoomLevel();
-                                            }
+                                if (!wLat.equals("null")) {
+                                    if (!wLon.equals("null")) {
+                                        double workLat = Double.parseDouble(wLat);
+                                        double workLong = Double.parseDouble(wLon);
+                                        LatLng point = new LatLng(workLat, workLong);
+                                        CircleOptions circleOptions = new CircleOptions()
+                                                .center(point)
+                                                .radius(200)
+                                                .fillColor(Color.GREEN)
+                                                .strokeColor(Color.BLACK)
+                                                .strokeWidth(5);
+                                        googleMap.addCircle(circleOptions);
+                                        LatLng loginLatLong = new LatLng(workLat, workLong);
+                                        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(loginLatLong));
+                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loginLatLong, 15f));
+                                        googleMap.getMaxZoomLevel();
                                     }
+                                }
 
                             }
                         }
@@ -712,7 +964,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
     private void enablePunchInActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
         if ((currentLat != null) && (currentLong != null)) {
-           createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
+            createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), 5));
 
 
@@ -720,32 +972,39 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         LLiPunchInContainer.setVisibility(View.VISIBLE);
         LLiPunchOutContainer.setVisibility(View.GONE);
         LLiPunchInDoneContainer.setVisibility(View.GONE);
-       // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
+        // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
         printLogs(LogTag, "enablePunchInActions", "init");
         showProgress(false, mContentView, mProgressView);
 
     }
+
     protected Marker createMarker(double latitude, double longitude, String title, String snippet, float iconResID) {
         printLogs(LogTag, "createMarker", "INIT" + latitude + "---" + longitude);
         int height = 100;
         int width = 100;
-        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.location_marker);
-        return googleMap.addMarker(new MarkerOptions()
+        Log.e("TAG", "createMarker: inside create marker");
+        BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.location_marker);
+     /* return googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(latitude, longitude))
                 .title(title)
                 .snippet(snippet)
                 .icon(BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(bitmapdraw.getBitmap(), width, height, false))));
+*/
+
+marker =googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(title));
+return marker;
 
     }
 
-     private void enablePunchOutActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
+    private void enablePunchOutActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
         LLiPunchInContainer.setVisibility(View.GONE);
         LLiPunchInDoneContainer.setVisibility(View.GONE);
         LLiPunchOutContainer.setVisibility(View.VISIBLE);
-       // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
+        // checkAllActions(currentLatS, currentLongS, currentLat, currentLong);
         printLogs(LogTag, "enablePunchOutActions", "init");
         showProgress(false, mContentView, mProgressView);
     }
+
     private void disableActions(String currentLatS, String currentLongS, Double currentLat, Double currentLong) {
         if ((currentLat != null) && (currentLong != null)) {
             createMarker(currentLat, currentLong, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
@@ -760,6 +1019,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         LLiPunchOutContainer.setVisibility(View.GONE);
         showProgress(false, mContentView, mProgressView);
     }
+
     private void setButtonsState(boolean requestingLocationUpdates) {
         if (requestingLocationUpdates) {
             btnPunchIn.setVisibility(View.VISIBLE);
@@ -771,6 +1031,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             btnPunchIn.setVisibility(View.GONE);
         }
     }
+
     @Override
     protected void verifyVersion() {
         printLogs(LogTag, "verifyVersion", "init");
@@ -798,7 +1059,6 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     }
 
 
-
     @Override
     protected void validateForm() {
         printLogs(LogTag, "validateForm", "init");
@@ -814,6 +1074,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         }
         printLogs(LogTag, "validateForm", "exit");
     }
+
     public boolean isValidate(double lat, double lng) {
         printLogs(LogTag, "isValidate", "DATA : " + lat + " -- " + lng);
         if (lat < -90 || lat > 90) {
@@ -831,6 +1092,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         }
         return true;
     }
+
     @Override
     protected void FormSubmit() {
         final String dataLat = Double.toString(currentLat);
@@ -840,8 +1102,8 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
         JSONObject object = new JSONObject();
         try {
-            object.put(KEY_LAT,dataLat);
-            object.put(KEY_LONG,dataLong);
+            object.put(KEY_LAT, dataLat);
+            object.put(KEY_LONG, dataLong);
             object.put("token", token);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -853,7 +1115,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONObject outputJson= new JSONObject(String.valueOf(response));
+                    JSONObject outputJson = new JSONObject(String.valueOf(response));
                     printLogs(LogTag, "FormSubmit", "response : " + response);
                     String Status = outputJson.getString(KEY_STATUS);
                     if (Status.equals("1")) {
@@ -890,28 +1152,30 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
                         ErrorDialog.showErrorDialog(baseApcContext, activityIn, sTitle, sMessage, sButtonLabelClose);
                     }
                 }) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "*/*");
                 return params;
             }
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
-    public void customRedirector(){
+
+    public void customRedirector() {
         Intent intent = new Intent(SignInA.this, SDashboardDA.class);
         Bundle activeUri = new Bundle();
-        activeUri.putString("generator","S107");
+        activeUri.putString("generator", "S107");
         intent.putExtras(activeUri);
         startActivity(intent);
         finish();
     }
+
     @SuppressLint("SetTextI18n")
 //    @Override
 //    public void onConnected(@Nullable Bundle bundle) {
@@ -928,7 +1192,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 //        locationCatch(mLastLocation);
 //
 //    }
-    public void locationCatch(Location mLocationRequestS){
+    public void locationCatch(Location mLocationRequestS) {
         if (mLocationRequestS != null) {
             geocoder = new Geocoder(this, Locale.getDefault());
             latitude = mLocationRequestS.getLatitude();
@@ -938,19 +1202,20 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             //  submituserlatlong(latitude,longitude);
             iLat.setText("LAT :: " + latitude);
             iLong.setText("LONG :: " + longitude);
-            if(currentLat !=null && currentLong != null){
+
+            Log.e("TAG", "locationCatch: latitude "+latitude+"longitude "+longitude );
+
+            if (currentLat != null && currentLong != null) {
                 initializeInputs();
-            }else{
+            } else {
                 Toast.makeText(thisClass, "Something Went Wrong !!", Toast.LENGTH_SHORT).show();
             }
-
-
 
 
             //   enablePunchInActions("latitude", "longitude", latitude, longitude);
             // createMarker(latitude, longitude, "SIGN-IN", "", BitmapDescriptorFactory.HUE_AZURE);
 
-            printLogs(LogTag, "onConnected", "=======================================" );
+            printLogs(LogTag, "onConnected", "=======================================");
             printLogs(LogTag, "onConnected", "latitude : " + latitude);
             printLogs(LogTag, "onConnected", "longitude : " + longitude);
             try {
@@ -967,8 +1232,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
                 e.printStackTrace();
             }
             //Log.d("locationlat",""+latitude+","+longitude);
-        }
-        else{
+        } else {
             AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(SignInA.this);
             alertDialog2.setTitle("GPS Disabled");
             //  alertDialog2.setIcon(R.drawable.ic_baseline_location_off_24);
@@ -994,13 +1258,12 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
             alertDialog2.show();
         }
     }
+
     public void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
-            {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
             }
         }
@@ -1019,6 +1282,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     public void onLocationChanged(Location location) {
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         printLogs(LogTag, "onOptionsItemSelected", "init");
@@ -1032,19 +1296,20 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
         }
         return true;
     }
-    @Override
+
+   /* @Override
     protected void onResume() {
         super.onResume();
         checkInternetConnection();
-       // mGoogleApiClient.connect();
+        // mGoogleApiClient.connect();
         registerBroadcastIC();
-    }
+    }*/
 
     @Override
     protected void onPause() {
         super.onPause();
 
-       // mGoogleApiClient.disconnect();
+        // mGoogleApiClient.disconnect();
         unregisterBroadcastIC();
 
     }
@@ -1060,7 +1325,7 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
 
     @Override
     public void onDestroy() {
-    //    mGoogleApiClient.disconnect();
+        //    mGoogleApiClient.disconnect();
         unregisterBroadcastIC();
         super.onDestroy();
     }
@@ -1069,17 +1334,17 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(LocationSettingsStatusCodes.RESOLUTION_REQUIRED == 6){
+        if (LocationSettingsStatusCodes.RESOLUTION_REQUIRED == 6) {
 
-            if(resultCode == 0){
+            if (resultCode == 0) {
                 setButtonsState(false);
-            }else{
+            } else {
                 setButtonsState(true);
             }
 
-            printLogs(LogTag, "onActivityResult", "requestCode "+requestCode);
-            printLogs(LogTag, "onActivityResult", "requestCode "+resultCode);
-            printLogs(LogTag, "onActivityResult", "requestCode "+data);
+            printLogs(LogTag, "onActivityResult", "requestCode " + requestCode);
+            printLogs(LogTag, "onActivityResult", "requestCode " + resultCode);
+            printLogs(LogTag, "onActivityResult", "requestCode " + data);
         }
     }
 }

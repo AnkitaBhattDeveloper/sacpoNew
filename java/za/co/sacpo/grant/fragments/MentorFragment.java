@@ -63,10 +63,7 @@ public class MentorFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId())
-        {
-            case R.id.txMentorApprovedBy:
-                break;
+        if (v.getId() == R.id.txMentorApprovedBy) {
         }
     }
 }

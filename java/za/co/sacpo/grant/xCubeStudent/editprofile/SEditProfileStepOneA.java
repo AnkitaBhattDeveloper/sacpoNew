@@ -1199,22 +1199,17 @@ public class SEditProfileStepOneA extends BaseFormAPCPrivate {
 
         @SuppressLint("NonConstantResourceId")
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputFirstName:
-                    validateFirstName(EditView, EditLayout);
-                    break;
-                case R.id.inputLastName:
-                    validateLastName(EditView, EditLayout);
-                    break;
-                case R.id.inputMobile:
-                    validateNumber(EditView, EditLayout);
-                    break;
-                case R.id.inputNational_id:
-                    validateNationalId(EditView,EditLayout);
-                    break;
-                case R.id.inputsRegNo:
-                    validateRegNo(EditView,EditLayout);
-                    break;
+            int id = EditView.getId();
+            if (id == R.id.inputFirstName) {
+                validateFirstName(EditView, EditLayout);
+            } else if (id == R.id.inputLastName) {
+                validateLastName(EditView, EditLayout);
+            } else if (id == R.id.inputMobile) {
+                validateNumber(EditView, EditLayout);
+            } else if (id == R.id.inputNational_id) {
+                validateNationalId(EditView, EditLayout);
+            } else if (id == R.id.inputsRegNo) {
+                validateRegNo(EditView, EditLayout);
             }
         }
     }

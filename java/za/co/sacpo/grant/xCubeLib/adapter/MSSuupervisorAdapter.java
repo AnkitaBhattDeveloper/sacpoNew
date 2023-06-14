@@ -258,42 +258,27 @@ public class MSSuupervisorAdapter extends RecyclerView.Adapter<MSSuupervisorAdap
                 Intent intent;
                 String user_id;
                 Context context;
-                switch (menuItem.getItemId()){
-
-
-                    case R.id.addNote:
-
-                        Bundle inputUri2 = new Bundle();
-                        user_id = String.valueOf(userId);
-                        inputUri2.putString("user_id", user_id);
-                        inputUri2.putString("date_input", "");
-                        inputUri2.putString("generator", "149");
-                        context = view.getContext();
-                        intent = new Intent(context, MAddNote.class);
-                        intent.putExtras(inputUri2);
-                        context.startActivity(intent);
-
-
-                        break;
-
-
-                    case R.id.notList:
-
-                        Bundle inputUri = new Bundle();
-                        user_id = String.valueOf(userId);
-                        inputUri.putString("user_id", user_id);
-                        inputUri.putString("date_input", "");
-                        inputUri.putString("generator", "149");
-                        context = view.getContext();
-                        intent = new Intent(context, MNoteList.class);
-                        intent.putExtras(inputUri);
-                        context.startActivity(intent);
-
-
-                    default:
-                        break;
-
-
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.addNote) {
+                    Bundle inputUri2 = new Bundle();
+                    user_id = String.valueOf(userId);
+                    inputUri2.putString("user_id", user_id);
+                    inputUri2.putString("date_input", "");
+                    inputUri2.putString("generator", "149");
+                    context = view.getContext();
+                    intent = new Intent(context, MAddNote.class);
+                    intent.putExtras(inputUri2);
+                    context.startActivity(intent);
+                } else if (itemId == R.id.notList) {
+                    Bundle inputUri = new Bundle();
+                    user_id = String.valueOf(userId);
+                    inputUri.putString("user_id", user_id);
+                    inputUri.putString("date_input", "");
+                    inputUri.putString("generator", "149");
+                    context = view.getContext();
+                    intent = new Intent(context, MNoteList.class);
+                    intent.putExtras(inputUri);
+                    context.startActivity(intent);
                 }
 
                 return false;

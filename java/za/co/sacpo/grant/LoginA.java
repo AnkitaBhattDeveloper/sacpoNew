@@ -813,13 +813,11 @@ public class LoginA extends BaseFormAPCPublic {
 
         @SuppressLint("NonConstantResourceId")
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputEmail:
-                    validateUsername(EditView, EditLayout);
-                    break;
-                case R.id.inputPassword:
-                    validatePassword(EditView, EditLayout);
-                    break;
+            int id = EditView.getId();
+            if (id == R.id.inputEmail) {
+                validateUsername(EditView, EditLayout);
+            } else if (id == R.id.inputPassword) {
+                validatePassword(EditView, EditLayout);
             }
         }
     }

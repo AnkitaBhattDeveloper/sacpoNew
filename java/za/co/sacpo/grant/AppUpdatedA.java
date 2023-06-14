@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.multidex.BuildConfig;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
@@ -14,7 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import za.co.sacpo.grant.BuildConfig;
+//import za.co.sacpo.grant.BuildConfig;
 import za.co.sacpo.grant.R;
 import za.co.sacpo.grant.xCubeLib.baseFramework.BaseAPC;
 import za.co.sacpo.grant.xCubeLib.component.Utils;

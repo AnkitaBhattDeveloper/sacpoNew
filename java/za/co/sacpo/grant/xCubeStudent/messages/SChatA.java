@@ -916,25 +916,27 @@ public class SChatA extends BaseFormAPCPrivate {
             startActivity(intent);
             finish();
         }
-        switch (item.getItemId()) {
-            case R.id.s_chat_menu_uploadImage:
-                showFileChooser();
-                return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.s_chat_menu_uploadImage) {
+            showFileChooser();
+            return true;
+        } else if (itemId == R.id.s_chat_menu_msg_remove) {
+            Toast.makeText(baseApcContext, "TIME :" + getTimeStamp(), Toast.LENGTH_SHORT).show();
+            return true;
+        } /*else if (itemId == R.id.home) {
+            Intent intent = new Intent(SChatA.this, SChatListDA.class);
+            printLogs(LogTag, "onOptionsItemSelected", "SChatListDA");
+            startActivity(intent);
+            finish();
 
-            case R.id.s_chat_menu_msg_remove:
-                Toast.makeText(baseApcContext, "TIME :" + getTimeStamp(), Toast.LENGTH_SHORT).show();
-                return true;
 
-            case R.id.home:
-                Intent intent = new Intent(SChatA.this, SChatListDA.class);
-                printLogs(LogTag, "onOptionsItemSelected", "SChatListDA");
-                startActivity(intent);
-                finish();
-
-            default:
-                super.onOptionsItemSelected(item);
-                finish();
-                printLogs(LogTag,"onOptionsItemSelected","default");
+            super.onOptionsItemSelected(item);
+            finish();
+            printLogs(LogTag, "onOptionsItemSelected", "default");
+        } */else {
+            super.onOptionsItemSelected(item);
+            finish();
+            printLogs(LogTag, "onOptionsItemSelected", "default");
         }
         Intent intent = new Intent(SChatA.this, SChatListDA.class);
         printLogs(LogTag, "onOptionsItemSelected", "SChatListDA");

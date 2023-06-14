@@ -925,54 +925,83 @@ public class MChatA extends BaseFormAPCPrivate {
     public boolean onOptionsItemSelected(MenuItem item) {
         printLogs(LogTag,"onOptionsItemSelected","init");
 
-        switch (item.getItemId()) {
-            case R.id.s_chat_menu_uploadImage:
-                showFileChooser();
-                return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.s_chat_menu_uploadImage) {
+            showFileChooser();
+            return true;
+        } else if (itemId == R.id.s_chat_menu_msg_remove) {
+            Toast.makeText(baseApcContext, "TIME :" + getTimeStamp(), Toast.LENGTH_SHORT).show();
+            return true;
+        } /*else if (itemId == R.id.home) {
+            Intent intent = new Intent(MChatA.this, MChatListA.class);
+            printLogs(LogTag, "onOptionsItemSelected", "MChatListA");
+            startActivity(intent);
+            finish();
 
-            case R.id.s_chat_menu_msg_remove:
-                Toast.makeText(baseApcContext, "TIME :" + getTimeStamp(), Toast.LENGTH_SHORT).show();
-                return true;
 
-            case R.id.home:
-                Intent intent = new Intent(MChatA.this, MChatListA.class);
-                printLogs(LogTag, "onOptionsItemSelected", "MChatListA");
-                startActivity(intent);
+            if (generator.equals("406")) {
+                Bundle inputUri = new Bundle();
+                inputUri.putString("fId", fId);
+                inputUri.putString("fIsGroup", fIsGroup);
+                inputUri.putString("fImage", fImage);
+                inputUri.putString("generator", generator);
+                Intent intent0 = new Intent(MChatA.this, MChatListA.class);
+                intent0.putExtras(inputUri);
+                startActivity(intent0);
                 finish();
 
-            default:
+            } else if (generator.equals("230")) {
+                Bundle inputUri = new Bundle();
+                inputUri.putString("fId", fId);
+                inputUri.putString("fIsGroup", fIsGroup);
+                inputUri.putString("fImage", fImage);
+                inputUri.putString("grant_id", grant_id);
+                inputUri.putString("student_id", student_id);
+                inputUri.putString("generator", generator);
+                Intent intent2 = new Intent(MChatA.this, MGrantDetailsA.class);
+                printLogs(LogTag, "onOptionsItemSelected", "MGrantDetailsA__");
+                intent2.putExtras(inputUri);
+                startActivity(intent2);
+                finish();
+            } else {
 
-                if (generator.equals("406")){
-                    Bundle inputUri = new Bundle();
-                    inputUri.putString("fId", fId);
-                    inputUri.putString("fIsGroup", fIsGroup);
-                    inputUri.putString("fImage", fImage);
-                    inputUri.putString("generator", generator);
-                    Intent intent0 = new Intent(MChatA.this,MChatListA.class);
-                    intent0.putExtras(inputUri);
-                    startActivity(intent0);
-                    finish();
+                Intent intent3 = new Intent(MChatA.this, MChatListA.class);
+                printLogs(LogTag, "onOptionsItemSelected", "Default_Intent__");
+                startActivity(intent3);
+                finish();
+            }
+        }*/ else {
+            if (generator.equals("406")) {
+                Bundle inputUri = new Bundle();
+                inputUri.putString("fId", fId);
+                inputUri.putString("fIsGroup", fIsGroup);
+                inputUri.putString("fImage", fImage);
+                inputUri.putString("generator", generator);
+                Intent intent0 = new Intent(MChatA.this, MChatListA.class);
+                intent0.putExtras(inputUri);
+                startActivity(intent0);
+                finish();
 
-        }else if (generator.equals("230")){
-            Bundle inputUri = new Bundle();
-            inputUri.putString("fId", fId);
-            inputUri.putString("fIsGroup", fIsGroup);
-            inputUri.putString("fImage", fImage);
-            inputUri.putString("grant_id", grant_id);
-            inputUri.putString("student_id", student_id);
-            inputUri.putString("generator", generator);
-            Intent intent2 = new Intent(MChatA.this, MGrantDetailsA.class);
-            printLogs(LogTag, "onOptionsItemSelected", "MGrantDetailsA__");
-            intent2.putExtras(inputUri);
-            startActivity(intent2);
-            finish();
-        }else{
+            } else if (generator.equals("230")) {
+                Bundle inputUri = new Bundle();
+                inputUri.putString("fId", fId);
+                inputUri.putString("fIsGroup", fIsGroup);
+                inputUri.putString("fImage", fImage);
+                inputUri.putString("grant_id", grant_id);
+                inputUri.putString("student_id", student_id);
+                inputUri.putString("generator", generator);
+                Intent intent2 = new Intent(MChatA.this, MGrantDetailsA.class);
+                printLogs(LogTag, "onOptionsItemSelected", "MGrantDetailsA__");
+                intent2.putExtras(inputUri);
+                startActivity(intent2);
+                finish();
+            } else {
 
-            Intent intent3 = new Intent(MChatA.this,MChatListA.class);
-            printLogs(LogTag,"onOptionsItemSelected","Default_Intent__");
-            startActivity(intent3);
-            finish();
-        }
+                Intent intent3 = new Intent(MChatA.this, MChatListA.class);
+                printLogs(LogTag, "onOptionsItemSelected", "Default_Intent__");
+                startActivity(intent3);
+                finish();
+            }
         }
 
 

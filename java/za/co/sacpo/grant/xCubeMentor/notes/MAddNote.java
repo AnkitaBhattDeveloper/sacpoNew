@@ -426,12 +426,8 @@ public class MAddNote extends BaseFormAPCPrivate {
         }
 
         public void afterTextChanged(Editable editable) {
-            switch (EditView.getId()) {
-                case R.id.inputDepartment:
-                    validateNote(EditView,EditLayout);
-                    break;
-
-
+            if (EditView.getId() == R.id.inputDepartment) {
+                validateNote(EditView, EditLayout);
             }
         }
     }
