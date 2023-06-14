@@ -241,6 +241,9 @@ public class SignInA extends BaseFormAPCPrivate implements LocationListener, OnM
                             setMapLocation();
                             Log.e("TAG", "onComplete: latitude get last location current lat =  " + currentLat);
                             Log.e("TAG", "onComplete: longitude get last location current long  =  " + currentLong);
+                             iLat.setText(currentLat.toString());
+                             iLong.setText(currentLong.toString());
+
                             geocoder = new Geocoder(baseApcContext);
                             try {
                                 addresses = geocoder.getFromLocation(currentLat, currentLong, 1);
