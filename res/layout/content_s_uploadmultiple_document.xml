@@ -7,7 +7,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_s_view"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.upload.UploadMultipleDocsA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.upload.UploadMultipleDocsA"
     tools:showIn="@layout/a_upload_multiple_docs">
 
         <RelativeLayout

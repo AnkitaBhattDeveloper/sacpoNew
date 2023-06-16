@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-    tools:context=".xCubeStudent.attendance.SCurrentAttDA">
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.attendance.SCurrentAttDA">
 <include
     layout="@layout/container_c_current_attendance"
     android:layout_width="match_parent"

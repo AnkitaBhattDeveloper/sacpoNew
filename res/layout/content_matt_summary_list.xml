@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/footer50_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeMentor.claims.MClaimAttApproveA"
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.claims.MClaimAttApproveA"
     tools:showIn="@layout/a_matt_summary_list">
 
         <ScrollView

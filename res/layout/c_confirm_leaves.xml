@@ -9,7 +9,7 @@
     android:background="@color/background_grey"
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.leaves.SLConfirmationA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.leaves.SLConfirmationA"
     tools:showIn="@layout/a_confirm_leaves">
 
     <ScrollView

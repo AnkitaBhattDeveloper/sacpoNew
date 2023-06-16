@@ -8,7 +8,7 @@
     android:background="@color/background_grey"
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.attendance.SignInA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.attendance.SignInA"
     tools:showIn="@layout/a_sign_in">
 
     <ScrollView
@@ -498,7 +498,7 @@
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:id="@+id/map"
-                    android:name="za.co.sacpo.grant.fragments.FMap"
+                    android:name="za.co.sacpo.grantportal.fragments.FMap"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     tools:context=".grant.xCubeStudent.attendance.SignInA" />

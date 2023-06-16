@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/footer50_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.claims.SCMonthlyFeedbackA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.claims.SCMonthlyFeedbackA"
     tools:showIn="@layout/a_monthly_feedback">
 
     <LinearLayout

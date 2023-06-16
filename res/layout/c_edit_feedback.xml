@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.feedback.SEditFeedbackA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.feedback.SEditFeedbackA"
     tools:showIn="@layout/c_edit_feedback">
 
     <ScrollView

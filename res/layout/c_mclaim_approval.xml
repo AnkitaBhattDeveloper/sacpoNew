@@ -9,7 +9,7 @@
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeMentor.claims.MPendingClaimsA"
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.claims.MPendingClaimsA"
     tools:showIn="@layout/a_mclaim_approval">
 
   <ScrollView

@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".xCubeStudent.leaves.SLMotivationA">
+tools:context="za.co.sacpo.grantportal.xCubeStudent.leaves.SLMotivationA">
 
 <include  layout="@layout/container_c_leave_motivation"
     android:id="@+id/include" />

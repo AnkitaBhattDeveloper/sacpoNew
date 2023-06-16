@@ -167,8 +167,8 @@
                     />
 
 
-                    <za.co.sacpo.grant.xCubeLib.component.CalendarView
-                        xmlns:calendarNS="http://schemas.android.com/apk/res/za.co.sacpo.grant"
+                    <za.co.sacpo.grantportal.xCubeLib.component.CalendarView
+                        xmlns:calendarNS="http://schemas.android.com/apk/res/za.co.sacpo.grantportal"
                         android:id="@+id/inputCurrentMonth"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"

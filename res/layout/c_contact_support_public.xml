@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ContactSupportPublicA"
+    tools:context="za.co.sacpo.grantportal.ContactSupportPublicA"
     tools:showIn="@layout/a_contact_support_public">
 
     <ScrollView

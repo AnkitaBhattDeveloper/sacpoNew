@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeMentor.MDashboardDA"
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.MDashboardDA"
     tools:showIn="@layout/c_m_list_dashboard">
 
     <ScrollView

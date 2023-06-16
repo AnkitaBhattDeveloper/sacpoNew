@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.leaves.SAddLeavesA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.leaves.SAddLeavesA"
     tools:showIn="@layout/a_add_leaves">
 
     <ScrollView

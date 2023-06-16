@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.queries.SQueriesCommentsA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.queries.SQueriesCommentsA"
     tools:showIn="@layout/c_add_note">
 
 

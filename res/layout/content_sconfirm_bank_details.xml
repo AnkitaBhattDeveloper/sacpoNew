@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/footer_MarginBottom"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.claims.SConfirmBankDetailsA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.claims.SConfirmBankDetailsA"
     tools:showIn="@layout/a_sconfirm_bank_details">
 
 

@@ -75,7 +75,7 @@
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal">
-        <za.co.sacpo.grant.xCubeLib.component.TimeEditText
+        <za.co.sacpo.grantportal.xCubeLib.component.TimeEditText
             android:id="@+id/editTextSignInTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal">
-        <za.co.sacpo.grant.xCubeLib.component.TimeEditText
+        <za.co.sacpo.grantportal.xCubeLib.component.TimeEditText
             android:id="@+id/editTextSignOutTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

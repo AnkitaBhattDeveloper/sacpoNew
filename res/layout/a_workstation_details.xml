@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".xCubeStudent.details.SWorkstationDetailsA">
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.details.SWorkstationDetailsA">
     <include layout="@layout/c_workstation_details" android:id="@+id/include" />
     <include layout="@layout/footer_layout"/>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".xCubeMentor.claims.MClaimAttApproveA">
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.claims.MClaimAttApproveA">
 
     <include layout="@layout/content_matt_summary_list" />
     <include layout="@layout/footer_layout"/>

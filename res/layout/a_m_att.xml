@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-    tools:context=".xCubeMentor.attendance.MAttSummaryA">
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.attendance.MAttSummaryA">
     <include layout="@layout/c_m_att" />
     <include layout="@layout/footer_layout" />
 

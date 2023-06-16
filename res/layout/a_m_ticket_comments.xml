@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".xCubeMentor.queries.MQueriesCommentsA">
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.queries.MQueriesCommentsA">
 
     <include layout="@layout/c_m_ticket_comments"
         android:id="@+id/include" />

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.SVideoA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.SVideoA"
     tools:showIn="@layout/c_video">
 
     <ScrollView

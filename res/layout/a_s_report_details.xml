@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".xCubeStudent.feedback.SReportDetailsA">
+tools:context="za.co.sacpo.grantportal.xCubeStudent.feedback.SReportDetailsA">
 
 
 <include layout="@layout/c_s_reports_details" />

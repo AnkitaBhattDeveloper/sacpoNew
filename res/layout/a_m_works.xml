@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".xCubeMentor.workX.MWorkXsDA">
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.workX.MWorkXsDA">
 
     <include layout="@layout/c_m_works" />
 

@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.attendance.SMonthlyAttDA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.attendance.SMonthlyAttDA"
     tools:showIn="@layout/container_c_monthly_attendance">
 
     <ScrollView

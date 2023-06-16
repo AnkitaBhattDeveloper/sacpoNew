@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".LoginA"
+    tools:context="za.co.sacpo.grantportal.LoginA"
     tools:showIn="@layout/a_login">
     <RelativeLayout
         android:layout_width="match_parent"

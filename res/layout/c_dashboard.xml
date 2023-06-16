@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/dashboard_back_2"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeStudent.SDashboardDA"
+    tools:context="za.co.sacpo.grantportal.xCubeStudent.SDashboardDA"
     tools:showIn="@layout/container_dashboard"
     tools:ignore="ScrollViewCount">
 

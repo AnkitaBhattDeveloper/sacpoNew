@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/footer45_MarginBottom"
     android:background="@color/background_grey"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".xCubeMentor.queries.MQueriesCommentsA"
+    tools:context="za.co.sacpo.grantportal.xCubeMentor.queries.MQueriesCommentsA"
     tools:showIn="@layout/c_m_ticket_comments">
     <ScrollView
         android:layout_width="match_parent"
